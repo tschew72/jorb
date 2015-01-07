@@ -1,0 +1,62 @@
+<!-- This is not in used. check out newjobdetail.erb-->
+<header>
+      <h2>Match Detail</h2>
+</header>
+<div class="row">
+<div class="col-lg-11">
+Job Seeker Detail <a href="/j_mycv?pk=<%=@skr_id%>"><span style="" class="btn dark-blue-btn btn-primary">
+        <i class="fa fa-suitcase"></i> <span >Online CV</span>  </a>     
+  <table class="table table-striped table-hover margin-0px airtable">
+    <thead>
+      <tr>
+        <th >ID</th>
+        <th >Name </th>
+        <th >Contact </th>
+        <th >Email </th>
+        <th >Age </th>
+        <th >Gender </th>
+        <th >Availability </th>
+        <th >Current Salary </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @skrdetail_pers.each do |i| %>
+
+        <td><span class="text-center"> <%= i.seekervalue %></span></td>      
+        <!-- <span class="text-center"> <%= i.fieldname %></span>                  -->
+        <!-- <td><span class="text-center"> <%= i.seekervalue %></span></td> -->
+
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-11">
+  How was he ranked
+  <table class="table table-striped table-hover margin-0px airtable">
+    <thead>
+      <tr>
+        <th >description</th>
+        <th > job spec </th>
+        <th >seeker detail</th>
+        <th >score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @skrdetail.each do |i| %>
+      <tr>
+        <td><span class="text-center"> <%= i.fieldname %></span></td>                       
+        <td><span class="text-center"> <%= i.jobvalue %></span></td>
+        <td><span class="text-center"> <%= i.skrvalue %></span></td>
+        <td><span class="text-center"> <%= i.score %></span></td>
+      </tr>
+      <% end %>
+    </tbody>
+    
+  </table>
+</div>
+</div>
+
+

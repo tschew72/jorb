@@ -1,0 +1,1046 @@
+<!-- force reload of the page when someone return back to this page from another page -->
+<!-- <input type="hidden" id="refreshed" value="no"> -->
+<script type="text/javascript">
+// onload=function(){
+// var e=document.getElementById("refreshed");
+// if(e.value=="no")e.value="yes";
+// else{e.value="no";location.reload();}
+// }
+</script>
+
+
+
+<!--Content Wrapper-->
+      <div class="content-wrapper main-content-toggle-left">
+        <nav class="cbp-hsmenu-wrapper" id="cbp-hsmenu-wrapper">
+        
+      </nav>
+
+
+    <div class="page-header"><h1>Career Profile</h1></div>
+     
+  <div id="powerwidgets">
+    <div class="row" >
+      <div class="col-md-12  bootstrap-grid">
+        <div class="powerwidget blue" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+          <header>
+            <h2>Job Matching</h2>
+          </header>
+          <div class="inner-spacer" id="f1">
+            <div class="orb-form">
+              <div class="row" style="position:relative"> 
+                  <div class="inputlabel col-md-3 col-lg-2 column" style="position: relative; left:10px">Activate Job Search</div>
+                      <label class="toggle" style="position: absolute; left: 150px; top:0px"><input type="checkbox" checked="" name="activeseeker" id="activecheck"><i></i></label>
+                      <div style="position:absolute; left:210px; top:4px;" class="col-md-1 col-lg-1 col-xs-1 column" id="saving"></div>
+              </div>
+           
+            <div style="visibility: visible;" id="spr_block"> 
+               
+                  <div class="row" style="position:relative"> 
+                    <div class="inputlabel col-md-3 col-lg-2 column" style="position: relative;top:0px; left:10px" >I am in Singapore</div>
+                      <label class="toggle " style="position: absolute; left: 150px; top:0px;"><input type="checkbox" checked="" name="insingaporenow" id="insgcheck"><i></i></label> 
+                      <div id="saving1" class="col-md-1 col-lg-1 col-xs-1 column" style="position:absolute; top:0px; left:210px"> </div>
+                    <div style="visibility: visible;" id="insg_block">
+                      <div style="position: absolute; left: 250px;top:0px" class="inputlabel col-md-3 col-lg-2 column">on these dates </div>
+                      <input type="text" value="10/03/2005 - 14/04/2005 " class="form-control rdonly" id="id-date-range-picker-1" name="date-range-picker" style="position: absolute; left: 380px; top:0px; width: 150px; height:15px" readonly="true"> <div id="saving_date" style="position:absolute;top:40px; left:580px"></div>
+                    </div>
+                  </div>   <!-- row -->
+                  <div class="row" style="position:relative;left:10px;top:30px"><br> </div>
+               
+            </div> <!-- <div id="spr_block" style="visibility: hidden">    -->
+             </div>
+          </div> <!-- innerspace -->
+        </div> <!-- Powerwidget -->
+      </div>  <!-- col-md-12  bootstrap-grid -->
+    </div> <!-- row -->
+
+        <div class="row">
+      <div class="col-md-12 bootstrap-grid">
+        <div class="powerwidget blue"  data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+          <header>
+            <h2>CV / Résumé</h2>
+          </header>
+          <div class="inner-spacer">     
+              <div class="row">
+                <div class="inputlabel col-md-4 col-lg-3 col-xs-12 col-sm-5 column">  </div> 
+                <span style="position:relative; left:-260px; top:20px" id="CVsection"> <a href=<%= @userprofile.cvurl %> target="_blank" > <i style="font-size: 25px;" class="fa fa-file-text-o"><br><div style="font-size: 14px;left:-10px;position:relative">My CV</div></i> </a></span>
+                <script src='/vendor/jqueryfileupload/js/vendor/jquery.ui.widget.js' type='text/javascript'></script>
+                <script src='/vendor/jqueryfileupload/js/jquery.iframe-transport.js' type='text/javascript'></script>
+                <script src='/vendor/jqueryfileupload/js/jquery.fileupload.js' type='text/javascript'></script>
+                <script src='/vendor/jqueryfileupload/js/jquery.fileupload-process.js' type='text/javascript'></script>
+                <script src='/vendor/jqueryfileupload/js/jquery.fileupload-validate.js' type='text/javascript'></script>
+                <script src='/vendor/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
+                <script type="text/javascript">$.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'}); </script>
+                <span style="position:relative; left:-220px; top:5px" class="btn dark-blue-btn btn-primary fileinput-button">
+                  <div id="uploadprogress"><i class="glyphicon glyphicon-plus"></i> <span >Upload new CV</span></div> <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" ></span>
+                <!-- <div  id="uploadprogress" style="position:relative; top:-25px; left: -25px;">AA </div> -->
+              </div> <!--upload row-->
+            <br><br> 
+                <script type="text/javascript">
+                $(function(){
+                  $('#fileupload').fileupload({
+                      add: function (e, data) {
+                          $.getJSON('/filer_cv', function (result) {
+                              data.formData = result; // e.g. {id: 123}
+                              data.submit();
+                          }).fail( function(d, textStatus, error) {
+                              console.error("Error! Please contact helpdesk. Status: " + textStatus + ", error: "+error)
+                          });
+                      },
+                      url: "https://api.cloudinary.com/v1_1/dashy/upload",
+                      acceptFileTypes: /(\.|\/)(doc?x|pdf|txt)$/i, 
+                      // The maximum allowed file size in bytes:
+                      maxFileSize: 10000000, // 10 MB
+                      // The minimum allowed file size in bytes:
+                      minFileSize: 1, // No minimal file size
+                      // The limit of files to be uploaded:
+                      maxNumberOfFiles: 10
+                    })
+                  // .on('fileuploadfail', function (e, data) {
+                  //     var currentFile = data.files[data.index];
+                  //     alert("Error! Please contact helpdesk");
+                  //     if (data.files.error && currentFile.error) {
+                  //       // there was an error, do something about it
+                  //       // newAlert("#alert_placeholder-tab",'danger', currentFile.error);
+                     
+                  //     }
+                  //   });
+                  });
+
+                  $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) { 
+                     $.ajax({
+                          url: '/cvuploaded',
+                          type: 'POST',
+                          data: {"cvurl": data.result.url, "pk" : <%=@userprofile.id %>},
+                          success: function(response){
+                            tt = "<a href=".concat(data.result.url,"><i style='font-size: 25px;' class='fa fa-file-text-o'><br><div style='font-size: 14px;left:-10px;position:relative'>My CV</div></i></a>");
+                            $('#CVsection').html(tt);
+                                      $("#uploadprog").html("Uploading is complete!");
+                                      $('#uploadprog').fadeOut(3000, function() {
+                                        $(this).remove();
+                                        $("#uploadprogress").html("<i class='glyphicon glyphicon-plus'></i> <span >Upload new CV</span>");
+                                       });
+                            //newAlert("#alert_placeholder-tab", 'success', "File uploaded successfully!");
+                          }
+                     }); //ajax
+                     return true;
+                  }); //cloudinary done
+
+                  $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
+                    $("#uploadprogress").html("<div id='uploadprog'> <i class='fa fa-spinner fa-spin'></i>Uploading in progress</div> </div>");
+                  });
+
+                  $('.cloudinary-fileupload').bind('fileuploadstop', function(e, data) {
+
+                  });
+
+                   $('.cloudinary-fileupload').bind('fileuploadfail', function(e, data) {
+                      alert(data.files[0].error);
+                  });
+              </script>
+
+              <div class="row" style="position:relative">
+                  <div class="inputlabel col-md-5 col-sm-7 col-lg-4 column" style="position:relative;left:10px">Availability (months)</div> 
+                  <div class="inputtext col-md-4 col-lg-3 col-xs-12 column" style="width: 100px; max-width:90%; position: absolute;left: 200px;line-height: 15px; vertical-align:middle;"> 
+                    <a href="#" id="availability" data-name="availability" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatetmeprofile" data-title="Enter your availability"><%= @userprofile.availability %></a>
+                  </div>
+                </div>
+            </div> <!-- End of Innerspace -->
+          </div> <!-- End of powerwidget -->
+        </div> <!-- <div class="col-md-12 bootstrap-grid"> -->
+      </div> <!-- End Row -->
+
+
+    <div class="row" >
+      <div class="col-md-12  bootstrap-grid">
+        <div class="powerwidget blue" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+          <header>
+            <h2>Job Preferences</h2>
+          </header>
+          
+          <div class="inner-spacer">
+            <div class="callout callout-info">
+              <h4>Job Preferences</h4>
+              <p>Enter your preferred job requirements here. These will be used in conjunction with your experience and skills during job matching to find the most suitable jobs for you. Be realistic and specific to ensure the best possible match</p>
+            </div>
+              <div class="row" style="position:relative">
+                  <div class="inputlabel col-md-5 col-sm-7 col-lg-4 column" style="position:relative;left:10px">Current monthly salary:S$ </div> 
+                  <div class="inputtext col-md-4 col-lg-3 col-xs-12 column" style="width: 100px; max-width:90%; position: absolute;left: 200px;line-height: 15px; vertical-align:middle;"> 
+                    <a href="#" id="currentsalary" data-name="currentsalary" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatetmeprofile" data-title="Enter current salary"><%= @userprofile.currentsalary %></a>
+                  </div>
+                </div>
+
+                <div class="row" style="position:relative">
+                  <div class="inputlabel col-md-5 col-sm-7 col-lg-4 column" style="position:relative;left:10px">Expected monthly salary:S$</div> 
+                  <div class="inputtext col-md-4 col-lg-3 col-xs-12 column" style="width: 100px; max-width:90%; position: absolute;left: 200px;line-height: 15px; vertical-align:middle;"> 
+                    <a href="#" id="expectedsalary" data-name="expectedsalary" data-type="text"  data-pk="<%=@userprofile.id %>" data-url="/updatetmeprofile" data-title="Enter expected salary"><%= @userprofile.expectedsalary %></a>
+                  </div>
+                </div>    
+
+              <div class="row">
+                  <div class="inputlabel col-md-3 col-lg-2 col-sm-3 col-xs-9 column" style="position:relative;left:10px">Levels</div>
+                  <div class="inputtext col-md-9 col-lg-10 col-xs-12 column" style="width: 500px; max-width:90%; position: relative;left: -30px;"> 
+                    <a href="#" id="joblevel" data-type="select2" data-value="<%= @pref_level%>"  data-pk="<%=@userprofile.id %>" data-url="/updatelevelpref" data-title="Enter preferred job level"></a>
+                  </div>
+                </div>
+                <div class="row">      
+                  <div class="inputlabel col-md-3 col-lg-2 col-sm-3 col-xs-9 column" style="position:relative;left:10px">Functions</div>
+                  <div class="inputtext col-md-9 col-lg-10 col-xs-12 column" style="width: 500px; max-width:90%; position: relative;left: -30px;">
+                    <a href="#" id="jobfunction" data-type="select2" data-value="<%= @pref_func %>"  data-pk="<%=@userprofile.id %>" data-url="/updatefuncpref" data-title="Enter preferred job functions"></a>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="inputlabel col-md-3 col-lg-2 col-sm-3 col-xs-9 column" style="position:relative;left:10px">Industries</div>
+                  <div class="inputtext col-md-9 col-lg-10 col-xs-12 column" style="width: 500px; max-width:90%; position: relative;left: -30px;">         
+                    <a href="#" id="industries" data-type="select2" data-value="<%= @pref_ind %>"  data-pk="<%=@userprofile.id %>" data-url="/updateindpref" data-title="Enter preferred industries"></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="inputlabel col-md-3 col-lg-2 col-sm-3 col-xs-9 column" style="position:relative;left:10px">Locations</div>       
+                  <div class="inputtext col-md-9 col-lg-10 col-xs-12 column" style="width: 500px; max-width:90%; position: relative;left: -30px;">    
+                    <a href="#" id="locations" data-type="select2" data-value="<%= @pref_loc %>"  data-pk="<%=@userprofile.id %>" data-url="/updatelocpref" data-title="Enter preferred locations"></a>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="inputlabel col-md-3 col-lg-2 col-sm-4 col-xs-6 column" style="position:relative;left:10px">Travel Frequency</div>
+
+                  <div class="inputlabel col-md-4 col-lg-3 col-xs-3 column" style=" position: relative;left: -10px;"> 
+                    <div> <input  name= "freq" id="f0" type="radio" onclick="freqcheck(this)"  value="25"> 0%</div>
+                    <div> <input  name= "freq" id="f1" type="radio" onclick="freqcheck(this)"  value="25"> 25%</div>
+                    <div><input name= "freq" id="f2" type="radio" onclick="freqcheck(this)"  value="50"> 50%</div>
+                    <div><input name= "freq" id="f3" type="radio" onclick="freqcheck(this)"  value="75"> 75%</div>
+                    <div><input name= "freq" id="f4" type="radio" onclick="freqcheck(this)"  value="100"> 100%</div>
+                  </div>
+                  <div class="inputlabel col-md-2 col-lg-1 col-sm-3 col-xs-3 column" style=" position: relative;left: -10px;">  
+                    <div id="saving_radio" style=" position: relative; left:-250px; top:-2px"></div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div style="margin-left: 10px;" class="header smaller lighter blue" style="position:relative;left:10px">Job Types you are searching for <small>select all that apply</small> </div>
+                </div> <!-- END row -->
+
+                  <div class="col-md-4 col-lg-3 col-sm-4 column" style="position: relative">
+                    <div class="row orb-form">
+                          <div class="inputlabel col-md-4 col-lg-3 col-sm-4 column">Full Time</div>
+                          <label style="position: absolute; left: 30px;" class="toggle col-md-1 col-lg-1 col-sm-1 column"><input id="fulltimecheck" name="fulltime"  type="checkbox" <%= @userprofile.fulltime.to_s == "true" ? "checked" : "unchecked" %> ><i></i></label>
+                        <div class="col-md-1 col-lg-1 col-xs-1 column" id="saving_fulltime" style="position:absolute; left: 140px; top: 3px"></div>
+                    </div>
+                    <div class="row orb-form">
+                      <div class="inputlabel col-md-4 col-lg-3 col-sm-4 column">Part Time</div>
+                        <label style="position: absolute; left: 30px;" class="toggle col-md-1 col-lg-1 col-sm-1 column"><input id="parttimecheck" name="parttime"  type="checkbox" <%= @userprofile.parttime.to_s == "true" ? "checked" : "unchecked" %> ><i></i></label>
+                       <div id="saving_parttime" style="position:absolute; left: 140px; top: 50px" class="col-md-1 col-lg-1 col-xs-1 column"></div>
+                    </div>
+                  </div>
+                    <div class="col-md-4 col-lg-3 col-sm-4 column" style="position: relative">
+                      <div class="row orb-form">
+                        <div class="inputlabel col-md-4 col-lg-3 col-sm-4 column">Shift Work</div>
+                          <label style="position: absolute; left: 40px;" class="toggle col-md-1 col-lg-1 col-sm-1 column"><input id="shiftworkcheck" name="shiftwork" type="checkbox" <%= @userprofile.shiftwork.to_s == "true" ? "checked" : "unchecked" %> ><i></i></label>
+                          <div id="saving_shift" style="position:absolute; left: 140px; top: 3px" class="col-md-1 col-lg-1 column"></div>
+                      </div>
+
+                      <div class="row orb-form ">
+                          <div class="inputlabel col-md-4 col-lg-3 col-sm-2 column">Internship</div>
+                            <label style="position: absolute; left: 40px;" class="toggle col-md-1 col-lg-1 col-xs-1 col-sm-1 column"><input id="interncheck" name="skr_intern"  type="checkbox" <%= @userprofile.skr_intern.to_s == "true" ? "checked" : "unchecked" %> ><i></i></label>
+                            <div id="saving_intern" style="position:absolute; left: 140px; top: 60px" class="col-md-1 col-lg-1 column"></div>
+                      </div>                     
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-sm-4 column " style="position: relative">
+                      <div class="row orb-form">
+                        <div style="left: 0px;" class="inputlabel col-md-5 col-lg-4 col-xs-11 column">AfterOfficeHour</div>
+                            <label style="position: absolute; left: 90px;" class="toggle col-md-1 col-lg-1 col-xs-1 column"><input id="outofhourscheck" name="outofhours" unchecked="" type="checkbox"><i></i></label>
+                            <div id="saving_out" style="position:absolute; left: 190px; top: 3px" class="col-md-1 col-lg-1 col-xs-1 column"></div>
+                        </div>
+                      <div class="row orb-form">
+                        <div class="inputlabel col-md-5 col-lg-4 col-xs-11 column" style="left: 0px;">Freelance/Contract</div>
+                          <label style="position: absolute; left: 90px;" class="toggle col-md-1 col-lg-1 col-xs-1 column"><input id="contractorcheck" name="skr_contractor" unchecked="" type="checkbox"><i></i></label> 
+                          <div id="saving_contractor" style="position:absolute; left: 190px; top: 50px" class="col-md-1 col-lg-1 col-xs-1 column"></div>
+                      </div>
+                    </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12  bootstrap-grid">
+        <div class="powerwidget blue" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+          <header>
+            <h2>Achievements</h2>
+          </header>
+          <div class="inner-spacer">
+
+            
+            <div class="row">  <!-- Start Row of Achievement Section -->          
+               <div class=" col-md-10 col-lg-8  column"> 
+                <div class="row">
+                  <div class="inputlabel col-md-4 col-lg-3 col-xs-9 column" style="position:relative;left:10px">My Achievements: </div> 
+                </div>
+                <div id="achievementsection">
+                 
+                    <div class="row">
+                       <div class="inputtext col-md-9 col-lg-9 col-sm-11 column" style="width: 720px; position: relative;left: 10px;">
+                        <a class="editable-click ec" href="javascript:void(0)" data-type="wysihtml5" data-pk="<%=@myachievements.skr_achieve_id %>" data-url="/updateachievement" data-title="Enter achievement"><%= @myachievements.achievement != '' ? @myachievements.achievement : "[Optional] Enter your achievement here"%> </a>
+                     </div>
+                    </div>
+                  
+                </div> <!-- END Achievementsection -->
+               </div> <!--col -->
+               <!-- END First half of the Achievement Section -->
+             </div> <!-- row --> <!-- End Row of Achievement Section -->
+              </div> <!-- Innerspace -->
+                </div> <!-- power widget -->
+              </div> <!-- bootstrap grid -->
+            </div> <!-- END  row -->
+
+             <div class="row">
+              <div class="col-md-12  bootstrap-grid">
+                <div class="powerwidget blue" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+                  <header>
+                    <h2>Experience</h2>
+                  </header>
+                  <div class="inner-spacer">
+                    <div class="row"> <!-- Start Row of Job Experience Section -->
+                      <div class=" col-md-10 col-lg-8  column"> 
+                        <div class="row"> 
+                          <div class="col-sm-12 col-lg-12 ">
+                            <div id="experiencetable">
+                              <div style="text-align:center">
+                              <a href="#addexperiencemodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
+                                  <span class="btn dark-blue-btn btn-primary">Add New Job Experience</span>
+                              </a>
+                              <br><br>
+                              </div>
+                              <div id="jt"> <!-- Job Experience table will be loaded in this div --></div>
+                              <br><br>
+                            </div> <!-- experiencetable -->
+                          </div> <!-- <div class="col-sm-12 col-lg-12 "> -->               
+                        </div>    <!-- row -->                                
+                      </div> <!-- End Col -->
+                    </div>
+
+
+                  </div> <!-- Innerspace -->
+                </div> <!-- power widget -->
+              </div> <!-- bootstrap grid -->
+            </div> <!-- END  row -->
+    <div class="row">
+      <div class="col-md-12 bootstrap-grid">
+        <div class="powerwidget blue"  data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+          <header>
+            <h2>Skills</h2>
+          </header>
+          <div class="inner-spacer"> 
+            <ul class="nav nav-tabs"> 
+              <li><a id="skilltabclick" data-toggle="tab" href="#skilltab" >IT Skills</a></li>   
+              <li><a id="languagetabclick" data-toggle="tab" href="#languagetab">Languages</a></li>   
+              <li><a id="edutabclick" data-toggle="tab" href="#edutab">Education</a></li>    
+              <li><a id="certtabclick" data-toggle="tab" href="#certtab">Certificates</a></li>                  
+            </ul>
+            <div class="tab-content">
+                    <div id="skilltab" class="tab-pane active">
+                      <div class="row"> 
+                        <div class="col-sm-12 col-lg-12 ">
+                          <div id="skilltable">
+                            <div style="text-align:center">
+                            <a href="#addskillmodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
+                                <span class="btn dark-blue-btn btn-primary">Add New Skill</span>
+                            </a>
+                            <br><br>
+                          </div>
+                            <div id="st"> <!-- Skill management table will be loaded in this div --></div>
+                            <br><br>
+                          </div> <!-- skilltable" -->
+                        </div> <!-- <div class="col-sm-12 col-lg-12 "> -->               
+                      </div>    <!-- row --> 
+                    </div> <!-- skilltab -->
+                    <div id="languagetab" class="tab-pane">
+                      <div class="row"> 
+                        <div class="col-sm-12 col-lg-12 ">
+                          <div id="languagetable">
+                            <div style="text-align:center">
+                            <a href="#addlanguagemodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
+                                <span class="btn dark-blue-btn btn-primary">Add New Language</span>
+                            </a>
+                            <br><br>
+                          </div>
+                            <div id="lt"><!-- Skill management table will be loaded in this div --></div>
+                            <br><br>
+                          </div> <!-- languagetable" -->
+                        </div> <!-- <div class="col-sm-12 col-lg-12 "> -->               
+                      </div>    <!-- row --> 
+                    </div> <!-- languagetab -->
+                    <div id="edutab" class="tab-pane">
+                      <div class="row"> 
+                        <div class="col-sm-12 col-lg-12 ">
+                          <div id="edutable">
+                            <div style="text-align:center">
+                            <a href="#addedumodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
+                                <span class="btn dark-blue-btn btn-primary">Add New Education</span>
+                            </a>
+                            <br><br>
+                          </div>
+                            <div id="et"><!-- Education management table will be loaded in this div --></div>
+                            <br><br>
+                          </div> <!-- edutable" -->
+                        </div> <!-- <div class="col-sm-12 col-lg-12 "> -->               
+                      </div>    <!-- row --> 
+                    </div> <!-- edutab -->
+                    <div id="certtab" class="tab-pane">
+                      <div class="row"> 
+                        <div class="col-sm-12 col-lg-12 ">
+                          <div id="certtable">
+                            <div style="text-align:center">
+                            <a href="#addcertmodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
+                                <span class="btn dark-blue-btn btn-primary">Add New Certification</span>
+                            </a>
+                            <br><br>
+                          </div>
+                            <div id="ct"><!-- Certificate management table will be loaded in this div --></div>
+                            <br><br>
+                          </div> <!-- certtable" -->
+                        </div> <!-- col -->
+                      </div>
+                    </div>
+                </div> <!-- <div class="tab-content">-->   
+              </div> <!-- end innerspace -->
+            </div> <!-- End powerwidget -->
+            </div> <!-- <div class="col-md-12 bootstrap-grid"> -->
+            </div> <!-- END  row -->
+
+
+    </div> <!-- END powerwidgets  -->
+    <div class="col-md-2 col-lg-2"></div>
+
+   </div> <!--Content Wrapper-->          
+
+
+
+<!-- This is where the modals are defined -->
+
+  <!-- End of Modals definition -->
+
+<!--Main App-->
+<!-- <script type="text/javascript" src="/dash/js/scripts.js"></script> -->
+                   
+  <script>
+
+
+  $(document).ready(function(){
+
+  $("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill RequirementTable now... </div>"); 
+  $("#lt").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language RequirementTable now... </div>"); 
+  $("#et").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
+  $("#ct").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
+
+  $("#jt").load("/experiencetable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+  document.getElementById('f1').scrollIntoView()
+  $("#st").load("/table",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+
+                //non singaporean and non-PR and active in seeking for job, show it!
+              if (<%= @mynations %> != 157 && <%= @mynationtypes %> !=2 && <%= @userprofile.activeseeker %>){
+                 document.getElementById( 'spr_block' ).style.visibility = 'visible';
+                 if (<%= @userprofile.insingaporenow%> ){
+                  document.getElementById( 'insg_block' ).style.visibility = 'visible';
+                 }
+              };
+
+              if (<%= @mynations %> == 157 || <%= @mynationtypes %> ==2)  {
+                document.getElementById( 'spr_block' ).style.visibility = 'hidden';
+                document.getElementById( 'insg_block' ).style.visibility = 'hidden';
+              } ;
+
+              if (<%= @userprofile.travelfreq %> ==0){
+                document.getElementById("f0").checked = true;
+               }
+              if (<%= @userprofile.travelfreq %> ==25){
+                document.getElementById("f1").checked = true;
+               }
+              if (<%= @userprofile.travelfreq %> ==50){
+                document.getElementById("f2").checked = true;
+               }
+              if (<%= @userprofile.travelfreq %> ==75){
+                document.getElementById("f3").checked = true;
+               }
+              if (<%= @userprofile.travelfreq %> ==100){
+                document.getElementById("f4").checked = true;
+               }
+
+              // $("#st").load("/table",{i: new Date().getTime()});   //putting the current time as a parameter to overcome IE issue
+              //$("#lt").load("/langtable",{i: new Date().getTime()}); 
+
+       $('input[name="date-range-picker"]').daterangepicker({
+        timePicker: false,
+        showDropdowns: true,
+        format: 'DD/MM/YYYY',
+        }, function(start, end, label) {
+          console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
+          from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+          end =moment(end.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+           $.ajax({
+              url: '/update_inSG_Date',
+              type: 'POST',
+              data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
+              beforeSend : function(){
+                $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+              }, 
+              success: function(response){
+                          // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
+                           $('#saver').fadeOut(1000, function() {
+                            $(this).remove();
+                           });
+                        }
+            });
+        });
+
+      $('#skr_careergoal').editable({
+        tpl: "<input type='text' style='width: 700px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          if(value.length >5000 ) {
+            return 'You can only enter a maximum of 500 characters';
+          }
+        } //function 
+
+      });
+
+      $('#skilltable').editable({
+        selector: 'a.skillrank',
+        showbuttons: false
+      });
+
+      $('#achievementsection').editable({
+        selector: 'a.ec',
+        tpl: "<input type='text' style='width: 700px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          if(value.length >5000 ) {
+            return 'You can only enter a maximum of 500 characters';
+          }
+        }, //function 
+        emptytext: '[Optional] Enter your achievement here',
+        placeholder: '[Optional] Enter your achievement here'
+      });
+      // $('#skilltable').editable({
+      //   selector: 'a.skills'
+      // });
+
+      $('#languagetable').editable({
+        selector: 'a.skr_lang_speakskill',
+        showbuttons: false
+      });
+
+      $('#languagetable').editable({
+        selector: 'a.skr_lang_writeskill',
+        showbuttons: false
+      });
+
+
+      $('#expectedsalary').editable();
+      $('#currentsalary').editable();
+      $('#availability').editable();
+
+
+      $('#expectedsalary').editable('option', 'validate', function(v) {
+          if(!v) return 'This is a required field!';
+      });
+
+      $('#currentsalary').editable('option', 'validate', function(v) {
+          if (!isInt(v)){
+            return "Invalid entry. Please re-enter";             
+          }
+      });
+
+      $('#expectedsalary').editable('option', 'validate', function(v) {
+          if (!isInt(v)){
+            return "Invalid entry. Please re-enter";             
+          }
+      });
+
+
+ 
+
+      $('#industries').editable({
+     
+           source: function() {
+                return (<%= @industries%>)
+              },
+        select2: {
+           multiple: true,
+           dropdownAutoWidth : true,
+           placeholder: 'Select Industries', width: '500px'
+        },
+        allowClear: true,
+        minimumInputLength: 3,
+        mode: 'popup',
+        showbuttons: 'bottom',
+        placement: 'bottom',
+        emptytext: 'Select your preferred industries'
+      });
+
+      $('#locations').editable({
+     
+           source: function() {
+                return (<%= @locations %>)
+              },
+        select2: {
+           multiple: true,
+           dropdownAutoWidth : true,
+           placeholder: 'Select locations', width: '500px'
+        },
+        allowClear: true,
+        minimumInputLength: 3,
+        mode: 'popup',
+        showbuttons: 'bottom',
+        placement: 'bottom',
+        emptytext: 'Select your preferred Job locations'
+      });
+
+      $('#joblevel').editable({
+     
+           source: function() {
+                return (<%= @levels%>)
+              },
+        select2: {
+           multiple: true,
+           dropdownAutoWidth : true,
+           placeholder: 'Select Job Levels', width: '500px'
+        },
+        allowClear: true,
+        minimumInputLength: 3,
+        mode: 'popup',
+        showbuttons: 'bottom',
+        placement: 'bottom',
+        emptytext: 'Select your preferred Job levels'
+      });
+
+      $('#jobfunction').editable({
+     
+           source: function() {
+                return (<%= @functions%>)
+              },
+        select2: {
+           multiple: true,
+           dropdownAutoWidth : true,
+           placeholder: 'Select Job Functions', width: '500px'
+        },
+        allowClear: true,
+        minimumInputLength: 3,
+        mode: 'popup',
+        showbuttons: 'bottom',
+        placement: 'bottom',
+        emptytext: 'Select your preferred Job functions'
+      });
+
+        $('#skillsettingtable').dataTable( {  
+            "scrollY": 200,
+            "ScrollX": true,
+            "iDisplayLength": 10,
+            "order": [[ 0, "desc" ]],
+            "scrollCollapse": true,
+            "jQueryUI": true,
+            "aoColumns": [       
+                null, null, null,
+                { "bSortable": false }
+              ]
+        } );
+
+        $('#languagesettingtable').dataTable( {
+            "scrollY": 200,
+            "ScrollX": true,
+            "iDisplayLength": 10,
+            "order": [[ 0, "desc" ]],
+            "scrollCollapse": true,
+            "jQueryUI": true,
+            "aoColumns": [       
+                null, null, null,
+                { "bSortable": false }
+              ]
+        } );
+
+       $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+          $(this).prev().focus();
+      });
+
+ 
+
+      $('[data-rel=tooltip]').tooltip();
+      $('[data-rel=popover]').popover({html:true});
+
+
+
+
+      //   $('#fileupload').fileupload({
+      //   // The regular expression for allowed file types, matches
+      //   // against either file type or file name:
+      //   acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+      //   // The maximum allowed file size in bytes:
+      //   maxFileSize: 10000000, // 10 MB
+      //   // The minimum allowed file size in bytes:
+      //   minFileSize: 1, // No minimal file size
+      //   // The limit of files to be uploaded:
+      //   maxNumberOfFiles: 10
+      // }).on('fileuploadprocessalways', function (e, data) {
+      //   var currentFile = data.files[data.index];
+      //   if (data.files.error && currentFile.error) {
+      //     // there was an error, do something about it
+      //     newAlert("#alert_placeholder-tab",'danger', currentFile.error);
+       
+      //   }
+      //   });
+
+     
+
+
+   }); //document ready
+
+
+  </script>
+
+
+
+
+
+<script>
+// ------------ POST LOADING START Loading the respective tables when user click on the tab.--------
+      // $('#skilltabclick').one("click", function() {
+      //     $("#st").load("/table",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+      // });
+      $('#languagetabclick').one("click", function() {
+          $("#lt").load("/langtable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+      });
+
+      $('#edutabclick').one("click", function() {
+          $("#et").load("/edutable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+      });
+
+      $('#certtabclick').one("click", function() {
+          $("#ct").load("/certtable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+      });
+//-------------------------END OF POST LOADING ------------------------------------
+
+
+    $("#activecheck").on('change', function(){
+      $.ajax({
+        url: '/updateactive',
+        type: 'POST',
+        data: {"activeseeker": this.checked, "pk" : <%=@userprofile.id %>},
+        beforeSend : function(){
+          $("#saving").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+        }, 
+        success: function(response){
+          var data = JSON.parse(response);
+
+          if (data.active){
+             if (data.singaporepr != 2)
+              {document.getElementById( 'spr_block' ).style.visibility = 'visible';}
+             if (data.singaporepr != 2 && data.insingaporenow){
+                document.getElementById( 'insg_block' ).style.visibility = 'visible';}
+           // newAlert("#alert_placeholder-tab", 'success', "Thanks for informing us that you are actively seeker for job");                 
+          } else{
+             document.getElementById( 'spr_block' ).style.visibility = 'hidden';
+             document.getElementById( 'insg_block' ).style.visibility = 'hidden';
+             // newAlert("#alert_placeholder-tab", 'success', "Thanks for informing us that you are not actively looking for job now.");
+            
+          }; //else
+          // $("#saving").html("<div id='saver'>Saved...</div>");
+          $('#saver').fadeOut(1000, function() {
+          $(this).remove();
+         });
+        } //success function
+      }); //ajax
+  }); //activecheck function
+
+  $("#insgcheck").on('change', function(){
+      $.ajax({
+        url: '/updateinsgnow',
+        type: 'POST',
+        data: {"insingaporenow": this.checked, "pk" : <%=@userprofile.id %>},
+        beforeSend : function(){
+          $("#saving1").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+        },
+        success: function(response){
+          var data = JSON.parse(response);
+
+          if (data.insingaporenow){
+             document.getElementById( 'insg_block' ).style.visibility = 'visible';
+             // newAlert("#alert_placeholder-tab", 'success', "Welcome to Singapore!");            
+                      
+          } else{
+             document.getElementById( 'insg_block' ).style.visibility = 'hidden';
+             // newAlert("#alert_placeholder-tab", 'success', "Look forward to see you in Singapore soon!");
+                          
+          }; //else
+              // $("#saving1").html("<div id='saver'>Saved...</div>");
+              $('#saver').fadeOut(1000, function() {
+               $(this).remove();
+             });
+        } //success function
+
+     
+      });
+  });
+
+
+        $("#parttimecheck").on('change', function(){
+          $.ajax({
+            url: '/updateparttime',
+            type: 'POST',
+            data: {"parttime": this.checked, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_parttime").html("<div id='saver_parttime'><i class='fa fa-spinner fa-spin'></i></div>");
+            },
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.parttime){
+                    newAlert("#alert_placeholder-tab", 'success', "You will be matched to any part time jobs");     
+              } else {
+                    newAlert("#alert_placeholder-tab", 'success', "You will not be matched to part time jobs");  
+              }                        
+               $('#saver_parttime').fadeOut(1000, function() {
+               $(this).remove();
+             }); 
+            } //success function
+          }); //ajax
+      }); //parttime function
+
+
+      $("#fulltimecheck").on('change', function(){
+          $.ajax({
+            url: '/updatefulltime',
+            type: 'POST',
+            data: {"fulltime": this.checked, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_fulltime").html("<div id='saver_fulltime'><i class='fa fa-spinner fa-spin'></i></div>");
+            },
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.fulltime){
+                   newAlert("#alert_placeholder-tab", 'success', "You will be matched to full time jobs");  
+              } else {
+
+                    newAlert("#alert_placeholder-tab", 'success', "You will not be matched to full time jobs");    
+              }                               
+               $('#saver_fulltime').fadeOut(1000, function() {
+               $(this).remove();
+             });
+            } //success function
+          }); //ajax
+      }); //fulltime function
+
+      $("#shiftworkcheck").on('change', function(){
+          $.ajax({
+            url: '/updateshiftwork',
+            type: 'POST',
+            data: {"shiftwork": this.checked, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_shift").html("<div id='saver_shift'><i class='fa fa-spinner fa-spin'></i></div>");
+            },
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.shiftwork){
+                   newAlert("#alert_placeholder-tab", 'success', "You will be matched to jobs requiring shift work");                                    
+              } else {
+                   newAlert("#alert_placeholder-tab", 'success', "You will not be matched to jobs requiring shift work");  
+              }
+               $('#saver_shift').fadeOut(1000, function() {
+               $(this).remove();
+             });
+            } //success function
+          }); //ajax
+      }); //shiftwork function
+
+      $("#outofhourscheck").on('change', function(){
+          $.ajax({
+            url: '/updateoutofhours',
+            type: 'POST',
+            data: {"outofhours": this.checked, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_out").html("<div id='saver_out'><i class='fa fa-spinner fa-spin'></i></div>");
+            },
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.outofhours){
+                   newAlert("#alert_placeholder-tab", 'success', "You will be matched to jobs requiring you to work outside office hour");
+               } else {
+                   newAlert("#alert_placeholder-tab", 'success', "You will not be matched to jobs requiring you to work outside office hour");  
+               }                        
+                $('#saver_out').fadeOut(1000, function() {
+               $(this).remove();
+             });
+            } //success function
+          }); //ajax
+      }); // function
+
+
+      $("#interncheck").on('change', function(){
+          $.ajax({
+            url: '/updateintern',
+            type: 'POST',
+            data: {"skr_intern": this.checked, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_intern").html("<div id='saver_i'><div id='saver_fulltime'><i class='fa fa-spinner fa-spin'></i></div>");
+            },
+            success: function(response){
+              var data = JSON.parse(response);                           
+               $('#saver_i').fadeOut(1000, function() {
+               $(this).remove();
+             });
+            } //success function
+          }); //ajax
+      }); // function
+
+      $("#contractorcheck").on('change', function(){
+          $.ajax({
+            url: '/updatecontractor',
+            type: 'POST',
+            data: {"skr_contractor": this.checked, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_contractor").html("<div id='saver_c'><i class='fa fa-spinner fa-spin'></i></div>");
+            },
+            success: function(response){
+              var data = JSON.parse(response);                           
+               $('#saver_c').fadeOut(1000, function() {
+               $(this).remove();
+             });
+            } //success function
+          }); //ajax
+      }); // function
+
+
+      function freqcheck(myRadio) {
+          $.ajax({
+            url: '/updatetravelfreq',
+            type: 'POST',
+            data: {"travelfreq": myRadio.value, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_radio").html("<div id='saver_r'><i class='fa fa-spinner fa-spin'></i></div>");
+            },
+            success: function(response){
+              // var data = JSON.parse(response);                           
+               $('#saver_r').fadeOut(1000, function() {
+                  $(this).remove();
+               });
+            } //success function
+          }); //ajax
+      }; // function
+
+
+
+      $("#id-date-picker-1").on('change', function(){
+          $.ajax({
+            url: '/updatedob',
+            type: 'POST',
+            data: {"dob": this.value, "pk" : <%=@userprofile.id %>}
+         
+          });
+      
+      });
+
+     //automatically show next editable 1
+      // $('.newskill').on('save.newskill', function(){
+      //     var that = this;
+      //     setTimeout(function() {
+      //         $(that).closest('tr').next().find('.newskill').editable('show');
+      //     }, 200);
+      // });  
+
+      // $('.newlang').on('save.newlang', function(){
+      //     var that = this;
+      //     setTimeout(function() {
+      //         $(that).closest('tr').next().find('.newlang').editable('show');
+      //     }, 200);
+      // });  
+
+
+      function isInt(value) {
+        return !isNaN(value) &&
+               parseInt(Number(value)) == value &&
+               !isNaN(parseInt(value, 10));
+      }
+
+      function delskill(element,i){
+        $.ajax({
+                url: '/deleteskill',
+                type: 'POST',
+                data: {"pk" : i},
+                success: function(response){
+                   //$(element).parents('tr').remove();
+               
+                  //var row = $(this).closest('tr');
+                  var row=$(element).parents('tr')
+                  $('#skillsettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Skill deleted!");
+
+                }
+
+              });
+      }//function
+
+      function delexp(element,i){
+        $.ajax({
+                url: '/deleteexp',
+                type: 'POST',
+                data: {"pk" : i},  //jobID
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#experiencesettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Job Experience deleted!");
+
+                }
+
+              });
+      }//function
+
+
+      function dellanguage(element,i){
+        $.ajax({
+                url: '/deletelanguage',
+                type: 'POST',
+                data: {"pk" : i},
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#languagesettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Language deleted!");
+
+                }
+
+              });
+      }//function
+
+      function deledu(element,i){
+        $.ajax({
+                url: '/deleteedu',
+                type: 'POST',
+                data: {"pk" : i},
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#edusettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Education deleted!");
+
+                }
+
+              });
+      }//function
+
+      function delcert(element,i){
+        $.ajax({
+                url: '/deletecert',
+                type: 'POST',
+                data: {"pk" : i},
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#certsettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Certification deleted!");
+
+                }
+
+              });
+      }//function
+      function newAlert (loc, type, message) {
+          $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
+          $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
+      }     
+ 
+</script>

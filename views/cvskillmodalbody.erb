@@ -1,0 +1,19 @@
+
+<br><br>
+<h3 class="job_listing-widget-title-top">My skills</h3>
+<% @allskills.each do |i| %>
+	<!-- If rank = 1, job-tag = job-tag1  TO BE DONE! also check for top 20 skills. list the expert first followed by others-->
+	<% if @allskills.get(i).status != 0 %>
+		<div class="job-tag" 
+			<% if @allskills.get(i).skillrank == 5 %> style="background-color:#1ABC9C;" 
+			<% elsif @allskills.get(i).skillrank == 4 %> style="background-color:#16A085;"  
+			<% elsif @allskills.get(i).skillrank == 3 %> style="background-color:#2ECC71;" 
+			<% elsif @allskills.get(i).skillrank == 2 %> style="background-color:#27AE60;" 
+			<% elsif @allskills.get(i).skillrank == 1 %> style="background-color:#3498DB;" <%end%> >
+			<%= @ssmaster.get(i.skillid).skill_name %> 
+		</div>
+		
+		
+	<%end%>
+<% end %>
+<br>

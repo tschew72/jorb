@@ -1,0 +1,982 @@
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+
+
+<div class="breadcrumbs" id="breadcrumbs">
+  <script type="text/javascript">
+    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+  </script>
+
+  <ul class="breadcrumb">
+    <li>
+      <i class="icon-home home-icon"></i>
+      <a href="/edge">Home</a>
+    </li>
+    <li class="active">General Statistics</li>
+  </ul><!-- /.breadcrumb -->
+
+</div> <!-- "breadcrumbs" id="breadcrumbs" -->
+
+<div class="page-content">
+    <div class="page-content-area">
+        <p style="text-align:center">Quarterly Singapore Employment Statistics - Q1 2014</p>
+        <div class="row">
+            <div class="col-sm-2 infobox-container"> </div>
+            <div class="col-sm-8 infobox-container">
+                <div class="infobox infobox-green">
+                    <div class="infobox-icon">
+                        <i class="icon-repeat"></i>
+                    </div>
+
+                    <div class="infobox-data">
+                        <span class="infobox-data-number">1.7%</span>
+                        <div class="infobox-content">Hiring Rate </div>
+                    </div>
+
+                    <div class="stat stat-success">0.1%</div>
+                </div>
+
+                <div class="infobox infobox-blue">
+                    <div class="infobox-icon">
+                        <i class="icon-twitter"></i>
+                    </div>
+
+                    <div class="infobox-data">
+                        <span class="infobox-data-number">1.3%</span>
+                        <div class="infobox-content">Resigning Rate</div>
+                    </div>
+
+                    <div class="badge badge-success">
+                        +0.2%
+                        <i class="icon-arrow-up"></i>
+                    </div>
+                </div>
+
+                <div class="infobox infobox-pink">
+                    <div class="infobox-icon">
+                        <i class="icon-shopping-cart"></i>
+                    </div>
+
+                    <div class="infobox-data">
+                        <span class="infobox-data-number">3.0%</span> <!-- http://stats.mom.gov.sg/Pages/Job-Vacancy-Summary-Table.aspx -->
+                        <div class="infobox-content">Job Vacancy Rate</div>
+                    </div>
+                    <div class="stat stat-success">0.2%</div>
+                </div>
+
+                <div class="infobox infobox-pink">
+                    <div class="infobox-icon">
+                        <i class="icon-shopping-cart"></i>
+                    </div>
+
+                    <div class="infobox-data">
+                        <span class="infobox-data-number">65.5%</span>
+                        <div class="infobox-content">PMET Redundancy </div> <!--Table 2  MRSD-QTLMR141.PDF-->
+                    </div>
+                    <div class="stat stat-success">0.2%</div> <!-- need to check last quarter -->
+                </div>
+                <div class="infobox infobox-pink">
+                    <div class="infobox-icon">
+                        <i class="icon-shopping-cart"></i>
+                    </div>
+
+                    <div class="infobox-data">
+                        <span class="infobox-data-number">44.0%</span>
+                        <div class="infobox-content">PMET Job Vacancies </div> <!--page 14 MRSD-QTLMR141.PDF-->
+                    </div>
+                    <div class="stat stat-success">0.2%</div> <!-- need to check last quarter -->
+                </div>
+                <div class="infobox infobox-pink">
+                    <div class="infobox-icon">
+                        <i class="icon-shopping-cart"></i>
+                    </div>
+
+                    <div class="infobox-data">
+                        <span class="infobox-data-number">65.5%</span>
+                        <div class="infobox-content">PMET Redundancy </div> <!--Table 2  MRSD-QTLMR141.PDF-->
+                    </div>
+                    <div class="stat stat-success">0.2%</div> <!-- need to check last quarter -->
+                </div>
+
+            </div>
+            <div class="col-sm-2 infobox-container"> </div>
+        </div> <!-- row -->
+
+        <div class="row">       
+            
+            <div class="col-sm-6">
+                <div class="widget-box transparent">
+                    <div class="widget-header widget-header-flat">
+                        <h4 class="widget-title lighter">
+                            <i class="icon-signal"></i>
+                            5 years Employment Trend
+                        </h4>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="collapse">
+                                <i class="icon-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main padding-4">
+                            <div id="sg_it_jobs" style="width:100%; height: 300px; margin: 0 auto"></div></div>
+                        </div><!-- /.widget-main -->
+                    </div><!-- /.widget-body -->
+                </div><!-- /.widget-box -->
+                 
+                <div class="col-sm-6">
+                 <div class="widget-box transparent">
+                    <div class="widget-header widget-header-flat">
+                        <h4 class="widget-title lighter">
+                            <i class="icon-signal"></i>
+                            Types of Employer
+                        </h4>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="collapse">
+                                <i class="icon-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main padding-4">
+                            <div id="employers_type" style="width:100%; height: 300px; margin: 0 auto"></div></div>
+                        </div><!-- /.widget-main -->
+                    </div><!-- /.widget-body -->
+                </div><!-- /.widget-box -->
+
+            
+        </div> <!-- row -->
+
+
+        <div class="row">
+            
+            <div class="col-sm-6">
+                <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+                            <h4 class="widget-title lighter">
+                                <i class="icon-signal"></i>
+                                IT Professionals Qualification
+                            </h4>
+
+                            <div class="widget-toolbar">
+                                <a href="#" data-action="collapse">
+                                    <i class="icon-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main padding-4">
+                                <div id="qualification" style="width:100%; height: 300px; margin: 0 auto"></div></div>
+                            </div><!-- /.widget-main -->
+                        </div><!-- /.widget-body -->
+                    </div><!-- /.widget-box -->
+
+            <div class="col-sm-6">
+                <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+                            <h4 class="widget-title lighter">
+                                <i class="icon-signal"></i>
+                                IT Professionals Gender
+                            </h4>
+
+                            <div class="widget-toolbar">
+                                <a href="#" data-action="collapse">
+                                    <i class="icon-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main padding-4">
+                                <div id="gender" style="width:100%; height: 300px; margin: 0 auto"></div>
+                            </div><!-- /.widget-main -->
+                        </div><!-- /.widget-body -->
+                </div><!-- /.widget-box -->
+            </div> <!-- "col-md-5" -->
+            
+       </div>   <!-- row -->
+
+        <div class="row">
+           
+            <div class="col-sm-6">
+                <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+                            <h4 class="widget-title lighter">
+                                <i class="icon-signal"></i>
+                                SPASS/EP Statistics
+                            </h4>
+
+                            <div class="widget-toolbar">
+                                <a href="#" data-action="collapse">
+                                    <i class="icon-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main padding-4">
+                                <div id="foreignworkforce" style="width:100%; height: 300px; margin: 0 auto"></div>
+                            </div><!-- /.widget-main -->
+                        </div><!-- /.widget-body -->
+                    </div><!-- /.widget-box -->
+                </div> <!-- "col-md-5" -->
+
+            <div class="col-sm-6">
+                <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+                            <h4 class="widget-title lighter">
+                                <i class="icon-signal"></i>
+                                XXXX
+                            </h4>
+
+                            <div class="widget-toolbar">
+                                <a href="#" data-action="collapse">
+                                    <i class="icon-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main padding-4">
+                                XXX
+                            </div><!-- /.widget-main -->
+                        </div><!-- /.widget-body -->
+                </div><!-- /.widget-box -->
+            </div> <!-- "col-md-5" -->
+           
+       </div>   <!-- row -->
+
+       <div class="row">
+              <div class="col-sm-5">
+                <div class="widget-box transparent">
+                  <div class="widget-header widget-header-flat">
+                      <h4 class="widget-title lighter"><i class="icon-signal"></i>Top 5 IT Job Titles</h4>
+                      <div class="widget-toolbar"><a href="#" data-action="collapse"><i class="icon-chevron-up"></i></a></div>
+                  </div> <!-- "widget-header widget-header-flat" -->
+                  <div class="widget-body">
+                      <div class="widget-main padding-7">
+                        <div id="top5jobtitles" style="width:100%; height: 300px; margin: 0 auto"></div>
+                      </div><!-- /.widget-main -->
+                  </div><!-- /.widget-body -->
+                </div><!-- /.widget-box -->
+              </div>  <!-- "col-md-5 " -->
+       </div>
+       <div class="row"> <!-- Start of Row 2 -->
+
+          <div class="col-sm-6">
+            <div class="widget-box transparent">
+              <div class="widget-header widget-header-flat">
+                  <h4 class="widget-title lighter"><i class="icon-signal"></i>Top 5 Job Seeker's Nationalities</h4>
+                  <div class="widget-toolbar"><a href="#" data-action="collapse"><i class="icon-chevron-up"></i></a></div>
+              </div> <!-- "widget-header widget-header-flat" -->
+              <div class="widget-body">
+                  <div class="widget-main padding-4">
+                    <div id="topnationalities" style="width:100%; height: 300px; margin: 0 auto"></div>
+                  </div><!-- /.widget-main -->
+              </div><!-- /.widget-body -->
+            </div><!-- /.widget-box -->
+          </div>  <!-- "col-md-6 column" -->
+          <div class="col-sm-6">
+            <div class="widget-box transparent">
+              <div class="widget-header widget-header-flat">
+                  <h4 class="widget-title lighter"><i class="icon-signal"></i>Top 10 Skills in Demand</h4>
+                  <div class="widget-toolbar"><a href="#" data-action="collapse"><i class="icon-chevron-up"></i></a></div>
+              </div> <!-- "widget-header widget-header-flat" -->
+              <div class="widget-body">
+                  <div class="widget-main padding-4">
+                    <div id="topskills" style="width:100%; max-width: 800px; margin: 0 auto"></div>
+                  </div><!-- /.widget-main -->
+              </div><!-- /.widget-body -->
+            </div><!-- /.widget-box -->
+          </div>  <!-- "col-md-6 column" -->
+
+        </div> <!-- End of row 2 -->
+        <div class="hr hr32 hr-dotted"></div>   
+        <div class="row"> <!-- Start of Row 3 -->
+
+            <div class="col-sm-6">
+              <div class="widget-box transparent">
+                <div class="widget-header widget-header-flat">
+                    <h4 class="widget-title lighter"><i class="icon-signal"></i>Top 5 hiring Industries</h4>
+                    <div class="widget-toolbar"><a href="#" data-action="collapse"><i class="icon-chevron-up"></i></a></div>
+                </div> <!-- "widget-header widget-header-flat" -->
+                <div class="widget-body">
+                    <div class="widget-main padding-4">
+                      <div id="topindustries" style="width:100%; height: 300px; margin: 0 auto"></div>
+                    </div><!-- /.widget-main -->
+                </div><!-- /.widget-body -->
+              </div><!-- /.widget-box -->
+            </div>  <!-- "col-md-6 column" -->
+            <div class="col-sm-6">
+              <div class="widget-box transparent">
+                <div class="widget-header widget-header-flat">
+                    <h4 class="widget-title lighter"><i class="icon-signal"></i>Technology Trend to take note of</h4>
+                    <div class="widget-toolbar"><a href="#" data-action="collapse"><i class="icon-chevron-up"></i></a></div>
+                </div> <!-- "widget-header widget-header-flat" -->
+                <div class="widget-body">
+                    <div class="widget-main padding-4">
+                      ---
+                    </div><!-- /.widget-main -->
+                </div><!-- /.widget-body -->
+              </div><!-- /.widget-box -->
+            </div>  <!-- "col-md-6 column" -->
+
+        </div> <!-- End of row 3 -->
+
+    </div> <!-- "page-content-area" -->
+    Sources: IDA & Ministry of Manpower   
+</div>  <!-- "page-content" -->          
+
+
+
+
+<script>
+$(function () {
+ 
+        $('#sg_it_jobs').highcharts({
+            title: {
+                text: '',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            legend: {
+                reversed: true
+            },
+        	chart: {
+            type: 'line'
+        	},
+            xAxis: {
+                categories: ['2009', '2010', '2011', '2012', '2013']
+            },
+            yAxis: {
+                title: {
+                    text: 'Employment (\'000)'
+                },
+
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            exporting: { enabled: false },
+            series: [{
+                    name: 'Hired IT Professionals',
+                    data: <%= @chart1_data %>
+                }, {
+                    name: 'Total Employment',   //http://stats.mom.gov.sg/Pages/Employment-Summary-Table.aspx
+                    data: [2990,3105.9,3228.5,3357.6,3493.8]
+                }
+            ]
+        }); //End SG_IT_JOBS
+
+        $('#employers_type').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,//null,
+                plotShadow: false,
+                type: 'pie',
+                spacingBottom: 15,
+                spacingTop: 10,
+                spacingLeft: 10,
+                spacingRight: 10,
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            exporting: { enabled: false },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Hiring %',
+                data: [
+                    ['Infocomm',   48.0],
+                    {
+                        name: 'End-User',
+                        y: 52.8,
+                        selected: true
+                    },
+                    ]
+            }]
+        });  //End Employer's Type
+
+        $('#gender').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,//null,
+                plotShadow: false,
+                type: 'pie',
+                spacingBottom: 15,
+                spacingTop: 10,
+                spacingLeft: 10,
+                spacingRight: 10,
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            exporting: { enabled: false },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Gender %',
+                data: [
+                    ['Male',   71.0],
+                    {
+                        name: 'Female',
+                        y: 29.0,
+                        selected: true
+                    },
+                    ]
+            }]
+        });  //End Gender
+
+       $('#qualification').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            exporting: { enabled: false },
+            xAxis: {
+                 categories: ['IT Professionals']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: 'Bachelor and above',
+                data: [101223]
+            }, {
+                name: 'Diploma',
+                data: [23472]
+            }, {
+                name: 'A level and below',
+                data: [22005]
+            }]
+        }); //End Qualification
+
+
+
+        $('#foreignworkforce').highcharts({
+            title: {
+                text: '',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: ['2009', '2010', '2011', '2012', '2013']
+            },
+            yAxis: {
+                title: {
+                    text: 'Passes Issued'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            exporting: { enabled: false },
+            tooltip: {
+                valueSuffix: ''
+            },
+            legend: {
+                reversed: true
+            },
+            series: [{
+                name: 'Employment Pass',
+                data: [114300, 143300, 175400,173800,175100]
+            }, {
+                name: 'SPASS',
+                data: [82800,98700,113900,142400,160900]
+            }]
+        });
+ 
+    
+
+               $('#top5jobtitles').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            exporting: { enabled: false },
+            xAxis: {
+                 categories: ['IT Professionals']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: 'Network Engineer',
+                data: [80]
+            }, {
+                name: 'System Administrator',
+                data: [200]
+            }, {
+                name: 'DBA',
+                data: [10]
+            }, {
+                name: 'IT Manager',
+                data: [100]
+            }, {
+                name: 'Developer',
+                data: [300]
+            }]
+        }); //End top 5 IT JObs
+
+        $('#topnationalities').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            legend: {
+            enabled: false
+            },
+            xAxis: {
+                categories: ['Singapore', 'Indonesia', 'Malaysia', 'Philippines', 'Japan'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Job Seekers',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            
+            exporting: { enabled: false },
+            tooltip: {
+                valueSuffix: ''
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Number of Job Seekers',
+                data: [107, 31, 635, 203, 50]
+            }]
+        });
+        
+        $('#topskills').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,//null,
+                plotShadow: false,
+                type: 'pie',
+                spacingBottom: 15,
+                spacingTop: 10,
+                spacingLeft: 10,
+                spacingRight: 10
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            exporting: { enabled: false },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Hiring %',
+                data: [
+                    {
+                        name: 'Cloud Computing',
+                        y: 10,
+                    },
+                    {
+                        name: 'Windows 8',
+                        y: 20,
+                    },
+                    {
+                        name: 'Remote Computing',
+                        y: 8,
+                    },
+                    {
+                        name: 'Netapp',
+                        y: 2,
+                    },
+                    {
+                        name: 'Windows Server 2013',
+                        y: 15,
+                    },
+                    {
+                        name: 'Linux',
+                        y: 15,
+                    },
+                    {
+                        name: 'C++',
+                        y: 5,
+                    },
+                    {
+                        name: 'Java',
+                        y: 6,
+                    },
+                    {
+                        name: 'Ruby on Rails',
+                        y: 1,
+                    },
+                    {
+                        name: 'MSSQL',
+                        y: 4,
+                    },
+                    {
+                        name: 'HSQL',
+                        y: 6,
+                    },
+                    ]
+            }]
+        });  //Top SKills
+
+        $('#topindustries').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,//null,
+                plotShadow: false,
+                type: 'pie',
+                spacingBottom: 15,
+                spacingTop: 10,
+                spacingLeft: 10,
+                spacingRight: 10
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: '',
+                x: -20
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            exporting: { enabled: false },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Hiring %',
+                data: [
+                    {
+                        name: 'Financial Services',
+                        y: 25.8,
+                    },
+                    {
+                        name: 'Manufacturing',
+                        y: 24.2,
+                    },
+                    {
+                        name: 'Infocomm',
+                        y: 20,
+                    },
+                    {
+                        name: 'Telecomm',
+                        y: 15,
+                    },
+                    {
+                        name: 'Biotech',
+                        y: 15,
+                    },
+
+                    ]
+            }]
+        });  //Top Industries    
+
+ 
+    
+      //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
+      //but sometimes it brings up errors with normal resize event handlers
+      $.resize.throttleWindow = false;
+    
+      var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+      var data = [
+        { label: "social networks",  data: 38.7, color: "#68BC31"},
+        { label: "search engines",  data: 24.5, color: "#2091CF"},
+        { label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
+        { label: "direct traffic",  data: 18.6, color: "#DA5430"},
+        { label: "other",  data: 10, color: "#FEE074"}
+      ]
+      function drawPieChart(placeholder, data, position) {
+          $.plot(placeholder, data, {
+            series: {
+                pie: {
+                    show: true,
+                    tilt:0.8,
+                    highlight: {
+                        opacity: 0.25
+                    },
+                    stroke: {
+                        color: '#fff',
+                        width: 2
+                    },
+                    startAngle: 2
+                }
+            },
+            legend: {
+                show: true,
+                position: position || "ne", 
+                labelBoxBorderColor: null,
+                margin:[-30,15]
+            }
+            ,
+            grid: {
+                hoverable: true,
+                clickable: true
+            }
+         })
+     }
+     drawPieChart(placeholder, data);
+    
+     /**
+     we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
+     so that's not needed actually.
+     */
+     placeholder.data('chart', data);
+     placeholder.data('draw', drawPieChart);
+    
+    
+      //pie chart tooltip example
+      var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+      var previousPoint = null;
+    
+      placeholder.on('plothover', function (event, pos, item) {
+        if(item) {
+            if (previousPoint != item.seriesIndex) {
+                previousPoint = item.seriesIndex;
+                var tip = item.series['label'] + " : " + item.series['percent']+'%';
+                $tooltip.show().children(0).text(tip);
+            }
+            $tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+        } else {
+            $tooltip.hide();
+            previousPoint = null;
+        }
+        
+     });
+    
+    
+    
+    
+    
+    
+        var d1 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.5) {
+            d1.push([i, Math.sin(i)]);
+        }
+    
+        var d2 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.5) {
+            d2.push([i, Math.cos(i)]);
+        }
+    
+        var d3 = [];
+        for (var i = 0; i < Math.PI * 2; i += 0.2) {
+            d3.push([i, Math.tan(i)]);
+        }
+        
+    
+        var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+        $.plot("#sales-charts", [
+            { label: "Domains", data: d1 },
+            { label: "Hosting", data: d2 },
+            { label: "Services", data: d3 }
+        ], {
+            hoverable: true,
+            shadowSize: 0,
+            series: {
+                lines: { show: true },
+                points: { show: true }
+            },
+            xaxis: {
+                tickLength: 0
+            },
+            yaxis: {
+                ticks: 10,
+                min: -2,
+                max: 2,
+                tickDecimals: 3
+            },
+            grid: {
+                backgroundColor: { colors: [ "#fff", "#fff" ] },
+                borderWidth: 1,
+                borderColor:'#555'
+            }
+        });
+    
+    
+        $('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+        function tooltip_placement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('.tab-content')
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+    
+            var off2 = $source.offset();
+            //var w2 = $source.width();
+    
+            if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+            return 'left';
+        }
+    
+    
+        $('.dialogs,.comments').ace_scroll({
+            size: 300
+        });
+        
+        
+        //Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+        //so disable dragging when clicking on label
+        var agent = navigator.userAgent.toLowerCase();
+        if("ontouchstart" in document && /applewebkit/.test(agent) && /android/.test(agent))
+          $('#tasks').on('touchstart', function(e){
+            var li = $(e.target).closest('#tasks li');
+            if(li.length == 0)return;
+            var label = li.find('label.inline').get(0);
+            if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
+        });
+    
+        $('#tasks').sortable({
+            opacity:0.8,
+            revert:true,
+            forceHelperSize:true,
+            placeholder: 'draggable-placeholder',
+            forcePlaceholderSize:true,
+            tolerance:'pointer',
+            stop: function( event, ui ) {
+                //just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
+                $(ui.item).css('z-index', 'auto');
+            }
+            }
+        );
+        $('#tasks').disableSelection();
+        $('#tasks input:checkbox').removeAttr('checked').on('click', function(){
+            if(this.checked) $(this).closest('li').addClass('selected');
+            else $(this).closest('li').removeClass('selected');
+        });
+    
+    
+        //show the dropdowns on top or bottom depending on window height and menu position
+        $('#task-tab .dropdown-hover').on('mouseenter', function(e) {
+            var offset = $(this).offset();
+    
+            var $w = $(window)
+            if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
+                $(this).addClass('dropup');
+            else $(this).removeClass('dropup');
+        });
+            
+
+
+
+}); //End Function
+    
+</script>

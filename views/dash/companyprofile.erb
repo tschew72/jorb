@@ -1,0 +1,609 @@
+<div class="companyProfileLayout">
+  <header>
+    <%=@mycoy.company_name%>
+  </header>
+  <h1>Company Profile1</h1>
+
+
+  <ul class="nav nav-tabs padding-16">
+    <li class="active">
+      <a data-toggle="tab" href="#edit-basic">
+        <i class="green icon-edit bigger-125"></i>
+        Company Setup
+      </a>
+    </li>
+    <li>
+      <a id="coyusersetup" data-toggle="tab" href="#user">
+        <i class="blue icon-key bigger-125"></i>
+        User Setup
+      </a>
+    </li>
+  </ul> <!-- nav -->
+
+  <div class="tab-content">
+    <div id="edit-basic" class="tab-pane in active">
+      <div class="callout callout-info">
+        <h4>All about the company</h4>
+        <p>All fields are optional except for those marked with *.</p>
+      </div>
+
+      <section class="Profile">
+        <header>
+          Profile
+        </header>        
+        <span class="profile-picture" id="pic">
+          <img id="Company Logo" class="editable img-responsive" alt="Company Logo" src=<%= @mycoy.company_logo %> />
+        </span>
+        <script src='/vendor/jqueryfileupload/js/vendor/jquery.ui.widget.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.iframe-transport.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.fileupload.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.fileupload-process.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.fileupload-validate.js' type='text/javascript'></script>
+        <script src='/vendor/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
+        <script type="text/javascript">
+            $.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'});
+        </script> 
+        <span class="btn dark-blue-btn btn-primary fileinput-button">
+          <div id="uploadprogress"><i class="glyphicon glyphicon-plus"></i> <span>Upload New Company Logo</span></div>
+          <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" >
+        </span>
+        
+        <script>
+          $(function(){
+            $('#fileupload').fileupload({
+                          add: function (e, data) {
+                              $.getJSON('/filer_logo', function (result) {
+                                  data.formData = result; // e.g. {id: 123}
+                                  data.submit();
+                              }).fail( function(d, textStatus, error) {
+                                  console.error("Upload failed, Please refresh this page and try again. Status: " + textStatus + ", error: "+error)
+                              });
+                          },
+                          url: "https://api.cloudinary.com/v1_1/dashy/upload",
+                          acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                          // The maximum allowed file size in bytes:
+                          maxFileSize: 10000000, // 10 MB
+                          // The minimum allowed file size in bytes:
+                          minFileSize: 1, // No minimal file size
+                          // The limit of files to be uploaded:
+                          maxNumberOfFiles: 10
+                        }).on('fileuploadfail', function (e, data) {
+                          var currentFile = data.files[data.index];
+                          if (data.files.error && currentFile.error) {
+                            // there was an error, do something about it
+                            // newAlert("#alert_placeholder-tab",'danger', currentFile.error);
+                          
+                          }
+                          });
+          });
+
+          $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {  
+          $.ajax({
+            url: '/logouploaded',
+            type: 'POST',
+            data: {"company_logo": data.result.url, "pk" : <%=@mycoy.id %>},
+            success: function(response){
+              tt = "<img id='avatar' class='img-responsive' src=".concat(data.result.url," />");
+              $('#pic').html(tt);  //to refresh this page picture
+              $('#pic2').html(tt); //for side bar picture
+              $("#uploadprog").html("Uploading is complete!");
+              $('#uploadprog').fadeOut(3000, function() {
+                $(this).remove();
+                $("#uploadprogress").html("<i class='glyphicon glyphicon-plus'></i> <span >Upload new Logo</span>");
+               });
+               
+            }
+          }); //ajax
+          return true;
+          }); //cloudinary done
+
+          $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
+          $("#uploadprogress").html("<div id='uploadprog'> <i class='fa fa-spinner fa-spin'></i>Uploading in progress</div> </div>");
+          });
+          $('.cloudinary-fileupload').bind('fileuploadstop', function(e, data) {
+          });
+          $('.cloudinary-fileupload').bind('fileuploadfail', function(e, data) {
+            alert("You have been inactive on this page for a while. Please refresh this page before uploading your photo");
+          });
+        </script> 
+        
+        <p>                 
+          Company Name<sup>*</sup>:  
+          <a class="inputText"  href="javascript:void(0)" id="coyname" data-name="company_name" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Company Name"><%= @mycoy.company_name %></a>
+        </p>
+
+        <p>
+          Industry: 
+          <a class="inputText" href="javascript:void(0)" id="industry" data-name="company_industry" data-type="select" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Industry" data-value =<%= @mycoy.company_industry%> ></a>  
+        </p>
+
+        <p>
+          Company Size:
+          <a class="inputText" href="javascript:void(0)" id="coysize" data-name="company_size" data-type="select" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Company Size" data-value=<%= @mycoy.company_size %>></a>
+        </p>
+        
+        <p>
+          Company HQ City:
+          <a class="inputText" href="javascript:void(0)" id="coyhq" data-name="company_hq" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Company HQ"><%= @mycoy.company_hq %></a>
+        </p>
+        
+        <p>
+          Working Hours:
+            <a class="inputText" style="position:absolute ;left:140px;width:200px" href="javascript:void(0)" id="workinghours" data-name="company_workinghours" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Working Hours"><%= @mycoy.company_workinghours %></a>  
+        </p>
+        
+        <p> 
+          Dress Code:
+            <a class="inputText" href="javascript:void(0)" id="dresscode" data-name="company_dresscode" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Dress Code"><%= @mycoy.company_dresscode %></a> 
+        </p>
+        
+        <p>
+          Preferred Language:
+          <a class="inputText" href="javascript:void(0)" id="preflang" data-name="company_preflang" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Preferred Language"><%= @mycoy.company_preflang %></a>
+        </p>
+
+        <p>
+          Why Us?
+          <a class="inputText" href="javascript:void(0)" id="coypromo" data-name="company_promo" data-type="wysihtml5" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Promotion Paragraph"><%= @mycoy.company_promo %></a>
+        </p>
+
+        <p>
+          Company Introduction:
+          <a class="inputText" href="javascript:void(0)" id="coyintro" data-name="company_intro"  data-type="wysihtml5" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Company Introduction"><%= @mycoy.company_intro %></a>
+        </p>
+      </section> <!-- Profile -->
+
+      <section class="contactInfo">
+        <header>
+          Contact Information
+        </header>          
+                      
+        <p>
+          Contact Person<sup>*</sup>:
+          <a class="inputText" href="javascript:void(0)" id="contactperson" data-name="company_contactname" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Contact Person"><%= @mycoy.company_contactname %></a>
+        </p>
+        <p>
+          Contact Email<sup>*</sup> :
+          <a class="inputText" href="javascript:void(0)"  id="email" data-name="company_email" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter email address"><%= @mycoy.company_email %>   </a>
+        </p>      
+        <p>       
+          Contact Phone #: 
+          <a class="inputText" href="javascript:void(0)"  id="contactnumber" data-name="company_phone" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter mobile number"><%= @mycoy.company_phone %> </a> 
+        </p>
+        <p>
+          Address Street 1:
+          <a class="inputText" href="javascript:void(0)"  id="address1" data-name="company_addrstreet1" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter address"><%= @mycoy.company_addrstreet1 %>   </a>
+        </p>
+        <p>
+          Address Street 2:
+          <a class="inputText" href="javascript:void(0)"  id="address2" data-name="company_addrstreet2" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter address"><%= @mycoy.company_addrstreet2 %>   </a>
+        </p>
+        <p>
+          City:
+          <a class="inputText" href="javascript:void(0)"  id="city" data-name="company_addrcity" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter address"><%= @mycoy.company_addrcity %>   </a>
+        </p>
+        <p>
+          Country: 
+          <a class="inputText" href="javascript:void(0)"  id="country" data-name="company_addrcountry" data-type="select" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter address" data-value=<%= @mycoy.company_addrcountry %> >  </a>
+        </p>
+        <p>  
+          Postal Code:
+          <a class="inputText" href="javascript:void(0)"  id="postal" data-name="company_addrpostcode" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter address"><%= @mycoy.company_addrpostcode %>   </a>
+        </p>
+        <p>  
+          Coy URL:
+          <a class="inputText" href="javascript:void(0)"  id="coyurl" data-name="company_url" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter LinkedIn address"><%= @mycoy.company_url%>   </a>
+        </p>
+      </section> <!-- contactInfo -->
+
+      <section class="socialMedia">
+        <header>
+          Social Network
+        </header>
+        <p>
+          Company Facebook: 
+          <a class="inputText" href="javascript:void(0)"  id="facebook" data-name="company_facebook" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Facebook address"><%= @mycoy.company_facebook%>   </a>
+        </p>
+        <p>
+          Company Twitter: 
+          <a class="inputText" href="javascript:void(0)"  id="twitter" data-name="company_twitter" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter Twitter address"><%= @mycoy.company_twitter%></a>
+        </p>
+        <p>
+          Company LinkedIn:
+          <a class="inputText" href="javascript:void(0)"  id="linkedin" data-name="company_linkedin" data-type="text" data-pk="<%=@mycoy.id %>" data-url="/updatecompanyprofile" data-title="Enter LinkedIn address"><%= @mycoy.company_linkedin%> </a>
+        </p>
+      </section>
+    </div> <!-- edit-basic -->
+
+    <div  id="user" class="tab-pane">
+      <div class="Instructions">
+        <h4>Setting up of Company Users</h4>
+        <p>You can create a login account for each hiring manager/agent (optional)</p>
+        <p>You are the only Super Admin for this company. As a Super Admin, you can add/delete new users and also have the ability to update the company profile.</p>
+        <p>If you want to assign your colleagues with Super Admin rights, please contact us at request@jorb.co</p>
+      </div>
+      <div id="alert_coyuser"></div>
+      <a href="#addnewcoyusermodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
+          <span class="btn dark-blue-btn btn-primary">Create New Company User</span>
+      </a>    
+      <div id="coyuserspace"> </div>
+      <div id="coyuserdetail"></div>
+    </div> <!-- tabpane -->  
+  </div> <!-- tab-content -->
+</div> <!-- companyProfileLayout-->
+
+        
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+
+
+  $('#joblistingtable').dataTable( {   //need to include the Ajax source so that I can reload it from anywhere
+      "scrollY": 200,
+      "ScrollX": true,
+      "iDisplayLength": 10,
+      "order": [[ 0, "desc" ]],
+      "scrollCollapse": true,
+      "jQueryUI": true,
+      "aoColumns": [         
+          null, 
+          null, 
+          null,
+          null,
+         { "bSortable": false },{ "bSortable": false }
+        ],
+      "columns": [
+        null,
+        null,
+        null,
+        null,
+        { "width": "20%" },
+        { "width": "20%" }
+      ]
+  } );
+
+  $('#archivedjobtable').dataTable( {   //need to include the Ajax source so that I can reload it from anywhere
+      "scrollY": 200,
+      "ScrollX": true,
+      "iDisplayLength": 10,
+      "order": [[ 0, "desc" ]],
+      "scrollCollapse": true,
+      "jQueryUI": true,
+      "aoColumns": [         
+          null, 
+          null, 
+          null,
+          null,
+          { "bSortable": false }
+        ],
+      "columns": [
+        null,
+        null,
+        null,
+        null,
+        { "width": "20%" }
+      ]
+  } );
+
+
+  // $("#jobdetail").load("/jobdetail",{ pk: 1}); // need to change the 1 to a dynamic variable!!!
+
+  $.fn.editable.defaults.mode = 'popup';  
+  $('#coyname').editable({
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if (!value) return 'This field is required';
+      if(value.length >500 ) {
+        return 'You can only enter a maximum of 500 characters';
+      }
+    } //function
+      
+  });
+
+
+
+
+
+
+  $('#industry').editable({
+    source: "/getind",
+    emptytext: '--',
+
+    // placeholder: '[Optional] Enter your achievement here'
+  });
+
+  $('#contactperson').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if (!value) return 'This field is required';
+      if(value.length >500 ) {
+        return 'You can only enter a maximum of 500 characters';
+      }
+    } //function
+  });
+
+  $('#coysize').editable({   
+    source: "/getcoysize"
+    
+    });
+
+
+
+  $('#coyhq').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if(value.length >2000 ) {
+        return 'You can only enter a maximum of 2000 characters';
+        
+      }
+    } //function
+
+  });
+
+  $('#workinghours').editable({
+
+    emptytext: '--',
+
+  });
+
+
+  $('#dresscode').editable({
+    emptytext: '--',
+
+  });
+
+  $('#preflang').editable({
+    emptytext: '--',
+
+  });
+
+  $('#coypromo').editable({
+    emptytext: '--',
+    validate: function(value){
+      if(value.length >10000 ) {
+        return 'You can only enter a maximum of 10000 characters';
+              }
+    }, //function
+    success: function(response, newValue) {
+        obj = JSON.parse(response)
+        if (obj.status == 'error') return obj.msg; //msg will be shown in editable form
+        // alert (obj.msg)
+    }  
+
+  });
+  
+  $('#coyintro').editable({
+    emptytext: '--',
+    validate: function(value){
+      if(value.length >50000 ) {
+        return 'You can only enter a maximum of 50000 characters';
+        
+      }
+    },//function
+    success: function(response, newValue) {
+    obj = JSON.parse(response)
+    if (obj.status == 'error') return obj.msg; //msg will be shown in editable form
+    // alert (obj.msg)
+    }  
+
+  });
+
+
+
+  $('#nationality').editable({
+       source: "/getcountries",
+       success: function(response, newValue) {
+          
+          if (newValue != 157){  //we only look at Singapore at the moment.
+             document.getElementById( 'spr_block' ).style.visibility = 'visible'; 
+          };
+
+          if (newValue == 157){
+            document.getElementById( 'spr_block' ).style.visibility = 'hidden'; 
+          } ;
+        } //success
+  });
+
+  $('#contactnumber').editable(
+    {
+      tpl: "<input type='text' style='width: 400px';height:500px>",
+      emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+  });
+
+  $('#address1').editable(
+    {
+      emptytext: '--',
+      tpl: "<input type='text' style='width: 400px';height:500px>",
+      validate: function(value){
+      if(value.length >2000 ) {
+       return 'You can only enter a maximum of 2000 characters';
+       
+      }
+    } //function
+
+  });
+  $('#address2').editable(
+    {
+      emptytext: '--',
+      tpl: "<input type='text' style='width: 400px';height:500px>",
+      validate: function(value){
+      if(value.length >2000 ) {
+        return 'You can only enter a maximum of 2000 characters';
+        
+      }
+    } //function
+
+  });
+
+  $('#city').editable(
+    {
+      emptytext: '--',
+      tpl: "<input type='text' style='width: 300px';height:500px>",
+      validate: function(value){
+      if(value.length >500 ) {
+        return 'You can only enter a maximum of 500 characters';
+      }
+    } //function
+  });
+  
+  $('#country').editable(
+    {
+      source: "/getcountries",
+      emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+  });
+
+  $('#postal').editable(
+    {
+      emptytext: '--',
+      tpl: "<input type='text' style='width: 300px';height:500px>",
+      validate: function(value){
+      if(value.length >10 ) {
+        return 'You can only enter a maximum of 10 characters';
+      }
+    } //function
+  });
+  $('#email').editable(
+    {
+      emptytext: '--',
+      tpl: "<input type='text' style='width: 400px';height:500px>",
+      validate: function(value){
+      if (!value) return 'This field is required';
+      if(value.length >200 ) {
+        return 'You can only enter a maximum of 200 characters';
+        
+      }
+    } //function
+  });
+  $('#coyurl').editable(
+    {
+      emptytext: '--',
+      tpl: "<input type='text' style='width: 400px';height:500px>",
+      validate: function(value){
+      if(value.length >500 ) {
+        return 'You can only enter a maximum of 500 characters';
+        
+      }
+    } //function
+  });
+
+  $('#linkedin').editable({
+
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if(value.length >500 ) {
+        return 'You can only enter a maximum of 500 characters';
+        
+      }
+    } //function
+  });
+
+  $('#facebook').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if(value.length >500 ) {
+        return 'You can only enter a maximum of 500 characters';
+        
+      }
+    } //function
+  });
+
+  $('#twitter').editable(
+    {
+      emptytext: '--',
+      tpl: "<input type='text' style='width: 400px';height:500px>",
+      validate: function(value){
+      if(value.length >500 ) {
+        return 'You can only enter a maximum of 500 characters';
+        
+      }
+    } //function
+
+
+
+  });
+
+
+
+
+      $('#coyusersetup').on("click", function() {
+          $("#userdetail").html("");
+          $("#coyuserspace").load("/j_coyusertable",{i: new Date().getTime()}); 
+      });
+
+
+  $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+  });
+    
+
+ $('[data-toggle="popover"]').popover({
+    // trigger: 'hover',
+        html : true
+        // 'placement': 'top'
+});
+});
+
+</script>
+<script>
+      
+
+
+
+      $("#agentcheck").on('change', function(){
+          $.ajax({
+            url: '/updateagent',
+            type: 'POST',
+            data: {"isagent": this.checked, "pk" : <%=@mycoy.id %>}
+          });
+      });
+
+
+
+      function newAlert (loc, type, message) {
+          $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
+          $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
+      };     
+ 
+
+      function delcoyuser(element,i){
+        $.ajax({
+                url: '/j_deletecoyuser',
+                type: 'POST',
+                data: {"pk" : i},
+                success: function(response){
+                   //$(element).parents('tr').remove();
+              
+                  //var row = $(this).closest('tr');
+                  var row=$(element).parents('tr')
+                  $('#coyusertable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_coyuser", 'success', "User deleted!");
+
+                }
+
+              });
+      }//function
+
+      function showcoyuserdetail(i){
+        $("#coyuserdetail").html("");
+        $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Job Details now. You can start editing when this message is gone</div>");
+       // $("#top5matches").load("/top5matchestable&pk=".concat(i.toString())); 
+        $("#coyuserdetail").load("/coyuserdetail",{ pk: i }, function() {
+          $('#loader').fadeOut(1000, function() {
+          $(this).remove();
+         });
+        }); 
+
+
+      }//function
+
+
+</script>
+

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>CodePen - Pen</title>
+
+  <style>
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:0.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+
+</style>
+
+  <link rel='stylesheet prefetch' href='css/jeknc.css'>
+
+    <style>
+$c-1:#454875;  //Background color
+$c-2:#2b2c3e;  //Hover color & active
+$c-3:#96ca2c;  //Border-top color (shadow)
+$c-4:#eff0f2;  //Background section
+$c-5:#94a3a8;  //Border section
+$c-6:#f2f3f6; 
+
+img{width:100%;float:left;}
+
+body{font-family:Myriad Pro;background:$c-6}
+
+.nav{
+  display:block;
+  float:left;
+  width:100%;
+  height:48px;
+  nav{
+    height:48px;
+    display:block;
+    float:left;
+    width:100%;
+    background:$c-1; 
+    @include box-shadow(0 -1em 2em rgba(0,0,0,.5));
+    ul{ 
+      display:block;
+      width:100%;
+      height:100%;
+      float:left;
+      list-style:none;
+      padding:0;
+      margin:0;
+      li{
+        display:block;
+        width:20%;
+        height:100%;
+        float:left;
+        text-align:center;
+        position:relative;
+        z-index:2;
+        @include transition(background .2s ease,box-shadow .2s ease .1s);
+        &:hover,&.active{
+          background:$c-2}
+        &.active{
+          @include box-shadow(inset 0 .2em 0 $c-3);
+          &:after{
+            content:'';
+            width: 0; 
+            height: 0; 
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 15px solid $c-2;
+            margin:48px auto;
+            top:10px; 
+            position:relative;
+            z-index:0; 
+          }
+        }
+        a{
+          color:#fff;
+          line-height:3;
+          text-decoration:none;
+          display:block;
+          float:left;
+          width:100%;
+          height:100%;
+          margin:0;
+        }
+      }
+    }
+  }
+}
+
+.content__tab{
+  width:100%;
+  height:50%;
+  float:left;
+  margin:2em auto;
+}
+
+.content{
+  &:not([data-active="true"]){display:none;}
+  width:90%;
+  margin:1em 5% 0; 
+  position:absolute;
+  background:$c-4;
+  border:1px solid rgba($c-5,.4);
+  @include box-shadow(inset 0 .12em  .2em rgba(255,255,255,.8),inset 0 .12em  0em rgba(255,255,255,.8),inset 0 0em  .5em rgba(255,255,255,.8));
+  border-radius:4px;
+  img{
+    width:20em;}
+  section{
+    padding:1em 1.2em;
+    p{
+      font-size:.9em;
+      line-height:30px;
+      text-align:justify;
+      color:$c-5;
+      text-shadow:0 -.1em 0 rgba(255,255,255,.8);
+    }
+  }
+}
+
+.btn-flat {
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  float:right;
+  padding: 15px 20px;
+  border-radius: 3px;
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 1.2em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-decoration: none;
+  margin-top:4.2em;
+  color: $c-1;
+  transition-duration: 0.2s;
+  background: none;
+  border: 2px solid $c-1; 
+}
+.btn-flat:hover {
+  background: $c-1;
+  color:#fff;
+}
+.btn-flat:active {
+  transform: translateY(2px);
+}
+
+/* the lines below are initially from http://tympanus.net/Tutorials/CaptionHoverEffects/index3.html*/
+.content figure {
+  margin:2em 2em 1em;
+  position: relative;
+  float:left;
+  width:20em;
+  height:14em;
+  overflow:hidden;
+  display:block;
+  padding:0;
+}
+
+.content figure img {
+  display: block;
+  position: relative;
+}
+
+.content figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background: $c-2;
+  color: $c-3;
+}
+
+.content figcaption h3 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.content figcaption span:before {
+  content: 'by ';
+}
+
+.content figcaption a {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  background: $c-1;
+  color: #fff;
+}
+figure {
+  overflow: hidden;
+  background: $c-1;
+
+}
+.content img {
+ transition:transform 0.4s, opacity .6s ease;
+}
+
+.content figure:hover img,
+.content figure.cs-hover img {
+  -webkit-transform: translateY(-50px);
+  -moz-transform: translateY(-50px);
+  -ms-transform: translateY(-50px);
+  transform: translateY(-50px);
+}
+
+.content figcaption {
+  height: 100px;
+  width: 20em;
+  top: auto;
+  left:0em;
+  bottom: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+  transition: transform 0.4s, opacity 0.1s 0.3s;
+}
+.content figure:hover img{opacity:.65}
+.content figure:hover figcaption,
+.content figure.cs-hover figcaption {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s;
+  transition: transform 0.4s, opacity 0.1s;
+}
+
+.content figcaption a {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+@media all and (max-width:35em){
+  .content{
+    width:80%;
+    margin:2em 10%; 
+    position:absolute;
+    background:$c-4;
+    img{
+      width:90%;margin:5%;}
+    section{
+      padding:2em 1.2em;
+      p{
+        font-size:.9em;
+        line-height:30px;
+        text-align:justify;
+      }
+    }
+  }
+
+}
+
+footer{
+height:5em;
+width:100%;
+  display:block;
+float:left;
+background:$c-2;
+border-top:.5em $c-1 solid;
+  h3{
+  color:$c-4;
+  text-align:center;
+  line-height:2;
+
+ }
+}
+</style>
+
+    <script src="js/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+
+  <img src="http://puu.sh/6IH8K.png" alt="" />
+
+<div class="nav"> 
+  <nav role='navigation'>   
+    <ul>
+      <li class="tabs active" data-tab="one"><a href="#">Home</a></li>
+      <li class="tabs" data-tab="two"><a href="#">About</a></li>
+      <li class="tabs" data-tab="three"><a href="#">Clients</a></li>
+      <li class="tabs" data-tab="four"><a href="#">Projects</a></li>
+      <li class="tabs" data-tab="five"><a href="#">Contact Us</a></li> 
+    </ul>
+  </nav>  
+</div>
+
+<div class="content__tab">
+  <div class="content" data-tab="one" data-active="true">
+    <figure>
+      <img src="http://www.ab-velo.com/image/photo_bike-by-me-home-fixie_1556.jpg" alt="img03">
+      <figcaption>
+        <h3>Settings</h3>
+        <span>Jacob Cummings</span>
+        <a href="http://dribbble.com/shots/1116685-Settings">Take a look</a>
+      </figcaption>
+    </figure> 
+    <section>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error laudantium sed iusto praesentium numquam dolore dicta blanditiis non labore corporis deleniti facilis nesciunt quisquam eligendi amet nihil veniam.</p>
+      <a href="#" class="btn-flat">View this article</a>
+    </section>
+  </div>
+  <div class="content" data-tab="two">
+     <figure>
+      <img src="http://hypebeast.com/image/2011/02/levis-fixie-bike-2.jpg" alt="img03">
+      <figcaption>
+        <h3>Settings</h3>
+        <span>Jacob Cummings</span>
+        <a href="http://dribbble.com/shots/1116685-Settings">Take a look</a>
+      </figcaption>
+    </figure> 
+    <section>
+      <p>Lorem ipsum dolor sit amet, consectetur  iusto praesentium numquam dolore dicta blanditiis non labore corporis deleniti facilis nesciunt quisquam eligendi amet nihil veniam.</p>
+      <a href="#" class="btn-flat">View this article</a>
+    </section>
+  </div>
+  <div class="content" data-tab="three">
+     <figure>
+      <img src="http://www.ab-velo.com/image/photo_bike-by-me-home-fixie_1556_2.jpg" alt="img03">
+      <figcaption>
+        <h3>Settings</h3>
+        <span>Jacob Cummings</span>
+        <a href="http://dribbble.com/shots/1116685-Settings">Take a look</a>
+      </figcaption>
+    </figure> 
+    <section>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error laudantium sed aspernatur voluptatum iusto praesentium numquam dolore dicta blanditiis non labore corporis deleniti facilis .</p>
+      <a href="#" class="btn-flat">View this article</a>
+    </section>
+  </div>
+  <div class="content" data-tab="four">
+     <figure>
+      <img src="http://veloibike.ca/wp-content/uploads/2013/09/fixie.fixedgear.fixed_.track_.velo_.bicycle.ibike_.veloibike.velodepiste.messenger.bike_.nobrakes.wheel_.11.jpg" alt="img03">
+      <figcaption>
+        <h3>Settings</h3>
+        <span>Jacob Cummings</span>
+        <a href="http://dribbble.com/shots/1116685-Settings">Take a look</a>
+      </figcaption>
+    </figure> 
+    <section>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error laudantium sed aspernatur voluptatum  numquam dolore dicta blanditiis non labore corporis  quisquam eligendi amet nihil veniam.</p>
+      <a href="#" class="btn-flat">View this article</a>
+    </section>
+  </div>
+  <div class="content" data-tab="five">
+ <figure>
+      <img src="http://veloibike.ca/wp-content/uploads/2013/09/blanc.fixie_.fixedgear.fixed_.track_.velo_.bicycle.ibike_.veloibike.velodepiste.messenger.bike_.nobrakes.tire_.2.jpg" alt="img03">
+      <figcaption>
+        <h3>Settings</h3>
+        <span>Jacob Cummings</span>
+        <a href="http://dribbble.com/shots/1116685-Settings">Take a look</a>
+      </figcaption>
+    </figure> 
+    <section>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error laudantium iusto praesentium numquam dolore dicta blanditiis non labore corporis deleniti facilis nesciunt quisquam nihil veniam.</p>
+      <a href="#" class="btn-flat">View this article</a>
+    </section>
+  </div>
+</div>
+<footer>
+
+  <h3>Our Bike shop is amazing !</h3>
+
+</footer>
+
+  <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>

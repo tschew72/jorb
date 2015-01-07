@@ -1,0 +1,157 @@
+// Spinner ---------------------------------------------
+#preloader {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+opacity:1;
+z-index:9999;
+}
+#spinner_container {
+position:absolute;
+width:100%;
+top: 50%;
+left:0px;
+height:1px;
+overflow:visible;
+opacity: 1;
+background: transparent;
+}
+#spinner {
+/*width: 31px;*/
+/*height:31px;*/
+margin-left:-15px;
+position:absolute;
+top:-15px;
+left:50%;
+display:block;
+}
+
+
+
+// Speakers ---------------------------------------------
+.speakers {
+  .artist {
+    @include clearfix;
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px dotted $lightgray;
+      margin-bottom: 5px;
+    } //h3
+
+    
+  } // artist
+} //speakers
+
+// next meeting ---------------------------------------------
+#greeting {
+  @include clearfix;
+  img {
+    @include border-radius;
+    width: 30%;
+    max-width: 130px;
+    float: left;
+    margin-right: 3%;
+  } //img
+} //greeting
+
+// Social Media Icons ---------------------------------------------
+.socialmediaicons {
+  .title {
+    float: left;
+  }
+
+  ul {
+    float: left;
+    li {
+      display: inline-block;
+      margin-left: 5px;
+      img {
+        width: 30px;
+        @include border-radius(50%);
+      } //img
+    } //li
+  } //ul
+} //socialmediaicons
+
+// Photogrid ---------------------------------------------
+.pixgrid {
+  @include clearfix;
+
+  img {
+    @include border-radius;
+    width: 30%;
+    max-width: 120px;
+    cursor: pointer;
+  } // img
+} // pixgrid
+
+
+
+
+// Achievements ---------------------------------------------
+
+.Achievements div {
+  background:#FFF;
+  border-bottom: none !important; 
+}
+
+.Achievements a{
+  display: block;
+  text-decoration: none;
+  border-bottom: none !important; 
+  color: #444;
+  font-size: 0.9em;
+}
+
+  //Experiences, Competencies -----------------------------------------------
+  .Experiences .Competencies #tablespace {
+      font-size : 0.8em;
+  } // Experiences, Competencies
+
+
+// Skills (myCV) ---------------------------------------------
+.Skills {
+  // @include clearfix;
+
+} // Skills (myCV)
+
+
+// Education (myCV) ---------------------------------------------
+.Education {
+  // @include clearfix;
+  .small {
+    font-size: 0.9em;
+  }
+
+} // Education (myCV)
+
+
+//Avatar (myCV)-------------------------------------
+  .Avatar {
+
+    float: left;
+  } // Avatar
+
+//Detail (myCV)-----------------------------------------------
+  .Detail {
+    float: left;
+    margin: 20px;
+  } // Detail
+
+
+//jobListing -----------------------------------------------
+.jobListing {
+    font-size : 0.9em;
+} // jobListing
+
+
+//Instructions 
+.Instructions {
+  background: $blue;
+}
+

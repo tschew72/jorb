@@ -1,0 +1,37 @@
+<script>
+$.getScript("/vendor/edutablescript.js");
+
+</script>
+
+<table id="edusettingtable" class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                   <th class="align-center">Title</th>
+                   <th class="align-center">Specialty</th>
+                   <th class="align-center">Honors</th>
+                   <th class="align-center">Preference</th>
+                   <th class="align-center"></th>
+                </tr>
+              </thead>
+              <tbody >
+                          <% @alleducations.each do |i| %>
+                  
+                  <!-- If flag is set to delete, break. and find next record -->
+                  <% if i.job_edustatus != 0 %>
+                 
+                  <tr>
+                     <td><%= @degreemaster.get(i.job_edu_title).degree%></td>
+                     <td><%= i.job_edu_title >3 && i.job_edu_title != nil ? @specialtymaster.get(i.job_edu_specialty).specialty : " "%></td>
+                     <td><%= i.job_edu_title >3 && i.job_edu_title != nil ? @honorsmaster.get(i.job_edu_honors).honors : " "%> </td>
+                     <!-- <td><%= i.job_edu_honors == nil ? "" : @honorsmaster.get(i.job_edu_honors).honors %></td> -->
+                     <td><a class="job_edu_pref" href="javascript:void(0)" class="editable-click" data-name="job_edu_pref" data-type="select" data-pk="<%= i.job_edu_id%>" data-url="/j_updateedupref"  data-title="Select Preference">  <%= @prefmaster.get(i.job_edu_pref).needstrength %>
+                     </a></td>
+                     <td>
+                       <div class=" action-buttons" style="text-align:center" >
+                        <a onclick="deledu(this, <%=i.job_edu_id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Remove</a></td>
+                      </div>
+                  </tr>
+                 <% end %>
+                  <% end %>
+              </tbody>
+            </table>

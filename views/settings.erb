@@ -1,0 +1,957 @@
+<!-- force reload of the page when someone return back to this page from another page -->
+<input type="hidden" id="refreshed" value="no">
+<script type="text/javascript">
+onload=function(){
+var e=document.getElementById("refreshed");
+if(e.value=="no")e.value="yes";
+else{e.value="no";location.reload();}
+}
+</script>
+
+<div class="breadcrumbs" id="breadcrumbs">
+  <script type="text/javascript">
+    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+  </script>
+
+  <ul class="breadcrumb">
+    <li>
+      <i class="ace-icon fa fa-home home-icon"></i>
+      <a href="/edge">Home</a>
+    </li>
+    <li class="active">User Preferences1</li>
+  </ul><!-- /.breadcrumb -->
+</div>
+
+<div class="page-content">
+  <div class="col-xs-12 col-md-10 col-lg-10">
+     <h3 class="header smaller lighter blue">User Preferences</h3>
+     <div id="alert_placeholder-tab"> </div>
+     <br>
+     <br>
+     <div class="tabbable">
+          <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+              <a data-toggle="tab" href="#t1">
+                <i class="green icon-home bigger-110"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#t3">
+                Preferred Jobs
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#t4">
+                Preferred Industries
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#loc">
+                Preferred Locations
+              </a>
+            </li>                       
+            <li>
+              <a data-toggle="tab" href="#t5">
+                Salary
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#t6">
+                Preferred Travel Frequency
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#skilltab">
+                Skills
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#languagetab">
+                Languages
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#t7">
+                Upload CV
+              </a>
+            </li>                        
+          </ul>
+
+    
+     <div class="tab-content">
+        <div id="t1" class="tab-pane in active">
+          <div class="row">  
+            <div class="col-sm-12">
+                <div class="form-group">
+                  I am active in looking for job <label><input id="activecheck" name="activeseeker" class="ace ace-switch ace-switch-5 btn-rotate" type="checkbox" <%= @userprofile.activeseeker.to_s == "true" ? "checked" : "unchecked" %> /><span class="lbl"></span></label>        
+                  <span class="tooltip-success" data-rel="tooltip" data-placement="right" title="If you do not wish to be matched for jobs during this period, please swtich it off"><i class="icon-info-sign"></i></span>
+                </div>
+            </div>
+          </div>
+          <div class="row" id="spr_block" style="visibility: hidden">  
+            <div class="col-sm-12">
+              <div class="form-group">
+                    I am in Singapore <label><input id="insgcheck" name="insingaporenow" class="ace ace-switch ace-switch-5 btn-rotate" type="checkbox" <%= @userprofile.insingaporenow.to_s == "true" ? "checked" : "unchecked" %> /><span class="lbl"></span></label>
+                    <span id="insg_block" style="visibility: hidden">  
+                        on these dates <label><input readonly="true" type="text" style="width: 200px;" name="date-range-picker" id="id-date-range-picker-1"  class="form-control rdonly" value="<%=@userprofile.insg_start.strftime("%d/%m/%Y") %> - <%=@userprofile.insg_end.strftime("%d/%m/%Y") %> "  class="span4"></input></label> <span class="tooltip-success" data-rel="tooltip" data-placement="right" title="Higher priorty will be given to job seekers who are currently in Singapore. Employers prefer candidates to be available for interviews. However, for certain jobs, this may not impact your chances as phone interviews are also common place these days. You will also be informed by us if there are any suitable courses, seminars or special events that you should attend to increase your career score"><i class="icon-info-sign"></i></span>
+                    </span> 
+              </div>    
+            </div>
+          </div>
+        </div> <!-- tab -->
+      <div id="t3" class="tab-pane">    
+                <div class="row">  <!-- 5th row in the Preference Management section -->
+
+                  <div class="col-sm-5">
+                      <h4 class="header smaller lighter blue">Preferred Job Levels </h4>
+                  </div>
+                  <div class="col-sm-5">
+                      <h4 class="header smaller lighter blue">Preferred Job Functions </h4>
+                  </div>
+                  <div class="col-sm-2"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-10">
+                      <a href="#" id="joblevel" data-type="select2" data-value="<%= @pref_ind %>"  data-pk="<%=@userprofile.id %>" data-url="/updateindpref" data-title="Enter preferred job levels"></a>
+                  </div>
+                  <div class="col-sm-10"> 
+                       <a href="#" id="jobfunction" data-type="select2" data-value="<%= @pref_loc %>"  data-pk="<%=@userprofile.id %>" data-url="/updatelocpref" data-title="Enter preferred job functions"></a>
+                  </div>
+                  <div class="col-sm-2"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12">
+                    <h4 class="header smaller lighter blue">Other Parameters </h4>
+                  </div>
+                  <div class="col-sm-3">
+                      Full Time   
+                  </div>
+                  <div class="col-sm-3">        
+                      <label><input id="fulltimecheck" name="fulltime" class="ace ace-switch ace-switch-5 btn-rotate" type="checkbox" <%= @userprofile.fulltime.to_s == "true" ? "checked" : "unchecked" %> /><span class="lbl"></span></label><span class="tooltip-success" data-rel="tooltip" data-placement="right" title="Are you looking for full time job?"><i class="icon-info-sign"></i></span>
+                  </div>
+                  <div class="col-sm-6"> </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                      Part Time   
+                  </div>
+                  <div class="col-sm-3">
+                      <label><input id="parttimecheck" name="parttime" class="ace ace-switch ace-switch-5 btn-rotate" type="checkbox" <%= @userprofile.parttime.to_s == "true" ? "checked" : "unchecked" %> /><span class="lbl"></span></label><span class="tooltip-success" data-rel="tooltip" data-placement="right" title="Are you looking for part time jobs"><i class="icon-info-sign"></i></span>
+                  </div>
+                  <div class="col-sm-6"> </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                      Shift Work
+                  </div>
+                  <div class="col-sm-3">       
+                      <label><input id="shiftworkcheck" name="shiftwork" class="ace ace-switch ace-switch-5 btn-rotate" type="checkbox" <%= @userprofile.shiftwork.to_s == "true" ? "checked" : "unchecked" %> /><span class="lbl"></span></label>  <span class="tooltip-success" data-rel="tooltip" data-placement="right" title="Can we match you to jobs that require you to work on shifts?"><i class="icon-info-sign"></i></span>
+                  </div>
+                  <div class="col-sm-6"> </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                      Out-of-Hours 
+                  </div>
+                  <div class="col-sm-3">
+                       <label><input id="outofhourscheck" name="outofhours" class="ace ace-switch ace-switch-5 btn-rotate" type="checkbox" <%= @userprofile.outofhours.to_s == "true" ? "checked" : "unchecked" %> /><span class="lbl"></span></label>  <span class="tooltip-success" data-rel="tooltip" data-placement="right" title="Some jobs require you to work outside of operating hours. Would you take up such jobs?"><i class="icon-info-sign"></i></span>
+                  </div>
+                  <div class="col-sm-6"> </div>
+                </div>
+
+                <br>
+      </div>
+      <div id="t4" class="tab-pane">  
+                <div class="row">  
+
+                  <div class="col-sm-10">
+                      <p class="header smaller lighter blue">Please select your preferred industries </p>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-sm-10">
+                      <a href="#" id="industries" data-type="select2" data-value="<%= @pref_ind %>"  data-pk="<%=@userprofile.id %>" data-url="/updateindpref" data-title="Enter preferred industries"></a>
+                  </div>
+                </div>
+      </div>
+      <div id="loc" class="tab-pane"> 
+                <div class="row">
+                  
+                  <div class="col-sm-5">
+                      <p class="header smaller lighter blue">Please select your preferred locations</p>
+                  </div>
+                </div>
+                <div class="row ">
+                   <div class="col-sm-5"> 
+                       <a href="#" id="locations" data-type="select2" data-value="<%= @pref_loc %>"  data-pk="<%=@userprofile.id %>" data-url="/updatelocpref" data-title="Enter preferred locations"></a>
+                  </div>
+                </div>
+      </div>
+
+      <div id="t5" class="tab-pane">   
+            <div class="row">
+                <div class="col-sm-12">
+                  <p class="lighter blue">Please key in your current and expected annual salary in Singapore Dollar </p>
+                </div>
+            </div>
+            <div class="row">  <!-- 5th row in the Preference Management section --> 
+               <div class="col-sm-12">  
+                  <div class="form-group">
+                      Current annual salary: S$ <a href="#" id="currentsalary" data-name="currentsalary" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter current salary"><%= @userprofile.currentsalary %></a>
+                  </div>
+                  <div class="form-group">
+                      Expected annual salary: S$ <a href="#" id="expectedsalary" data-name="expectedsalary" data-type="text"  data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter expected salary"><%= @userprofile.expectedsalary %></a>
+                  </div>
+              </div>
+            </div>
+      </div>
+      <div id="t6" class="tab-pane">
+            <div class="row">  <!-- 5th row in the Preference Management section --> 
+                
+               
+              <div class="col-sm-6">  
+               
+                      Preferred Travel Frequency %: <label><input type="text" class="input-mini" id="spinner2" value="<%=@userprofile.travelfreq %>" /></label>      
+               
+              </div>
+            </div>      
+      </div>
+      <div id="skilltab" class="tab-pane">
+            <div class="row">  
+              <div class="col-sm-12 col-lg-12 ">
+              <h3 class="header smaller lighter blue">Skills Management</h3>
+              <div id="skilltable">
+                  <div class="action-buttons"><a class="red" href="#addskillmodal" data-toggle="modal" data-keyboard="false" data-backdrop="static"> <i class="icon-pencil bigger-130">Add a skill</i></a></div> 
+                <div id="st">
+                  <table id="skillsettingtable" class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                           <th class="align-center">Category</th>
+                           <th class="align-center">Skill Name</th>
+                           <th class="align-center">Skill Rank</th>
+                           <th class="align-center"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="aat" >
+                          <% @allskills.each do |i| %>  <!--From Skill Summary Class -->
+                          <!-- If flag is set to delete, break. and find next record -->
+                          <% if @allskills.get(i).status != 0 %>
+                       
+                          <tr>
+                             <td><%= @scmaster.get(i.skillcatid).categoryname %></td>
+                             <td><%= @ssmaster.get(i.skillid).skill_name %> </td>
+                             <td><a class="skillrank" href="javascript:void(0)" class="editable-click" data-name="skillrank" data-type="select" data-pk="<%= @allskills.get(i).id%>" data-url="/updateskillrank" data-source="[{value: 1, text: 'Basic'}, {value: 2, text: 'Intermediate'}, {value: 3, text: 'Advance'}, {value: 4, text: 'Expert'}]"   data-title="Enter skill rank">  <%= @sr.get(i.skillrank).skillrankname %>
+                             </a></td>                   
+                             <td>
+                              <div class="hidden-sm hidden-xs action-buttons">
+                                  <a onclick="delskill(this, <%=i.id%>)" class="red" href="javascript:void(0)"> <i class="icon-trash bigger-130"></i></a>               
+                              </div>
+                             </td>
+                          </tr>
+                         <% end %>
+                         <% end %>
+                      </tbody>
+                    </table>
+                  </div> <!-- id="st"-->
+                <br><br>
+              </div> <!-- skilltable" -->
+              </div> <!-- "col-sm-6 column" -->                
+            </div>    <!-- row -->  
+      </div> <!-- skilltab -->
+
+      <div id="languagetab" class="tab-pane">
+            <div class="row">  
+                <div class="col-sm-12">
+                  <h3 class="header smaller lighter blue">Languages</h3>
+                  <div id="skilltable">
+                    <div class="action-buttons">
+                        <a class="red" href="#addlanguagemodal" data-toggle="modal"> <!-- Set a flag to say it is deleted.  -->
+                          <i class="icon-pencil bigger-130">Add a language</i>
+                        </a>
+                        <a class="red" href="#addlanguagemodal" data-toggle="modal"> <!-- Set a flag to say it is deleted.  -->
+                          <i class="icon-pencil bigger-130">Report new language</i>
+                        </a>
+                    </div>        
+                    <table id="languagesettingtable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                          <tr>
+                             <th class="align-center">Language</th>
+                             <th class="align-center">Written Proficiency</th>
+                             <th class="align-center">Spoken Proficiency</th>
+                             <th class="align-center"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% @languages.each do |i| %>
+                            <% if @languages.get(i).status != 0 %>
+                            <tr>
+                               <td><a class="languagename" href="javascript:void(0)" class="editable-click" data-name="languageid" data-type="text" data-pk="<%= @languages.get(i).id%>" data-url="/update_language"  data-title="Enter skill category "><%= @lmaster.get(languageid).languagename %></a></td>
+                              
+                              <td><a class="writtenrank" href="javascript:void(0)" class="editable-click" data-name="writtenrank" data-type="select" data-pk="<%= @languages.get(i).id%>" data-url="/update_language" data-source="[{value: 1, text: 'Basic'}, {value: 2, text: 'Intermediate'}, {value: 3, text: 'Advance'}, {value: 4, text: 'Expert'}]"   data-title="Enter skill rank">  <%= @sr.get(i.writtenrank).skillrankname %>
+                               </a></td>
+                             
+                               <td><a class="spokenrank" href="javascript:void(0)" class="editable-click" data-name="spokenrank" data-type="select" data-pk="<%= @languages.get(i).id%>" data-url="/update_language" data-source="[{value: 1, text: 'Basic'}, {value: 2, text: 'Intermediate'}, {value: 3, text: 'Advance'}, {value: 4, text: 'Expert'}]"   data-title="Enter skill rank">  <%= @sr.get(i.spokenrank).skillrankname %>
+                               </a></td>
+                               <td>
+                              <div class="hidden-sm hidden-xs action-buttons">
+                                    <a onclick="del_language(this, <%=i.id%>)" class="red" href="javascript:void(0)">
+                                      <i class="icon-trash bigger-130"></i>                                     
+                                    </a>
+                                </div>
+                               </td>
+                            </tr>
+                           <% end %>
+                            <% end %>
+                        </tbody>
+                      </table>
+                </div> <!-- skill table -->
+              </div> <!-- "col-sm-6 column" -->
+            </div>    <!-- row -->  
+      </div>     <!-- language tab -->
+
+      <div id="t7" class="tab-pane">
+               <div class="row">
+                <div class="col-sm-6">
+                    Your current CV in our file: <span id="CVsection"> <a href=<%= @userprofile.cvurl %>>HERE</a></span>
+                    <br><br>
+                    <script src='/vendor/jqueryfileupload/js/vendor/jquery.ui.widget.js' type='text/javascript'></script>
+                    <script src='/vendor/jqueryfileupload/js/jquery.iframe-transport.js' type='text/javascript'></script>
+                    <script src='/vendor/jqueryfileupload/js/jquery.fileupload.js' type='text/javascript'></script>
+                    <script src='/vendor/jqueryfileupload/js/jquery.fileupload-process.js' type='text/javascript'></script>
+                    <script src='/vendor/jqueryfileupload/js/jquery.fileupload-validate.js' type='text/javascript'></script>
+                    <script src='/vendor/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
+                    <script type="text/javascript">
+                        $.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'});
+                    </script> 
+
+                      <span class="btn btn-success fileinput-button">
+                      <i class="glyphicon glyphicon-plus"></i>
+                          <span>Update CV</span>
+                      <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" data-form-data="">
+                      </span>
+                    <div id="CVsection"> </div>
+                    <script type="text/javascript">
+                        $.ajax({
+                                url: '/filer',
+                                type: 'POST',
+                                success: function(response){  
+                                      $('#fileupload').attr('data-form-data', response);
+                                }
+                              });
+                       
+                        $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {  
+                          // $('.preview').html(
+                          //        $.cloudinary.image(data.result.public_id, 
+                          //            { format: data.result.format, version: data.result.version, 
+                          //              crop: 'scale', width: 200 }));    
+                          //        $('.image_public_id').val(data.result.public_id);   
+                          // If data.result.format is not .doc or .docx, reject.
+                                 $.ajax({
+                                      url: '/cvuploaded',
+                                      type: 'POST',
+                                      data: {"cvurl": data.result.url, "pk" : <%=@userprofile.id %>},
+                                      success: function(response){
+                                        tt= "<a href=".concat(data.result.url,">MyCV</a>");
+                                        $('#CVsection').html(tt);
+                                        newAlert("#alert_placeholder-tab", 'success', "File uploaded successfully!");
+                                         
+                                      }
+                                             
+
+                                 }); //ajax
+                                 return true;
+                        }); //cloudinary done
+                    </script> 
+                </div>
+               </div>
+      </div>   <!-- t7 -->    
+    </div> <!-- <div class="tab-content">-->
+    </div> <!--<div class="tabbable"> -->        
+  </div> <!-- <div class="col-xs-6 col-md-10 col-lg10">-->
+  <div class="col-md-2 col-lg-2"></div>
+    
+ </div> <!--"page-content" -->              
+                  
+<!-- This is where the modals are defined -->
+<div class="modal fade" id="addskillmodal" >
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title">Add new skill</h4>                                                             
+</div> <!-- "modal-header" -->
+<div class="modal-body" style="padding-left:45px;padding-right:45px;">    
+<div id = "alert_placeholder-inmodal"></div>
+<br><br>
+<table id="user" class="table table-bordered table-striped">
+<tbody>
+<tr>       
+<td width="20%">Skill category</td> <!--TSCHEW-->
+<td width="50%">
+<a href="#" class="newskill" data-emptytext="Select..." data-type="select" id="skillcat" data-name="skillcatid"  data-original-title="Select skill category"></a></td>
+</tr>
+<tr>       
+<td width="20%">Skill name</td>
+<td width="50%"><a href="#" class="newskill" id="skillname"  data-emptytext="Select..." data-type="select" data-name="skillid" data-original-title="Select skill"></a></td>
+</tr>
+<tr>       
+<td width="20%">Skill rank</td>
+<td width="50%"><a href="#" class="newskill" id="skillrank" data-emptytext="Select..." data-type="select" data-name="skillrank" data-source="[{value: 1, text: 'Basic'}, {value: 2, text: 'Intermediate'}, {value: 3, text: 'Advance'}, {value: 4, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+</tr>   
+</tbody>
+</table>
+</div> <!-- "modal-body" -->
+<div class="modal-footer">
+<div class="align-center">
+<button id="saveskill-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Skill and Add New</i></button>
+<br><br><br>
+Can't find your skill in the list? <button class="btn smaller-90 btn-error"><i class="icon-wrench">Let us know!</i></button>
+</div>   
+</div> <!-- footer -->
+</div> <!-- modal-content -->
+</div><!-- modal-dialog -->
+</div><!-- modal  -->  
+
+
+<div class="modal fade" id="addlanguagemodal" >
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title">Add new language</h4>                                                             
+</div> <!-- "modal-header" -->
+<div class="modal-body" style="padding-left:45px;">    
+
+<!--- TBA -->
+
+</div> <!-- "modal-body" -->
+<div class="modal-footer">
+<!-- <input type="submit" name="save" formaction="/jobupdate" value="Submit" /> -->
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-default">Add</button>
+</div> <!-- footer -->
+</div> <!-- modal-content -->
+</div><!-- modal-dialog -->
+</div><!-- modal  -->  
+<!-- End of Modals definition -->
+
+
+<script type="text/javascript">
+
+ 
+     $(function() {  //this is the same as $(document).ready(function(){  http://stackoverflow.com/questions/3908724/what-event-does-jquery-function-fire-on
+         
+       $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+          $(this).prev().focus();
+      });
+     
+
+         
+      $('#languagetable').editable({
+        selector: 'a.languagename'
+      });
+
+      $('#languagetable').editable({
+        selector: 'a.spokenrank'
+      });
+
+      $('#languagetable').editable({
+        selector: 'a.writtenrank'
+      });
+
+
+      $('#skilltable').editable({
+        selector: 'a.skillrank',
+        showbuttons: false
+      });
+
+      $('#skilltable').editable({
+        selector: 'a.skills'
+      });
+ 
+
+
+      $('#expectedsalary').editable();
+      $('#currentsalary').editable();
+
+
+      $('#expectedsalary').editable('option', 'validate', function(v) {
+          if(!v) return 'This is a required field!';
+      });
+
+      $('#currentsalary').editable('option', 'validate', function(v) {
+          if (!isInt(v)){
+            return "Invalid entry. Please re-enter";              
+          }
+      });
+
+      $('#expectedsalary').editable('option', 'validate', function(v) {
+          if (!isInt(v)){
+            return "Invalid entry. Please re-enter";              
+          }
+      });
+
+
+      function isInt(value) {
+        return !isNaN(value) && 
+               parseInt(Number(value)) == value && 
+               !isNaN(parseInt(value, 10));
+      }
+
+
+      $('#industries').editable({
+      
+           source: function() {
+                return (<%= @industries%>)
+              },
+        select2: {
+           multiple: true
+        },
+        allowClear: true,
+        minimumInputLength: 3,
+        mode: 'popup',
+        showbuttons: 'bottom',
+        placement: 'bottom'
+      });
+
+      $('#locations').editable({
+      
+           source: function() {
+                return (<%= @countries %>)
+              },
+        select2: {
+           multiple: true
+        },
+        allowClear: true,
+        minimumInputLength: 3,
+        mode: 'popup',
+        showbuttons: 'bottom',
+        placement: 'bottom'
+      });
+
+
+        $('#skillsettingtable').dataTable( {   //need to include the Ajax source so that I can reload it from anywhere
+            "scrollY": 200,
+            "ScrollX": true,
+            "iDisplayLength": 10,
+            "order": [[ 0, "desc" ]],
+            "scrollCollapse": true,
+            "jQueryUI": true,
+            "aoColumns": [        
+                null, null, null,
+                { "bSortable": false }
+              ]
+        } );
+
+        $('#languagesettingtable').dataTable( {
+            "scrollY": 200,
+            "ScrollX": true,
+            "iDisplayLength": 10,
+            "order": [[ 0, "desc" ]],
+            "scrollCollapse": true,
+            "jQueryUI": true,
+            "aoColumns": [        
+                null, null, null,
+                { "bSortable": false }
+              ]
+        } );
+
+
+
+
+      $("#activecheck").on('change', function(){
+          $.ajax({
+            url: '/updateactive',
+            type: 'POST',
+            data: {"activeseeker": this.checked, "pk" : <%=@userprofile.id %>},
+
+            success: function(response){
+              var data = JSON.parse(response);
+
+              if (data.active){
+                 if (!data.singaporepr)
+                  {document.getElementById( 'spr_block' ).style.visibility = 'visible';}
+                 if (!data.singaporepr && data.insingaporenow){
+                    document.getElementById( 'insg_block' ).style.visibility = 'visible';}
+               newAlert("#alert_placeholder-tab", 'success', "Thanks for informing us that you are actively seeker for job");                 
+              } else{
+                 document.getElementById( 'spr_block' ).style.visibility = 'hidden';
+                 document.getElementById( 'insg_block' ).style.visibility = 'hidden';
+                 newAlert("#alert_placeholder-tab", 'success', "Thanks for informing us that you are not actively looking for job now.");
+                 
+              }; //else
+            } //success function
+          }); //ajax
+      }); //activecheck function
+
+      $("#insgcheck").on('change', function(){
+          $.ajax({
+            url: '/updateinsgnow',
+            type: 'POST',
+            data: {"insingaporenow": this.checked, "pk" : <%=@userprofile.id %>},
+            success: function(response){
+              var data = JSON.parse(response);
+
+              if (data.insingaporenow){
+                 document.getElementById( 'insg_block' ).style.visibility = 'visible';
+                 newAlert("#alert_placeholder-tab", 'success', "Welcome to Singapore!");             
+                           
+              } else{
+                 document.getElementById( 'insg_block' ).style.visibility = 'hidden';
+                 newAlert("#alert_placeholder-tab", 'success', "Look forward to see you in Singapore soon!");
+                               
+              }; //else
+            } //success function
+
+          
+          });
+      });
+
+
+      $("#parttimecheck").on('change', function(){
+          $.ajax({
+            url: '/updateparttime',
+            type: 'POST',
+            data: {"parttime": this.checked, "pk" : <%=@userprofile.id %>},
+
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.parttime){
+                    newAlert("#alert_placeholder-tab", 'success', "You will be matched to any part time jobs");      
+              } else {
+                    newAlert("#alert_placeholder-tab", 'success', "You will not be matched to part time jobs");   
+              }                         
+
+            } //success function
+          }); //ajax
+      }); //parttime function
+
+
+      $("#fulltimecheck").on('change', function(){
+          $.ajax({
+            url: '/updatefulltime',
+            type: 'POST',
+            data: {"fulltime": this.checked, "pk" : <%=@userprofile.id %>},
+
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.fulltime){
+                   newAlert("#alert_placeholder-tab", 'success', "You will be matched to full time jobs");   
+              } else {
+
+                    newAlert("#alert_placeholder-tab", 'success', "You will not be matched to full time jobs");     
+              }                                
+
+            } //success function
+          }); //ajax
+      }); //fulltime function
+
+      $("#shiftworkcheck").on('change', function(){
+          $.ajax({
+            url: '/updateshiftwork',
+            type: 'POST',
+            data: {"shiftwork": this.checked, "pk" : <%=@userprofile.id %>},
+
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.shiftwork){
+                   newAlert("#alert_placeholder-tab", 'success', "You will be matched to jobs requiring shift work");                                    
+              } else {
+                   newAlert("#alert_placeholder-tab", 'success', "You will not be matched to jobs requiring shift work");   
+              }
+            } //success function
+          }); //ajax
+      }); //shiftwork function
+
+      $("#outofhourscheck").on('change', function(){
+          $.ajax({
+            url: '/updateoutofhours',
+            type: 'POST',
+            data: {"outofhours": this.checked, "pk" : <%=@userprofile.id %>},
+
+            success: function(response){
+              var data = JSON.parse(response);
+              if (data.outofhours){
+                   newAlert("#alert_placeholder-tab", 'success', "You will be matched to jobs requiring you to work outside office hour"); 
+               } else {
+                   newAlert("#alert_placeholder-tab", 'success', "You will not be matched to jobs requiring you to work outside office hour");   
+               }                         
+
+            } //success function
+          }); //ajax
+      }); //shiftwork function
+
+
+      $("#id-date-picker-1").on('change', function(){
+          $.ajax({
+            url: '/updatedob',
+            type: 'POST',
+            data: {"dob": this.value, "pk" : <%=@userprofile.id %>}
+          
+          });
+       
+      });   
+
+//TSCHEW
+
+  var sources = {
+    1: [{"value":20,"text":"Agnitum Outpost"},{"value":21,"text":"AhnLab V3"},{"value":22,"text":"avast!"},{"value":23,"text":"AVG"},{"value":24,"text":"Avira"},{"value":25,"text":"Bitdefender"},{"value":26,"text":"BlackBelt"},{"value":27,"text":"BluePoint"},{"value":28,"text":"BullGuard"},{"value":29,"text":"Check Point"},{"value":30,"text":"Clam"},{"value":31,"text":"Comodo"},{"value":32,"text":"Dr. Web"},{"value":33,"text":"Element"},{"value":34,"text":"ESET"},{"value":35,"text":"F-Secure"},{"value":36,"text":"Faronics"},{"value":37,"text":"FireAMP"},{"value":38,"text":"Fortinet"},{"value":39,"text":"F-PROT"},{"value":40,"text":"G Data"},{"value":41,"text":"GFI VIPRE"},{"value":42,"text":"IAV"},{"value":43,"text":"Immunet"},{"value":44,"text":"IObit Advanced Systemcare"},{"value":45,"text":"iolo System Shield"},{"value":46,"text":"K7"},{"value":47,"text":"Kaspersky"},{"value":48,"text":"KingSoft"},{"value":49,"text":"LabMSF"},{"value":50,"text":"Lookout"},{"value":51,"text":"MAC Internet Security"},{"value":52,"text":"MacKeeper"},{"value":53,"text":"McAfee"},{"value":54,"text":"Microsoft Security Essentials"},{"value":55,"text":"Microsoft Windows Defender"},{"value":56,"text":"MYAndroid"},{"value":57,"text":"NANO"},{"value":58,"text":"Norton"},{"value":59,"text":"Panda"},{"value":60,"text":"PCKeeper"},{"value":61,"text":"Prevention"},{"value":62,"text":"ProtectMAC"},{"value":63,"text":"Qihoo"},{"value":64,"text":"Quick Heal"},{"value":65,"text":"Rising"},{"value":66,"text":"SecureAnywhere"},{"value":67,"text":"SnapSecure"},{"value":68,"text":"Sophos"},{"value":69,"text":"STOPzilla"},{"value":70,"text":"SureGuardian"},{"value":71,"text":"Symantec"},{"value":72,"text":"Tech-guard"},{"value":73,"text":"Total Defense"},{"value":74,"text":"Trend Micro"},{"value":75,"text":"TrustGo"},{"value":76,"text":"TrustPort"},{"value":77,"text":"UnThreat"},{"value":78,"text":"UtilTools"},{"value":79,"text":"Vba32"},{"value":80,"text":"VirIT"},{"value":81,"text":"VirusBarrier"},{"value":82,"text":"VirusBuster"}] , 2:  [{"value":83,"text":"Apple App Store"},{"value":84,"text":"Apple FaceTime"},{"value":85,"text":"Apple iBook"},{"value":86,"text":"Apple iPhoto"},{"value":87,"text":"Apple iTunes"},{"value":88,"text":"Apple Keynote"},{"value":89,"text":"Apple Mail"},{"value":90,"text":"Apple Maps"},{"value":91,"text":"Apple Numbers"},{"value":92,"text":"Apple Pages"},{"value":93,"text":"Apple QuickTime"},{"value":94,"text":"Apple Safari"},{"value":95,"text":"Apple Spaces"},{"value":96,"text":"Apple Time Machine"},{"value":97,"text":"Apple Utilities"}], 3:  [{"value":98,"text":"Avaya Application Enablement Services"},{"value":99,"text":"Avaya Application Server"},{"value":100,"text":"Avaya Aura Contact Center"},{"value":101,"text":"Avaya Business Communication Center"},{"value":102,"text":"Avaya CMM Voicemail"},{"value":103,"text":"Avaya Collaboration Server"},{"value":104,"text":"Avaya Communication Manager"},{"value":105,"text":"Avaya Contact Center Express"},{"value":106,"text":"Avaya CSxxxx series"},{"value":107,"text":"Avaya EC500"},{"value":108,"text":"Avaya Interaction Center"},{"value":109,"text":"Avaya IP Office"},{"value":110,"text":"Avaya IVR"},{"value":111,"text":"Avaya Media Services"},{"value":112,"text":"Avaya Presence Services"},{"value":113,"text":"Avaya Session Border Control"},{"value":114,"text":"Avaya Session Manager"},{"value":115,"text":"Avaya Speech Server"},{"value":116,"text":"Avaya System Manager"},{"value":117,"text":"Avaya System Platform"},{"value":118,"text":"Avaya Unified Messaging"}], 4: [{"value":119,"text":"Cisco Active Network Abstraction"},{"value":120,"text":"Cisco AnyConnect"},{"value":121,"text":"Cisco Call Manager"},{"value":122,"text":"Cisco CatOS"},{"value":123,"text":"Cisco Clean Access Agent"},{"value":124,"text":"Cisco Data Center Management"},{"value":125,"text":"Cisco Eos"},{"value":126,"text":"Cisco Fabric Manager"},{"value":127,"text":"CIsco IOS"},{"value":128,"text":"Cisco IP Communicator"},{"value":129,"text":"Cisco Network Magic Pro"},{"value":130,"text":"Cisco NX-OS"},{"value":131,"text":"Cisco Packet Tracer"},{"value":132,"text":"Cisco PostOffice"},{"value":133,"text":"Cisco Quad"},{"value":134,"text":"Cisco SDM"},{"value":135,"text":"Cisco Security Manager"},{"value":136,"text":"Cisco Tidal Enterprise Scheduler"},{"value":137,"text":"Cisco Unified Communications Manager"},{"value":138,"text":"Cisco Unified Operations Manager"},{"value":139,"text":"Cisco VPN Client"},{"value":140,"text":"Cisco WebEx"},{"value":141,"text":"CiscoView"},{"value":142,"text":"CiscoWorks Network Management software"}], 5: [{"value":143,"text":"IBM Accelerator for WebSphere Portal"},{"value":144,"text":"IBM Access Management"},{"value":145,"text":"IBM AdTarget"},{"value":146,"text":"IBM AIX"},{"value":147,"text":"IBM Algo"},{"value":148,"text":"IBM Analyst's Notebook"},{"value":149,"text":"IBM Anonymous Resolution"},{"value":150,"text":"IBM API Management"},{"value":151,"text":"IBM APL2"},{"value":152,"text":"IBM Application Performance"},{"value":153,"text":"IBM Application Workload Modeler"},{"value":154,"text":"IBM Archive Manager"},{"value":155,"text":"IBM Backup and Restore Manager"},{"value":156,"text":"IBM Banking and Financial Markets Data Warehouse"},{"value":157,"text":"IBM Blueworks Live"},{"value":158,"text":"IBM Breeze"},{"value":159,"text":"IBM Business Intelligence"},{"value":160,"text":"IBM Business Monitor"},{"value":161,"text":"IBM Business Process Manager"},{"value":162,"text":"IBM Business Rules"},{"value":163,"text":"IBM C and C++ Compilers"},{"value":164,"text":"IBM Call Center"},{"value":165,"text":"IBM Campaign"},{"value":166,"text":"IBM Capacity Management"},{"value":167,"text":"IBM Case Foundation"},{"value":168,"text":"IBM Case Manager"},{"value":169,"text":"IBM CICS"},{"value":170,"text":"IBM Clarity 7"},{"value":171,"text":"IBM Cloud Management Suite"},{"value":172,"text":"IBM COBOL Compiler"},{"value":173,"text":"IBM COBOL Report Writer"},{"value":174,"text":"IBM Cognos"},{"value":175,"text":"IBM Collaboration Accelerator"},{"value":176,"text":"IBM Commerce on Cloud"},{"value":177,"text":"IBM Communications Controller"},{"value":178,"text":"IBM Communications Server"},{"value":179,"text":"IBM Compiler and Library for REXX"},{"value":180,"text":"IBM Concert"},{"value":181,"text":"IBM Connections"},{"value":182,"text":"IBM Contact Optimization"},{"value":183,"text":"IBM Content Accelerator"},{"value":184,"text":"IBM Content Integrator"},{"value":185,"text":"IBM Content Manager"},{"value":186,"text":"IBM Content Recommendations"},{"value":187,"text":"IBM CPLEX Optimizer"},{"value":188,"text":"IBM Cram"},{"value":189,"text":"IBM Customer Experience Suite"},{"value":190,"text":"IBM CustomerInsight"},{"value":191,"text":"IBM Data Facility Storage Management"},{"value":192,"text":"IBM Data Set Commander"},{"value":193,"text":"IBM Data Studio"},{"value":194,"text":"IBM Datawatch"},{"value":195,"text":"IBM DB2"},{"value":196,"text":"IBM DCF"},{"value":197,"text":"IBM Decision Optimization Center"},{"value":198,"text":"IBM Defensible Disposal"},{"value":199,"text":"IBM DemandTec"},{"value":200,"text":"IBM Digital Analytics"},{"value":201,"text":"IBM Directory Services"},{"value":202,"text":"IBM Distributed Marketing"},{"value":203,"text":"IBM DITTO"},{"value":204,"text":"IBM Docs"},{"value":205,"text":"IBM Document Capture"},{"value":206,"text":"IBM Document Imaging"},{"value":207,"text":"IBM Document Management"},{"value":208,"text":"IBM Domino Hypervisor Edition"},{"value":209,"text":"IBM Email Optimization"},{"value":210,"text":"IBM eMessage"},{"value":211,"text":"IBM Employee Experience Suite"},{"value":212,"text":"IBM Emptoris"},{"value":213,"text":"IBM Endpoint Manager"},{"value":214,"text":"IBM Enhanced Access Control"},{"value":215,"text":"IBM Enterprise Content Management"},{"value":216,"text":"IBM Fault Analyzer"},{"value":217,"text":"IBM File Manager"},{"value":218,"text":"IBM FileNet"},{"value":219,"text":"IBM Financial Markets Data Warehouse"},{"value":220,"text":"IBM Financial Transaction Manager"},{"value":221,"text":"IBM Forms"},{"value":222,"text":"IBM Fortran Compilers"},{"value":223,"text":"IBM General Parallel File System"},{"value":224,"text":"IBM Graphical Data Display Manager"},{"value":225,"text":"IBM Health Plan Data Model"},{"value":226,"text":"IBM Healthcare Provider Data Model"},{"value":227,"text":"IBM High Level Assembler"},{"value":228,"text":"IBM HourGlass"},{"value":229,"text":"IBM HTTP Server"},{"value":230,"text":"IBM i"},{"value":231,"text":"IBM i2"},{"value":232,"text":"IBM ILOG"},{"value":233,"text":"IBM IMS"},{"value":234,"text":"IBM Infoprint"},{"value":235,"text":"IBM Informix"},{"value":236,"text":"IBM InfoSphere"},{"value":237,"text":"IBM Insurance Information Warehouse"},{"value":238,"text":"IBM Insurance Process and Service Models"},{"value":239,"text":"IBM Integrated Information Core"},{"value":240,"text":"IBM Integration Bus"},{"value":241,"text":"IBM Integration Designer"},{"value":242,"text":"IBM Intelligent City Planning and Operations"},{"value":243,"text":"IBM Intelligent Operations Center"},{"value":244,"text":"IBM Intelligent Transportation"},{"value":245,"text":"IBM Intelligent Video Analytics"},{"value":246,"text":"IBM Intelligent Water"},{"value":247,"text":"IBM Interact"},{"value":248,"text":"IBM Java"},{"value":249,"text":"IBM Kenexa"},{"value":250,"text":"IBM Leads"},{"value":251,"text":"IBM Learning Accelerator"},{"value":252,"text":"IBM Legacy Data Cleanup"},{"value":253,"text":"IBM License Metric Tool"},{"value":254,"text":"IBM Linux"},{"value":255,"text":"IBM LIVEmail"},{"value":256,"text":"IBM Lotus"},{"value":257,"text":"IBM Marketing Center"},{"value":258,"text":"IBM Marketing Operations"},{"value":259,"text":"IBM Mathematical Acceleration"},{"value":260,"text":"IBM Maximo"},{"value":261,"text":"IBM Merge Tool"},{"value":262,"text":"IBM MessageSight"},{"value":263,"text":"IBM Migration Utility"},{"value":264,"text":"IBM Mobile Connect"},{"value":265,"text":"IBM Mobile Foundation"},{"value":266,"text":"IBM Mobile Portal Accelerator"},{"value":267,"text":"IBM Mobile Push Notification"},{"value":268,"text":"IBM Mobile Web Push"},{"value":269,"text":"IBM MQ"},{"value":270,"text":"IBM Multi-Enterprise"},{"value":271,"text":"IBM Multisite Workload Lifeline"},{"value":272,"text":"IBM Netcool"},{"value":273,"text":"IBM Netezza Replication Services"},{"value":274,"text":"IBM Notes and Domino Family"},{"value":275,"text":"IBM OpenPages"},{"value":276,"text":"IBM Operating System Environment"},{"value":277,"text":"IBM Operational Decision Manager"},{"value":278,"text":"IBM Operations Manager"},{"value":279,"text":"IBM Opportunity Detection"},{"value":280,"text":"IBM Optim"},{"value":281,"text":"IBM Overlay Generation Language"},{"value":282,"text":"IBM Page Printer Formatting Aid"},{"value":283,"text":"IBM Personal Communications"},{"value":284,"text":"IBM PL/I Compilers"},{"value":285,"text":"IBM Predictive Customer Intelligence"},{"value":286,"text":"IBM Predictive Maintenance"},{"value":287,"text":"IBM PredictiveInsight"},{"value":288,"text":"IBM Presence Zones"},{"value":289,"text":"IBM Print Services Facility"},{"value":290,"text":"IBM Problem Determination"},{"value":291,"text":"IBM Product Recommendations"},{"value":292,"text":"IBM PureData"},{"value":293,"text":"IBM QRadar Security Intelligence"},{"value":294,"text":"IBM Quickfile"},{"value":295,"text":"IBM Rational"},{"value":296,"text":"IBM Real-Time Asset Locator"},{"value":297,"text":"IBM Records and Retention"},{"value":298,"text":"IBM Retail Data Warehouse"},{"value":299,"text":"IBM Riptide"},{"value":300,"text":"IBM Sametime"},{"value":301,"text":"IBM SCLM"},{"value":302,"text":"IBM Security AppScan"},{"value":303,"text":"IBM Security Content Analysis"},{"value":304,"text":"IBM Security Identity and Access"},{"value":305,"text":"IBM Security Key Lifecycle Manager"},{"value":306,"text":"IBM Security Network Active Bypass"},{"value":307,"text":"IBM Security Network Intrusion Prevention System"},{"value":308,"text":"IBM Security Network Protection"},{"value":309,"text":"IBM Security Server Protection"},{"value":310,"text":"IBM Security SiteProtector System"},{"value":311,"text":"IBM Security Virtual Server Protection"},{"value":312,"text":"IBM Security X-Force Threat Intelligence"},{"value":313,"text":"IBM Security zSecure"},{"value":314,"text":"IBM Service Delivery Manager"},{"value":315,"text":"IBM Service Management Suite"},{"value":316,"text":"IBM SmartCloud"},{"value":317,"text":"IBM Social Learning"},{"value":318,"text":"IBM Social Media Analytics"},{"value":319,"text":"IBM SPSS"},{"value":320,"text":"IBM Standards Processing Engine"},{"value":321,"text":"IBM Sterling Commerce"},{"value":322,"text":"IBM Supply Chain Optimization"},{"value":323,"text":"IBM Support for Apache OpenOffice"},{"value":324,"text":"IBM System Display and Search Facility"},{"value":325,"text":"IBM System Storage Archive Manager"},{"value":326,"text":"IBM System Storage SAN Volume Controller"},{"value":327,"text":"IBM System z Operating Systems"},{"value":328,"text":"IBM Tape Manager"},{"value":329,"text":"IBM Tealeaf"},{"value":330,"text":"IBM Teleprocessing Network Simulator"},{"value":331,"text":"IBM Tivoli"},{"value":332,"text":"IBM TPF"},{"value":333,"text":"IBM Trellis"},{"value":334,"text":"IBM TRIRIGA"},{"value":335,"text":"IBM Unified Messaging"},{"value":336,"text":"IBM UrbanCode"},{"value":337,"text":"IBM Value-Based Archiving"},{"value":338,"text":"IBM VisualAge"},{"value":339,"text":"IBM VTAM"},{"value":340,"text":"IBM Watson Content Analytics"},{"value":341,"text":"IBM Web Content Manager"},{"value":342,"text":"IBM Web Experience Factory"},{"value":343,"text":"IBM WebSphere"},{"value":344,"text":"IBM Worklight"},{"value":345,"text":"IBM Workload"},{"value":346,"text":"IBM XML Toolkit"},{"value":347,"text":"IBM XWork Server"},{"value":348,"text":"IBM z/OS"},{"value":349,"text":"IBM zEnterprise Analytics System"}], 6: [{"value":350,"text":"Microsoft Active Directory"},{"value":351,"text":"Microsoft Azure"},{"value":352,"text":"Microsoft BizTalk Server"},{"value":353,"text":"Microsoft Commerce Server"},{"value":354,"text":"Microsoft Desktops"},{"value":355,"text":"Microsoft Excel"},{"value":356,"text":"Microsoft Exchange"},{"value":357,"text":"Microsoft Forefront"},{"value":358,"text":"Microsoft Forms"},{"value":359,"text":"Microsoft Groove"},{"value":360,"text":"Microsoft Host Integration"},{"value":361,"text":"Microsoft Hyper-V"},{"value":362,"text":"Microsoft Identity Integration"},{"value":363,"text":"Microsoft Internet Information Services"},{"value":364,"text":"Microsoft Internet Explorer"},{"value":365,"text":"Microsoft Lync"},{"value":366,"text":"Microsoft Office"},{"value":367,"text":"Microsoft Office Communicator"},{"value":368,"text":"Microsoft Outlook"},{"value":369,"text":"Microsoft PerformancePoint"},{"value":370,"text":"Microsoft Powerpoint"},{"value":371,"text":"Microsoft Project"},{"value":372,"text":"Microsoft Search"},{"value":373,"text":"Microsoft SharePoint"},{"value":374,"text":"Microsoft Skype"},{"value":375,"text":"Microsoft Speech Server"},{"value":376,"text":"Microsoft System Center"},{"value":377,"text":"Microsoft Virtual Server"},{"value":378,"text":"Microsoft Visio"},{"value":379,"text":"Microsoft Visual Studio"},{"value":380,"text":"Microsoft Word"},{"value":381,"text":"Microsoft WSUS"}], 7: [{"value":382,"text":"Novell BorderManager"},{"value":383,"text":"Novell Data Synchronizer"},{"value":384,"text":"Novell Filr"},{"value":385,"text":"Novell GroupWise"},{"value":386,"text":"Novell iPrint"},{"value":387,"text":"Novell Open Enterprise Server"},{"value":388,"text":"Novell Storage Manager"},{"value":389,"text":"Novell Vibe"},{"value":390,"text":"Novell ZENworks"}],8: [{"value":391,"text":"Alcatel-Lucent ClearPass"},{"value":392,"text":"Alcatel-Lucent Genesys"},{"value":393,"text":"Alcatel-Lucent LifeSize"},{"value":394,"text":"Alcatel-Lucent My IC Mobile"},{"value":395,"text":"Alcatel-Lucent OmniPCX"},{"value":396,"text":"Alcatel-Lucent OmniTouch"},{"value":397,"text":"Alcatel-Lucent OmniVista"},{"value":398,"text":"Alcatel-Lucent OpenTouch"},{"value":399,"text":"Alcatel-Lucent PIMphony"},{"value":400,"text":"Alcatel-Lucent Unified Messaging"},{"value":401,"text":"Alcatel-Lucent VitalQIP"},{"value":402,"text":"Alcatel-Lucent VitalSuite"},{"value":403,"text":"Alcatel-Lucent Web Services"},{"value":404,"text":"Allied Telesis AlliedView"},{"value":405,"text":"Allied Telesis AlliedWare"},{"value":406,"text":"Blackberry Desktop"},{"value":407,"text":"Blackberry Enterprise Server"},{"value":408,"text":"Blackberry Link"},{"value":409,"text":"Blackberry Media Sync"},{"value":410,"text":"Brocade Network Advisor"},{"value":411,"text":"Brocade Virtual Routers & Switches"},{"value":412,"text":"Citrix"},{"value":413,"text":"Firefly"},{"value":414,"text":"Firefox"},{"value":415,"text":"Gnome"},{"value":416,"text":"Good Dynamics"},{"value":417,"text":"Good for Enterprise"},{"value":418,"text":"Google Chrome"},{"value":419,"text":"hMailServer"},{"value":420,"text":"Hyper-V"},{"value":421,"text":"ICMS"},{"value":422,"text":"KDE"},{"value":423,"text":"LiteStep"},{"value":424,"text":"MDaemon Messaging Server"},{"value":425,"text":"NComputing vSpace"},{"value":426,"text":"Norton 360"},{"value":427,"text":"Norton AntiVirus"},{"value":428,"text":"Norton Ghost"},{"value":429,"text":"Norton Internet Security"},{"value":430,"text":"Norton Utilities"},{"value":431,"text":"Oracle Taleo"},{"value":432,"text":"Pointsec"},{"value":433,"text":"Remedy"},{"value":434,"text":"Roundcube"},{"value":435,"text":"Safari"},{"value":436,"text":"ServiceNow"},{"value":437,"text":"TeamViewer"},{"value":438,"text":"Veeam Backup and Replication"},{"value":439,"text":"Veeam Backup Essentials"},{"value":440,"text":"Veeam Backup Management Suite"},{"value":441,"text":"Veeam ONE"}], 9: [{"value":442,"text":"SAP ABAP"},{"value":443,"text":"SAP Advanced Planner and Optimizer (APO)"},{"value":444,"text":"SAP Analytics"},{"value":445,"text":"SAP Apparel and Footwear Solution (AFS)"},{"value":446,"text":"SAP Business ByDesign"},{"value":447,"text":"SAP Business Information Warehouse (BW)"},{"value":448,"text":"SAP Business Intelligence (BI)"},{"value":449,"text":"SAP Business One"},{"value":450,"text":"SAP Catalog Content Management ()"},{"value":451,"text":"SAP Convergent Charging (CC)"},{"value":452,"text":"SAP Enterprise Buyer Professional (EBP)"},{"value":453,"text":"SAP Enterprise Central Component (ECC)"},{"value":454,"text":"SAP Enterprise Learning"},{"value":455,"text":"SAP Enterprise Services Architecture"},{"value":456,"text":"SAP Exchange Infrastructure (XI)"},{"value":457,"text":"SAP Extended Warehouse Management (EWM)"},{"value":458,"text":"SAP Financial Services Network (FSN)"},{"value":459,"text":"SAP for Banking"},{"value":460,"text":"SAP for Healthcare (ISH)"},{"value":461,"text":"SAP for Oil & Gas (IS Oil & Gas)"},{"value":462,"text":"SAP for Public Sector (IS PSCD)"},{"value":463,"text":"SAP for Retail (ISR)"},{"value":464,"text":"SAP for Telecommunications (IST)"},{"value":465,"text":"SAP for Utilities (ISU)"},{"value":466,"text":"SAP Governance, Risk and Compliance (GRC)"},{"value":467,"text":"SAP HANA (High-performance Analytics Appliance)"},{"value":468,"text":"SAP Human Resource Management Systems (HRMS)"},{"value":469,"text":"SAP Internet Transaction Server (ITS)"},{"value":470,"text":"SAP Incentive and Commission Management (ICM)"},{"value":471,"text":"SAP Knowledge Warehouse (KW)"},{"value":472,"text":"SAP Manufacturing"},{"value":473,"text":"SAP Master Data Management (MDM)"},{"value":474,"text":"SAP NetWeaver Application Server (Web AS)"},{"value":475,"text":"SAP NetWeaver Platform"},{"value":476,"text":"SAP Portal (EP)"},{"value":477,"text":"SAP Rapid Deployment Solutions (RDS)"},{"value":478,"text":"SAP Service and Asset Management"},{"value":479,"text":"SAP Shipping Services Network (SSN)"},{"value":480,"text":"SAP Solution Composer"},{"value":481,"text":"SAP Solutions for mobile business"},{"value":482,"text":"SAP Strategic Enterprise Management (SEM)"},{"value":483,"text":"SAP Supply Chain Performance Management (SCPM)"},{"value":484,"text":"SAP Sustainability Performance Management (SUPM)"},{"value":485,"text":"SAP Test Data Migration Server (TDMS)"},{"value":486,"text":"SAP Training and Event Management (TEM)"},{"value":487,"text":"SAP xApps"}], 10: [{"value":488,"text":"AdvisorMail"},{"value":489,"text":"AntiVirus (Endpoint Protection)"},{"value":490,"text":"AntiVirus Corporate Edition"},{"value":491,"text":"App Center"},{"value":492,"text":"ApplicationHA"},{"value":493,"text":"Asset Management Suite"},{"value":494,"text":"Authentic Document IDs for Brew"},{"value":495,"text":"Backup Exec"},{"value":496,"text":"Backup Exec 3600 Appliance"},{"value":497,"text":"Backup Exec Small Business Edition"},{"value":498,"text":"Backup Exec V-Ray Edition"},{"value":499,"text":"Certificate Intelligence Center"},{"value":500,"text":"Certificate Lifecycle Platform"},{"value":501,"text":"CI Plus Device Credentials"},{"value":502,"text":"Client Management Suite"},{"value":503,"text":"Cluster File System"},{"value":504,"text":"Cluster Server"},{"value":505,"text":"Code Signing Certificates for Adobe AIR"},{"value":506,"text":"Code Signing Certificates for Java"},{"value":507,"text":"Code Signing Certificates for Microsoft Authenticode"},{"value":508,"text":"Code Signing Certificates for Microsoft Office and VBA"},{"value":509,"text":"Code Signing Certificates for Windows Phone"},{"value":510,"text":"Code Signing Certificates for Windows Phone Private Enterprise"},{"value":511,"text":"Code Signing for Android"},{"value":512,"text":"Command Line"},{"value":513,"text":"Control Compliance Suite"},{"value":514,"text":"Critical System Protection Monitoring Edition"},{"value":515,"text":"Data Center Security: Server & Server Advanced"},{"value":516,"text":"Data Insight"},{"value":517,"text":"Data Loss Prevention"},{"value":518,"text":"Deployment Solution"},{"value":519,"text":"Desktop and Laptop Option"},{"value":520,"text":"Desktop Email Encryption"},{"value":521,"text":"Device Certificate Service"},{"value":522,"text":"Digital IDs for Secure Email"},{"value":523,"text":"Disaster Recovery Advisor"},{"value":524,"text":"Disaster Recovery Orchestrator"},{"value":525,"text":"Drive Encryption"},{"value":526,"text":"Dynamic Multi-Pathing"},{"value":527,"text":"Dynamic Multi-Pathing for VMware"},{"value":528,"text":"ECA Certificates"},{"value":529,"text":"eDiscovery Platform powered by Clearwell"},{"value":530,"text":"Email Continuity.cloud"},{"value":531,"text":"Email Security.cloud"},{"value":532,"text":"Encryption Desktop Corporate"},{"value":533,"text":"Encryption Desktop Professional"},{"value":534,"text":"Encryption Desktop Storage"},{"value":535,"text":"Encryption Management Server"},{"value":536,"text":"Endpoint Encryption Full Disk Edition"},{"value":537,"text":"Endpoint Encryption Removable Storage Edition"},{"value":538,"text":"Endpoint Protection"},{"value":539,"text":"Endpoint Protection for Windows Embedded"},{"value":540,"text":"Endpoint Protection Small Business Edition"},{"value":541,"text":"Enterprise Vault"},{"value":542,"text":"Enterprise Vault.cloud"},{"value":543,"text":"Extended Validation Code Signing"},{"value":544,"text":"File Share Encryption"},{"value":545,"text":"Gateway Email Encryption"},{"value":546,"text":"Ghost Solution Suite"},{"value":547,"text":"Instant Messaging Security.cloud"},{"value":548,"text":"IT Management Suite"},{"value":549,"text":"Mail Security for Domino"},{"value":550,"text":"Mail Security for Microsoft Exchange"},{"value":551,"text":"Managed PKI for SSL"},{"value":552,"text":"Managed PKI Service"},{"value":553,"text":"Managed Security Services"},{"value":554,"text":"Messaging Gateway"},{"value":555,"text":"Messaging Gateway for Service Providers"},{"value":556,"text":"Messaging Gateway Small Business Edition"},{"value":557,"text":"Mobile Management"},{"value":558,"text":"Mobile Management Suite"},{"value":559,"text":"Mobile Security"},{"value":560,"text":"NetBackup"},{"value":561,"text":"NetBackup Appliance 5000 Series"},{"value":562,"text":"NetBackup Appliance 5200 Series"},{"value":563,"text":"NetBackup Storage Migrator"},{"value":564,"text":"Operations Manager"},{"value":565,"text":"OpsCenter Analytics"},{"value":566,"text":"Patch Management Solution"},{"value":567,"text":"Premium AntiSpam"},{"value":568,"text":"Private Certification Authority Service (Private CA)"},{"value":569,"text":"Protection Engine for Cloud Services"},{"value":570,"text":"Protection Engine for Network Attached Storage"},{"value":571,"text":"Protection for SharePoint Servers"},{"value":572,"text":"Protection Suite Enterprise Edition"},{"value":573,"text":"Protection Suite Small Business Edition"},{"value":574,"text":"Replicator Option"},{"value":575,"text":"Risk Automation Suite"},{"value":576,"text":"Safe Site"},{"value":577,"text":"Secure App Service"},{"value":578,"text":"Secure Site Pro SSL Certificates"},{"value":579,"text":"Secure Site Pro with EV SSL Certificates"},{"value":580,"text":"Secure Site SSL Certificates"},{"value":581,"text":"Secure Site Wildcard SSL Certificates"},{"value":582,"text":"Secure Site with EV SSL Certificates"},{"value":583,"text":"Server Management Suite"},{"value":584,"text":"ServiceDesk"},{"value":585,"text":"Shared Service Provider PKI"},{"value":586,"text":"Signing Service for Java Verified"},{"value":587,"text":"Storage Foundation"},{"value":588,"text":"Storage Foundation Basic"},{"value":589,"text":"Storage Foundation for Oracle RAC"},{"value":590,"text":"Storage Foundation for Sybase ASE CE"},{"value":591,"text":"Storage Foundation High Availability for Windows"},{"value":592,"text":"Symantec"},{"value":593,"text":"System Recovery Desktop Edition"},{"value":594,"text":"System Recovery Linux Edition"},{"value":595,"text":"System Recovery Server Edition"},{"value":596,"text":"System Recovery Small Business Server Edition"},{"value":597,"text":"System Recovery Virtual Edition"},{"value":598,"text":"Trust Center Account for Enterprise"},{"value":599,"text":"Validation and ID Protection Service"},{"value":600,"text":"Web Gateway"},{"value":601,"text":"Web Security.cloud"},{"value":602,"text":"Workspace Corporate/Remote"},{"value":603,"text":"Workspace Streaming"},{"value":604,"text":"Workspace Virtualization"}], 11: [{"value":605,"text":"VMWare Fusion"},{"value":606,"text":"VMWare Go"},{"value":607,"text":"VMWare Horizon View"},{"value":608,"text":"VMWare Player"},{"value":609,"text":"VMWare Workstation"},{"value":610,"text":"VMWare vCenter"},{"value":611,"text":"VMWare vCloud"},{"value":612,"text":"VMWare Server"},{"value":613,"text":"VMWare vSphere"}], 12: [{"value":614,"text":"Huawei Converged Infrastructure FusionCube"}], 13: [{"value":615,"text":"Huawei FusionSphere"}], 14: [{"value":616,"text":"3G"},{"value":617,"text":"4G"},{"value":618,"text":"5G"},{"value":619,"text":"Bluetooth"},{"value":620,"text":"CDMA"},{"value":621,"text":"FM Radio"},{"value":622,"text":"GPRS"},{"value":623,"text":"GPS"},{"value":624,"text":"GSM"},{"value":625,"text":"LTE"},{"value":626,"text":"UMTS"}], 15: [{"value":627,"text":"BigTable"},{"value":628,"text":"Hbase"},{"value":629,"text":"HSQL"},{"value":630,"text":"MariaDB"},{"value":631,"text":"MySQL"},{"value":632,"text":"Oracle"},{"value":633,"text":"Microsoft SQL Server"}], 16: [{"value":634,"text":"Huawei IDS Series Datacenters"}], 17: [{"value":635,"text":"OTA (Over The Air)"},{"value":636,"text":"Windows Media Center"}], 18: [{"value":637,"text":"Huawei iManager NetEco"}], 19: [{"value":638,"text":"General Skills Management / Customers"},{"value":639,"text":"Accounting"},{"value":640,"text":"Auditing"},{"value":641,"text":"Customer Presentation and Promotion"},{"value":642,"text":"Customer Product Tailoring"},{"value":643,"text":"Customer Support"},{"value":644,"text":"Data Center Management"},{"value":645,"text":"Deliver Solutions"},{"value":646,"text":"Document Writing"},{"value":647,"text":"Financial Budgeting & Reporting"},{"value":648,"text":"Inventory Tracking"},{"value":649,"text":"Issue Escalation"},{"value":650,"text":"Policy Setting"},{"value":651,"text":"Presentations"},{"value":652,"text":"Project Management"},{"value":653,"text":"Quality Assurance"},{"value":654,"text":"Resource Management"},{"value":655,"text":"Spreadsheets"},{"value":656,"text":"Team Coordination"},{"value":657,"text":"Technical Reporting"},{"value":658,"text":"Training"},{"value":659,"text":"User Guides / Instructions Manuals"},{"value":660,"text":"Vendor/Supplier Management"}], 20: [{"value":661,"text":"Backup / Restore"},{"value":662,"text":"Case Handling"},{"value":663,"text":"Customer Technical Support"},{"value":664,"text":"Database Setup & Maintenance"},{"value":665,"text":"Email Setup & Troubleshooting"},{"value":666,"text":"General HW/SW Maintenance & Upgrades"},{"value":667,"text":"General Troubleshooting"},{"value":668,"text":"Hardware Setup & Troubleshooting"},{"value":669,"text":"Helpdesk Support"},{"value":670,"text":"Incident Ticketing Support"},{"value":671,"text":"Infrastructure Management"},{"value":672,"text":"Intel based HW Setup & Troubleshooting"},{"value":673,"text":"Internet Setup & Troubleshooting"},{"value":674,"text":"IP Camera Setup & Troubleshooting"},{"value":675,"text":"License Setup & Troubleshooting"},{"value":676,"text":"Linux Setup & Troubleshooting"},{"value":677,"text":"Laptop Setup & Troubleshooting"},{"value":678,"text":"MAC Setup & Troubleshooting"},{"value":679,"text":"OS Hardening"},{"value":680,"text":"PC Assembly"},{"value":681,"text":"PC Setup & Troubleshooting"},{"value":682,"text":"Printer/Server Setup & Troubleshooting"},{"value":683,"text":"Projector Setup & Troubleshooting"},{"value":684,"text":"Relocation of Infrastructure"},{"value":685,"text":"Remote Access Setup & Troubleshooting"},{"value":686,"text":"Remote Desktop Setup & Troubleshooting"},{"value":687,"text":"Scripting"},{"value":688,"text":"Server Migration"},{"value":689,"text":"Server Virtualisation"},{"value":690,"text":"Software Installation & Troubleshooting"},{"value":691,"text":"Software Integration"},{"value":692,"text":"System Integration"},{"value":693,"text":"Technical Support"},{"value":694,"text":"UPS Installation & Support"},{"value":695,"text":"User Technical Support"},{"value":696,"text":"VOIP Setup & Troubleshooting"},{"value":697,"text":"VPN Setup & Troubleshooting"},{"value":698,"text":"Web Filtering"},{"value":699,"text":"Web Server Setup & Troubleshooting"},{"value":700,"text":"Website Setup & Maintenance"},{"value":701,"text":"Wifi Setup & Troubleshooting"},{"value":702,"text":"Windows Server Setup & Troubleshooting"},{"value":703,"text":"Windows Setup & Troubleshooting"}]
+  };
+
+
+      $('#skillcat').editable({ 
+        source: <%= @skillcat %> ,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#skillname').editable('option', 'source', sources[newValue]);
+           $('#skillname').editable('setValue', null);
+           $('#skillname').editable('option', 'disabled', false);
+           
+        }
+      });
+
+      $('#skillname').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#skillrank').editable('option', 'disabled', false);
+        }
+        });
+
+      $('#skillrank').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false})
+
+      //init editables
+      $('.newskill').editable('option', 'validate', function(v) {
+          if(!v) return 'This is a required field!';
+      });
+     
+
+      //automatically show next editable 1
+      $('.newskill').on('save.newskill', function(){
+          var that = this;
+          setTimeout(function() {
+              $(that).closest('tr').next().find('.newskill').editable('show');
+          }, 200);
+      });   
+
+      $('#saveskill-btn').click(function() {
+         $('.newskill').editable('submit', {
+             url: '/newskill',
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },         
+             success: function(data, config) {
+               
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       config.error.call(this, data.errors);
+
+                 }   else{
+
+                      newAlert("#alert_placeholder-inmodal",'success', 'New Skill added!');
+
+                      $('.newskill').editable('setValue', null);  //clear values
+                      $('#skillname').editable('option', 'disabled', true);
+                      $('#skillrank').editable('option', 'disabled', true);
+                      $("#st").load("/table");   
+                 }     
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="skillcatid") {k = "Skill Category"};
+                      if (k=="skillid") {k = "Skill name"};
+                      if (k=="skillrank") {k = "Skill rank"};       
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_placeholder-inmodal",'danger', msg);
+                    
+                 }
+                
+             }
+         });
+      });
+
+
+
+      $('#closeskill-btn').click(function() {
+          $('.newskill').editable('setValue', null)  //clear values
+              .editable('option', 'pk', null)          //clear pk
+              .removeClass('editable-unsaved');        //remove bold css
+         
+            
+      });
+
+
+      $('[data-rel=tooltip]').tooltip();
+      $('[data-rel=popover]').popover({html:true});
+
+
+  });
+
+$(document).ready(function(){
+                //non singaporean and non-PR and active in seeking for job, show it!
+              if (<%= @userprofile.nationality %> != 156 && !<%= @userprofile.singaporepr %> && <%= @userprofile.activeseeker %>){
+                 document.getElementById( 'spr_block' ).style.visibility = 'visible';
+                 if (<%= @userprofile.insingaporenow%> ){
+                  document.getElementById( 'insg_block' ).style.visibility = 'visible';
+                 }
+              };
+
+              if (<%= @userprofile.nationality %> == 156 || <%= @userprofile.singaporepr %>)  {
+                document.getElementById( 'spr_block' ).style.visibility = 'hidden';
+                document.getElementById( 'insg_block' ).style.visibility = 'hidden';
+              } ;
+
+
+
+          $('.dial').each(function () {
+
+                    var elm = $(this);
+                    var color = elm.attr("data-fgColor");
+                    var perc = elm.attr("value");
+         
+                    elm.knob({
+                         'value': 0,
+                          'min':0,
+                          'max':100,
+                          "skin":"tron",
+                          "readOnly":true,
+                          "thickness":.1,                 'dynamicDraw': true,                "displayInput":false
+                    });
+
+                    $({value: 0}).animate({ value: perc }, {
+                        duration: 1000,
+                        easing: 'swing',
+                        progress: function () {                  elm.val(Math.ceil(this.value)).trigger('change')
+                        }
+                    });
+
+                    //circular progress bar color
+                    $(this).append(function() {
+                        elm.parent().parent().find('.circular-bar-content').css('color',color);
+                        elm.parent().parent().find('.circular-bar-content label').text(perc+'%');
+                    });
+
+
+           
+          });
+ 
+
+            
+        $('#spinner1').ace_spinner({value:0,min:0,max:100,step:25, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+        .on('change', function(){
+          //alert(this.value)
+        });
+        $('#spinner2').ace_spinner({value:0,min:0,max:100,step:25, touch_spinner: true, icon_up:'icon-caret-up', icon_down:'icon-caret-down'})
+        .on('change', function(){
+          $.ajax({
+            url: '/updatetravelfreq',
+            type: 'POST',
+            data: {"travelfreq": this.value, "pk" : <%=@userprofile.id %>}
+          
+          });
+        });
+        $('#spinner3').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'icon-plus smaller-75', icon_down:'icon-minus smaller-75', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
+      
+ 
+
+   //http://stackoverflow.com/questions/19421869/jquery-knob-return-values-of-multiple-knobs-on-demand?rq=1 AJAX the return value.
+ });
+
+</script>
+
+
+
+<script>
+
+
+function delskill(element,i){
+
+  $.ajax({
+          url: '/deleteskill',
+          type: 'POST',
+          data: {"pk" : i},
+          success: function(response){
+             //$(element).parents('tr').remove();
+          
+            //var row = $(this).closest('tr');
+            var row=$(element).parents('tr')
+            $('#skillsettingtable').dataTable().fnDeleteRow(row[0]);
+            newAlert("#alert_placeholder-tab", 'success', "Skill deleted!");
+
+          }
+
+        });
+}//function
+</script>
+
+<script type="text/javascript">
+                    $(document).ready(function() {
+                       $('input[name="date-range-picker"]').daterangepicker({
+                        timePicker: false,
+                        showDropdowns: true,
+                        format: 'DD/MM/YYYY'
+                      }, function(start, end, label) {
+                        console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
+                        from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+                        end =moment(end.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+                         $.ajax({
+                            url: '/update_inSG_Date',
+                            type: 'POST',
+                            data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
+                            success: function(response){
+                                        newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
+                                         
+                                      }
+                          });
+                      });
+
+                        $('#fileupload').fileupload({
+                        // The regular expression for allowed file types, matches
+                        // against either file type or file name:
+                        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                        // The maximum allowed file size in bytes:
+                        maxFileSize: 10000000, // 10 MB
+                        // The minimum allowed file size in bytes:
+                        minFileSize: 1, // No minimal file size
+                        // The limit of files to be uploaded:
+                        maxNumberOfFiles: 10
+                      }).on('fileuploadprocessalways', function (e, data) {
+                        var currentFile = data.files[data.index];
+                        if (data.files.error && currentFile.error) {
+                          // there was an error, do something about it
+                          newAlert("#alert_placeholder-tab",'danger', currentFile.error);
+                        
+                        }
+                        });
+                          
+
+                  }); //document ready
+</script>
+
+<script>
+
+function newAlert (loc, type, message) {
+    $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
+    $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
+}      
+ 
+
+</script>​
+

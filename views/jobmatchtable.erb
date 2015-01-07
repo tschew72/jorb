@@ -1,0 +1,34 @@
+<script>
+$.getScript("/vendor/jobmatchtablescript.js");
+
+</script>
+
+<table id="jobmatchtable" class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+         <th style="text-align:center">Job Match Rank</th>
+         <th style="text-align:center">Job ID</th>
+         <th style="text-align:center">Job Function</th>
+         <th style="text-align:center">Company</th>
+         <th style="text-align:center">Score</th>
+         <th style="text-align:center"></th>
+      </tr>
+    </thead>
+    <tbody id="aat" >
+            <% @jobmatches.each do |i| %>
+        <tr>
+           <td><span class="text-center"><span class="num"><%= i.rank %></span></span></td>
+           <td><%= i.jobid %> </td>
+           <td><%= i.jobfunc %> </td>
+           <td><%= i.company %> </td>
+           <td><%= i.score %> </td>
+           <td>
+            <div class="action-buttons" style="text-align:center" >
+              <a onclick="showmatchdetail(<%=i.jobid%>,<%=@skrid%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Show Detail</a>      
+            </div>
+           </td>
+            
+        </tr>
+        <% end %>
+    </tbody>
+  </table>

@@ -1,0 +1,377 @@
+<div class="profileLayout">
+  <h1>Personal Profile</h1>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a data-toggle="tab" href="#edit-basic">
+        Basic Info
+      </a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#edit-password">
+        Password
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div id="edit-basic" class="tab-pane in active">
+      <section class="Profile">
+        <h2>Profile</h2>    
+        <div id="pic"><img id="avatar" class="editable img-responsive" alt="Avatar" src=<%= @user.pictureurl %> /> </div>
+        <script src='/vendor/jqueryfileupload/js/vendor/jquery.ui.widget.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.iframe-transport.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.fileupload.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.fileupload-process.js' type='text/javascript'></script>
+        <script src='/vendor/jqueryfileupload/js/jquery.fileupload-validate.js' type='text/javascript'></script>
+        <script src='/vendor/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
+        <script type="text/javascript">
+          $.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'});
+        </script>
+        <span style="position:relative; font-size:0.7em; left:20px; top:5px" class="btn dark-blue-btn btn-primary fileinput-button">
+          <div id="uploadprogress"><i class="glyphicon glyphicon-plus"></i> <span>Upload Picture</span></div>
+          <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" >
+        </span>
+        <script type="text/javascript">
+          $(function(){
+              // var opts=<%= @cloudinaryjson %>;
+             
+          $('#fileupload').fileupload({
+            add: function (e, data) {
+                $.getJSON('/filer', { userid: <%= @user.id %>}, function (result) {
+                    data.formData = result; // e.g. {id: 123}
+                    data.submit();
+                }).fail( function(d, textStatus, error) {
+                    console.error("Upload failed, Please refresh this page and try again. Status: " + textStatus + ", error: "+error)
+                });
+            },
+            url: "https://api.cloudinary.com/v1_1/dashy/upload",
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            // The maximum allowed file size in bytes:
+            maxFileSize: 10000000, // 10 MB
+            // The minimum allowed file size in bytes:
+            minFileSize: 1, // No minimal file size
+            // The limit of files to be uploaded:
+            maxNumberOfFiles: 10
+          })
+            // .on('fileuploadfail', function (e, data) {
+            // var currentFile = data.files[data.index];
+            // if (data.files.error && currentFile.error) {
+            //   // there was an error, do something about it
+            //   // newAlert("#alert_placeholder-tab",'danger', currentFile.error);
+           
+            // }
+            // });
+
+          });
+
+          $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) { 
+
+           $.ajax({
+                url: '/picuploaded',
+                type: 'POST',
+                data: {"picurl": data.result.url, "pk" : <%=@user.id %>},
+                success: function(response){
+                 
+                  tt = "<img id='avatar' class='img-responsive' src=".concat(data.result.url," />");
+                  $('#pic').html(tt);  //to refresh this page picture
+                  $("#uploadprog").html("Uploading is complete!");
+                  $('#uploadprog').fadeOut(3000, function() {
+                    $(this).remove();
+                    $("#uploadprogress").html("<i class='glyphicon glyphicon-plus'></i> <span >Upload new Photo</span>");
+                   });
+                  
+                }
+           }); //ajax
+           return true;
+          }); //cloudinary done
+
+          $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
+            $("#uploadprogress").html("<div id='uploadprog'> <i class='fa fa-spinner fa-spin'></i>Uploading in progress</div> </div>");
+          });
+          $('.cloudinary-fileupload').bind('fileuploadstop', function(e, data) {
+            $('.progress').attr({
+              style : "visibility:hidden",
+            });
+           
+          });
+
+          $('.cloudinary-fileupload').bind('fileuploadfail', function(e, data) {
+            alert(data.files[0].error);
+           
+          });
+        </script>     
+        <br><br><br>
+        <p>First Name:
+          <a class="inputText"  href="javascript:void(0)" id="firstname" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter first name"><%= @user.firstname %></a>
+        </p>
+
+        <p>Middle Name:
+          <a class="inputText" href="javascript:void(0)" id="middlename" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter middle name"><%= @user.middlename %></a>
+        </p>
+           
+        <p>Last Name:
+          <a class="inputText" href="javascript:void(0)" id="lastname" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter last name"><%= @user.lastname %></a> 
+        </p>
+
+        <p>I am Married
+          <input type="checkbox" name="married" id="marriedcheck"   <%= @userprofile.married == true ? "checked" : "unchecked" %>>
+          <label for="marriedcheck"></label>
+        </p>                       
+        <p> Gender:                
+          <a class="inputText" href="javascript:void(0)"  id="gender" data-type="select" data-pk="<%=@userprofile.id %>" data-url="/updatetmeprofile" data-title="Enter gender"><%= @userprofile.gender == 1 ? "Male" : "Female" %> </a>
+        </p>
+
+        <p>Nationality:
+          <a class="inputText" href="javascript:void(0)" id="nationality" data-type="select"  data-pk="<%=@userprofile.id %>" data-url="/updatenationality" data-title="Enter nationality"><%= @mynations != nil ? @cmaster.get(@mynations).country : "" %> </a>
+        </p>
+                             
+        <div id="spr_block" style="visibility: visible;position:relative;left:0px"> 
+          <p>Singapore PR?
+            <input id="sprcheck" name="skr_nation_type" type="checkbox"  <%= @mynationtypes == 2 ? "checked" : "unchecked" %> />
+            <label for="sprcheck"></label>
+          </p>
+        </div>
+        
+        <p>Date of Birth
+          <input type="text" value="<%= @userprofile.dob != nil ? @userprofile.dob.strftime("%d/%m/%Y") : "" %>" class="datePicker" name="date-range-picker1" readonly="true">
+          <span id="saving_date"></span>
+        </p>
+
+      </section> <!-- Profile -->
+                         
+      <section class="contactInformation">
+        <h2>Contact Information</h2>
+        <p>Mobile #:
+          <a class="inputText" href="javascript:void(0)"  id="contactnumber" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter mobile number"><%= @user.contactnumber %> </a>
+        </p> 
+
+        <p>Address:
+          <a class="inputText" href="javascript:void(0)"  id="address" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatetmeprofile" data-title="Enter address"><%= @userprofile.address %>   </a>
+        </p>
+
+        <p>Email:
+          <a class="inputText" href="javascript:void(0)"  id="email" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter email address"><%= @user.email %> </a>
+        </p>
+
+        <h2>Social Network</h2>
+       
+        <p>LinkedIn:
+          <a class="inputText" href="javascript:void(0)"  id="linkedin" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatelinkedin" data-title="Enter LinkedIn address"><%= @linkedin%>   </a>
+        </p>
+        <p>Facebook:
+          <a class="inputText" href="javascript:void(0)"  id="facebook" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatefacebook" data-title="Enter Facebook address"><%= @facebook%>   </a>
+        </p>                   
+                      
+        <p>Twitter:        
+          <a class="inputText" href="javascript:void(0)"  id="twitter" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatetwitter" data-title="Enter Twitter address"><%= @twitter%>   </a>
+        </p>
+      </section>
+                       
+    </div> <!-- <div id="edit-basic" class="tab-pane in active"> -->
+
+    <div id="edit-password" class="tab-pane">
+      <section class="changePassword">
+        <div id="alert_password"></div>
+        <p>New Password
+          <a href="#" class="newpassword inputText" id="password-1"  data-emptytext="Enter password" data-type="password" data-name="password-1" data-original-title="Enter new password"></a>
+        </p>
+        <p>Re-enter password
+          <a href="#" class="newpassword inputText" id="password-2"  data-emptytext="Enter password" data-type="password" data-name="password-2" data-original-title="Enter new password"></a>
+        </p>             
+        <button id="savepassword-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save New Password </i></button>
+      </section>
+    </div> <!-- <div id="edit-password" class="tab-pane"> -->
+
+           
+</div> <!-- <div class="tab-content profile-edit-tab-content"> -->
+
+
+</div> <!-- layout -->
+
+       
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+  $('#password-1').editable();
+  $('#password-2').editable();
+
+  $.fn.editable.defaults.mode = 'popup'; 
+  $('#firstname').editable({
+    inputclass : 'mytextarea'
+  });
+  $('#lastname').editable({
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+  });
+  $('#middlename').editable({
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+  });
+  $('#gender').editable({  
+    source: [
+      {value: "1", text: 'Male'},
+      {value: "2", text: 'Female'},
+    ]
+  });
+  $('#contactnumber').editable({
+
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+
+  });
+  $('#address').editable({
+    tpl: "<input type='text' style='width: 700px';height:500px>",
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+
+  });
+  $('#email').editable({
+    tpl: "<input type='text' style='width: 500px';height:500px>",
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+
+  });
+  $('#nationality').editable({
+       source: function() {
+            return (<%= @countries %>)
+          },
+       success: function(response, newValue) {
+         
+          if (newValue != 157){  //we only look at Singapore at the moment.
+             document.getElementById( 'spr_block' ).style.visibility = 'visible';
+          };
+
+          if (newValue == 157){
+            document.getElementById( 'spr_block' ).style.visibility = 'hidden';
+          } ;
+        } //success
+  });
+  $('#linkedin').editable({
+    tpl: "<input type='text' style='width: 500px';height:500px>",
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+  });
+  $('#facebook').editable({
+    tpl: "<input type='text' style='width: 500px';height:500px>",
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+  });
+  $('#twitter').editable({
+    tpl: "<input type='text' style='width: 500px';height:500px>",
+    emptytext: '--',
+    // placeholder: '[Optional] Enter your achievement here'
+
+  });
+
+  var nation=document.getElementById( 'nationality' ).textContent;
+  if (nation.indexOf("Singapore") > -1){
+    document.getElementById( 'spr_block' ).style.visibility = 'hidden';
+  } else
+  {
+    document.getElementById( 'spr_block' ).style.visibility = 'visible';
+  };
+
+  // $('.datePicker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+  //   $(this).prev().focus();
+  // });
+        
+  $('input[name="date-range-picker1"]').daterangepicker({
+  timePicker: false,
+  singleDatePicker: true,
+  showDropdowns: true,
+  maxDate: '31/12/2000',
+  minDate: '01/01/1900',
+  format: 'DD/MM/YYYY',
+  }, function(start, end, label) {
+    console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
+    from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+     $.ajax({
+        url: '/updatedob',
+        type: 'POST',
+        data: {"dob": from, "pk" : <%=@userprofile.id %>},
+        beforeSend : function(){
+          $("#saving_date").html("<span id='saver'><i class='fa fa-spinner fa-spin'></i></span>");
+        }, 
+        success: function(response){
+                    // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
+                     $('#saver').fadeOut(1000, function() {
+                      $(this).remove();
+                     });
+                  }
+      });
+  });      
+
+ 
+});
+
+</script>
+<script>
+      $("#sprcheck").on('change', function(){
+          $.ajax({
+            url: '/updatespr',
+            type: 'POST',
+            data: {"singaporepr": this.checked, "pk" : <%=@userprofile.id %>}
+          });
+      });
+     
+      $("#marriedcheck").on('change', function(){
+          $.ajax({
+            url: '/updatemarried',
+            type: 'POST',
+            data: {"married": this.checked, "pk" : <%=@userprofile.id %>}
+          });
+      });
+
+      $("#id-date-picker-1").on('change', function(){
+          $.ajax({
+            url: '/updatedob',
+            type: 'POST',
+            data: {"dob": this.value, "pk" : <%=@userprofile.id %>}
+           
+          });
+      });  
+
+      $('#savepassword-btn').click(function() {
+         $('.newpassword').editable('submit', {
+             url: '/newpassword',
+             data: {"pk" : <%=@user.id%>},
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },       
+             success: function(data, config) {
+             
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       // config.error.call(this, data.errors);
+                       newAlert("#alert_password",'danger', data.errors);
+
+                 }   else{
+
+                      newAlert("#alert_password",'success', 'Password Changed!!!');
+
+                      $('.newpassword').editable('setValue', null);  //clear values
+                     
+
+                 }   
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="password-1") {k = "Password"};
+                      if (k=="password-2") {k = "Password confirmation"};
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_password",'danger', msg);
+                  
+                 }
+              
+             }
+         });
+      });
+</script>
+

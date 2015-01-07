@@ -1,0 +1,1 @@
+function scrollToTop(){var a=$("body"),b=a.offset(),c=b.top;$(".smooth-overflow").animate({scrollTop:c},400,"linear")}$(document).ready(function(){$(".smooth-overflow").on("scroll",function(){$(this).scrollTop()>100?$(".scroll-top-wrapper").addClass("show"):$(".scroll-top-wrapper").removeClass("show")}),$(".scroll-top-wrapper").on("click",scrollToTop)});

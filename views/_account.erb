@@ -1,0 +1,217 @@
+
+<div class="breadcrumbs" id="breadcrumbs">
+  <script type="text/javascript">
+    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+  </script>
+
+  <ul class="breadcrumb">
+    <li>
+      <i class="ace-icon fa fa-home home-icon"></i>
+      <a href="/edge">Home</a>
+    </li>
+    <li class="active">Profile</li>
+  </ul><!-- /.breadcrumb -->
+
+</div>
+
+<div class="page-content">
+
+<div class="tabbable">
+        <ul class="nav nav-tabs padding-16">
+          <li class="active">
+            <a data-toggle="tab" href="#edit-basic">
+              <i class="green icon-edit bigger-125"></i>
+              Basic Info
+            </a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#edit-password">
+              <i class="blue icon-key bigger-125"></i>
+              Password
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+        <div id="edit-basic" class="tab-pane in active">
+          <h3 class="header smaller lighter blue">General</h3>
+              <div  class=" row">
+                <div class="col-md-2 column">
+                  <span class="profile-picture">
+                    <img id="avatar" class="editable img-responsive" alt="Avatar" src="/vendor/avatar.jpg" />
+                  </span>
+                </div>
+                <div class="col-md-10 column">   
+                  <div class="row">
+                    <div class="col-md-2 column">First Name: </div>  
+                    <div class="col-md-2 column"> <a href="javascript:void(0)" id="firstname" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter first name"><%= @userprofile.firstname %></a></div>
+                    <div class="col-md-2 column"> Last Name:  </div>
+                    <div class="col-md-2 column"><a href="javascript:void(0)" id="lastname" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter last name"><%= @userprofile.lastname %></a></div>   
+                    <div class="col-md-4 column">  </div>        
+                  </div> <!-- row -->
+                  <div class="space-6"></div>
+                  <div class="row">
+                    <div class="col-md-2 column"> Age: </div>  
+                    <div class="col-md-2 column"><a href="javascript:void(0)"  id="age" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter age"><%= @userprofile.age %></a> </div> 
+                    <div class="col-md-2 column"> <label class="custo1 control-label no-padding-right" for="id-date-picker-1"> Date of Birth</label></div>
+                    <div class="col-md-3 column"> 
+                      <div class="input-group">
+                        <input readonly="true" style="width: 100px; height: 25px;" class="form-control date-picker rdonly" id="id-date-picker-1"  type="text" data-date-format="dd-mm-yyyy" value="<%= @userprofile.dob.strftime("%d/%m/%Y") %>"></input>
+                      </div>
+                    </div>
+                    <div class="col-md-1 column"> </div> 
+                  </div> <!-- row -->
+                  
+                  <div class="row">   
+                    <div class="col-md-2 column">Gender:</div>                 
+                    <div class="col-md-3 column"> <a href="javascript:void(0)"  id="gender" data-type="select" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter gender"><%= @userprofile.gender == "M" ? "Male" : "Female" %> </a> </div> 
+                  </div>
+                  <div class="space-6"></div>
+                  <div class="row">   
+
+                    <div class="col-md-2 column"> Nationality: </div>
+                      
+                    
+                    <div class="col-md-2 column"><a href="javascript:void(0)" id="nationality" data-type="select"  data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter nationality"><%= @cmaster.get(@userprofile.nationality).countryname %> </a>  </div>
+                    <div class="col-md-2 column">   
+                        <div id="spr_block" style="visibility: hidden">                
+                              Singapore PR?
+                                <label>
+                                  <input id="sprcheck" name="singaporepr" type="checkbox" class="ace" <%= @userprofile.singaporepr.to_s == "true" ? "checked" : "unchecked" %> />
+                                  <span class="lbl"> </span>
+                                </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 column">  </div>
+                  </div>
+                  <div class="space-6"></div>
+ 
+                </div> <!-- column -->
+            </div> <!-- <div id="user-profile-1" class="user-profile row"> -->
+            <div class="space"></div>
+            <h3 class="header smaller lighter blue">Contact</h3>
+            <div class="row">   
+                <div class="col-md-2 column">  
+                   Mobile #:
+                </div>
+                <div class="col-md-3 column">  
+                   <a href="javascript:void(0)"  id="contactnumber" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter mobile number"><%= @userprofile.contactnumber %> </a> 
+                </div>
+              </div>
+              <div class="space-6"></div>
+              <div class="row">  
+                <div class="col-md-2 column">     
+                   Address:
+                </div>
+                <div class="col-md-3 column">  
+                   <a href="javascript:void(0)"  id="address" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter address"><%= @userprofile.address %>   </a>
+                </div>
+              </div>
+              <div class="space-6"></div>
+              <div class="row">  
+                <div class="col-md-2 column">  
+                   Email:
+                </div>
+                <div class="col-md-3 column">  
+                   <a href="javascript:void(0)"  id="email" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updateprofile" data-title="Enter email address"><%= @userprofile.email %>   </a>
+                </div>
+              </div>
+            <div class="space"></div>
+            <h3 class="header smaller lighter blue">Social</h3>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> LinkedIn </label>
+                <p> <input type="text" id="form-field-1"  /> </p>
+            </div>    
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Facebook</label>
+                <p> <input type="text" id="form-field-1"  /> </p>
+            </div>                  
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Twitter</label>
+                <p> <input type="text" id="form-field-1"  /> </p>
+            </div>            
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Github</label>
+                <p> <input type="text" id="form-field-1"  /> </p>
+            </div>       
+          </div> <!-- <div id="edit-basic" class="tab-pane in active"> -->
+          <div id="edit-password" class="tab-pane">
+              <div class="space-10"></div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Change password </label>
+                  <p> <input type="text" id="form-field-1"  /> </p>
+              </div> 
+          </div> <!-- <div id="edit-password" class="tab-pane"> -->
+
+     <!-- <div class="row"> -->
+      
+         
+  </div> <!-- <div class="tab-content profile-edit-tab-content"> -->
+</div> <!-- <div class="tabbable"> -->
+    <div class="row">
+              <p id="testing"> Generate CV in PDF format </p>
+    </div> 
+</div> <!-- page-content -->
+
+        
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+
+    var nation=document.getElementById( 'nationality' ).textContent;
+              if (nation.indexOf("Singapore") > -1){
+                document.getElementById( 'spr_block' ).style.visibility = 'hidden'; 
+              
+              } else
+              {
+                document.getElementById( 'spr_block' ).style.visibility = 'visible'; 
+                
+              }; 
+
+       $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+          $(this).prev().focus();
+      });
+       
+      $('#nationality').editable({
+        
+           source: function() {
+                return (<%= @countries %>)
+              },
+           success: function(response, newValue) {
+              
+              if (newValue != 156){
+                 document.getElementById( 'spr_block' ).style.visibility = 'visible'; 
+              };
+
+              if (newValue == 156){
+                document.getElementById( 'spr_block' ).style.visibility = 'hidden'; 
+              } ;
+            } //success
+
+      });
+
+      $("#sprcheck").on('change', function(){
+          $.ajax({
+            url: '/updatespr',
+            type: 'POST',
+            data: {"singaporepr": this.checked, "pk" : <%=@userprofile.id %>}
+          });
+      });
+
+      $("#id-date-picker-1").on('change', function(){
+          $.ajax({
+            url: '/updatedob',
+            type: 'POST',
+            data: {"dob": this.value, "pk" : <%=@userprofile.id %>}
+            
+          });
+      });    
+ });
+
+</script>
+
+
+
+
+  <script src="/vendor/aceskin/ace-elements.min.js"></script>

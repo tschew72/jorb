@@ -1,0 +1,85 @@
+<div class="jobManagementLayout">
+  <div id="greeting">
+    <h2><%=@mycoy.company_name%> </h2>
+  </div> <!-- greeting -->
+  <div class="tabbable">
+    <ul class="nav nav-tabs padding-16">
+      <li class="active">
+        <a id="activeclick" data-toggle="tab" href="#jobposting">
+          <i class="blue icon-key bigger-125"></i>
+          Active/Pending/Draft
+        </a>
+      </li>
+      <li>
+        <a id="closedclick" data-toggle="tab" href="#archivedjobs">
+          <i  class="blue icon-key bigger-125"></i>
+          Closed/Cancelled
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="jobposting" class="tab-pane in active">
+        <a id="newjobbutton" href="#" >
+            <span class="btn dark-blue-btn btn-primary">Post a New Job</span>
+        </a> 
+          <div id="tablespace"></div>
+          <div id="loading"></div>
+          <div id="jobdetail"></div>
+
+      </div> <!-- class="tab-pane"> -->
+    </div> <!-- <div class="tab-content profile-edit-tab-content"> -->
+  </div> <!-- <div class="tabbable"> -->
+</div> <!-- jobManagementLayout -->
+
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    document.getElementById('jobposting').scrollIntoView() ;  
+    $("#tablespace").load("/activejobtable",{i: new Date().getTime()}); 
+  }); //document.ready
+
+  function showjobdetail(i){
+    $("#jobdetail").html("");
+    $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Job Details now. You can start editing when this message is gone</div>");
+   // $("#top5matches").load("/top5matchestable&pk=".concat(i.toString())); 
+    $("#jobdetail").load("/jobdetail",{ pk: i }, function() { //which will launch newjobdetail.erb
+      $('#loader').fadeOut(1000, function() {$(this).remove();});
+     document.getElementById('jobdetailfocus').scrollIntoView() ;  
+    }); 
+  }//showjobdetail
+
+  function deljob(i){
+    $.ajax({
+      url: '/deletejob',
+      type: 'POST',
+      data: {"pk" : i}, 
+      success: function(response){  
+        $("#tablespace").load("/activejobtable",{i: new Date().getTime()});   
+      } //success
+    }); //ajax
+  }//deljob
+
+  $('#activeclick').on("click", function() {
+    $("#jobdetail").html("");
+    $("#tablespace").load("/activejobtable",{i: new Date().getTime()}); 
+  }); //activeclick
+
+  $('#closedclick').on("click", function() {
+    $("#jobdetail").html("");
+    $("#tablespace").load("/closedjobtable",{i: new Date().getTime()}); 
+  }); //closedclick
+
+  $('#newjobbutton').on("click", function() {
+    $.getJSON("/newjob", {"value": "<%=@user.tme_company_main_id%>"}, function (result) {
+      $("#jobdetail").load("/newjobdetail",{i: new Date().getTime(), pk: result.jobid, coy: result.mycoy}, function(){window.location.hash = '#jobdetail'; });  
+      $("#tablespace").load("/activejobtable",{i: new Date().getTime()});           
+    }).fail(function(d, textStatus, error) {
+      console.error("Something wrong. Please report this status: " + textStatus + ", error: "+error)
+    });  //fail
+  }); //newjobbutton
+
+
+</script>
+

@@ -1,0 +1,67 @@
+
+<script>
+$.getScript("/vendor/editexperiencetablescript.js");
+
+</script>
+
+<div id = "alert_placeholder-inmodal6"></div>
+  <br><br>
+  <table id="editexptab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>
+  <td> User ID</td>
+  <td width="60%"><a href="#" class="editjob" id="e_pk" data-emptytext="Select..." data-type="text" data-name="pk" data-value=<%= @exp.tme_skr_main_id %> > </a></td>
+  </tr>
+  <tr>
+  <td> Job ID</td>
+  <td width="60%"><a href="#" class="editjob" id="e_jobid" data-emptytext="Select..." data-type="text" data-name="jobid" data-value=<%= @exp.skr_emp_id %> > </a></td>
+  </tr>
+  <tr>      
+  <td>Position</td>
+  <td width="60%"><a href='#' class='editjob' id='e_skr_emp_title'  data-emptytext='Select...' data-type='select' data-name='skr_emp_title' data-original-title='Select Position' data-value=<%= @exp.skr_emp_title %> ></a></td>
+  </tr>
+  <tr>      
+  <td>Actual Job Title</td>
+  <td width="60%"><a href="#" class="editjob" id="e_skr_emp_actualtitle"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_actualtitle" data-original-title="Enter Actual Job Title" data-value="<%= @exp.skr_emp_actualtitle %>" ></a></td>
+  </tr>
+  <tr>      
+  <td>Company </td>
+  <td width="60%"><a href="#" class="editjob" id="e_skr_emp_company"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_company" data-original-title="Enter Company Name" data-value="<%=@exp.skr_emp_company.to_s %>" > </a></td>
+  </tr>
+   <tr>      
+  <td>Industry</td>
+  <td width="60%"><a href="#" class="editjob" id="e_skr_emp_industry"  data-emptytext="Select..." data-type="select" data-name="skr_emp_industry" data-original-title="Select Industry" data-value=<%=@exp.skr_emp_industry%> > </a></td>
+  </tr>
+  <tr>      
+  <td>Job Location</td>
+  <td width="20%"><a href="#" class="editjob" id="e_skr_emp_location" data-emptytext="Select..." data-type="select" data-name="skr_emp_location" data-original-title="Select Job Location" data-value=<%=@exp.skr_emp_location%> > </a></td>
+  </tr>  
+  <tr>      
+  <td>Job Function</td>
+  <td width="20%"><a href="#" class="editjob" id="e_skr_emp_function" data-emptytext="Select..." data-type="select" data-name="skr_emp_function" data-original-title="Select Job Function" data-value=<%=@exp.skr_emp_function%>  > </a></td>
+  </tr>  
+  <tr>      
+  <td>Is this your Current Job?</td>
+  <td width="20%">  
+    <input type="checkbox" name="currentjob" id="e_currentjobcheck"  <%= @exp.skr_emp_currentjob ? "checked" : "unchecked"%> > 
+    <label for="e_currentjobcheck"></label> <a href="#" class="editjob" id="e_skr_emp_currentjob" data-emptytext="Select..." data-type="select" data-name="skr_emp_currentjob" data-value=<%= @exp.skr_emp_currentjob%>></a>
+  </td>
+  </tr>  
+  <tr>      
+  <td>Start Date</td>
+  <td width="20%"><a href="#" class="editjob" id="e_skr_emp_start" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_start" data-original-title="Enter Start Date"  data-value=<%= @start %> > </a></td>
+  </tr>  
+  <tr>      
+  <td>End Date</td>
+  <td width="20%">
+    <div  id="e_enddate_block" style="visibility: <%= @exp.skr_emp_currentjob ? "hidden" : "visible" %> ; position:relative;left:0px">  
+      <a href="#" class="editjob" id="e_skr_emp_end" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_end" data-original-title="Enter End Date" data-value=<%= @end %> > </a>
+    </div>
+  </td>
+  </tr>  
+  <tr>      
+  <td>Description</td>
+  <td width="20%"><a class="editjob" href="#" id="e_skr_emp_desc" data-name="skr_emp_desc" data-type="wysihtml5"  data-original-title="Enter Job Description" data-value="<%=@exp.skr_emp_desc%>" > </a></td>
+  </tr> 
+  </tbody>
+  </table>

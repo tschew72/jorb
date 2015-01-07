@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This Layout (/dash/layout2.erb) is used by Recruiter side -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>JORB</title>
+  <link rel="stylesheet" href="_/css/styles.css">
+  <link rel="stylesheet" href="/vendor/jqueryfileupload/css/jquery.fileupload.css" />
+  <link href="/vendor/select2/select2.css" rel="stylesheet" type="text/css"></link>  
+  <!-- <link href="/vendor/select2/select2-bootstrap.css" rel="stylesheet" type="text/css"></link>   -->
+  <link href="/dash/css/vendors/x-editable/bootstrap-editable.css" rel="stylesheet" type="text/css"></link>  
+  <link href="/dash/css/vendors/x-editable/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link> 
+  <!-- <link rel="stylesheet" href="/vendor/aceskin/datepicker.css" /> -->
+  <link rel="stylesheet" href="/vendor/aceskin/daterangepicker.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="http://css-spinners.com/css/spinner/dots.css" type="text/css">
+  <!--JQuery--> 
+  <script type="text/javascript" src="/dash/js/vendors/jquery/jquery.min.js"></script> 
+  <script type="text/javascript" src="/dash/js/vendors/jquery/jquery-ui.min.js"></script> 
+  <script>
+  $(window).load(function(){
+      $('#preloader').fadeOut(100, function() {
+                 $('body').css('overflow','auto');
+                 $(this).remove();
+      });
+  });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="hero">
+      <section class="layout">
+        <div class="branding"><a href="/edge"><img src="images/misc/rouxacademymeetups.svg" alt="Jorb.co"></a></div> <!-- branding -->
+      </section> <!-- layout -->
+    </div> <!-- hero -->
+    <div class="navigation">
+      <section class="layout">
+        <ul class="nav">
+          <li><a href="/edge"><i class="fa fa-home"></i>Home</a></li>
+          <li><a href="/companyprofile"><i class="fa fa-question"></i>Company Profile</a></li>
+          <li><a href="/hrm"><i class="fa fa-user"></i>Analyse Matches</a></li>
+          <li><a href="/jobpostings"><i class="fa fa-heart"></i>Manage Jobs</a></li>
+          <li><a href="/logout"><i class="fa fa-keyboard-o"></i>Sign out</a></li>
+        </ul>
+      </section> <!-- layout -->
+    </div> <!-- navigation -->
+  </header><!-- header -->
+
+<div id="preloader"> <div id="spinner_container"> <div id="spinner" class="dots">    Loading... </div></div></div>
+
+<%= yield %> 
+
+
+<!-- scroll top -->
+<div class="scroll-top-wrapper hidden-xs"> <i class="fa fa-angle-up"></i> </div>
+<!-- /scroll top --> 
+
+
+<!--Bootstrap--> 
+<script type="text/javascript" src="/dash/js/vendors/bootstrap/bootstrap.min.js"></script> 
+
+
+<!--X-Editable--> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/bootstrap-editable.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/wysihtml5.js"></script>
+<script type="text/javascript" src="/dash/js/vendors/x-editable/select2.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/address.js"></script> 
+<script src="/vendor/aceskin/date-time/moment.min.js"></script>
+<script type="text/javascript" src="/vendor/aceskin/date-time/daterangepicker.js"></script>
+<!--Datatables--> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables-bootstrap.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/dataTables.colVis.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/colvis.extras.js"></script> 
+<script src="/vendor/aceskin/ace-elements.min.js"></script>
+
+
+
+   <!-- This is where the modals are defined -->
+   <!-- Modals must be defined just before </body> -->
+  <div class="modal fade" id="addskillmodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add new skill</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal"></div>
+  <br><br>
+  <table id="skilltab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td width="20%">Skill category</td> <!--TSCHEW-->
+  <td width="50%">
+  <a href="#" class="newskill" data-emptytext="Select..." data-type="select" id="skillcat" data-name="id"  data-original-title="Select skill category"></a></td>
+  </tr>
+  <tr>      
+  <td width="20%">Skill name</td>
+  <td width="50%"><a href="#" class="newskill" id="skillname"  data-emptytext="Select..." data-type="select" data-name="skillid" data-original-title="Select skill"></a></td>
+  </tr>
+  <tr>      
+  <td width="20%">Skill rank</td>
+  <td width="50%"><a href="#" class="newskill" id="skillrank" data-emptytext="Select..." data-type="select" data-name="skillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveskill-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Skill and Add New</i></button>
+  </div>  
+
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+  <div class="modal fade" id="addlanguagemodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add new language</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal2"></div>
+  <br><br>
+  <table id="languagetab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td>Language</td>
+  <td width="60%"><a href="#" class="newlang" id="lang"  data-emptytext="Select..." data-type="select" data-name="skr_lang" data-original-title="Select language"></a></td>
+  </tr>
+  <tr>      
+  <td>Spoken skill level</td>
+  <td width="20%"><a href="#" class="newlang" id="speakskill" data-emptytext="Select..." data-type="select" data-name="skr_lang_speakskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  <tr>      
+  <td>Written skill level</td>
+  <td width="20%"><a href="#" class="newlang" id="writeskill" data-emptytext="Select..." data-type="select" data-name="skr_lang_writeskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="savelanguage-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Language and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+  <div class="modal fade" id="addedumodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Education </h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal3"></div>
+  <br><br>
+  <table id="edutab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td>Title</td>
+  <td width="60%"><a href="#" class="newedu" id="skr_unititle"  data-emptytext="Select..." data-type="select" data-name="skr_unititle" data-original-title="Select Title"></a></td>
+  </tr>
+   <tr>      
+  <td>Institutions</td>
+  <td width="60%"><a href="#" class="newedu" id="skr_university"  data-emptytext="Select..." data-type="select" data-name="skr_university" data-original-title="Select Institutions"></a></td>
+  </tr>
+  <tr>      
+  <td>Specialty</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_specialty" data-emptytext="Select..." data-type="select" data-name="skr_specialty" data-original-title="Select Specialty"></a></td>
+  </tr>  
+  <tr>      
+  <td>Honors</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_honours" data-emptytext="Select..." data-type="select" data-name="skr_honours" data-original-title="Select Honors"></a></td>
+  </tr>  
+  <tr>      
+  <td>Start Date</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_unistart" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_unistart" data-original-title="Enter Start Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>End Date</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_uniend" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_uniend" data-original-title="Enter End Date"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveedu-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Education and Add New</i></button>
+  <br><br><br>
+  Can't find the education type in the list? <button class="btn smaller-90 btn-error"><i class="icon-wrench">Let us know!</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+  <div class="modal fade" id="addcertmodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Certification </h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal4"></div>
+  <br><br>
+  <table id="certtab" class="table table-bordered table-striped">
+  <tbody>
+
+  <tr>      
+  <td>Certificate Name</td>
+  <td width="60%"><a href="#" class="newcert" id="skr_certtitle"  data-emptytext="Select..." data-type="select" data-name="skr_certtitle" data-original-title="Select Title"></a></td>
+  </tr>
+
+  <tr>      
+  <td>Certificate #</td>
+  <td width="60%"><a href="#" class="newcert" id="skr_certlicense"  data-emptytext="Enter..." data-type="text" data-name="skr_certlicense" data-original-title="Enter certificate #"></a></td>
+  </tr>
+
+  <tr>      
+  <td style="position: relative;">When did you get certified?</td>
+  <td width="20%"><a href="#" class="newcert" id="skr_datecertified" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_datecertified" data-original-title="Enter Date of certification"></a></td>
+  </tr>  
+
+  <tr>      
+  <td style="position: relative;">Expiry Date</td>
+  <td width="20%"><a href="#" class="newcert" id="skr_certexpiry" data-emptytext="Select..." data-placement="right" data-type="date" data-name="skr_certexpiry" data-original-title="Enter Expiry Date"></a></td>
+  </tr>  
+
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="savecert-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Certification and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <div class="modal fade" id="addexperiencemodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Job Experience</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal5"></div>
+  <br><br>
+  <table id="exptab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td>Position</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_title"  data-emptytext="Select..." data-type="select" data-name="skr_emp_title" data-original-title="Select Position"></a></td>
+  </tr>
+  <tr>      
+  <td>Actual Job Title</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_actualtitle"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_actualtitle" data-original-title="Enter Actual Job Title"></a></td>
+  </tr>
+  <tr>      
+  <td>Company</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_company"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_company" data-original-title="Enter Company Name"></a></td>
+  </tr>
+   <tr>      
+  <td>Industry</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_industry"  data-emptytext="Select..." data-type="select" data-name="skr_emp_industry" data-original-title="Select Industry"></a></td>
+  </tr>
+  <tr>      
+  <td>Job Location</td>
+  <td width="20%"><a href="#" class="newjob" id="skr_emp_location" data-emptytext="Select..." data-type="select" data-name="skr_emp_location" data-original-title="Select Job Location"></a></td>
+  </tr>  
+  <tr>      
+  <td>Job Function</td>
+  <td width="20%"><a href="#" class="newjob" id="skr_emp_function" data-emptytext="Select..." data-type="select" data-name="skr_emp_function" data-original-title="Select Job Function"></a></td>
+  </tr>  
+  <tr>      
+  <td>Is this your Current Job?</td>
+  <td width="20%">  <input id="currentjobcheck" name="currentjob" type="checkbox" unchecked> <a href="#" class="newjob" id="skr_emp_currentjob" data-emptytext="Select..." data-type="select" data-name="skr_emp_currentjob"></a></td>
+  </tr>  
+  <tr>      
+  <td>Start Date</td>
+  <td width="20%"><a href="#" class="newjob" id="skr_emp_start" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_start" data-original-title="Enter Start Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>End Date</td>
+  <td width="20%"><a href="#" class="newjob" id="skr_emp_end" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_end" data-original-title="Enter End Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>Description</td>
+  <td width="20%"><a class="newjob" href="javascript:void(0)" id="skr_emp_desc" data-name="skr_emp_desc" data-type="wysihtml5"  data-title="Enter Job Description"></a></td>
+  </tr> 
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveexperience-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Job Experience and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <div class="modal fade" id="editexperiencemodal" >
+  <div class="modal-dialog modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Edit Job Experience</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal6"></div>
+   <div id="editexpbody"></div>
+
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveexperience-btn2" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Job Experience and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <!-- End of Modals definition -->      
+
+<script>
+$(function(){
+
+
+    /* This is in the Add Skill Modal  START*/
+      $('#skillcat').editable({
+        source: "/getskillcat" ,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+
+                 $.getJSON("/getskill", {"value": newValue}, function (result) {
+                  $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
+                  $('#skillname').editable('setValue', null);             //else it will fail.
+                  $('#skillname').editable('option', 'disabled', false);  //             
+                  }).fail( function(d, textStatus, error) {
+                      console.error("Error code: " + textStatus + ", error: "+error)
+
+                  });
+        }
+      });
+
+      $('#skillname').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#skillrank').editable('option', 'disabled', false);
+        }
+        });
+
+      $('#skillrank').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
+
+      //init editables
+      // $('.newskill').editable('option', 'validate', function(v) {
+      //     if(!v) return 'This is a required field!';
+      // });
+
+
+    /* This is in the Add Skill Modal  END */
+
+    /* This is in the Add Language Modal  START*/
+      $('#lang').editable({
+        source: "/getlanguage",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#speakskill').editable('option', 'disabled', false);
+          
+        }
+      });
+
+      $('#speakskill').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#writeskill').editable('option', 'disabled', false);
+        }
+        });
+
+      $('#writeskill').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
+
+      //init editables
+      // $('.newlang').editable('option', 'validate', function(v) {
+      //     if(!v) return 'This is a required field!';
+      // });
+
+    /* This is in the Add Language Modal  END */
+
+    /* This is in the Add Education Modal  START*/
+      $('#job_edu_title').editable({
+        source: "/getdegree",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#job_edu_specialty').editable('option', 'disabled', false);
+           if (newValue ==1 || newValue == 2 || newValue ==3) {
+              $('#job_edu_honors').editable('option', 'disabled', true);
+              $('#job_edu_specialty').editable('option', 'disabled', true);
+           }else {
+            $('#job_edu_honors').editable('option', 'disabled', false);
+            $('#job_edu_specialty').editable('option', 'disabled', false);
+           }
+        }
+      });
+
+      $('#job_edu_specialty').editable({
+        source: "/getspecialty",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+
+        } //success
+        });
+
+      $('#job_edu_honors').editable(
+        {
+          source: "/gethonors",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#job_edu_pref').editable('option', 'disabled', false);
+        }
+
+        });
+
+      $('#job_edu_pref').editable(
+        {
+          source: "/getpref",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false});
+
+      //init editables
+      //$('.newedu').editable('option', 'validate', function(v) {
+      //    if(!v) return 'This is a required field!';
+      //});
+
+    /* This is in the Add Education Modal  END */
+
+    /* This is in the Add Certification Modal  START*/
+
+    
+
+      $('#job_cert_title').editable({
+        source: "/getcert",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+
+        }
+      });
+
+      $('#job_cert_pref').editable(
+        {
+          source: "/getpref",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false});
+
+    /* This is in the Add Certification Modal  END */
+
+
+
+    /* This is in the Add New Company User Modal  START */
+  $('#c_firstname').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if (!value) return 'This field is required';
+      if(value.length >100 ) {
+        return 'You can only enter a maximum of 100 characters';
+      } 
+      } //function
+  });
+
+  $('#c_middlename').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if(value.length >100 && value!=NULL) {
+        return 'You can only enter a maximum of 100 characters';
+    } 
+      }   //function 
+  });
+
+  $('#c_surname').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if (!value) return 'This field is required';
+      if(value.length >100 ) {
+        return 'You can only enter a maximum of 100 characters';
+      }  
+      }
+  });
+  $('#c_email').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 400px';height:500px>",
+    validate: function(value){
+      if(value.length >200 ) {
+        return 'You can only enter a maximum of 200 characters';
+      }  
+      }  //function
+  });
+  $('#c_contactnumber').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 300px';height:500px>",
+    validate: function(value){
+      if(value.length >20  && value!=NULL) {
+        return 'You can only enter a maximum of 20 characters';
+      }
+    }  //function
+  });
+  $('#c_password').editable({
+    emptytext: '--',
+    tpl: "<input type='text' style='width: 200px';height:500px>",
+    validate: function(value){
+      if (!value) return 'This field is required';
+      } //function
+  });
+
+  $('.c_accesslevel').editable({
+    source: [
+              {value: 1, text: 'Admin Rights'},
+              {value: 2, text: 'Job Posting Rights'},
+           ],
+    emptytext: '--',
+    validate: function(value){
+      if (!value) return 'This field is required';
+      } //function
+  });
+    /* This is in the Add New Company User Modal  END */
+
+
+
+
+
+}); /* $(function(){ */
+
+
+      $('#savecoyuser-btn').click(function() {
+         $('.newcoyuser').editable('submit', {
+             url: '/newcoyuser',
+             data: {"pk" : <%=@mycoy.id%>},
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },       
+             success: function(data, config) {
+             
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       //config.error.call(this, data.errors);
+                       newAlert("#alert_newcoyuser",'danger', data.errors);
+
+                 }   else{
+                      newAlert("#alert_newcoyuser",'success', 'New Company User Added!');
+                      $('.newcoyuser').editable('setValue', null);  //clear values
+                      $("#coyuserspace").load("/j_coyusertable",{i: new Date().getTime()}); 
+                     
+                 }   
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="firstname") {k = "First Name"};
+                      if (k=="middlename") {k = "Middle Name"};
+                      if (k=="lastname") {k = "Last Name"};     
+                      if (k=="email") {k = "Email Address"};    
+                      if (k=="password") {k = "Password"};     
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_newcoyuser",'danger', msg);
+                  
+                 }
+              
+             }
+         });
+  });
+
+
+
+
+</script>
+</body>
+
+
+</html>     

@@ -1,0 +1,34 @@
+<script>
+$.getScript("/vendor/certtablescript.js");
+
+</script>
+
+<table id="certsettingtable" class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                   <th class="align-center">Title</th>
+                   <th class="align-center">Preference</th>
+                   <th class="align-center"></th>
+                </tr>
+              </thead>
+              <tbody >
+
+                  <% @allcertificates.each do |i| %>                
+                  
+                  <!-- If flag is set to delete, break. and find next record -->
+                  <% if i.job_certstatus != 0 %>
+                 
+                  <tr>
+                     <td><%= @certmaster.get(i.job_cert_title).cert %></td>
+                     <td><a class="job_cert_pref" href="javascript:void(0)" class="editable-click" data-name="job_cert_pref" data-type="select" data-pk="<%= i.job_cert_id%>" data-url="/j_updatecertpref"  data-title="Select Preference">  <%= @prefmaster.get(i.job_cert_pref).needstrength %>
+                     </a></td>
+                     <td>
+                       <div class=" action-buttons" style="text-align:center" >
+                        <a onclick="delcert(this, <%=i.job_cert_id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Remove</a></td>
+                      </div>
+                  </tr>
+
+                 <% end %>
+                  <% end %>
+              </tbody>
+            </table>

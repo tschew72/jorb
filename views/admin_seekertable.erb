@@ -1,0 +1,35 @@
+<script>
+$.getScript("/vendor/admin_seekertablescript.js");
+
+</script>
+
+<table id="admin_seekertable" class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+       <th class="align-center">First Name</th>
+       <th class="align-center">Last Name</th>
+       <th class="align-center">UserName</th>
+       <th class="align-center">Last Updated</th>
+       <th class="align-center"></th>
+       <th class="align-center"></th>
+    </tr>
+  </thead>
+  <tbody >
+      <% @allusers.each do |i| %>                
+      <% if i.status != 0 %>
+      <tr>
+         <td><%= i.firstname %></td>
+         <td><%= i.lastname %></td>
+         <td><%= i.username != nil ? i.username : " "%></td>
+         <td><%= i.updated_at %></td>
+         <td>
+           <div class=" action-buttons" style="text-align:center" >
+            <a onclick="editseekerprofile(this, <%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Edit Personal Profile</a></div></td>
+         <td>
+           <div class=" action-buttons" style="text-align:center" >
+            <a onclick="editcareerprofile(this, <%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Edit Career Profile</a></div></td>
+      </tr>
+      <% end %>
+      <% end %>
+  </tbody>
+</table>

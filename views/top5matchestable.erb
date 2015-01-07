@@ -1,0 +1,36 @@
+<header>
+  <h2>Top 5 Candidate Matches for Job ID #<%= @jobid %></h2>
+</header>                    
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th >Match Rank</th>
+      <th >Job Seeker </th>
+      <th >Match Score</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody> 
+    <% @top5matches.each do |i| %>
+    <tr>
+      <td><span class="text-center"><span class="num"><%= i.skrrank %></span></span></td> 
+      
+      <td><span class="text-center"> <%= i.skrid %></span></td>
+      <td><span class="text-center"> <%= i.score %></span></td>
+      <td><div class="action-buttons" style="text-align:center" >
+           <a onclick="showmatchdetail(<%=@jobid%>,<%=i.skrid%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Show Detail</a>  
+        </div><td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th >Match Rank</th>
+      <th >Job Seeker </th>
+      <th >Match Score</th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+
+                  

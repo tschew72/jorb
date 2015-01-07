@@ -1,0 +1,435 @@
+//Susy Setup ---------------------------------------
+
+// $total-columns : 12 ;
+// $column-width : 4em;
+// $gutter-width : 1em;
+// $grid-padding : $gutter-width;
+
+@include border-box-sizing;
+
+$small 	: 30em;
+// $medium : 47em;
+$medium : 60em;
+$large	: 75em;
+
+
+//settingsLayout ---------------------------------------
+.settingsLayout {
+	@include container;
+	padding: 0 3%;
+
+//Greeting ---------------------------------------
+	.Greeting {
+		h2 {
+			color: $gray;
+		}
+	}
+
+//jobMatches
+	.jobMatches {
+		margin-top: .2em;
+		@include breakpoint($medium) {
+			// @include span(8 of 12);
+			font-size : 0.9em;
+				h2 {
+					color: $orange;
+					border: none;
+					text-shadow: none;
+					margin-bottom: 20px;
+				} //h2
+				
+				a {
+					color: $darkblue;
+				} //a
+		}//medium layout
+	} //jobmatches
+
+	//Insights ---------------------------------------
+	.Insights {
+		@include breakpoint($medium) {
+			// @include span(4 omega of 12);
+			font-size : 1.1rem;
+			h2 {
+				color: $orange;
+			} //h1
+
+		} //medium layout
+	} //Insights
+
+
+	//searchStatus -------------------------------------
+	.searchStatus {
+		@include breakpoint($medium) {
+			 @include span(6 of 12);
+			font-size : 1.0rem;
+			h2 {
+				color: $orange;
+			} //h1
+
+		} //medium layout
+	} // searchStatus
+
+	//CV -----------------------------------------------
+	.CV {
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+			font-size : 1.0rem;
+			h2 {
+				color: $orange;
+			} //h1
+
+		} //medium layout
+	} // CV
+
+	//jobPreferences -----------------------------------------------
+	.jobPreferences {
+		@include breakpoint($medium) {
+			 @include span(12 of 12);
+			font-size : 1.0rem;
+			h2 {
+				color: $orange;
+			} //h1
+
+		} //medium layout
+	} // jobPreferences
+
+	//Achievements -----------------------------------------------
+	.Achievements {
+		@include breakpoint($medium) {
+			 @include span(12 of 12);
+			font-size : 1.0rem;
+			h2 {
+				color: $orange;
+			} //h1
+
+		} //medium layout
+	} // Achievements
+
+	//Experiences -----------------------------------------------
+	.Experiences {
+		@include breakpoint($medium) {
+			 @include span(6 of 12);
+			font-size : 0.8em;
+			h2 {
+				color: $orange;
+			} //h1
+			padding-right: 5px;
+			margin-right: 5px;
+
+		} //medium layout
+
+	} // Experiences
+
+	.Competencies {
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+			font-size : 0.8rem;
+			h2 {
+				color: $orange;
+			} //h1
+			padding-left: 5px;
+			margin-left: 5px;
+		} //medium layout
+	} // Competencies
+
+
+} //settingsLayout
+
+//cvLayout ---------------------------------------
+.profileLayout {
+	@include container;
+	padding: 0 3%;
+
+
+}
+
+//cvLayout ---------------------------------------
+.cvLayout {
+	@include container;
+	padding: 0 3%;
+
+	.Main{
+		@include span(12 of 12);	
+	}
+
+
+	//jobPreferences -----------------------------------------------
+	.Skills {
+		// @include clearfix;
+		@include breakpoint($medium) {
+			@include clearfix;
+			 @include span(12 of 12);
+			font-size : 1.0rem;
+			h2 {
+				color: $orange;
+			} //h2
+
+		} //medium layout
+	} // jobPreferences
+
+	//Achievements -----------------------------------------------
+	.Achievements {
+		@include breakpoint($medium) {
+			 @include span(12 of 12);
+			font-size : 1.0rem;
+			h2 {
+				color: $orange;
+			} //h2
+
+		} //medium layout
+	} // Achievements
+
+	//Experiences -----------------------------------------------
+	.Experiences {
+		@include breakpoint($medium) {
+			 @include span(6 of 12);
+			font-size : 0.8em;
+			h2 {
+				color: $orange;
+			} //h2
+
+		} //medium layout
+	} // Experiences
+
+	//Education -----------------------------------------------
+	.Education {
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+
+		} //medium layout
+	} // Education
+
+
+} //cvLayout
+
+
+//hrmLayout ---------------------------------------
+.hrmLayout {
+	@include container;
+	padding: 0 3%;
+
+
+//jobListing -----------------------------------------------
+.jobListing {
+	@include breakpoint($medium) {
+		@include clearfix;
+		 @include span(6 of 12);
+	} //medium layout
+} // jobListing
+
+//top5Matches -----------------------------------------------
+.top5Matches {
+	@include breakpoint($medium) {
+		 @include span(6 omega of 12);
+		font-size : 1.0rem;
+		h2 {
+			color: $orange;
+		} //h2
+
+	} //medium layout
+} // top5Matches
+
+
+
+} //hrmLayout
+
+
+//jobManagementLay ---------------------------------------
+.jobManagementLayout {
+	@include container;
+	padding: 0 3%;
+
+
+} //jobManagementLayout
+
+
+//adminLayout ---------------------------------------
+.adminLayout {
+	@include container;
+	padding: 0 3%;
+
+}
+
+//companyProfileLayout ---------------------------------------
+.companyProfileLayout {
+	@include container;
+	padding: 0 3%;
+
+}
+
+//header ----------------------------------------
+
+header {
+	img {
+		width: 95%;
+		margin: 2.5%;
+		max-width: 500px;
+		margin-bottom:0;
+	}
+
+	.hero {
+		width: 100%;
+		@include breakpoint($medium) {
+			@include single-transition(all, 1s, ease-out);
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 450px;
+			@include background(linear-gradient(bottom left, rgba($darkerblue, .6), rgba($darkerblue,0)), image-url('misc/helper.jpg'));
+				
+			background-repeat: norepeat;
+			background-position: center center;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			margin: 0 auto;
+			
+			.branding {
+				position: absolute;
+				bottom: 0;
+			}//branding
+		}//medium layout
+
+	}//hero
+}//header
+
+//Navigation ---------------------------------------
+
+.navigation {
+	background: lighten($darkblue, 15);
+	ul.nav{
+		@include breakpoint($small){
+			@include horizontal-list;
+		}
+		li {
+			i {
+				color: lighten($yellow, 20);
+				padding-right: .5em;
+
+			} //i
+			a {
+				@include single-transition(all,0.5s, ease-out);
+				display: block;
+				text-decoration: none;
+				padding: 5px 10px;
+				color: $paleryellow;
+
+				&:hover {
+					background: $orange;
+					a{
+						color: lighten($yellow,30);
+					}
+
+				}
+			} // a
+		} //li
+	} //ul.nav
+} //nav
+
+//Speakers List ---------------------------------------
+.speakerslist {
+	img {
+      @include border-radius;
+      width: 120px;
+      float: left;
+      margin: {
+        right: 10px;
+        bottom: 10px;
+      } //margin
+    } //img
+
+    i{
+    	padding-right: 15px;
+    }
+
+	@include breakpoint($medium) {
+		text-align: center;
+		@include background(linear-gradient(top, lighten($darkblue,3), $darkerblue));
+		overflow: hidden;
+		color:rgba($paleyellow, .5);
+		padding-bottom:10px;
+
+		#{headings()}{
+			text-shadow: none;
+			border-bottom: none !important;
+		} //headings
+
+		h1 {
+			color: $green;
+			font-size: 2.6 rem;
+			line-height: 1em;
+			@include breakpoint($large){
+				font-size: 4rem;
+				line-height: 1em;
+			} //medium
+		} //h1
+
+		h3 {
+			color: lighten($yellow, 10);
+			line-height: .9rem;
+		}//h3
+
+		.small{
+			padding-top: .4em !important;
+			line-height: 1em;
+			color: lighten($darkblue,30);
+			a{
+				color: lighten($darkblue,30);
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+				} //a:hover
+			} //a:
+		} //small
+		img.speaker {
+			float: none;
+			width: 40%;
+			max-width:170px;
+			margin: 0 auto;
+			@include border-radius(50%);
+		} //img
+
+		.small {
+			display:block;
+		} //small
+
+		p:nth-of-type(2){
+			font-weight: 200 !important;
+			text-align: left;
+			font-size: .8em;
+			line-height: 0;
+			@include single-transition(all, .3s, ease-out);
+			opacity:0;
+		}
+
+		&:hover {
+			p:nth-of-type(2){
+				line-height: 1.5em;
+				opacity: 1;
+			}
+		} //hover
+
+		.artist {
+			@include span(4 of 12);
+		} //artist
+
+		.artist:nth-of-type(3){
+			@include span(4 omega of 12);
+		}
+	}//medium
+} //speakerslist.
+
+//Footer ---------------------------------------
+footer {
+	color: $paleyellow;
+	background: lighten($darkblue,3);
+	margin-top: 20px;
+	padding-top: 20px;
+	padding-bottom: 100px;
+}
+
+
+
+
+

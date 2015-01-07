@@ -1,0 +1,159 @@
+@import url('http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather');
+@import url('font-awesome/css/font-awesome.min.css');
+@import url('http://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css');
+@import url("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css");
+
+
+
+
+
+body {
+	font-family: $font-primary;
+	font-size: 100%;
+	line-height:160%;
+	background: $paleryellow;
+	color: $darkblue;
+}
+
+
+#{headings()}{
+	font-family:$font-secondary;
+	font-weight: normal;
+	margin-top: 10px;
+	line-height: 1em;
+	text-shadow: 0 0 1px rgba(51,51,51,.2);
+	color: $darkgray;
+	@include text-shadow($paleryellow 1px 1px)
+}
+
+
+h1{
+	font-size: 2.2rem;
+	color: lighten($darkblue, 25);
+	margin-bottom: .4rem;
+	border-bottom: 1px solid $lightgray;
+	padding-top:10px;
+}
+
+h2{
+	font-size: 1.5rem;
+	line-height:100%;
+	margin: 20px 0 20px 0;
+	color: $orange;
+}
+
+h3{
+	font-size: 1.3rem;
+	line-height: 60%;
+	color: $orange;
+}
+
+
+a {
+	color: #3b8dbd;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	color: #3e6f82;
+	text-decoration: underline;
+}
+
+p , span, .datepicker{
+	margin-bottom: 10px;
+	font-size: 0.9em;
+
+}
+
+.datePicker{
+	margin-left:5px;
+}
+
+
+
+a.inputText, input[type="text"] {
+    display: block;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 8px;
+    color: #FFF;
+    box-shadow:
+        inset 0 2px 0 rgba(0,0,0,.2),
+        0 0 4px rgba(0,0,0,0.1);
+    width:auto;
+    line-height: 1.5em;
+    border-bottom: none !important;
+	background-color: #EAEAEA;
+	background: -moz-linear-gradient(top, #FFF, #EAEAEA);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #FFF), color-stop(1.0, #EAEAEA));
+}
+
+.small{
+	font-size: 0.8em;
+	color:$blue;
+}
+
+// input[type="text"] {
+// 	-moz-border-radius: 5px;
+// 	-webkit-border-radius: 5px;
+// 	background-color: #EAEAEA;
+// 	background: -moz-linear-gradient(top, #FFF, #EAEAEA);
+// 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #FFF), color-stop(1.0, #EAEAEA));
+// 	border: 1px solid #CACACA;
+// 	color: #444;
+// 	margin: 0px 0px 0px 5px;
+// 	padding: 2px 5px 2px 5px;
+// 	width: auto;  
+// 	line-height: 1.5em;
+// 	font-size: 1.0em;
+// 	border-bottom: none !important;
+// }
+// Checkbox ---------------------------------------------
+
+input[type="checkbox"] {
+  display: none;
+  
+}
+
+input[type="checkbox"] + label {
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  margin: 0 5px;
+  top:5px;
+}
+
+input[type="checkbox"] + label:active, .checkBox:checked + label:active {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+input[type="checkbox"]:checked + label {
+  background-color: #e9ecee;
+  border: 1px solid #adb8c0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+  color: #99a1a7;
+}
+
+input[type="checkbox"]:checked + label:after {
+  content: '\2714';
+  font-size: 1.5em;
+  position: absolute;
+  top: -5px;
+  left: 3px;
+  color: #99a1a7;
+}
+
+input[type="radio"]{
+  border: 0px;
+  width: 25px;
+  height: 1.3em;
+  margin: 0;
+}
+
+
+

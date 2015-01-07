@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+
+<!-- This Layout (/dash/layout1.erb) is used by Seeker side except for mycv-->
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="description" content="JORB - Your Job Hunting Orb">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JORB</title>
+
+<link href="/dash/css/styles.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+
+</style>
+<style>
+/* Customized page load spinner*/
+
+#preloader {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+opacity:1;
+z-index:9999;
+}
+#spinner_container {
+position:absolute;
+width:100%;
+top: 50%;
+left:0px;
+height:1px;
+overflow:visible;
+opacity: 1;
+background: transparent;
+}
+#spinner {
+/*width: 31px;*/
+/*height:31px;*/
+margin-left:-15px;
+position:absolute;
+top:-15px;
+left:50%;
+display:block;
+}
+</style>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/vendor/jqueryfileupload/css/jquery.fileupload.css" />
+<link href="/vendor/select2/select2.css" rel="stylesheet" type="text/css"></link>  
+<!-- <link href="/vendor/select2/select2-bootstrap.css" rel="stylesheet" type="text/css"></link>   -->
+<link href="/dash/css/vendors/x-editable/bootstrap-editable.css" rel="stylesheet" type="text/css"></link>  
+<link href="/dash/css/vendors/x-editable/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link> 
+<!-- <link rel="stylesheet" href="/vendor/aceskin/datepicker.css" /> -->
+<link rel="stylesheet" href="/vendor/aceskin/daterangepicker.css" />
+<link rel="stylesheet" href="/dash/css/vendors/datatables/datables.css" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<script type="text/javascript" src='/dash/js/vendors/modernizr/modernizr.custom.js'></script>
+<link rel="stylesheet" href="http://css-spinners.com/css/spinner/dots.css" type="text/css">
+<!--JQuery--> 
+<script type="text/javascript" src="/dash/js/vendors/jquery/jquery.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/jquery/jquery-ui.min.js"></script> 
+<!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script> -->
+
+<script>
+$(window).load(function(){
+
+    $('#preloader').fadeOut(100, function() {
+               $('body').css('overflow','auto');
+
+               $(this).remove();
+    });
+});
+</script>
+
+
+</head>
+
+<body>
+<div id="preloader">
+<div id="spinner_container">
+<div id="spinner" class="dots">
+    Loading...
+</div>
+</div>
+</div>
+
+
+<!--Smooth Scroll-->
+<div class="smooth-overflow"> 
+  <!--Navigation-->
+  <nav class="main-header clearfix" role="navigation">
+    <div class="col-md-1 col-sm-1 col-lg-1" style="position:relative; left:0px; top:5px"> 
+      <a class="navbar-brand" href="/"><span class="text-blue">JORB</span></a>
+    </div> 
+    
+    <!--Search-->
+    <!-- <div class="site-search">
+      <form action="#" id="inline-search">
+        <i class="fa fa-search"></i>
+        <input type="search" placeholder="Search">
+      </form>
+    </div> -->
+    
+    <!--Navigation Itself-->
+    
+    <!-- <div class="navbar-content">   -->
+      
+      <!--Sidebar Toggler REMOVED--> 
+
+      <div class="col-md-11 col-sm-11 col-lg-11" >
+        <a href="/logout" ><span style="position:relative; left:0px; top:5px;float:right;margin-left:5px;" class="btn grey-btn btn-primary"><i class="fa fa-power-off"></i> Sign Out</span>  </a> 
+        <a href="/newseeker"><span style="position:relative; left:0px; top:5px;float:right" class="btn dark-blue-btn btn-primary">
+        <i class="fa fa-suitcase"></i> Create Job Seeker Personal Profile</span>  </a> 
+        <a href="/admin"><span style="position:relative; left:0px; top:5px; float:right; margin-left:5px; margin-right:5px" class="btn dark-blue-btn btn-primary"><i class="fa fa-dashboard"></i>Main Dashboard </a>
+        <a href="/jobpostings"><span style="position:relative; left:0px; top:5px; float:right" class="btn dark-blue-btn btn-primary"> <i class="fa fa-suitcase"></i> Create Company Profile </span>  </a>    
+        <a href="/jobpostings"><span style="position:relative; left:0px; top:5px; float:right;margin-right:10px" class="btn dark-blue-btn btn-primary"> <i class="fa fa-suitcase"></i> Create/Edit Job Postings </span>  </a>    
+
+
+
+      </div> 
+
+      <!--Right Userbar Toggler--> 
+      <!-- <a class="btn btn-user right-toggler pull-right" href="#"><i style="color:#3b8dbd;font-size:2.3em;margin-left:50% margin-right:50%" class="fa fa-user"> </i></a> -->
+      <!--Fullscreen Trigger-->
+      <!-- <button type="button" class="btn btn-default hidden-xs pull-right" id="toggle-fullscreen"> <i class=" entypo-popup"></i> </button> -->
+      
+      <!--Settings Dropdown-->
+
+      <!--Lock Screen--> 
+
+      
+      <!--Notifications Dropdown-->
+      
+
+      
+      <!--Inbox Dropdown-->
+
+    <!-- </div> -->
+  </nav>
+  
+  <!--/Navigation--> 
+  
+  <!--MainWrapper-->
+  <div class="main-wrap"> 
+    
+    <!--OffCanvas Menu -->
+    <aside class="user-menu"> 
+      
+      <!-- Tabs -->
+      <div class="tabs-offcanvas">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="active"><a href="#userbar-one" data-toggle="tab">Main</a></li>
+<!--           <li><a href="#userbar-two" data-toggle="tab">Users</a></li>
+          <li><a href="#userbar-three" data-toggle="tab">ToDo</a></li> -->
+        </ul>
+        <div class="tab-content"> 
+          
+          <!--User Primary Panel-->
+
+          
+          <!--User Chat Panel-->
+ 
+              <!--Adding Some Scroll-->
+
+          <!--User Tasks Panel-->
+
+              <!--Adding Some Scroll-->
+
+        </div>
+      </div>
+      
+      <!-- /tabs --> 
+      
+    </aside>
+    <!-- /Offcanvas user menu--> 
+    
+    <!--Main Menu-->
+
+    <!--/MainMenu  TSCHEW-->
+
+
+    <!--Main App--> 
+<script type="text/javascript" src="/dash/js/scripts.js"></script>
+          <%= yield %> 
+
+      </div>
+  <!--/MainWrapper--> 
+</div>
+<!--/Smooth Scroll--> 
+
+<!-- scroll top -->
+<div class="scroll-top-wrapper hidden-xs"> <i class="fa fa-angle-up"></i> </div>
+<script>
+ // $(document).ready(function(){
+
+    $('.smooth-overflow').on('scroll', function () {
+        if ($(this).scrollTop() > 100) {
+            $('.scroll-top-wrapper').addClass('show')
+        } else {
+            $('.scroll-top-wrapper').removeClass('show')
+        }
+    });
+    $('.scroll-top-wrapper').on('click', scrollToTop);
+
+// });
+
+ 
+ function scrollToTop() {
+        var verticalOffset = typeof (verticalOffset) != 'undefined' ? verticalOffset : 0;
+        var element = $('body');
+        var offset = element.offset();
+        var offsetTop = offset.top;
+        $('.smooth-overflow').animate({
+            scrollTop: offsetTop
+        }, 400, 'linear')
+    }
+</script>
+
+
+<!-- /scroll top --> 
+
+<!--Modals--> 
+
+<!--Power Widgets Modal-->
+<div class="modal" id="delete-widget">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <i class="fa fa-lock"></i> </div>
+      <div class="modal-body text-center">
+        <p>Are you sure to delete this widget?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="trigger-deletewidget-reset">Cancel</button>
+        <button type="button" class="btn btn-primary" id="trigger-deletewidget">Delete</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+  <!-- /.modal-dialog --> 
+</div>
+<!-- /.modal --> 
+
+<!--Sign Out Dialog Modal-->
+<div class="modal" id="signout">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <i class="fa fa-lock"></i> </div>
+      <div class="modal-body text-center">Are You Sure Want To Sign Out?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="yesigo">Ok</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+  <!-- /.modal-dialog --> 
+</div>
+<!-- /.modal --> 
+
+<!--Lock Screen Dialog Modal-->
+
+<!-- /.modal --> 
+<!-- modal from settings.erb -->
+
+
+
+
+<!--Scripts--> 
+
+
+<!--GMaps--> 
+
+
+
+<!--GMap--> 
+
+
+<!--Demo Script for File Input Fields-->
+<script>
+    $(function() {
+        $('input[type="file"]').change(function() {
+            $(this).parent().next().val($(this).val());
+        });
+    });
+</script>
+<!--Forms--> 
+<script type="text/javascript" src="/dash/js/vendors/forms/jquery.form.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/forms/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/forms/jquery.maskedinput.min.js"></script> 
+
+<!--EasyPieChart--> 
+<script type="text/javascript" src="/dash/js/vendors/easing/jquery.easing.1.3.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/easypie/jquery.easypiechart.min.js"></script> 
+
+<!--Fullscreen--> 
+<script type="text/javascript" src="/dash/js/vendors/fullscreen/screenfull.min.js"></script> 
+
+<!--NanoScroller--> 
+<script type="text/javascript" src="/dash/js/vendors/nanoscroller/jquery.nanoscroller.min.js"></script> 
+
+<!--Sparkline--> 
+<script type="text/javascript" src="/dash/js/vendors/sparkline/jquery.sparkline.min.js"></script> 
+
+<!--Horizontal Dropdown--> 
+<script type="text/javascript" src="/dash/js/vendors/horisontal/cbpHorizontalSlideOutMenu.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/classie/classie.js"></script> 
+
+<!--PowerWidgets--> 
+<script type="text/javascript" src="/dash/js/vendors/powerwidgets/powerwidgets.min.js"></script> 
+
+<!--Morris Chart--> 
+<!-- <script type="text/javascript" src="/dash/js/vendors/raphael/raphael-min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/morris/morris.min.js"></script>  -->
+
+<!--FlotChart--> 
+<!-- <script type="text/javascript" src="/dash/js/vendors/flotchart/jquery.flot.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/flotchart/jquery.flot.resize.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/flotchart/jquery.flot.axislabels.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/flotchart/jquery.flot-tooltip.js"></script>  -->
+
+<!--Chart.js--> 
+<!-- <script type="text/javascript" src="/dash/js/vendors/chartjs/chart.min.js"></script>  -->
+
+<!--Calendar--> 
+<!-- <script type="text/javascript" src="/dash/js/vendors/fullcalendar/fullcalendar.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/fullcalendar/gcal.js"></script>  -->
+
+<!--Bootstrap--> 
+<script type="text/javascript" src="/dash/js/vendors/bootstrap/bootstrap.min.js"></script> 
+
+<!--Vector Map--> 
+
+<!--X-Editable--> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/bootstrap-editable.min.js"></script> 
+
+<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/wysihtml5.js"></script>
+
+
+<script type="text/javascript" src="/dash/js/vendors/x-editable/select2.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/address.js"></script> 
+<script src="/vendor/aceskin/date-time/moment.min.js"></script>
+<!-- <script type="text/javascript" src="/vendor/select2/select2-bootstrap.js"></script>  -->
+<script type="text/javascript" src="/dash/js/vendors/x-editable/typeahead.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/x-editable/typeaheadjs.js"></script> 
+
+<!--Datepicker--> 
+
+
+    <!-- <script type="text/javascript" src="/vendor/aceskin/date-time/bootstrap-datepicker.min.js"></script> -->
+    <!-- <script type="text/javascript" src="/vendor/aceskin/date-time/bootstrap-timepicker.min.js"></script> -->
+    <script type="text/javascript" src="/vendor/aceskin/date-time/daterangepicker.js"></script>
+<!--Datatables--> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables-bootstrap.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/dataTables.colVis.js"></script> 
+<script type="text/javascript" src="/dash/js/vendors/datatables/colvis.extras.js"></script> 
+
+<!--SkyCons--> 
+<script type="text/javascript" src="/dash/js/vendors/skycons/skycons.js"></script> 
+
+<script src="/vendor/aceskin/ace-elements.min.js"></script>
+
+
+<script>
+      // var icons = new Skycons({"color": "#fff"}),
+      //     list  = [
+      //       "clear-day", "clear-night", "partly-cloudy-day",
+      //       "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+      //       "fog"
+      //     ],
+      //     i;
+
+      // for(i = list.length; i--; )
+      //   icons.set(list[i], list[i]);
+
+      // icons.play();
+
+
+</script> 
+
+
+   <!-- This is where the modals are defined -->
+   <!-- Modals must be defined just before </body> -->
+  <div class="modal fade" id="addskillmodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add new skill</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal"></div>
+  <br><br>
+  <table id="skilltab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>
+  <td> User ID</td>
+  <td width="60%"><a href="#" class="newskill" id="skill_pk" data-emptytext="Select..." data-type="text" data-name="pk" > </a></td>
+  </tr>
+  <tr>      
+  <td width="20%">Skill category</td> <!--TSCHEW-->
+  <td width="50%">
+  <a href="#" class="newskill" data-emptytext="Select..." data-type="select" id="skillcat" data-name="id"  data-original-title="Select skill category"></a></td>
+  </tr>
+  <tr>      
+  <td width="20%">Skill name</td>
+  <td width="50%"><a href="#" class="newskill" id="skillname"  data-emptytext="Select..." data-type="select" data-name="skillid" data-original-title="Select skill"></a></td>
+  </tr>
+  <tr>      
+  <td width="20%">Skill rank</td>
+  <td width="50%"><a href="#" class="newskill" id="skillrank" data-emptytext="Select..." data-type="select" data-name="skillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveskill-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Skill and Add New</i></button>
+  <br><br><br>
+  Can't find your skill in the list? <button class="btn smaller-90 btn-error"><i class="icon-wrench">Let us know!</i></button>
+  </div>  
+
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+  <div class="modal fade" id="addlanguagemodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add new language</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal2"></div>
+  <br><br>
+  <table id="languagetab" class="table table-bordered table-striped">
+  <tbody>
+  <tr> 
+  <tr>
+  <td> User ID</td>
+  <td width="60%"><a href="#" class="newlang" id="lang_pk" data-emptytext="Select..." data-type="text" data-name="pk" > </a></td>
+  </tr>     
+  <td>Language</td>
+  <td width="60%"><a href="#" class="newlang" id="lang"  data-emptytext="Select..." data-type="select" data-name="skr_lang" data-original-title="Select language"></a></td>
+  </tr>
+  <tr>      
+  <td>Spoken skill level</td>
+  <td width="20%"><a href="#" class="newlang" id="speakskill" data-emptytext="Select..." data-type="select" data-name="skr_lang_speakskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  <tr>      
+  <td>Written skill level</td>
+  <td width="20%"><a href="#" class="newlang" id="writeskill" data-emptytext="Select..." data-type="select" data-name="skr_lang_writeskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="savelanguage-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Language and Add New</i></button>
+  <br><br><br>
+  Can't find your language in the list? <button class="btn smaller-90 btn-error"><i class="icon-wrench">Let us know!</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+  <div class="modal fade" id="addedumodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Education </h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal3"></div>
+  <br><br>
+  <table id="edutab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>
+  <td> User ID</td>
+  <td width="60%"><a href="#" class="newedu" id="edu_pk" data-emptytext="Select..." data-type="text" data-name="pk" > </a></td>
+  </tr>  
+  <tr>      
+  <td>Title</td>
+  <td width="60%"><a href="#" class="newedu" id="skr_unititle"  data-emptytext="Select..." data-type="select" data-name="skr_unititle" data-original-title="Select Title"></a></td>
+  </tr>
+   <tr>      
+  <td>Institutions</td>
+  <td width="60%"><a href="#" class="newedu" id="skr_university"  data-emptytext="Select..." data-type="select" data-name="skr_university" data-original-title="Select Institutions"></a></td>
+  </tr>
+  <tr>      
+  <td>Specialty</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_specialty" data-emptytext="Select..." data-type="select" data-name="skr_specialty" data-original-title="Select Specialty"></a></td>
+  </tr>  
+  <tr>      
+  <td>Honors</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_honours" data-emptytext="Select..." data-type="select" data-name="skr_honours" data-original-title="Select Honors"></a></td>
+  </tr>  
+  <tr>      
+  <td>Start Date</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_unistart" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_unistart" data-original-title="Enter Start Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>End Date</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_uniend" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_uniend" data-original-title="Enter End Date"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveedu-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Education and Add New</i></button>
+  <br><br><br>
+  Can't find the education type in the list? <button class="btn smaller-90 btn-error"><i class="icon-wrench">Let us know!</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+  <div class="modal fade" id="addcertmodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Certification </h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal4"></div>
+  <br><br>
+  <table id="certtab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>
+  <td> User ID</td>
+  <td width="60%"><a href="#" class="newcert" id="cert_pk" data-emptytext="Select..." data-type="text" data-name="pk" > </a></td>
+  </tr>  
+  <tr>      
+  <td>Certificate Name</td>
+  <td width="60%"><a href="#" class="newcert" id="skr_certtitle"  data-emptytext="Select..." data-type="select" data-name="skr_certtitle" data-original-title="Select Title"></a></td>
+  </tr>
+
+  <tr>      
+  <td>Certificate #</td>
+  <td width="60%"><a href="#" class="newcert" id="skr_certlicense"  data-emptytext="Enter..." data-type="text" data-name="skr_certlicense" data-original-title="Enter certificate #"></a></td>
+  </tr>
+
+  <tr>      
+  <td style="position: relative;">When did you get certified?</td>
+  <td width="20%"><a href="#" class="newcert" id="skr_datecertified" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_datecertified" data-original-title="Enter Date of certification"></a></td>
+  </tr>  
+
+  <tr>      
+  <td style="position: relative;">Expiry Date</td>
+  <td width="20%"><a href="#" class="newcert" id="skr_certexpiry" data-emptytext="Select..." data-placement="right" data-type="date" data-name="skr_certexpiry" data-original-title="Enter Expiry Date"></a></td>
+  </tr>  
+
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="savecert-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Certification and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <div class="modal fade" id="addexperiencemodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Job Experience</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal5"></div>
+  <br><br>
+  <table id="exptab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>
+  <td> User ID</td>
+  <td width="60%"><a href="#" class="newjob" id="pk" data-emptytext="Select..." data-type="text" data-name="pk" > </a></td>
+  </tr>
+  <tr>      
+  <td>Position</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_title"  data-emptytext="Select..." data-type="select" data-name="skr_emp_title" data-original-title="Select Position"></a></td>
+  </tr>
+  <tr>      
+  <td>Actual Job Title</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_actualtitle"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_actualtitle" data-original-title="Enter Actual Job Title"></a></td>
+  </tr>
+  <tr>      
+  <td>Company</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_company"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_company" data-original-title="Enter Company Name"></a></td>
+  </tr>
+   <tr>      
+  <td>Industry</td>
+  <td width="60%"><a href="#" class="newjob" id="skr_emp_industry"  data-emptytext="Select..." data-type="select" data-name="skr_emp_industry" data-original-title="Select Industry"></a></td>
+  </tr>
+  <tr>      
+  <td>Job Location</td>
+  <td width="20%"><a href="#" class="newjob" id="skr_emp_location" data-emptytext="Select..." data-type="select" data-name="skr_emp_location" data-original-title="Select Job Location"></a></td>
+  </tr>  
+  <tr>      
+  <td>Job Function</td>
+  <td width="20%"><a href="#" class="newjob" id="skr_emp_function" data-emptytext="Select..." data-type="select" data-name="skr_emp_function" data-original-title="Select Job Function"></a></td>
+  </tr> 
+  <tr>      
+  <td>Is this your Current Job?</td>
+  <td width="20%">  <input id="currentjobcheck" name="currentjob" type="checkbox" unchecked> <a href="#" class="newjob" id="skr_emp_currentjob" data-emptytext="Select..." data-type="select" data-name="skr_emp_currentjob"></a></td>
+  </tr>  
+  <tr>      
+  <td>Start Date</td>
+  <td width="20%"><a href="#" class="newjob" id="skr_emp_start" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_start" data-original-title="Enter Start Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>End Date</td>
+  <td width="20%">
+    <div  id="enddate_block" style="visibility: visible;position:relative;left:0px">  
+    <a href="#" class="newjob" id="skr_emp_end" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_end" data-original-title="Enter End Date"></a>
+    </div>
+  </td>
+  </tr>  
+  <tr>      
+  <td>Description</td>
+  <td width="20%"><a class="newjob" href="javascript:void(0)" id="skr_emp_desc" data-name="skr_emp_desc" data-type="wysihtml5"  data-title="Enter Job Description"></a></td>
+  </tr> 
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveexperience-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Job Experience </i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <div class="modal fade" id="editexperiencemodal" >
+  <div class="modal-dialog modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Edit Job Experience</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal6"></div>
+   <div id="editexpbody"></div>
+
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveexperience-btn2" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save and Quit</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <!-- End of Modals definition -->      
+
+<script>
+$(function(){
+
+
+
+         $('input[name="date-range-picker-edu"]').daterangepicker({
+        timePicker: false,
+        showDropdowns: true,
+        format: 'DD/MM/YYYY',
+        }, function(start, end, label) {
+          console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
+          from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+          end =moment(end.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+           $.ajax({
+              url: '/update_inSG_Date',
+              type: 'POST',
+              data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
+              beforeSend : function(){
+                $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+              }, 
+              success: function(response){
+                          // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
+                           $('#saver').fadeOut(1000, function() {
+                            $(this).remove();
+                           });
+                        }
+            });
+        });
+
+    /* This is in the Add Skill Modal  START*/
+      $('#skillcat').editable({
+        source: "/getskillcat" ,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+
+                 $.getJSON("/getskill", {"value": newValue}, function (result) {
+                  $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
+                  $('#skillname').editable('setValue', null);             //else it will fail.
+                  $('#skillname').editable('option', 'disabled', false);  //             
+                  }).fail( function(d, textStatus, error) {
+                      console.error("Error code: " + textStatus + ", error: "+error)
+
+                  });
+        }
+      });
+
+      $('#skillname').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#skillrank').editable('option', 'disabled', false);
+        }
+        });
+
+      $('#skillrank').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
+
+      //init editables
+      // $('.newskill').editable('option', 'validate', function(v) {
+      //     if(!v) return 'This is a required field!';
+      // });
+
+
+    /* This is in the Add Skill Modal  END */
+
+    /* This is in the Add Language Modal  START*/
+      $('#lang').editable({
+        source: "/getlanguage",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#speakskill').editable('option', 'disabled', false);
+          
+        }
+      });
+
+      $('#speakskill').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#writeskill').editable('option', 'disabled', false);
+        }
+        });
+
+      $('#writeskill').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
+
+      //init editables
+      // $('.newlang').editable('option', 'validate', function(v) {
+      //     if(!v) return 'This is a required field!';
+      // });
+
+    /* This is in the Add Language Modal  END */
+
+    /* This is in the Add Education Modal  START*/
+      $('#skr_unititle').editable({
+        source: "/getdegree",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#job_edu_specialty').editable('option', 'disabled', false);
+           if (newValue ==1 || newValue == 2 || newValue ==3) {
+              $('#skr_honours').editable('option', 'disabled', true);
+              $('#skr_specialty').editable('option', 'disabled', true);
+              $('#skr_university').editable('option', 'disabled', true);
+           }else {
+            $('#skr_honours').editable('option', 'disabled', false);
+            $('#skr_specialty').editable('option', 'disabled', false);
+            $('#skr_university').editable('option', 'disabled', false);
+           }
+        }
+      });
+
+      $('#skr_specialty').editable({
+        source: "/getspecialty",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+
+        } //success
+        });
+
+      $('#skr_honours').editable(
+        {
+          source: "/gethonors",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#job_edu_pref').editable('option', 'disabled', false);
+        }
+
+        });
+
+      $('#skr_university').editable(
+        {
+          source: "/getuni",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false});
+
+      $('#skr_unistart').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',  
+        onblur: 'submit',
+        showbuttons: false,  
+        datepicker: {
+                weekStart: 1
+           }
+        });
+
+      $('#skr_uniend').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',
+        onblur: 'submit',
+        showbuttons: false,    
+        datepicker: {
+                weekStart: 1
+           }
+        });      
+      
+      //init editables
+      //$('.newedu').editable('option', 'validate', function(v) {
+      //    if(!v) return 'This is a required field!';
+      //});
+
+    /* This is in the Add Education Modal  END */
+
+    /* This is in the Add Certification Modal  START*/
+
+    
+
+      $('#skr_certtitle').editable({
+        source: "/getcert",
+        onblur: 'submit',
+        showbuttons: false,
+      
+      });
+
+      $('#skr_certlicense').editable();
+
+      //We need these few PK in order to pass the userID parameter to the respective creation module
+      $('#pk').editable({disabled: true }); //Experience
+      $('#skill_pk').editable({disabled: true }); //Skill
+      $('#cert_pk').editable({disabled: true }); //Cert
+      $('#edu_pk').editable({disabled: true }); //Edu
+      $('#lang_pk').editable({disabled: true }); //Language
+      $('#skr_emp_currentjob').editable({disabled: true }); 
+
+        
+        
+
+
+      $('#skr_certexpiry').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',  
+        onblur: 'submit',
+        showbuttons: true,  
+        datepicker: {
+                weekStart: 1
+           }
+        });
+
+      $('#skr_datecertified').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',
+        onblur: 'submit',
+        showbuttons: false,    
+        datepicker: {
+                weekStart: 1
+           }
+        });
+    /* This is in the Add Certification Modal  END */
+
+    /* This is in the Add Experience Modal  START*/
+
+      $('#skr_emp_company').editable({
+        disabled: false,
+        showbuttons: true,
+        });
+
+      $('#skr_emp_industry').editable({
+        source: "/getind",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        });
+
+      $('#skr_emp_location').editable({
+        source: "/getcountries",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        });
+
+      $('#skr_emp_function').editable({
+        source: "/getfunction",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        });
+
+      $('#skr_emp_title').editable({
+        source: "/getjobtitle",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        });
+
+      $('#skr_emp_actualtitle').editable();
+
+      $('#skr_emp_desc').editable({
+        emptytext: '--',
+        validate: function(value){
+          if(value.length >50000 ) {
+            return 'You can only enter a maximum of 50000 characters';
+            
+          }
+        }
+
+      });
+
+      $('#skr_emp_start').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',  
+        onblur: 'submit',
+        showbuttons: false,  
+        datepicker: {
+                weekStart: 1
+           }
+        });
+
+      $('#skr_emp_end').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',
+        onblur: 'submit',
+        showbuttons: false,    
+        datepicker: {
+                weekStart: 1
+           }
+        });      
+      
+      //init editables
+      //$('.newedu').editable('option', 'validate', function(v) {
+      //    if(!v) return 'This is a required field!';
+      //});
+
+    /* This is in the Add Experience Modal  END */
+
+    /* This is in the Edit Certification Modal  START*/
+
+    
+
+      $('#e_skr_certtitle').editable({
+        source: "/getcert",
+        onblur: 'submit',
+        showbuttons: false,
+      
+      });
+
+      $('#e_skr_certlicense').editable();
+
+
+      $('#e_skr_certexpiry').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',  
+        onblur: 'submit',
+        showbuttons: true,  
+        datepicker: {
+                weekStart: 1
+           }
+        });
+
+      $('#e_skr_datecertified').editable({
+        format: 'dd-mm-yyyy',    
+        viewformat: 'dd/mm/yyyy',
+        onblur: 'submit',
+        showbuttons: false,    
+        datepicker: {
+                weekStart: 1
+           }
+        });
+    /* This is in the Add Certification Modal  END */
+
+
+}); /* $(function(){ */
+
+    function newAlert (loc, type, message) {
+          $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
+          $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
+      }     
+
+     $('#saveskill-btn').click(function() {
+         $('.newskill').editable('submit', {
+             url: '/newskill',
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },        
+             success: function(data, config) {
+              
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       //config.error.call(this, data.errors);
+                       newAlert("#alert_placeholder-inmodal",'danger', data.errors);
+                 }   else{
+
+                      newAlert("#alert_placeholder-inmodal",'success', data.responsemsg);
+                      $('.newskill').editable('setValue', null);  //clear values
+                      $('#addskillmodal').modal("hide");
+                      
+                 }    
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="skillcatid") {k = "Skill Category"};
+                      if (k=="skillid") {k = "Skill name"};
+                      if (k=="skillrank") {k = "Skill rank"};      
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_placeholder-inmodal",'danger', msg);
+                   
+                 }
+               
+             }
+         });
+      });
+
+
+
+      $('#closeskill-btn').click(function() {
+          $('.newskill').editable('setValue', null)  //clear values
+              .editable('option', 'pk', null)          //clear pk
+              .removeClass('editable-unsaved');        //remove bold css
+
+      });
+
+
+      $('#savelanguage-btn').click(function() {
+         $('.newlang').editable('submit', {
+             url: '/newlanguage',
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },        
+             success: function(data, config) {
+              
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       //config.error.call(this, data.errors);
+                       newAlert("#alert_placeholder-inmodal2",'danger', data.errors);
+
+                 }   else{
+
+                      newAlert("#alert_placeholder-inmodal2",'success', 'New Language added!');
+
+                      $('.newlang').editable('setValue', null);  //clear values
+                      $('#addlanguagemodal').modal("hide");
+
+                 }    
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="skr_lang") {k = "Language"};
+                      if (k=="skr_lang_speakskill") {k = "Spoken skill level"};
+                      if (k=="skr_lang_writeskill") {k = "Written skill level"};      
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_placeholder-inmodal2",'danger', msg);
+                   
+                 }
+               
+             }
+         });
+      });
+
+      $('#closelanguage-btn').click(function() {
+          $('.newlang').editable('setValue', null)  //clear values
+              .editable('option', 'pk', null)          //clear pk
+              .removeClass('editable-unsaved');        //remove bold css
+
+      });
+
+
+
+      $('#saveedu-btn').click(function() {
+         $('.newedu').editable('submit', {
+             url: '/newedu',
+             // data: {"pk" : <%=@userprofile.id%>},
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },       
+             success: function(data, config) {
+             
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       // config.error.call(this, data.errors);
+                       newAlert("#alert_placeholder-inmodal3",'danger', data.errors);
+
+                 }   else{
+
+                      newAlert("#alert_placeholder-inmodal3",'success', 'New Education Requirement Added!');
+
+                      $('.newedu').editable('setValue', null);  //clear values
+                      $('#addedumodal').modal("hide");
+
+                 }   
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="job_edu_title") {k = "Education title"};
+                      if (k=="job_edu_specialty") {k = "Specialty"};
+                      if (k=="job_edu_honors") {k = "Honors"};   
+                      if (k=="job_edu_pref") {k = "Preference level"};     
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_placeholder-inmodal3",'danger', msg);
+                  
+                 }
+              
+             }
+         });
+      });
+
+      $('#closeedu-btn').click(function() {
+          $('.newedu').editable('setValue', null)  //clear values
+              .editable('option', 'pk', null)          //clear pk
+              .removeClass('editable-unsaved');        //remove bold css
+
+      });
+
+      
+
+      $('#savecert-btn').click(function() {
+         $('.newcert').editable('submit', {
+             url: '/newcert',
+             // data: {"pk" : <%=@userprofile.id%>},
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },       
+             success: function(data, config) {
+             
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       // config.error.call(this, data.errors);
+                       newAlert("#alert_placeholder-inmodal4",'danger', data.errors);
+
+                 }   else{
+
+                      newAlert("#alert_placeholder-inmodal4",'success', 'New Certification Requirement Added!');
+
+                      $('.newcert').editable('setValue', null);  //clear values
+                      $('#addcertmodal').modal("hide");
+                 }   
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="skr_certtitle") {k = "Certificate name"};
+                      if (k=="skr_datecertified") {k = "Date of Certification"};     
+                      if (k=="skr_certexpiry") {k = "Expiry Date of Certification"};    
+                      if (k=="skr_certlicense") {k = "Certificate license #"};
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_placeholder-inmodal4",'danger', msg);
+                  
+                 }
+              
+             }
+         });
+      });
+
+      $('#closecert-btn').click(function() {
+          $('.newcert').editable('setValue', null)  //clear values
+              .editable('option', 'pk', null)          //clear pk
+              .removeClass('editable-unsaved');        //remove bold css
+
+      });
+
+      $('#saveexperience-btn').click(function() {
+         $('.newjob').editable('submit', {
+             url: '/newexperience',
+             // data: {"pk" : <%=@user.id%>},
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },       
+             success: function(data, config) {
+             
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       // config.error.call(this, data.errors);
+                       newAlert("#alert_placeholder-inmodal5",'danger', data.errors);
+
+                 }   else{
+                      // $.ajax({
+                      //   url: '/updatecurrentjob',
+                      //   type: 'POST',
+                      //   data: {"married": this.checked, "pk" : <%=@userprofile.id %>}
+                      // });
+                      newAlert("#alert_placeholder-inmodal5",'success', 'Experience Added!');
+
+                      $('.newjob').editable('setValue', null);  //clear values
+                      $('#addexperiencemodal').modal("hide");
+
+                 }   
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="skr_emp_company") {k = "Company Name"};
+                      if (k=="skr_emp_industry") {k = "Industry"};
+                      if (k=="skr_emp_start") {k = "Start Date"};   
+                      if (k=="skr_emp_end") {k = "End Date"};    
+                      if (k=="skr_emp_location") {k = "Location"};
+                      if (k=="skr_emp_function") {k = "Function"};
+                      if (k=="skr_emp_title") {k = "Job Title"};   
+                      if (k=="skr_emp_actualtitle") {k = "Actual Title"};      
+                      if (k=="skr_emp_desc") {k = "JobDescription"}; 
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_placeholder-inmodal5",'danger', msg);
+                  
+                 }
+              
+             }
+         });
+      });
+
+
+      $('#saveexperience-btn2').click(function() {  // for Edit Experience Modal
+         $('.editjob').editable('submit', {
+             url: '/editexperience',
+             // data: {"pk" : <%=@userprofile.id%>},
+             ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },       
+             success: function(data, config) {
+             
+                  if(data && data.errors){
+                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                       // config.error.call(this, data.errors);
+                       newAlert("#alert_placeholder-inmodal6",'danger', data.errors);
+
+                 }   else{
+
+                      newAlert("#alert_placeholder-inmodal6",'success', 'Experience Added!');
+
+                      $('.editjob').editable('setValue', null);  //clear values
+                      $('#editexperiencemodal').modal("hide");
+
+                      // $("#jt").load("/experiencetable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+                 }   
+             },
+             error: function(errors) {
+                 var msg = '';
+                 if(errors && errors.responseText) { //ajax error, errors = xhr object
+                     msg = errors.responseText;
+                     //We do not have any response text from backend at the moment
+                 } else { //validation error (client-side or server-side)
+                     $.each(errors, function(k, v) {
+                      if (k=="skr_emp_company") {k = "Company Name"};
+                      if (k=="skr_emp_industry") {k = "Industry"};
+                      if (k=="skr_emp_start") {k = "Start Date"};   
+                      if (k=="skr_emp_end") {k = "End Date"};    
+                      if (k=="skr_emp_location") {k = "Location"};
+                      if (k=="skr_emp_function") {k = "Function"};
+                      if (k=="skr_emp_title") {k = "Job Title"};   
+                      if (k=="skr_emp_actualtitle") {k = "Actual Title"};      
+                      if (k=="skr_emp_desc") {k = "JobDescription"};  
+                      msg += k+": "+v+"<br>";
+                    });
+                     newAlert("#alert_placeholder-inmodal6",'danger', msg);
+                  
+                 }
+              
+             }
+         });
+      });
+      $('#closeedu-btn').click(function() {
+          $('.newedu').editable('setValue', null)  //clear values
+              .editable('option', 'pk', null)          //clear pk
+              .removeClass('editable-unsaved');        //remove bold css
+
+      });
+
+      //triggered when modal is about to be shown
+      $('#editexperiencemodal').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var jobid = $(e.relatedTarget).data('jobid');
+          $("#editexpbody").load("/getexperience",  {"pk": jobid});
+      });
+
+      $('#addexperiencemodal').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var userid = $(e.relatedTarget).data('pk');
+          $('#pk').editable('setValue',userid);
+          
+      });
+
+      $('#addskillmodal').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var userid = $(e.relatedTarget).data('pk');
+          $('#skill_pk').editable('setValue',userid);
+          
+      });
+
+      $('#addedumodal').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var userid = $(e.relatedTarget).data('pk');
+          $('#edu_pk').editable('setValue',userid);
+          
+      });
+
+      $('#addlanguagemodal').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var userid = $(e.relatedTarget).data('pk');
+          $('#lang_pk').editable('setValue',userid);
+          
+      });
+
+      $('#addcertmodal').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var userid = $(e.relatedTarget).data('pk');
+          $('#cert_pk').editable('setValue',userid);
+          
+      });
+
+      //go to /settings to find the hide.bs.modal routine
+
+      $("#currentjobcheck").on('change', function(){
+          if($(this).is(":checked")) {
+            $('#skr_emp_currentjob').editable('setValue',"true");
+            document.getElementById( 'enddate_block' ).style.visibility = 'hidden'; 
+          } else
+          {
+            $('#skr_emp_currentjob').editable('setValue',"false");
+            document.getElementById( 'enddate_block' ).style.visibility = 'visible'; 
+          }; 
+      });
+
+
+
+
+</script>
+</body>
+
+
+</html>     

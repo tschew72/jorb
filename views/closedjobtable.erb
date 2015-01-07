@@ -1,0 +1,51 @@
+<script>
+$.getScript("/vendor/closedjobtablescript.js");
+
+</script>
+
+
+
+<div class="callout callout-info">
+<h4>Closed / Cancelled Job Posting</h4>
+<p>Edit Button: To edit a job and/or resubmit the job posting for candidate matching</p>
+<p>Cancelled Status: Cancelled jobs are no longer matched with candidates. To reactivate it, Edit the job and change status to Active</p>
+<p>Closed Status: Closed jobs are jobs that have expired based on the Closing date defined by you. To reactivate it, Edit the job and change status to Active</p>
+</div>
+<div class="col-md-2 col-lg-2 column "></div>
+<div class="col-md-8 col-lg-8 col-sm-12 column ">
+
+ <table id="closedjobjobtable" class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+         <th style="text-align:center">ID</th>
+         <th style="text-align:center">Function</th>
+         <th style="text-align:center">Posted</th>
+         <th style="text-align:center">Status</th>
+         <th style="text-align:center"></th>
+        
+
+      </tr>
+    </thead>
+    <tbody id="aat" >
+            <% @joblisting.each do |i| %>
+            <% if i.job_status == 0 || i.job_status == 3 %>
+       
+        <tr>
+           <td><%= i.id%></td>
+           <td><%= i.job_title %> </td>
+           <td><%= i.job_posted.strftime("%d/%m/%Y") %></td> 
+           <td><%= i.job_status == 0 ? "Cancelled" : "Closed" %>  </td> 
+           <td>
+            <div class="action-buttons" style="text-align:center" >
+               <a onclick="showjobdetail(<%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Edit</a>      
+            </div>
+           </td>
+        </tr>
+
+        <%end%>
+        <% end %>
+    </tbody>
+  </table>
+
+  </div>
+<div class="col-md-2 col-lg-2 column "></div>

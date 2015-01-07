@@ -1,0 +1,85 @@
+
+
+<div class="cvLayout">
+	<section class="Main">
+		<header>
+			<h1 class="page-title"><%=@user.firstname %> <%=@user.middlename %> <%=@user.lastname %></h1>
+						
+		</header>
+
+		<div class="Avatar">
+			<img src= <%= @user.pictureurl %> alt="Photo" />
+		</div>
+
+
+		<aside class="Detail">
+			<h2>Detail</h2>
+			<ul>	
+				<li><span> Age: <%=@userprofile.age %> </span></li>
+				<li><span> <%=@cmaster.get(@mynations).country %></span></li>
+			</ul>
+		</aside>	
+	</section>
+
+	<section class="Skills">
+		<h2>My skills</h2>
+		<% @allskills.each do |i| %>
+			<!-- If rank = 1, job-tag = job-tag1  TO BE DONE! also check for top 20 skills. list the expert first followed by others-->
+			<% if @allskills.get(i).status != 0 %>
+					<%= @ssmaster.get(i.skillid).skill_name %> 
+			<%end%>
+		<% end %>
+		<a href="#seemorecvskillmodal" data-userid="<%=@userprofile.id%>" data-toggle="modal" role="button">See more...</a>
+	</section>
+
+
+	<section class="Achievements">
+		<h2>Achievements</h2>
+		<dl>
+		<% @allachievements.each do |i| %>
+			<dd>
+				<%= i.achievement %>
+			<dd>
+		<% end %>
+		</dl>
+	</section>
+
+	<section class="Experiences">
+		<h2>Experience</h2>
+		<dl>
+			<% @alljobs.each do |i| %>
+				<% if i.skr_empstatus != 0  %>
+				<dt>
+					<h3><%= i.skr_emp_actualtitle %></h3>
+				</dt>
+				<dd>
+					<small><%= @alljobs.get(i).skr_emp_start %> to <%= @alljobs.get(i).skr_emp_end %></small>
+					<strong><%= @cmaster.get(@alljobs.get(i).skr_emp_location).country %></strong>
+					<%= i.skr_emp_desc %>
+				</dd>
+			 	<% end %>
+			<% end %>
+		</dl>
+	</section>
+
+	<section class="Education">
+		<h2>Education</h2>
+			<dl>
+				<% @alledu.each do |i| %>
+				 <% if i.skr_edustatus != 0 %>
+					<dt>
+						<h3><%= @alledu.get(i).skr_university != nil ? @uni.get(@alledu.get(i).skr_university).university : "" %></h3>
+					</dt>
+					<dd>
+						<strong><%= @degree.get(@alledu.get(i).skr_unititle).degree %></strong>
+						<br>
+						<small> <%= @alledu.get(i).skr_unistart.strftime("%d-%m-%Y").to_s %> -  <%= @alledu.get(i).skr_uniend.strftime("%d-%m-%Y").to_s %></small>
+						
+					</dd>
+				 <% end %>
+				<% end %>
+			</dl>
+	</section>
+
+</div>
+
