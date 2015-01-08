@@ -248,16 +248,17 @@
           Last Name<sup>*</sup> : 
           <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_surname" data-name="lastname" data-type="text"  data-title="Enter Last Name" data-emptytext="--">  </a>
         </p>
+        <p>
           Email<sup>*</sup> : 
           <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_email" data-name="email" data-type="text"  data-title="Enter Email " data-emptytext="--">  </a>
         </p>
         <p>
           Contact Number<sup>*</sup> :
-          <a class="newcoyuser" href="javascript:void(0)"  id="c_contactnumber" data-name="contactnumber" data-type="text"  data-title="Enter Contact Number " data-emptytext="--">  </a>
+          <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_contactnumber" data-name="contactnumber" data-type="text"  data-title="Enter Contact Number " data-emptytext="--">  </a>
         </p>
         <p>
           Password<sup>*</sup> :
-          <a class="newcoyuser" href="javascript:void(0)"  id="c_password" data-name="password" data-type="text"  data-title="Enter Password " data-emptytext="--">  </a>
+          <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_password" data-name="password" data-type="text"  data-title="Enter Password " data-emptytext="--">  </a>
         </p>
       </div> <!-- "modal-body" -->
       <div class="modal-footer">
@@ -275,8 +276,6 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-
-
   $('#joblistingtable').dataTable( {   //need to include the Ajax source so that I can reload it from anywhere
       "scrollY": 200,
       "ScrollX": true,
