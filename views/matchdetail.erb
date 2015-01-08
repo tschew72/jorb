@@ -1,10 +1,15 @@
 <header>
   Match Detail
 </header>
-<div class="row">
-<div class="col-lg-11">
-Job Seeker Detail <a href="/j_mycv?pk=<%=@skr_id%>"><span style="" class="btn dark-blue-btn btn-primary">
-        <i class="fa fa-suitcase"></i> <span >Online CV</span>  </a>     
+
+
+<section class="SeekerDetail">
+  <header>
+    Job Seeker Detail
+  </header>
+  <a href="/j_mycv?pk=<%=@skr_id%>"><span style="" class="btn dark-blue-btn btn-primary">
+    <i class="fa fa-suitcase"></i> Online CV 
+  </a>     
   <table class="table table-striped table-hover margin-0px airtable">
     <thead>
       <tr>
@@ -20,25 +25,19 @@ Job Seeker Detail <a href="/j_mycv?pk=<%=@skr_id%>"><span style="" class="btn da
     </thead>
     <tbody>
       <% @skrdetail_pers.each do |i| %>
-
-        <td><span class="text-center"> <%= i.seekervalue %></span></td>      
-        <!-- <span class="text-center"> <%= i.fieldname %></span>                  -->
-        <!-- <td><span class="text-center"> <%= i.seekervalue %></span></td> -->
-
+        <td> <%= i.seekervalue %></td>      
       <% end %>
     </tbody>
   </table>
-</div>
-</div>
+</section>
 
-<div class="row">
-  <div class="col-lg-11">
-  How was he ranked
+<section class="rankDetail">
+  <header>How was the Job Seeker is Ranked</header>
   <table class="table table-striped table-hover margin-0px airtable">
     <thead>
       <tr>
-        <th >description</th>
-        <th > job spec </th>
+        <th >Description</th>
+        <th >job spec </th>
         <th >seeker detail</th>
         <th >score</th>
       </tr>
@@ -53,9 +52,7 @@ Job Seeker Detail <a href="/j_mycv?pk=<%=@skr_id%>"><span style="" class="btn da
       </tr>
       <% end %>
     </tbody>
-    
   </table>
-</div>
-</div>
+</section>
 
 
