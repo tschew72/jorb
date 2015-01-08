@@ -17,20 +17,16 @@
       
       <td><span class="text-center"> <%= i.skrid %></span></td>
       <td><span class="text-center"> <%= i.score %></span></td>
-      <td><div class="action-buttons" style="text-align:center" >
-           <a onclick="showmatchdetail(<%=@jobid%>,<%=i.skrid%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Show Detail</a>  
-        </div><td>
+      <td>
+        <div class="action-buttons">
+          <a onclick="showmatchdetail(<%=@jobid%>,<%=i.skrid%>)" class="red" href="javascript:void(0)"> 
+            <i class="fa fa-external-link"></i>Show Detail
+          </a>  
+        </div>
+      </td>
     </tr>
     <% end %>
   </tbody>
-  <tfoot>
-    <tr>
-      <th >Match Rank</th>
-      <th >Job Seeker </th>
-      <th >Match Score</th>
-      <th></th>
-    </tr>
-  </tfoot>
 </table>
 
                   
