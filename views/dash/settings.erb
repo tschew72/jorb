@@ -148,16 +148,21 @@
   </section> <!-- achievements -->
   
   <section class="Experiences">
-    <header>Experience </header>  
+    <header>Work Experience </header>  
+    <ul class="nav nav-tabs"> 
+      <li class="active"><a data-toggle="tab" href="#skilltab" >Experience</a></li>                  
+    </ul>
+    <div class="tab-content">
       <a href="#addexperiencemodal" data-pk=<%= @user.id %>  data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
-          <div class="btn dark-blue-btn btn-primary">
+          <span class="btn dark-blue-btn btn-primary">
             Add New Job Experience
-          </div>
+          </span>
       </a> <!-- addexperiencemodal -->
       <div id="experienceTable"> 
         <!-- Job Experience table will be loaded in this div -->
-      </div> <!-- jt -->
-  </section>  <!-- experiences -->
+      </div> <!-- experienceTable -->
+    </div> <!--tab-content -->
+  </section>  <!-- Experiences -->
 
   <section class="Competencies">
     <header>Competencies</header>
@@ -170,42 +175,58 @@
 
     <div class="tab-content">
       <div id="skilltab" class="tab-pane active">
-        <div id="skilltable">
+        <div id="skilltable"> <!-- this id is used for x-editable -->
           <a href="#addskillmodal" data-pk=<%= @user.id %> data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
-              <span class="btn dark-blue-btn btn-primary">Add New Skill</span>
-          </a>
-          <div id="st"> <!-- Skill management table will be loaded in this div --></div>
-        </div> <!-- skilltable" -->
+              <span class="btn dark-blue-btn btn-primary">
+                Add New Skill
+              </span>
+          </a> <!-- addskillmodal -->
+          <div id="skillTable"> 
+            <!-- Skill management table will be loaded in this div -->
+          </div> <!-- skillTable -->
+        </div> <!-- skilltable -->
       </div> <!-- skilltab -->
 
       <div id="languagetab" class="tab-pane">
-        <div id="languagetable">
+        <div id="languagetable"> <!-- this id is used for x-editable -->
           <a href="#addlanguagemodal" data-pk=<%= @user.id %> data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
-              <span class="btn dark-blue-btn btn-primary">Add New Language</span>
-          </a>
-          <div id="lt"><!-- Skill management table will be loaded in this div --></div>
+              <span class="btn dark-blue-btn btn-primary">
+                Add New Language
+              </span>
+          </a> <!-- addlanguagemodal -->
+          <div id="languageTable">
+            <!-- Skill management table will be loaded in this div -->
+          </div> <!-- languageTable -->
         </div> <!-- languagetable" -->
       </div> <!-- languagetab -->
 
       <div id="edutab" class="tab-pane">
-        <div id="edutable">
+        <div id="edutable"> <!-- this id is used for x-editable -->
           <a href="#addedumodal" data-pk=<%= @user.id %> data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
-              <span class="btn dark-blue-btn btn-primary">Add New Education</span>
-          </a>
-          <div id="et"><!-- Education management table will be loaded in this div --></div>
-        </div> <!-- edutable" -->
+              <span class="btn dark-blue-btn btn-primary">
+                Add New Education
+              </span>
+          </a> <!-- addedumodal -->
+          <div id="educationTable">
+            <!-- Education management table will be loaded in this div -->
+          </div>
+        </div> <!-- edutable -->
       </div> <!-- edutab -->
 
       <div id="certtab" class="tab-pane">
-        <div id="certtable">
+        <div id="certtable"> <!-- this id is used for x-editable -->
           <a href="#addcertmodal" data-pk=<%= @user.id %> data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
-              <span class="btn dark-blue-btn btn-primary">Add New Certification</span>
-          </a>
-          <div id="ct"><!-- Certificate management table will be loaded in this div --></div>
-        </div> <!-- certtable" -->
-      </div>
+              <span class="btn dark-blue-btn btn-primary">
+                Add New Certification
+              </span>
+          </a> <!-- addcertmodal -->
+          <div id="certificationTable">
+            <!-- Certificate management table will be loaded in this div -->
+          </div> <!-- certificationTable -->
+        </div> <!-- certtable -->
+      </div> <!-- certab -->
 
-    </div> <!-- <div class="tab-content">-->   
+    </div> <!-- tab-content -->   
   </section> <!-- Competencies -->
 </div> <!-- settingsLayout -->
 
@@ -215,14 +236,14 @@
 
   $(document).ready(function(){
 
-  $("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill RequirementTable now... </div>"); 
-  $("#lt").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language RequirementTable now... </div>"); 
-  $("#et").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
-  $("#ct").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
+    $("#skillTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill RequirementTable now... </div>"); 
+    $("#languageTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language RequirementTable now... </div>"); 
+    $("#educationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
+    $("#certificationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
 
-  $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
-  document.getElementById('f1').scrollIntoView()
-  $("#st").load("/table",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+    $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+    document.getElementById('f1').scrollIntoView()
+    $("#skillTable").load("/table",{i: new Date().getTime(), pk: <%=@user.id%>}); 
 
                 //non singaporean and non-PR and active in seeking for job, show it!
               if (<%= @mynations %> != 157 && <%= @mynationtypes %> !=2 && <%= @userprofile.activeseeker %>){
@@ -252,9 +273,6 @@
               if (<%= @userprofile.travelfreq %> ==100){
                 document.getElementById("f4").checked = true;
                }
-
-              // $("#st").load("/table",{i: new Date().getTime()});   //putting the current time as a parameter to overcome IE issue
-              //$("#lt").load("/langtable",{i: new Date().getTime()}); 
 
        $('input[name="date-range-picker"]').daterangepicker({
         timePicker: false,
@@ -470,19 +488,16 @@
 
 <script>
 // ------------ POST LOADING START Loading the respective tables when user click on the tab.--------
-      // $('#skilltabclick').one("click", function() {
-      //     $("#st").load("/table",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
-      // });
       $('#languagetabclick').one("click", function() {
-          $("#lt").load("/langtable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+          $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
       });
 
       $('#edutabclick').one("click", function() {
-          $("#et").load("/edutable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+          $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
       });
 
       $('#certtabclick').one("click", function() {
-          $("#ct").load("/certtable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+          $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
       });
 //-------------------------END OF POST LOADING ------------------------------------
 
@@ -806,7 +821,6 @@
           $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
       }     
  
-
        $('#addexperiencemodal').on('hide.bs.modal', function(e) {   
           $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
@@ -814,16 +828,16 @@
           $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
        $('#addskillmodal').on('hide.bs.modal', function(e) {   
-          $("#st").load("/table",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+          $("#skillTable").load("/table",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
        $('#addedumodal').on('hide.bs.modal', function(e) {   
-          $("#et").load("/edutable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+          $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
        $('#addcertmodal').on('hide.bs.modal', function(e) {   
-          $("#ct").load("/certtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+          $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
        $('#addlanguagemodal').on('hide.bs.modal', function(e) {   
-          $("#lt").load("/langtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+          $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
 
 

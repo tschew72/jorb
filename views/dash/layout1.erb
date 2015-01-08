@@ -706,7 +706,7 @@ $(function(){
                       $('.newskill').editable('setValue', null);  //clear values
                       $('#skillname').editable('option', 'disabled', true);
                       $('#skillrank').editable('option', 'disabled', true);
-                      $("#st").load("/table",{i: new Date().getTime()}); 
+                      $("#skillTable").load("/table",{i: new Date().getTime()}); 
                  }    
              },
              error: function(errors) {
@@ -761,7 +761,7 @@ $(function(){
                       $('#speakskill').editable('option', 'disabled', true);
                       $('#writeskill').editable('option', 'disabled', true);
                       // $("#lt").load("/langtable"); 
-                      $("#lt").load("/langtable",{i: new Date().getTime()});  
+                      $("#languageTable").load("/langtable",{i: new Date().getTime()});  
                  }    
              },
              error: function(errors) {
@@ -815,7 +815,7 @@ $(function(){
                       $('#specialty').editable('option', 'disabled', true);
                       $('#honors').editable('option', 'disabled', true);
                       // $("#lt").load("/langtable");
-                      $("#et").load("/edutable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+                      $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
                  }   
              },
              error: function(errors) {
@@ -867,7 +867,7 @@ $(function(){
                       newAlert("#alert_placeholder-inmodal4",'success', 'New Certification Requirement Added!');
 
                       $('.newcert').editable('setValue', null);  //clear values
-                      $("#ct").load("/certtable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+                      $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
                  }   
              },
              error: function(errors) {
@@ -917,7 +917,7 @@ $(function(){
                       newAlert("#alert_placeholder-inmodal5",'success', 'Experience Added!');
 
                       $('.newjob').editable('setValue', null);  //clear values
-                      $("#jt").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+                      $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
                       // $('#addexperiencemodal').modal("hide");
                  }   
              },
@@ -967,7 +967,7 @@ $(function(){
                       newAlert("#alert_placeholder-inmodal6",'success', 'Expeience Added!');
 
                       $('.editjob').editable('setValue', null);  //clear values
-                      $("#jt").load("/experiencetable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+                      $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
                       $('#editexperiencemodal').modal("hide");
                  }   
              },

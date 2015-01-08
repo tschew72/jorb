@@ -146,14 +146,16 @@ input[type="radio"]{
 }
 
 
+// header -----------------------------------------------------
 header {
-	font-size: 1.2em;
+	font-size: 1.2rem;
 	color: $darkerblue;
 	margin-bottom: 1em;
 	margin-top: 1em;
 }
 
 
+// span, p -----------------------------------------------------
 span, p {
 	font-size: 0.9em;
 	color: #000;
@@ -162,12 +164,134 @@ span, p {
 }
 
 
+
+/*
+ * DataTables framework
+ */
+div.dataTables_wrapper {
+	background-color: #719ba7;
+}
+
+div.dataTables_length {
+	float: left;
+}
+
+div.dataTables_filter {
+	float: right;
+}
+
+div.dataTables_info {
+	padding: 9px 6px 6px 6px;
+	float: left;
+}
+
+div.dataTables_paginate {
+	float: right;
+}
+
+div.dataTables_length,
+div.dataTables_filter,
+div.dataTables_paginate {
+	padding: 6px;
+}
+
+/* Self clearing - http://www.webtoolkit.info/css-clearfix.html */
+.dataTables_wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+html[xmlns] .dataTables_wrapper {
+	display: block;
+}
+ 
+* html .dataTables_wrapper {
+	height: 1%;
+}
+
+
+/*
+ * Table styles
+ */
 table {
-    border-collapse: collapse;
+	width: 100%;
+	clear: both;
 }
 
-table , th, td {
-	border: 1px solid darkgray;
+table td,
+table th {
+	padding: 5px;
+	border: 1px solid #fff;
 }
 
+/* Header cells */
+table thead th {
+	text-align: center;
+	background: #66a9bd;
+}
+
+/* Body cells */
+table tbody th {
+	text-align: left;
+	background: #91c5d4;
+}
+	
+table tbody td {
+	text-align: left;
+	background: #d5eaf0;
+}
+		
+table tbody tr.odd td { 
+	background: #bcd9e1;
+}
+
+/* Footer cells */	
+table tfoot th {
+	background: #b0cc7f;
+	text-align: left;
+}
+	
+table tfoot td {
+	background: #d7e1c5;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+/*
+ * Pagination
+ */
+a.paginate_button,
+a.paginate_active {
+	display: inline-block;
+	background-color: #608995;
+	padding: 2px 6px;
+	margin-left: 2px;
+	cursor: pointer;
+	*cursor: hand;
+}
+
+a.paginate_active {
+	background-color: transparent;
+	border: 1px solid black;
+}
+
+a.paginate_button_disabled {
+	color: #3d6672;
+}
+.paging_full_numbers a:active {
+	outline: none
+}
+.paging_full_numbers a:hover {
+	text-decoration: none;
+}
+
+div.dataTables_paginate span>a {
+	width: 15px;
+	text-align: center;
+}
 

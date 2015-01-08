@@ -1,37 +1,35 @@
 <script>
 $.getScript("/vendor/skrcerttablescript.js");
-
 </script>
 
-<table id="certsettingtable" class="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                   <th class="align-center">Title</th>
-                   <th class="align-center">Certificate #</th>
-                   <th class="align-center">Date of Certification #</th>
-                   <th class="align-center">Next Expiry Date</th>
-                   <th class="align-center"></th>
-                </tr>
-              </thead>
-              <tbody >
-
-                  <% @allcertificates.each do |i| %>                
-                  
-                  <!-- If flag is set to delete, break. and find next record -->
-                  <% if i.skr_certstatus != 0 %>
-                 
-                  <tr>
-                     <td><%= @certmaster.get(i.skr_certtitle).cert %></td>
-                     <td><%= i.skr_certlicense %></td>
-                     <td><%= i.skr_datecertified != nil ? i.skr_datecertified.strftime("%d/%m/%Y") : " "%></td>
-                     <td><%= i.skr_certexpiry != nil ? i.skr_certexpiry.strftime("%d/%m/%Y") : " "  %></td>
-                     <td>
-                       <div class=" action-buttons" style="text-align:center" >
-                        <a onclick="delcert(this, <%=i.skr_cert_id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Remove</a></td>
-                      </div>
-                  </tr>
-
-                 <% end %>
-                  <% end %>
-              </tbody>
-            </table>
+<!-- This table is displayed in /settings.erb under Competencies section --> 
+<table id="certsettingtable" class="hover compact">
+  <thead>
+    <tr>
+      <!-- Choose the fields that you want to add or remove from the table. By default, Certification # and Next Expiry Date are removed from view. Remember to make changes to skredutablescript.js accordingly to reflect the number of columns  -->
+      <th>Title</th>
+      <!-- <th>Cert. #</th> -->
+      <th>Certification Date</th>
+      <!-- <th>Next Expiry Date</th> -->
+      <th></th>
+    </tr>
+  </thead>
+  <tbody >
+    <% @allcertificates.each do |i| %>                
+    <!-- i.skr_certstatus when record is marked as DELETE. Therefore, do not show on table -->
+    <% if i.skr_certstatus != 0 %>
+    <tr>
+      <td><%= @certmaster.get(i.skr_certtitle).cert %></td>
+      <!-- <td><%= i.skr_certlicense %></td> -->
+      <td><%= i.skr_datecertified != nil ? i.skr_datecertified.strftime("%d/%m/%Y") : " "%></td>
+      <!-- <td><%= i.skr_certexpiry != nil ? i.skr_certexpiry.strftime("%d/%m/%Y") : " "  %></td> -->
+      <td>
+        <a onclick="delcert(this, <%=i.skr_cert_id%>)" class="red" href="javascript:void(0)"> 
+          <i class="fa fa-trash-o fa-lg"></i>
+        </a>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
