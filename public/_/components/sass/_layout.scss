@@ -18,6 +18,22 @@ $large	: 75em;
 	@include container;
 	padding: 0 3%;
 
+
+	header {
+		font-size: 1.2em;
+		color: $darkerblue;
+		margin-bottom: 1em;
+		margin-top: 1em;
+	}
+
+	
+	span, p {
+		font-size: 0.9em;
+		color: #000;
+		padding: 0px 0px;
+		margin: 1em;
+	}
+
 //Greeting ---------------------------------------
 	.Greeting {
 		h2 {
@@ -25,7 +41,8 @@ $large	: 75em;
 		}
 	}
 
-//jobMatches
+
+//jobMatches --------------------------------------
 	.jobMatches {
 		margin-top: .2em;
 		@include breakpoint($medium) {
@@ -115,9 +132,7 @@ $large	: 75em;
 			} //h1
 			padding-right: 5px;
 			margin-right: 5px;
-
 		} //medium layout
-
 	} // Experiences
 
 	.Competencies {
