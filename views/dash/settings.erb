@@ -143,10 +143,7 @@
   <section class="Achievements">
     <header>Achievements</header>
     <p> List all your major achievements below:
-      <br>
-      <div>
       <a class="ec inputText" href="javascript:void(0)" data-type="wysihtml5" data-pk="<%=@myachievements.skr_achieve_id %>" data-url="/updateachievement" data-title="Enter achievements"><%= @myachievements.achievement != '' ? @myachievements.achievement : "[Optional] Enter your achievement here"%> </a>
-      </div>
     </p>
   </section> <!-- achievements -->
   
@@ -156,10 +153,10 @@
           <div class="btn dark-blue-btn btn-primary">
             Add New Job Experience
           </div>
-      </a>
-      <div id="jt"> 
+      </a> <!-- addexperiencemodal -->
+      <div id="experienceTable"> 
         <!-- Job Experience table will be loaded in this div -->
-      </div>
+      </div> <!-- jt -->
   </section>  <!-- experiences -->
 
   <section class="Competencies">
@@ -223,7 +220,7 @@
   $("#et").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
   $("#ct").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
 
-  $("#jt").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+  $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
   document.getElementById('f1').scrollIntoView()
   $("#st").load("/table",{i: new Date().getTime(), pk: <%=@user.id%>}); 
 
@@ -811,10 +808,10 @@
  
 
        $('#addexperiencemodal').on('hide.bs.modal', function(e) {   
-          $("#jt").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+          $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
        $('#editexperiencemodal').on('hide.bs.modal', function(e) {   
-          $("#jt").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+          $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
       });
        $('#addskillmodal').on('hide.bs.modal', function(e) {   
           $("#st").load("/table",{i: new Date().getTime(), pk: <%= @user.id %>}); 

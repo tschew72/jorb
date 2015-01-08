@@ -2,39 +2,44 @@
 $.getScript("/vendor/experiencetablescript.js");
 
 </script>
-<!-- This table is displayed in /settings.erb--> 
-<table id="experiencesettingtable" class="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                   <!-- <th class="align-center">Job Title</th> -->
-                   <th class="align-center">Position</th>
-                   <th class="align-center">Company</th>
-                   <th class="align-center">Start Date</th>
-                   <th class="align-center">End Date</th>
-                   <th class="align-center"></th>
-                   <th class="align-center"></th>
-                </tr>
-              </thead>
-              <tbody >
-                          <% @allexperiences.each do |i| %>
-                  
-                  <!-- If flag is set to delete, break. and find next record -->
-                  <% if i.skr_empstatus != 0 %>
-                 
-                  <tr>
-                     <td><%= i.skr_emp_actualtitle %></td>
-                     <td><%= i.skr_emp_company %></td> 
-                     <td><%= i.skr_emp_start != nil ? i.skr_emp_start.strftime("%d/%m/%Y") : " " %></td>
-                     <td><%= i.skr_emp_end != nil ? i.skr_emp_end.strftime("%d/%m/%Y") : " "%></td>
-                     <td>
-                       <div class=" action-buttons" style="text-align:center" >
-                        <a href="#editexperiencemodal" data-jobid="<%=i.skr_emp_id%>" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">Edit</a></div></td> 
-                     <td>
-                       <div class=" action-buttons" style="text-align:center" >
-                        <a onclick="delexp(this, <%=i.skr_emp_id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Remove</a></div></td>
-                      
-                  </tr>
-                 <% end %>
-                  <% end %>
-              </tbody>
-            </table>
+<!-- This table is displayed in /settings.erb under Experiences section --> 
+<!-- class="table table-striped table-bordered table-hover" -->
+<table id="experiencesettingtable" >
+  <thead>
+    <tr>
+      <th class="align-center">Position</th>
+      <th class="align-center">Company</th>
+      <th class="align-center">Start</th>
+      <th class="align-center">End</th>
+      <th class="align-center"></th>
+      <th class="align-center"></th>
+    </tr>
+  </thead>
+  <tbody >
+      <% @allexperiences.each do |i| %>
+      <!-- skr_empstatus = - when record is marked as DELETE. Therefore, do not show on table -->
+      <% if i.skr_empstatus != 0 %>
+      <tr>
+        <td><%= i.skr_emp_actualtitle %></td>
+        <td><%= i.skr_emp_company %></td> 
+        <td><%= i.skr_emp_start != nil ? i.skr_emp_start.strftime("%d/%m/%Y") : " " %></td>
+        <td><%= i.skr_emp_end != nil ? i.skr_emp_end.strftime("%d/%m/%Y") : " "%></td>
+        <td>
+          <div class=" action-buttons" style="text-align:center" >
+            <a href="#editexperiencemodal" data-jobid="<%=i.skr_emp_id%>" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
+              <i class="fa fa-pencil fa-lg"></i>
+            </a>
+          </div>
+        </td> 
+        <td>
+          <div class=" action-buttons" style="text-align:center" >
+            <a onclick="delexp(this, <%=i.skr_emp_id%>)" class="red" href="javascript:void(0)"> 
+              <i class="fa fa-trash-o fa-lg"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+     <% end %>
+     <% end %>
+  </tbody>
+</table>

@@ -13,6 +13,7 @@ gem 'newrelic_rpm'
 gem 'dm-validations'
 gem 'dm-chunked_query'
 gem 'unicorn-worker-killer'
+gem 'bootstrap-sass'
 
 group :development do
 	gem 'thin'

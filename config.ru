@@ -7,6 +7,7 @@ require 'newrelic_rpm'
 require 'digest/sha1'
 require 'dm-chunked_query'
 
+
 # Unicorn self-process killer
 require 'unicorn/worker_killer'
 
