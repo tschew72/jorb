@@ -231,6 +231,275 @@
 </div> <!-- settingsLayout -->
 
 
+
+
+   <!-- This is where the modals are defined -->
+   <!-- Modals must be defined just before </body> -->
+  <div class="modal fade" id="addskillmodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add new skill</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal"></div>
+  <br><br>
+  <table id="skilltab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td width="20%">Skill category</td> <!--TSCHEW-->
+  <td width="50%">
+  <a href="#" class="newskill" data-emptytext="Select..." data-type="select" id="skillcat" data-name="id"  data-original-title="Select skill category"></a></td>
+  </tr>
+  <tr>      
+  <td width="20%">Skill name</td>
+  <td width="50%"><a href="#" class="newskill" id="skillname"  data-emptytext="Select..." data-type="select" data-name="skillid" data-original-title="Select skill"></a></td>
+  </tr>
+  <tr>      
+  <td width="20%">Skill rank</td>
+  <td width="50%"><a href="#" class="newskill" id="skillrank" data-emptytext="Select..." data-type="select" data-name="skillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveskill-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Skill and Add New</i></button>
+  </div>  
+
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+  <div class="modal fade" id="addlanguagemodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add new language</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal2"></div>
+  <br><br>
+  <table id="languagetab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td>Language</td>
+  <td width="60%"><a href="#" class="newlang" id="lang"  data-emptytext="Select..." data-type="select" data-name="skr_lang" data-original-title="Select language"></a></td>
+  </tr>
+  <tr>      
+  <td>Spoken skill level</td>
+  <td width="20%"><a href="#" class="newlang" id="speakskill" data-emptytext="Select..." data-type="select" data-name="skr_lang_speakskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  <tr>      
+  <td>Written skill level</td>
+  <td width="20%"><a href="#" class="newlang" id="writeskill" data-emptytext="Select..." data-type="select" data-name="skr_lang_writeskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="savelanguage-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Language and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+  <div class="modal fade" id="addedumodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Education </h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal3"></div>
+  <br><br>
+  <table id="edutab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td>Title</td>
+  <td width="60%"><a href="#" class="newedu" id="skr_unititle"  data-emptytext="Select..." data-type="select" data-name="skr_unititle" data-original-title="Select Title"></a></td>
+  </tr>
+   <tr>      
+  <td>Institutions</td>
+  <td width="60%"><a href="#" class="newedu" id="skr_university"  data-emptytext="Select..." data-type="select" data-name="skr_university" data-original-title="Select Institutions"></a></td>
+  </tr>
+  <tr>      
+  <td>Specialty</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_specialty" data-emptytext="Select..." data-type="select" data-name="skr_specialty" data-original-title="Select Specialty"></a></td>
+  </tr>  
+  <tr>      
+  <td>Honors</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_honours" data-emptytext="Select..." data-type="select" data-name="skr_honours" data-original-title="Select Honors"></a></td>
+  </tr>  
+  <tr>      
+  <td>Start Date</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_unistart" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_unistart" data-original-title="Enter Start Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>End Date</td>
+  <td width="20%"><a href="#" class="newedu" id="skr_uniend" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_uniend" data-original-title="Enter End Date"></a></td>
+  </tr>  
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveedu-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Education and Add New</i></button>
+  <br><br><br>
+  Can't find the education type in the list? <button class="btn smaller-90 btn-error"><i class="icon-wrench">Let us know!</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+  <div class="modal fade" id="addcertmodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Certification </h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal4"></div>
+  <br><br>
+  <table id="certtab" class="table table-bordered table-striped">
+  <tbody>
+
+  <tr>      
+  <td>Certificate Name</td>
+  <td width="60%"><a href="#" class="newcert" id="skr_certtitle"  data-emptytext="Select..." data-type="select" data-name="skr_certtitle" data-original-title="Select Title"></a></td>
+  </tr>
+
+  <tr>      
+  <td>Certificate #</td>
+  <td width="60%"><a href="#" class="newcert" id="skr_certlicense"  data-emptytext="Enter..." data-type="text" data-name="skr_certlicense" data-original-title="Enter certificate #"></a></td>
+  </tr>
+
+  <tr>      
+  <td style="position: relative;">When did you get certified?</td>
+  <td width="20%"><a href="#" class="newcert" id="skr_datecertified" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_datecertified" data-original-title="Enter Date of certification"></a></td>
+  </tr>  
+
+  <tr>      
+  <td style="position: relative;">Expiry Date</td>
+  <td width="20%"><a href="#" class="newcert" id="skr_certexpiry" data-emptytext="Select..." data-placement="right" data-type="date" data-name="skr_certexpiry" data-original-title="Enter Expiry Date"></a></td>
+  </tr>  
+
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="savecert-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Certification and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <div class="modal fade" id="addexperiencemodal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Job Experience</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body">   
+  <div id = "alert_placeholder-inmodal5"></div>
+  <br><br>
+  <table id="exptab" class="table table-bordered table-striped">
+  <tbody>
+  <tr>      
+  <td>Position</td>
+  <td><a href="#" class="newjob" id="skr_emp_title"  data-emptytext="Select..." data-type="select" data-name="skr_emp_title" data-original-title="Select Position"></a></td>
+  </tr>
+  <tr>      
+  <td>Actual Job Title</td>
+  <td><a href="#" class="newjob" id="skr_emp_actualtitle"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_actualtitle" data-original-title="Enter Actual Job Title"></a></td>
+  </tr>
+  <tr>      
+  <td>Company</td>
+  <td><a href="#" class="newjob" id="skr_emp_company"  data-emptytext="Enter..." data-type="text" data-name="skr_emp_company" data-original-title="Enter Company Name"></a></td>
+  </tr>
+   <tr>      
+  <td>Industry</td>
+  <td><a href="#" class="newjob" id="skr_emp_industry"  data-emptytext="Select..." data-type="select" data-name="skr_emp_industry" data-original-title="Select Industry"></a></td>
+  </tr>
+  <tr>      
+  <td>Job Location</td>
+  <td><a href="#" class="newjob" id="skr_emp_location" data-emptytext="Select..." data-type="select" data-name="skr_emp_location" data-original-title="Select Job Location"></a></td>
+  </tr>  
+  <tr>      
+  <td>Job Function</td>
+  <td><a href="#" class="newjob" id="skr_emp_function" data-emptytext="Select..." data-type="select" data-name="skr_emp_function" data-original-title="Select Job Function"></a></td>
+  </tr>  
+  <tr>      
+  <td>Is this your Current Job?</td>
+  <td>  
+    <input type="checkbox" name="currentjob" id="currentjobcheck" unchecked> <label for="currentjobcheck"></label>
+    <a href="#" class="newjob" id="skr_emp_currentjob" data-emptytext="Select..." data-type="select" data-name="skr_emp_currentjob"></a></td>
+  </tr>  
+  <tr>      
+  <td>Start Date</td>
+  <td><a href="#" class="newjob" id="skr_emp_start" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_start" data-original-title="Enter Start Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>End Date</td>
+  <td><a href="#" class="newjob" id="skr_emp_end" data-emptytext="Select..." data-type="date" data-placement="right" data-name="skr_emp_end" data-original-title="Enter End Date"></a></td>
+  </tr>  
+  <tr>      
+  <td>Description</td>
+  <td><a class="newjob" href="javascript:void(0)" id="skr_emp_desc" data-name="skr_emp_desc" data-type="wysihtml5"  data-title="Enter Job Description"></a></td>
+  </tr> 
+  </tbody>
+  </table>
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveexperience-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Job Experience and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <div class="modal fade" id="editexperiencemodal" >
+  <div class="modal-dialog modal-lg" >
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Edit Job Experience</h4>                                                            
+  </div> <!-- "modal-header" -->
+  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
+  <div id = "alert_placeholder-inmodal6"></div>
+   <div id="editexpbody"></div>
+
+  </div> <!-- "modal-body" -->
+  <div class="modal-footer">
+  <div class="align-center">
+  <button id="saveexperience-btn2" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Job Experience and Add New</i></button>
+  </div>  
+  </div> <!-- footer -->
+  </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+  </div><!-- modal  --> 
+
+
+
+  <!-- End of Modals definition -->      
                    
   <script>
 
