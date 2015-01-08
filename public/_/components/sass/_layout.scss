@@ -255,6 +255,26 @@ $large	: 75em;
 	@include container;
 	padding: 0 3%;
 
+	.Profile {
+		@include breakpoint($medium) {
+			 @include span(6 of 12);
+			font-size : 1.0rem;
+		} //medium layout
+
+	}
+	.contactInfo {
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+			font-size : 1.0rem;
+		} //medium layout
+	}
+	
+	.socialMedia {
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+			font-size : 1.0rem;
+		} //medium layout
+	}
 }
 
 //header ----------------------------------------
