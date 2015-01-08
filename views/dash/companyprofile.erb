@@ -232,10 +232,53 @@
   </div> <!-- tab-content -->
 </div> <!-- companyProfileLayout-->
 
-        
+
+<div class="modal fade" id="addnewcoyusermodal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
+        <h4 class="modal-title">Add New Company User </h4>                                                            
+      </div> <!-- "modal-header" -->
+      <div class="modal-body">   
+        <div id="alert_newcoyuser"> </div>     
+        <p>
+          First Name<sup>*</sup> :
+          <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_firstname" data-name="firstname" data-type="text" data-title="Enter First Name" data-emptytext="--">  </a>
+        </p>
+        <p>  
+          Middle Name : 
+          <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_middlename" data-name="middlename" data-type="text" data-title="Enter Middle Name" data-emptytext="--"> </a>
+        </p>
+        <p>
+          Last Name<sup>*</sup> : 
+          <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_surname" data-name="lastname" data-type="text"  data-title="Enter Last Name" data-emptytext="--">  </a>
+        </p>
+          Email<sup>*</sup> : 
+          <a class="newcoyuser inputText" href="javascript:void(0)"  id="c_email" data-name="email" data-type="text"  data-title="Enter Email " data-emptytext="--">  </a>
+        </p>
+        <p>
+          Contact Number<sup>*</sup> :
+          <a class="newcoyuser" href="javascript:void(0)"  id="c_contactnumber" data-name="contactnumber" data-type="text"  data-title="Enter Contact Number " data-emptytext="--">  </a>
+        </p>
+        <p>
+          Password<sup>*</sup> :
+          <a class="newcoyuser" href="javascript:void(0)"  id="c_password" data-name="password" data-type="text"  data-title="Enter Password " data-emptytext="--">  </a>
+        </p>
+      </div> <!-- "modal-body" -->
+      <div class="modal-footer">
+        <button id="savecoyuser-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Create User Now</i> </button>
+      </div> <!-- footer -->
+    </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- addnewcoyusermodal  --> 
+
+
+  
+
+
 
 <script type="text/javascript">
-
 
 $(document).ready(function(){
 
