@@ -49,29 +49,27 @@ h3{
 }
 
 
-a {
-	color: #3b8dbd;
-	text-decoration: none;
-}
+// a {
+// 	color: #3b8dbd;
+// 	text-decoration: none;
+// }
 
-a:hover,
-a:focus {
-	color: #3e6f82;
-	text-decoration: underline;
-}
+// a:hover,
+// a:focus {
+// 	color: #3e6f82;
+// 	text-decoration: underline;
+// }
 
 p , span, .datepicker{
 	margin-bottom: 10px;
 	font-size: 0.9em;
-
 }
 
 .datePicker{
 	margin-left:5px;
 }
 
-
-
+// inputText, input["text"] ------------------------------------
 a.inputText, input[type="text"] {
     display: block;
     border: none;
@@ -88,12 +86,6 @@ a.inputText, input[type="text"] {
 	background: -moz-linear-gradient(top, #FFF, #EAEAEA);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #FFF), color-stop(1.0, #EAEAEA));
 }
-
-.small{
-	font-size: 0.8em;
-	color:$blue;
-}
-
 
 // Checkbox ---------------------------------------------
 
@@ -134,6 +126,7 @@ input[type="checkbox"]:checked + label:after {
   color: #99a1a7;
 }
 
+// Radio button -----------------------------------------
 input[type="radio"]{
   border: 0px;
   width: 25px;

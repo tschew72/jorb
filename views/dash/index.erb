@@ -1,33 +1,24 @@
-﻿<div class="layout"> 
-  <div id="Greeting">
-    <h2>Welcome back, <%=@user.firstname%> <%=@user.middlename%> <%=@user.lastname%></h2>
-  </div> <!--greeting -->
-    
+﻿<div class="seekerIndexlayout"> 
+  <header>Welcome back, <%=@user.firstname%> <%=@user.middlename%> <%=@user.lastname%></header>
   <section class="jobMatches">
-    <h2>Your Job Matches</h2>
-    <div id="tab1"> </div>  
-  </section> <!--jobmatches -->
+    <header>Your Job Matches</header>
+      <div id="jobMatchTable"> </div>  
+  </section> <!--jobMatches -->
 
-  <section class="Insights">
-    <h2>Insights<small>Job Matching Detail</small></h2>
-    <div id="matchdetail"></div> 
-  </section> <!--insights -->
+  <section class="matchDetail">
+    <header>Why you are matched</header>
+    <div id="matchDetail"></div> 
+  </section> <!--matchDetail -->
 </div> <!--layout -->
 
 <script type="text/javascript">
   $(document).ready(function(){
-      // document.getElementById('jobposting').scrollIntoView() ;  
+    $("#jobMatchTable").load("/jobmatchtable",{i: new Date().getTime()}); 
+  }); //function()
 
-      $("#tab1").load("/jobmatchtable",{i: new Date().getTime()}); 
-  });
-
-  function showmatchdetail(i,j){
-          
-   // $("#top5matches").load("/top5matchestable&pk=".concat(i.toString())); 
-   $("#matchdetail").load("/jobmatchdetail",{ pk: i ,skrid: j}, function(){window.location.hash = '#matchdetail'; });
-                 
-  };//function
-
+  function showMatchDetail(i,j){
+    $("#matchDetail").load("/jobmatchdetail",{ pk: i ,skrid: j}, function(){window.location.hash = '#matchDetail'; }); 
+  };//showmatchdetail
 </script>
 
 

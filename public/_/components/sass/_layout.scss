@@ -18,15 +18,6 @@ $large	: 75em;
 	@include container;
 	padding: 0 3%;
 
-
-//Greeting ---------------------------------------
-	.Greeting {
-		h2 {
-			color: $gray;
-		}
-	}
-
-
 //jobMatches --------------------------------------
 	.jobMatches {
 		margin-top: .2em;
@@ -135,7 +126,7 @@ $large	: 75em;
 
 } //settingsLayout
 
-//cvLayout ---------------------------------------
+//profileLayout ---------------------------------------
 .profileLayout {
 	@include container;
 	padding: 0 3%;
@@ -157,6 +148,25 @@ $large	: 75em;
 			h2 {
 				color: $orange;
 			} //h1
+		} //medium layout
+	}
+}
+
+//seekerIndexlayout (index.erb) ---------------------------------------
+.seekerIndexlayout {
+	@include container;
+	padding: 0 3%;
+	font-size: 0.8em;
+	.jobMatches{
+		@include breakpoint($medium) {
+			 @include span(6 of 12);
+
+		} //medium layout
+	}
+	.matchDetail{
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+
 		} //medium layout
 	}
 }

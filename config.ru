@@ -165,7 +165,6 @@ post '/jobmatchdetail' do
    cmd3 = "select * from jobmatch_skrdetail(" + @jobid + "," + @skrid +")" 
    @skrdetail=repository(:default).adapter.select(cmd3)
    erb :jobmatchdetail, :layout => false
-
 end
 
 post '/matchdetail' do  
@@ -176,15 +175,12 @@ post '/matchdetail' do
    @skrdetail_pers=repository(:default).adapter.select(cmd2)   
    cmd3 = "select * from jobmatch_skrdetail(" + @jobid + "," + @skrid +")" 
    @skrdetail=repository(:default).adapter.select(cmd3)
-   
    erb :matchdetail, :layout => false
-
 end
 
 post '/jobdetail' do
    @jobid = params["pk"]
    @job = TmeJobMain.get(@jobid)
-
    if @job.job_nationality != nil
     @nationalitymaster = TmeListCountry.all(:country_id => @job.job_nationality).first.country
    end
