@@ -5,8 +5,8 @@ $.getScript("/vendor/jobmatchtablescript.js");
 <table id="jobmatchtable" class="hover compact">
   <thead>
     <tr>
-       <th>Job Match Rank</th>
-       <th>Job ID</th>
+       <th>Rank</th>
+       <!-- <th>Job ID</th> -->
        <th>Job Function</th>
        <th>Company</th>
        <th>Score</th>
@@ -17,7 +17,7 @@ $.getScript("/vendor/jobmatchtablescript.js");
     <% @jobmatches.each do |i| %>
     <tr>
        <td><%= i.rank %></td>
-       <td><%= i.jobid %> </td>
+       <!-- <td><%= i.jobid %> </td> -->
        <td><%= i.jobfunc %> </td>
        <td><%= i.company %> </td>
        <td><%= i.score %> </td>
