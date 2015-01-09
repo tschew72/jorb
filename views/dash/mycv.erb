@@ -1,28 +1,26 @@
-
-
 <div class="cvLayout">
 	<section class="Main">
 		<header>
-			<h1 class="page-title"><%=@user.firstname %> <%=@user.middlename %> <%=@user.lastname %></h1>
-						
+			<%=@user.firstname %> <%=@user.middlename %> <%=@user.lastname %>
 		</header>
 
-		<div class="Avatar">
-			<img src= <%= @user.pictureurl %> alt="Photo" />
-		</div>
-
+		<div class="avatar-frame">
+          <img alt="Avatar" src=<%= @user.pictureurl %> />
+        </div>
 
 		<aside class="Detail">
-			<h2>Detail</h2>
+			<header>Particulars</header>
 			<ul>	
 				<li><span> Age: <%=@userprofile.age %> </span></li>
-				<li><span> <%=@cmaster.get(@mynations).country %></span></li>
+				<li><span> Nationality: <%=@cmaster.get(@mynations).country %></span></li>
+				<li><span> Mobile #: </span></li>
+				<li><span> Email Address:</span></li>
 			</ul>
 		</aside>	
 	</section>
 
 	<section class="Skills">
-		<h2>My skills</h2>
+		<header>My skills</header>
 		<% @allskills.each do |i| %>
 			<!-- If rank = 1, job-tag = job-tag1  TO BE DONE! also check for top 20 skills. list the expert first followed by others-->
 			<% if @allskills.get(i).status != 0 %>
@@ -34,7 +32,7 @@
 
 
 	<section class="Achievements">
-		<h2>Achievements</h2>
+		<header>Achievements</header>
 		<dl>
 		<% @allachievements.each do |i| %>
 			<dd>
@@ -45,7 +43,7 @@
 	</section>
 
 	<section class="Experiences">
-		<h2>Experience</h2>
+		<header>Experience</header>
 		<dl>
 			<% @alljobs.each do |i| %>
 				<% if i.skr_empstatus != 0  %>
@@ -63,7 +61,7 @@
 	</section>
 
 	<section class="Education">
-		<h2>Education</h2>
+		<header>Education</header>
 			<dl>
 				<% @alledu.each do |i| %>
 				 <% if i.skr_edustatus != 0 %>
