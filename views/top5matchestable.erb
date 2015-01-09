@@ -13,10 +13,9 @@
   <tbody> 
     <% @top5matches.each do |i| %>
     <tr>
-      <td><span class="text-center"><span class="num"><%= i.skrrank %></span></span></td> 
-      
-      <td><span class="text-center"> <%= i.skrid %></span></td>
-      <td><span class="text-center"> <%= i.score %></span></td>
+      <td><%= i.skrrank %></td> 
+      <td><%= i.skrid %></td>
+      <td><%= i.score %></td>
       <td>
         <div class="action-buttons">
           <a onclick="showmatchdetail(<%=@jobid%>,<%=i.skrid%>)" class="red" href="javascript:void(0)"> 

@@ -140,7 +140,25 @@ $large	: 75em;
 	@include container;
 	padding: 0 3%;
 
+	.contactInformation {
+		@include breakpoint($medium) {
+			 @include span(6 of 12);
+			font-size : 0.8rem;
+			h2 {
+				color: $orange;
+			} //h1
+		} //medium layout
+	}
 
+	.socialNetwork {
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+			font-size : 0.8rem;
+			h2 {
+				color: $orange;
+			} //h1
+		} //medium layout
+	}
 }
 
 //cvLayout ---------------------------------------

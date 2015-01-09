@@ -81,7 +81,7 @@ a.inputText, input[type="text"] {
     box-shadow:
         inset 0 2px 0 rgba(0,0,0,.2),
         0 0 4px rgba(0,0,0,0.1);
-    width:auto;
+    width:80%;
     line-height: 1.5em;
     border-bottom: none !important;
 	background-color: #EAEAEA;
@@ -165,9 +165,8 @@ span, p {
 
 
 
-/*
- * DataTables framework
- */
+
+ // DataTables framework ---------------------------------------
 div.dataTables_wrapper {
 	background-color: #719ba7;
 }
@@ -295,3 +294,4 @@ div.dataTables_paginate span>a {
 	text-align: center;
 }
 
+//------------------------------------------------

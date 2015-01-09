@@ -15,53 +15,47 @@
   <div class="tab-content">
     <div id="edit-basic" class="tab-pane in active">
       <section class="Profile">
-        <h2>Profile</h2>    
-        <img id="avatar" class="pixgrid" alt="Avatar" src=<%= @user.pictureurl %> />
+        <header>Profile</header>    
+        <div class="avatar-frame">
+          <img alt="Avatar" src=<%= @user.pictureurl %> />
+        </div>
         <script src='/vendor/jqueryfileupload/js/vendor/jquery.ui.widget.js' type='text/javascript'></script>
         <script src='/vendor/jqueryfileupload/js/jquery.iframe-transport.js' type='text/javascript'></script>
         <script src='/vendor/jqueryfileupload/js/jquery.fileupload.js' type='text/javascript'></script>
         <script src='/vendor/jqueryfileupload/js/jquery.fileupload-process.js' type='text/javascript'></script>
         <script src='/vendor/jqueryfileupload/js/jquery.fileupload-validate.js' type='text/javascript'></script>
         <script src='/vendor/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
-        <script type="text/javascript">
+        <script>
           $.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'});
         </script>
-        <span style="position:relative; font-size:0.7em; left:20px; top:5px" class="btn dark-blue-btn btn-primary fileinput-button">
-          <div id="uploadprogress"><i class="glyphicon glyphicon-plus"></i> <span>Upload Picture</span></div>
+        <span class="btn dark-blue-btn btn-primary fileinput-button">
+          <div id="uploadprogress">
+            <i class="glyphicon glyphicon-plus"></i> 
+            Upload Picture
+          </div> <!-- uploadprogress -->
           <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" >
-        </span>
-        <script type="text/javascript">
+        </span> <!-- fileinput-button -->
+        <script>
           $(function(){
-              // var opts=<%= @cloudinaryjson %>;
-             
-          $('#fileupload').fileupload({
-            add: function (e, data) {
-                $.getJSON('/filer', { userid: <%= @user.id %>}, function (result) {
-                    data.formData = result; // e.g. {id: 123}
-                    data.submit();
-                }).fail( function(d, textStatus, error) {
-                    console.error("Upload failed, Please refresh this page and try again. Status: " + textStatus + ", error: "+error)
-                });
-            },
-            url: "https://api.cloudinary.com/v1_1/dashy/upload",
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-            // The maximum allowed file size in bytes:
-            maxFileSize: 10000000, // 10 MB
-            // The minimum allowed file size in bytes:
-            minFileSize: 1, // No minimal file size
-            // The limit of files to be uploaded:
-            maxNumberOfFiles: 10
-          })
-            // .on('fileuploadfail', function (e, data) {
-            // var currentFile = data.files[data.index];
-            // if (data.files.error && currentFile.error) {
-            //   // there was an error, do something about it
-            //   // newAlert("#alert_placeholder-tab",'danger', currentFile.error);
-           
-            // }
-            // });
-
-          });
+            $('#fileupload').fileupload({
+              add: function (e, data) {
+                  $.getJSON('/filer', { userid: <%= @user.id %>}, function (result) {
+                      data.formData = result; // e.g. {id: 123}
+                      data.submit();
+                  }).fail( function(d, textStatus, error) {
+                      console.error("Upload failed, Please refresh this page and try again. Status: " + textStatus + ", error: "+error)
+                  });
+              },
+              url: "https://api.cloudinary.com/v1_1/dashy/upload",
+              acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+              // The maximum allowed file size in bytes:
+              maxFileSize: 10000000, // 10 MB
+              // The minimum allowed file size in bytes:
+              minFileSize: 1, // No minimal file size
+              // The limit of files to be uploaded:
+              maxNumberOfFiles: 10
+            }) //fileupload
+          }); //function()
 
           $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) { 
 
@@ -71,8 +65,8 @@
                 data: {"picurl": data.result.url, "pk" : <%=@user.id %>},
                 success: function(response){
                  
-                  tt = "<img id='avatar' class='img-responsive' src=".concat(data.result.url," />");
-                  $('#pic').html(tt);  //to refresh this page picture
+                  tt = "<img id='avatar' src=".concat(data.result.url," />");
+                  $('.avatar-frame').html(tt);  //to refresh this page picture
                   $("#uploadprog").html("Uploading is complete!");
                   $('#uploadprog').fadeOut(3000, function() {
                     $(this).remove();
@@ -87,19 +81,18 @@
           $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
             $("#uploadprogress").html("<div id='uploadprog'> <i class='fa fa-spinner fa-spin'></i>Uploading in progress</div> </div>");
           });
+
           $('.cloudinary-fileupload').bind('fileuploadstop', function(e, data) {
             $('.progress').attr({
               style : "visibility:hidden",
             });
-           
           });
 
           $('.cloudinary-fileupload').bind('fileuploadfail', function(e, data) {
             alert(data.files[0].error);
-           
           });
         </script>     
-        <br><br><br>
+
         <p>First Name:
           <a class="inputText"  href="javascript:void(0)" id="firstname" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter first name"><%= @user.firstname %></a>
         </p>
@@ -135,11 +128,10 @@
           <input type="text" value="<%= @userprofile.dob != nil ? @userprofile.dob.strftime("%d/%m/%Y") : "" %>" class="datePicker" name="date-range-picker1" readonly="true">
           <span id="saving_date"></span>
         </p>
-
       </section> <!-- Profile -->
                          
       <section class="contactInformation">
-        <h2>Contact Information</h2>
+        <header>Contact Information</header>
         <p>Mobile #:
           <a class="inputText" href="javascript:void(0)"  id="contactnumber" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter mobile number"><%= @user.contactnumber %> </a>
         </p> 
@@ -151,9 +143,9 @@
         <p>Email:
           <a class="inputText" href="javascript:void(0)"  id="email" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter email address"><%= @user.email %> </a>
         </p>
-
-        <h2>Social Network</h2>
-       
+      </section> <!-- contactInformation -->
+      <section class="socialNetwork">
+        <header>Social Network</header>   
         <p>LinkedIn:
           <a class="inputText" href="javascript:void(0)"  id="linkedin" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatelinkedin" data-title="Enter LinkedIn address"><%= @linkedin%>   </a>
         </p>
@@ -164,7 +156,7 @@
         <p>Twitter:        
           <a class="inputText" href="javascript:void(0)"  id="twitter" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatetwitter" data-title="Enter Twitter address"><%= @twitter%>   </a>
         </p>
-      </section>
+      </section> <!-- socialNetwork -->
                        
     </div> <!-- <div id="edit-basic" class="tab-pane in active"> -->
 

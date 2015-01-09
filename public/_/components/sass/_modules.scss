@@ -31,21 +31,14 @@ display:block;
 
 
 
-// Speakers ---------------------------------------------
-.speakers {
-  .artist {
-    @include clearfix;
-
-    h3 {
-      padding-top: 10px;
-      padding-bottom: 5px;
-      border-bottom: 1px dotted $lightgray;
-      margin-bottom: 5px;
-    } //h3
-
-    
-  } // artist
-} //speakers
+// Profile ---------------------------------------------
+.Profile {
+  .fileinput-button {
+    margin-top:0px;
+    margin-left:0px;
+    font-size: 0.6em;
+  } // fileinput-button
+} //Profile
 
 // next meeting ---------------------------------------------
 #greeting {
@@ -93,6 +86,14 @@ display:block;
 } // pixgrid
 
 
+// avatar-frame ---------------------------------------------
+.avatar-frame{border: 2px solid #c7b89e;}
+.avatar-frame, .avatar-frame img{
+  @include clearfix;
+  @include border-radius;
+  max-width:110px;
+  height: 110px;
+  }
 
 
 // Achievements ---------------------------------------------
