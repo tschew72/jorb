@@ -102,7 +102,7 @@ $large	: 75em;
 	.Experiences {
 		@include breakpoint($medium) {
 			 @include span(6 of 12);
-			font-size : 0.8em;
+			font-size : 0.7em;
 			h2 {
 				color: $orange;
 			} //h1
@@ -114,7 +114,7 @@ $large	: 75em;
 	.Competencies {
 		@include breakpoint($medium) {
 			 @include span(6 omega of 12);
-			font-size : 0.8rem;
+			font-size : 0.7rem;
 			h2 {
 				color: $orange;
 			} //h1
