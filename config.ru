@@ -966,7 +966,6 @@ post '/getexperience' do
 end
 
 post '/getcvskill' do
-        #user = env['warden'].user
         user = User.get(params["pk"])
         userprofile = user.tme_skr_main
         @allskills =   userprofile.skill_summaries.all(:order => [ :skillrank.desc ], :status.gt =>0)

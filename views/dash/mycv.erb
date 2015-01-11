@@ -24,10 +24,15 @@
 		<% @allskills.each do |i| %>
 			<!-- If rank = 1, job-tag = job-tag1  TO BE DONE! also check for top 20 skills. list the expert first followed by others-->
 			<% if @allskills.get(i).status != 0 %>
-					<%= @ssmaster.get(i.skillid).skill_name %> 
+					<%= @ssmaster.get(i.skillid).skill_name %>,
 			<%end%>
 		<% end %>
-		<a href="#seemorecvskillmodal" data-userid="<%=@userprofile.id%>" data-toggle="modal" role="button">See more...</a>
+		... 
+		<a href="#cvSkillModal" data-userid="<%=@userprofile.id%>" data-toggle="modal" role="button">
+              <div class="btn dark-blue-btn btn-primary">
+                See more skills
+              </div>
+        </a> <!-- cvSkillModal -->
 	</section>
 
 
@@ -81,3 +86,33 @@
 
 </div>
 
+
+
+<div class="modal fade" id="cvSkillModal" >
+	<div class="modal-dialog">
+    	<div class="modal-content">
+	      	<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<header>All My Skills</header>
+			</div> <!-- modal-header -->
+			<div class="modal-body">   
+				<div id="cvSkillModalBody"></div>
+			</div> <!-- modal-body -->
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			</div>
+    	</div> <!-- modal-content -->
+	</div><!-- modal-dialog -->
+</div><!-- addskillmodal  --> 
+
+
+
+<script>
+	      //triggered when modal is about to be shown
+      $('#cvSkillModal').on('shown.bs.modal', function(e) {
+
+          //get data-id attribute of the clicked element
+          var jobid = $(e.relatedTarget).data('jobid');
+          $("#cvSkillModalBody").load("/getcvskill",  {"pk": <%= @user.id %>});
+      });
+</script>
