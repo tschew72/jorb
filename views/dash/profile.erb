@@ -309,9 +309,9 @@ $(document).ready(function(){
      
       $("#marriedcheck").on('change', function(){
           $.ajax({
-            url: '/updatemarried',
+            url: '/updatetmeprofile',
             type: 'POST',
-            data: {"married": this.checked, "pk" : <%=@userprofile.id %>}
+            data: {"value": this.checked, "pk" : <%=@userprofile.id %>, "name":"married"}
           });
       });
 

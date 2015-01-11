@@ -19,11 +19,11 @@ $.getScript("/vendor/langtablescript.js");
     <tr>
       <td><%= @lmaster.get(i.skr_lang).language%></td>
       <td>
-        <a class="skr_lang_speakskill" href="javascript:void(0)" class="editable-click" data-name="skr_lang_speakskill" data-type="select" data-pk="<%= i.skr_lang_id%>" data-url="/updatelang_speakskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter spoken skill level">  <%= @sr.get(i.skr_lang_speakskill).skillrankname %>
+        <a class="skr_lang_speakskill" href="javascript:void(0)" class="editable-click" data-name="skr_lang_speakskill" data-type="select" data-pk="<%= i.skr_lang_id%>" data-url="/updateLangSkill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter spoken skill level">  <%= @sr.get(i.skr_lang_speakskill).skillrankname %>
         </a>
       </td>
       <td>
-        <a class="skr_lang_writeskill" href="javascript:void(0)" class="editable-click" data-name="skr_lang_writeskill" data-type="select" data-pk="<%= i.skr_lang_id%>" data-url="/updatelang_writeskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter written skill level">  <%= @sr.get(i.skr_lang_writeskill).skillrankname %>
+        <a class="skr_lang_writeskill" href="javascript:void(0)" class="editable-click" data-name="skr_lang_writeskill" data-type="select" data-pk="<%= i.skr_lang_id%>" data-url="/updateLangSkill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter written skill level">  <%= @sr.get(i.skr_lang_writeskill).skillrankname %>
         </a>
       </td>
       <td>
