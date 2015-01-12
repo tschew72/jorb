@@ -1,43 +1,36 @@
 <script>
 $.getScript("/vendor/langtablescript.js");
-
 </script>
 
 <table id="languagesettingtable" class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th class="align-center">Language</th>
-      <th class="align-center">Spoken Skill Level</th>
-      <th class="align-center">Written Skill Level</th>
-      <th class="align-center"></th>
+      <th>Language</th>
+      <th>Spoken Skill Level</th>
+      <th>Written Skill Level</th>
+      <th></th>
     </tr>
   </thead>
   <tbody >
     <% @alllanguages.each do |i| %>
       <% if i.job_langstatus != 0 %>
       <tr>
-         <td><%= @lmaster.get(i.job_lang).language%></td>
-         
+        <td><%= @lmaster.get(i.job_lang).language%></td> 
           <td>
             <a class="job_lang_speakskill" href="javascript:void(0)" data-name="job_lang_speakskill" data-type="select" data-pk="<%= i.job_lang_id%>" data-url="/j_updatelang_speakskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter spoken skill level">  <%= @sr.get(i.job_lang_speakskill).skillrankname %>
             </a>
           </td>
-
         <td>
           <a class="job_lang_writeskill" href="javascript:void(0)" data-name="job_lang_writeskill" data-type="select" data-pk="<%= i.job_lang_id%>" data-url="/j_updatelang_writeskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter written skill level">  <%= @sr.get(i.job_lang_writeskill).skillrankname %>
           </a>
         </td>
-
         <td>
-          <div class=" action-buttons" style="text-align:center" >
-            <a onclick="dellanguage(this, <%=i.job_lang_id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Remove
-            </a>
-          </div>
-        </td>
-          
+          <a onclick="dellanguage(this, <%=i.job_lang_id%>)" href="javascript:void(0)"> 
+            <i class="fa fa-trash-o fa-lg"></i>
+          </a>
+        </td> 
       </tr>
-
-     <% end %>
+      <% end %>
       <% end %>
   </tbody>
-</table>
+</table> //languagesettingtable
