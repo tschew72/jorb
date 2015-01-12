@@ -103,7 +103,7 @@
 }
 
 //Experiences, Competencies (settings)-----------------------------------------------
-.Experiences, .Competencies, #tablespace {
+.Experiences, .Competencies, #tablespace{
     font-size : 0.8em;
 } // Experiences, Competencies
 
@@ -174,7 +174,7 @@
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;
   box-shadow: 0 8px 6px -6px black;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }//Instructions
 
 //coyUserTable (companyprofile)-----------------------------------------------
@@ -183,3 +183,23 @@
   padding: 0px;
   font-size: 0.7em;
 } //coyUserTable
+
+//jobListing (active and closed job table)-----------------------------------------------
+#jobposting{
+  font-size: 0.7em;
+  #jobdetail {
+    font-size:0.9rem;
+  } //jobdetail
+} //jobListing
+
+//newjobbutton (jobpostings)-----------------------------------------------
+#newjobbutton{
+  margin: 5px 15px;
+  padding: 0px;  
+} //newjobbutton
+
+//newjobbutton (jobpostings)-----------------------------------------------
+.jobRequirement{
+  font-size:0.7rem;
+}
+

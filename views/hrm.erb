@@ -45,29 +45,29 @@
 
 <script type="text/javascript">
 
-$(document).ready(function(){
-  $('#joblistingtable_hrm').dataTable({ 
-      "scrollY": 200,
-      "ScrollX": true,
-      "iDisplayLength": 10,
-      "order": [[ 0, "desc" ]],
-      "scrollCollapse": true,
-      "jQueryUI": true,
-      "aoColumns": [         
-          null, 
-          null, 
+  $(document).ready(function(){
+    $('#joblistingtable_hrm').dataTable({ 
+        "scrollY": 200,
+        "ScrollX": true,
+        "iDisplayLength": 10,
+        "order": [[ 0, "desc" ]],
+        "scrollCollapse": true,
+        "jQueryUI": true,
+        "aoColumns": [         
+            null, 
+            null, 
+            null,
+           { "bSortable": false }
+          ],
+        "columns": [
           null,
-         { "bSortable": false }
-        ],
-      "columns": [
-        null,
-        null,
-        null,
-        { "width": "20%" }
-      ]
-  });
+          null,
+          null,
+          { "width": "20%" }
+        ]
+    });
 
-});
+  });
 
 
   function viewmatches(i){
@@ -75,7 +75,7 @@ $(document).ready(function(){
   }//viewmatches
 
   function showmatchdetail(i,j){
-   $("#matchdetail").load("/matchdetail",{ pk: i ,skrid: j}, function(){window.location.hash = '#matchdetail'; }); 
+    $("#matchdetail").load("/matchdetail",{ pk: i ,skrid: j}, function(){window.location.hash = '#matchdetail'; }); 
   }//showmatchdetail
 
 </script>

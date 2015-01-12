@@ -3,25 +3,24 @@ $.getScript("/vendor/activejobtablescript.js");
 
 </script>
 
-<section class="Instructions">
-  <h4>Active / Pending / Draft Job Posting</h4>
+<div class="Instructions">
+  <h3>Active / Pending / Draft Job Posting</h3>
   <p>Edit Button: To edit a job that was posted earlier</p>
   <p>Cancel Button: You can cancel a job posting if the position is no longer required. Cancelled jobs can be viewed in Closed/Cancelled Jobs tab and they can be reinstated as a new job posting</p>
   <p>Pending Status: Job postings that need to be verified by your colleague/client. Pending jobs will not be matched with candidates until it is Active</p>
   <p>Active Status: Active job postings are matched with potential candidates. You can view the matching result in the Recruiter Dashboard</p>
   <p>Draft Status: Select this job posting status if you have not completed filling in the job detail.</p>
-</section>
+</div>
 
-<section class="jobListing">
-<table id="joblistingtable" class="table table-striped table-bordered table-hover">
+  <table id="joblistingtable" class=" table table-striped table-bordered table-hover">
     <thead>
       <tr>
-         <th style="text-align:center">ID</th>
-         <th style="text-align:center">Function</th>
-         <th style="text-align:center">Posted</th>
-         <th style="text-align:center">Status</th>
-         <th style="text-align:center"></th>
-         <th style="text-align:center"></th>
+         <th>ID</th>
+         <th>Function</th>
+         <th>Posted</th>
+         <th>Status</th>
+         <th></th>
+         <th></th>
       </tr>
     </thead>
     <tbody id="aat" >
@@ -50,19 +49,21 @@ $.getScript("/vendor/activejobtablescript.js");
           %>  
         </td> 
         <td>
-          <div class="action-buttons" style="text-align:center" >
-            <a onclick="showjobdetail(<%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Edit</a>      
+          <div class="action-buttons">
+            <a onclick="showjobdetail(<%=i.id%>)" class="red" href="javascript:void(0)"> 
+              <i class="fa fa-pencil fa-lg"></i>
+            </a>      
           </div><!-- This calls newjobdetail.erb -->
         </td>
         <td>
-          <div class="action-buttons" style="text-align:center" >
-            <a onclick="deljob(<%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Cancel</a>      
+          <div class="action-buttons" >
+            <a onclick="deljob(<%=i.id%>)" href="javascript:void(0)"> 
+              <i class="fa fa-trash-o fa-lg"></i>
+            </a>      
           </div>
         </td>
       </tr>
       <% end %>
       <% end %>
     </tbody>
-  </table>
-
-</section>
+  </table> <!--joblistingtable -->

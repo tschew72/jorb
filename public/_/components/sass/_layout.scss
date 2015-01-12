@@ -245,13 +245,39 @@ $large	: 75em;
 } //hrmLayout
 
 
-//jobManagementLay ---------------------------------------
+//jobManagementLayout ---------------------------------------
 .jobManagementLayout {
 	@include container;
 	padding: 0 3%;
 
 
 } //jobManagementLayout
+
+//jobDetailLayout ---------------------------------------
+.jobDetailLayout {
+	@include container;
+	padding: 0 3%;
+	
+	.jobDetailLeft{
+		@include breakpoint($medium) {
+			@include span(6 of 12);
+		} //medium layout
+	} //jobDetailLeft
+	
+	.jobDetailRight{
+		@include breakpoint($medium) {
+			@include span(6 omega of 12);
+			margin-top:3em;
+		} //medium layout
+	} //jobDetailRight
+
+	.jobRequirement{
+		@include breakpoint($medium) {
+			@include span(12 of 12);
+		} //medium layout
+	} //jobRequirement
+
+} //jobDetailLayout
 
 
 //adminLayout ---------------------------------------
