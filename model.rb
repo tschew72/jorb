@@ -637,7 +637,7 @@ class TmeSkrNation
   storage_names[repository = :default] = 'tme_skr_nation'
   property :skr_nation_id, Serial , key: true, :index => true 
   property :tme_skr_main_id, Integer, :index => true, :field => 'skr_id'
-  property :skr_nation, Integer, :default => 197, :index => true #197 --- 
+  property :skr_nation, Integer, :default => 197, :index => true   #197 --- 
   property :skr_nation_type, Integer, :default=> 6, :index => true #1 Citizen, 2 PR 3 PEP 4 SPASS 5 WP 6 ---
 
   belongs_to :tme_skr_main 

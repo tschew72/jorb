@@ -21,8 +21,7 @@
 
   <div class="tab-content">
     <div id="edit-basic" class="tab-pane in active">
-        <section class="Avatar">    
-          <br>   
+        <section class="Avatar">     
           <div class="avatar-frame">
             <img alt="Company Logo" src=<%= @mycoy.company_logo %> />
           </div>
@@ -46,31 +45,29 @@
           <script>
             $(function(){
               $('#fileupload').fileupload({
-                            add: function (e, data) {
-                                $.getJSON('/filer_logo', function (result) {
-                                    data.formData = result; // e.g. {id: 123}
-                                    data.submit();
-                                }).fail( function(d, textStatus, error) {
-                                    console.error("Upload failed, Please refresh this page and try again. Status: " + textStatus + ", error: "+error)
-                                });
-                            },
-                            url: "https://api.cloudinary.com/v1_1/dashy/upload",
-                            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-                            // The maximum allowed file size in bytes:
-                            maxFileSize: 10000000, // 10 MB
-                            // The minimum allowed file size in bytes:
-                            minFileSize: 1, // No minimal file size
-                            // The limit of files to be uploaded:
-                            maxNumberOfFiles: 10
-                          }).on('fileuploadfail', function (e, data) {
-                            var currentFile = data.files[data.index];
-                            if (data.files.error && currentFile.error) {
-                              // there was an error, do something about it
-                              // newAlert("#alert_placeholder-tab",'danger', currentFile.error);
-                            
-                            }
-                            });
-            });
+                add: function (e, data) {
+                    $.getJSON('/filer_logo', function (result) {
+                        data.formData = result; // e.g. {id: 123}
+                        data.submit();
+                    }).fail( function(d, textStatus, error) {
+                        console.error("Upload failed, Please refresh this page and try again. Status: " + textStatus + ", error: "+error)
+                    });
+                },
+                url: "https://api.cloudinary.com/v1_1/dashy/upload",
+                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+                // The maximum allowed file size in bytes:
+                maxFileSize: 10000000, // 10 MB
+                // The minimum allowed file size in bytes:
+                minFileSize: 1, // No minimal file size
+                // The limit of files to be uploaded:
+                maxNumberOfFiles: 10
+              }).on('fileuploadfail', function (e, data) {
+                var currentFile = data.files[data.index];
+                if (data.files.error && currentFile.error) {
+                  // there was an error, do something about it
+                }
+                });
+            }); //function
 
             $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {  
             $.ajax({
@@ -79,8 +76,7 @@
               data: {"company_logo": data.result.url, "pk" : <%=@mycoy.id %>},
               success: function(response){
                 tt = "<img id='avatar' class='img-responsive' src=".concat(data.result.url," />");
-                $('#pic').html(tt);  //to refresh this page picture
-                $('#pic2').html(tt); //for side bar picture
+                $('.avatar-frame').html(tt);  //to refresh this page picture
                 $("#uploadprog").html("Uploading is complete!");
                 $('#uploadprog').fadeOut(3000, function() {
                   $(this).remove();
