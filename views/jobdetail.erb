@@ -246,86 +246,332 @@ $.getScript("/vendor/jobdetailscript.js");
 </div> <!-- jobDetailLayout -->
 
 
+<div class="modal fade" id="addskillmodal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <header>Skill Requirement</header>                                                           
+      </div> <!-- "modal-header" -->
+      <div class="modal-body">  
+        <div id = "alert_placeholder-inmodal"></div>
+        <p>
+          Skill category
+          <a href="#" class="newskill inputText" id="skillcat" data-emptytext="Select..." data-type="select"  data-name="id"  data-original-title="Select skill category"></a>
+        </p>
+        <p>
+          Skill name
+          <a href="#" class="newskill inputText" id="skillname"  data-emptytext="Select..." data-type="select" data-name="skillid" data-original-title="Select skill"></a>
+        </p>
+        <p>
+          Skill rank
+          <a href="#" class="newskill inputText" id="skillrank" data-emptytext="Select..." data-type="select" data-name="skillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a>
+        </p>
+ 
+      </div> <!-- "modal-body" -->
+      <div class="modal-footer">
+        <button id="saveskill-btn" class="btn btn-primary">
+          Save and Add more Skill Requirement
+        </button>
+      </div> <!-- footer --> 
+    </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- addskillmodal  -->
+
+<div class="modal fade" id="addlanguagemodal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <header>Language Requirement</header>                                                            
+      </div> <!-- "modal-header" -->
+      <div class="modal-body">   
+        <div id = "alert_placeholder-inmodal2"></div>
+        <p>
+          Language
+          <a href="#" class="newlang inputText" id="job_lang"  data-emptytext="Select..." data-type="select" data-name="job_lang" data-original-title="Select language"></a>
+        </p>
+        <p>
+          Spoken skill level
+          <a href="#" class="newlang inputText" id="job_lang_speakskill" data-emptytext="Select..." data-type="select" data-name="job_lang_speakskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a>
+        <p>
+        <p>
+          Written skill level
+          <a href="#" class="newlang inputText" id="job_lang_writeskill" data-emptytext="Select..." data-type="select" data-name="job_lang_writeskill" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a>
+        </p>
+      </div> <!-- "modal-body" -->
+      <div class="modal-footer">
+        <button id="savelanguage-btn" class="btn btn-primary">Save and Add more Language Requrement</i></button>
+      </div> <!-- footer -->
+    </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- addlanguagemodal  --> 
+
+<div class="modal fade" id="addedumodal" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <header>Education Requirement</header>                                                            
+      </div> <!-- "modal-header" -->
+      <div class="modal-body">   
+        <div id = "alert_placeholder-inmodal3"></div>
+        <p>
+          Title
+          <a href="#" class="newedu inputText" id="job_edu_title"  data-emptytext="Select..." data-type="select" data-name="job_edu_title" data-original-title="Select Title"></a>
+        </p>
+        <p>  
+          Specialty
+          <a href="#" class="newedu inputText" id="job_edu_specialty" data-emptytext="Select..." data-type="select" data-name="job_edu_specialty" data-original-title="Select Specialty"></a>
+        </p>
+        <p>  
+          Honors
+          <a href="#" class="newedu inputText" id="job_edu_honors" data-emptytext="Select..." data-type="select" data-name="job_edu_honors" data-original-title="Select Honors"></a>
+        </p>  
+        <p>  
+          How important is this for the job?
+          <a href="#" class="newedu inputText" id="job_edu_pref" data-emptytext="Select..." data-type="select" data-name="job_edu_pref" data-original-title="Select Honors"></a>
+        </p>  
+      </div> <!-- "modal-body" -->
+      <div class="modal-footer">
+        <button id="saveedu-btn" class="btn btn-primary">
+          Save and Add more Education Requirement
+        </button>
+      </div> <!-- footer -->
+    </div> <!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- addedumodal  --> 
+
+<div class="modal fade" id="addcertmodal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <header>Certification Requirement</header>                                                            
+        </div> <!-- "modal-header" -->
+        <div class="modal-body">   
+          <div id = "alert_placeholder-inmodal4"></div>
+          <p>
+            Certificate Name
+            <a href="#" class="newcert inputText" id="job_cert_title"  data-emptytext="Select..." data-type="select" data-name="job_cert_title" data-original-title="Select Title"></a>
+          </p>
+          <p>
+            How important is this important for the job?
+            <a href="#" class="newcert inputText" id="job_cert_pref"  data-emptytext="Select..." data-type="select" data-name="job_cert_pref" data-original-title="Select Title"></a>
+          </p>
+        </div> <!-- "modal-body" -->
+        <div class="modal-footer">
+          <button id="savecert-btn" class="btn btn-primary">
+            Save and Add more Certification Requirement
+          </button>
+        </div> <!-- footer -->
+      </div> <!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div><!-- addcertmodal  --> 
 
 
 
 <script>
   $(function(){
 
-    $("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill RequirementTable now... </div>"); 
-    $("#lt").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language RequirementTable now... </div>"); 
+    $("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Requirement Table now... </div>"); 
+    $("#lt").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language Requirement Table now... </div>"); 
     $("#et").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
     $("#ct").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
 
-    $('#job_title').editable({
-      source: "/getjobtitle",
-      emptytext: '--',
-    });
-
-    $('#job_location').editable({
-      source: "/getcountries",
-      emptytext: '--',
-     });
-        
-    $('#job_industry  ').editable({
-      source: "/getind",
-      emptytext: '--',
-     });
-
-    $('#job_travel').editable({
-      emptytext: '--',
-     });
-
-    $('#job_salarymin').editable({
-      emptytext: '--',
-     });
-
-    $('#job_salarymax').editable({
+    // X-Editables Setup
+      $('#job_title').editable({
+        source: "/getjobtitle",
         emptytext: '--',
-     });
+      });
 
-        $('#job_experience').editable(
+      $('#job_location').editable({
+        source: "/getcountries",
+        emptytext: '--',
+       });
+          
+      $('#job_industry  ').editable({
+        source: "/getind",
+        emptytext: '--',
+       });
+
+      $('#job_travel').editable({
+        emptytext: '--',
+       });
+
+      $('#job_salarymin').editable({
+        emptytext: '--',
+       });
+
+      $('#job_salarymax').editable({
+          emptytext: '--',
+       });
+
+      $('#job_experience').editable(
       {
-        emptytext: '--',
-     });
+          emptytext: '--',
+      });
 
-        $('#job_time').editable(
+      $('#job_time').editable(
       {
-        source: "/getworktime",
+          source: "/getworktime",
+          emptytext: '--',
+      });
+
+      $('#job_function').editable({
+        source: "/getfunction",
         emptytext: '--',
-     });
+       });
 
-    $('#job_function').editable({
-      source: "/getfunction",
-      emptytext: '--',
-     });
+      $('#skilltable').editable({
+        selector: 'a.skillrank',
+        showbuttons: false
+      });
 
-    $('#skilltable').editable({
-      selector: 'a.skillrank',
-      showbuttons: false
-    });
+      $('#languagetable').editable({
+        selector: 'a.job_lang_speakskill',
+        showbuttons: false
+      });
 
-    $('#languagetable').editable({
-      selector: 'a.job_lang_speakskill',
-      showbuttons: false
-    });
+      $('#languagetable').editable({
+        selector: 'a.job_lang_writeskill',
+        showbuttons: false
+      });
 
-    $('#languagetable').editable({
-      selector: 'a.job_lang_writeskill',
-      showbuttons: false
-    });
+      $('#edutable').editable({
+        selector: 'a.job_edu_pref',
+        source: "/getpref",
+        showbuttons: false
+      });// edutable
 
-    $('#edutable').editable({
-      selector: 'a.job_edu_pref',
-      source: "/getpref",
-      showbuttons: false
-    });
+      $('#certtable').editable({
+        selector: 'a.job_cert_pref',
+        source: "/getpref",
+        showbuttons: false
+      }); //certtable
 
-    $('#certtable').editable({
-      selector: 'a.job_cert_pref',
-      source: "/getpref",
-      showbuttons: false
-    });
+      $('#job_edu_pref').editable({
+        source: "/getpref",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false
+      }); //job_edu_pref
+
+      $('#job_cert_pref').editable({
+        source: "/getpref",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false
+      }); //job_cert_pref
+
+    // X-Editable for Add Skill Modal 
+      $('#skillcat').editable({
+        source: "/getskillcat" ,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+
+                 $.getJSON("/getskill", {"value": newValue}, function (result) {
+                  $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
+                  $('#skillname').editable('setValue', null);             //else it will fail.
+                  $('#skillname').editable('option', 'disabled', false);  //             
+                  }).fail( function(d, textStatus, error) {
+                      console.error("Error code: " + textStatus + ", error: "+error)
+
+                  });
+        }
+      });
+
+      $('#skillname').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#skillrank').editable('option', 'disabled', false);
+        }
+        });
+
+      $('#skillrank').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
+
+    // X-Editable for Add Language Modal
+      $('#job_lang').editable({
+        source: "/getlanguage",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#job_lang_speakskill').editable('option', 'disabled', false);
+        }
+      }); //lang
+
+      $('#job_lang_speakskill').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#job_lang_writeskill').editable('option', 'disabled', false);
+        }
+      }); //speakskill
+
+      $('#job_lang_writeskill').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
+
+    // X-Editable for Add Education Modal
+      $('#job_edu_title').editable({
+        source: "/getdegree",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#job_edu_specialty').editable('option', 'disabled', false);
+           if (newValue ==1 || newValue == 2 || newValue ==3) {
+              $('#job_edu_honors').editable('option', 'disabled', true);
+              $('#job_edu_specialty').editable('option', 'disabled', true);
+           }else {
+            $('#job_edu_honors').editable('option', 'disabled', false);
+            $('#job_edu_specialty').editable('option', 'disabled', false);
+           }
+        }
+      }); //job_edu_title
+
+      $('#job_edu_specialty').editable({
+        source: "/getspecialty",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+
+        } //success
+      }); //job_edu_specialty
+
+      $('#job_edu_honors').editable({
+          source: "/gethonors",
+          disabled: false,
+          onblur: 'submit',
+          showbuttons: false,
+          success: function(response, newValue)
+          {
+            $('#job_edu_pref').editable('option', 'disabled', false);
+          }
+      });//job_edu_honors
+
+    // X-Editable for Add Certification Modal
+      $('#job_cert_title').editable({
+        source: "/getcert",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+        } //success
+      }); //job_cert_title
+
 
     if (<%=@job.job_jdurl== ''%>  ){
       document.getElementById( 'displaycv' ).style.visibility = 'hidden';
@@ -359,361 +605,325 @@ $.getScript("/vendor/jobdetailscript.js");
 
 
 <script>
-  // ------------ POST LOADING START Loading the respective tables when user click on the tab.--------
-  $('#skilltabclick').one("click", function() {
-      $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>});  
-  });
+  
+  // POST LOADING START Loading the respective tables when user click on the tab
+    $('#skilltabclick').one("click", function() {
+        $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>});  
+    });
 
-  $('#languagetabclick').one("click", function() {
-      $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
-  });
+    $('#languagetabclick').one("click", function() {
+        $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+    });
 
-  $('#edutabclick').one("click", function() {
-      $("#et").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
-  });
+    $('#edutabclick').one("click", function() {
+        $("#et").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+    });
 
-  $('#certtabclick').one("click", function() {
-      $("#ct").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
-  });
-  //-------------------------END OF POST LOADING ------------------------------------
+    $('#certtabclick').one("click", function() {
+        $("#ct").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+    });
 
-  $('#saveskill-btn').click(function() {
-     $('.newskill').editable('submit', {
-       url: '/j_newskill',
-       data: {"pk" : <%=@job.id%>},
-       ajaxOptions: {
-           dataType: 'json' 
-       },       
-       success: function(data, config) {
-       
+  // SAVE and CLOSE BUTTONS 
+    $('#saveskill-btn').click(function() {
+       $('.newskill').editable('submit', {
+         url: '/j_newskill',
+         data: {"pk" : <%=@job.id%>},
+         ajaxOptions: {
+             dataType: 'json' 
+         },       
+         success: function(data, config) {
+         
+              if(data && data.errors){
+                   //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                   //config.error.call(this, data.errors);
+                   newAlert("#alert_placeholder-inmodal",'danger', data.errors);
+             }   else{
+
+                  newAlert("#alert_placeholder-inmodal",'success', data.responsemsg);
+
+                  $('.newskill').editable('setValue', null);  //clear values
+                  $('#skillname').editable('option', 'disabled', true);
+                  $('#skillrank').editable('option', 'disabled', true);
+                  $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>});
+             }   
+         },
+           error: function(errors) {
+               var msg = '';
+               if(errors && errors.responseText) { //ajax error, errors = xhr object
+                   msg = errors.responseText;
+                   //We do not have any response text from backend at the moment
+               } else { //validation error (client-side or server-side)
+                   $.each(errors, function(k, v) {
+                    if (k=="skillcatid") {k = "Skill Category"};
+                    if (k=="skillid") {k = "Skill name"};
+                    if (k=="skillrank") {k = "Skill rank"};     
+                    msg += k+": "+v+"<br>";
+                  });
+                   newAlert("#alert_placeholder-inmodal",'danger', msg);
+               } //else
+           } //error
+       }); //newskill
+    }); //saveskill-btn
+
+    $('#closeskill-btn').click(function() {
+      $('.newskill').editable('setValue', null)  //clear values
+          .editable('option', 'pk', null)          //clear pk
+          .removeClass('editable-unsaved');        //remove bold css
+    }); //closeskill-btn
+
+    $('#savelanguage-btn').click(function() {
+        $('.newlang').editable('submit', {
+          url: '/j_newlanguage',
+          data: {"pk" : <%=@job.id%>},
+          ajaxOptions: {
+             dataType: 'json' //assuming json response
+          },       
+          success: function(data, config) {          
             if(data && data.errors){
                  //server-side validation error, response like {"errors": {"username": "username already exist"} }
                  //config.error.call(this, data.errors);
-                 newAlert("#alert_placeholder-inmodal",'danger', data.errors);
-           }   else{
+                 newAlert("#alert_placeholder-inmodal2",'danger', data.errors);
 
-                newAlert("#alert_placeholder-inmodal",'success', data.responsemsg);
+            } else {
+              newAlert("#alert_placeholder-inmodal2",'success', 'New Language added!');
+              $('.newlang').editable('setValue', null);  //clear values
+              $('#job_lang_speakskill').editable('option', 'disabled', true);
+              $('#job_lang_writeskill').editable('option', 'disabled', true);
+              // $("#lt").load("/langtable");
+              $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+            } //else 
+          },
+          error: function(errors) {
+            var msg = '';
+            if(errors && errors.responseText) { //ajax error, errors = xhr object
+               msg = errors.responseText;
+               //We do not have any response text from backend at the moment
+            } else { //validation error (client-side or server-side)
+               $.each(errors, function(k, v) {
+                if (k=="job_lang") {k = "Language"};
+                if (k=="job_lang_speakskill") {k = "Spoken skill level"};
+                if (k=="job_lang_writeskill") {k = "Written skill level"};     
+                msg += k+": "+v+"<br>";
+              });
+               newAlert("#alert_placeholder-inmodal2",'danger', msg);
+            } //else
+          } //error
+        }); //newlang
+    }); //savelanguage-btn
 
-                $('.newskill').editable('setValue', null);  //clear values
-                $('#skillname').editable('option', 'disabled', true);
-                $('#skillrank').editable('option', 'disabled', true);
-                $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>});
-           }   
-       },
-         error: function(errors) {
-             var msg = '';
-             if(errors && errors.responseText) { //ajax error, errors = xhr object
-                 msg = errors.responseText;
-                 //We do not have any response text from backend at the moment
-             } else { //validation error (client-side or server-side)
-                 $.each(errors, function(k, v) {
-                  if (k=="skillcatid") {k = "Skill Category"};
-                  if (k=="skillid") {k = "Skill name"};
-                  if (k=="skillrank") {k = "Skill rank"};     
-                  msg += k+": "+v+"<br>";
-                });
-                 newAlert("#alert_placeholder-inmodal",'danger', msg);
-             } //else
-         } //error
-     }); //newskill
-  }); //saveskill-btn
+    $('#closelanguage-btn').click(function() {
+      $('.newlang').editable('setValue', null)  //clear values
+          .editable('option', 'pk', null)          //clear pk
+          .removeClass('editable-unsaved');        //remove bold css
+    }); //closelanguage-btn
 
-  $('#closeskill-btn').click(function() {
-    $('.newskill').editable('setValue', null)  //clear values
-        .editable('option', 'pk', null)          //clear pk
-        .removeClass('editable-unsaved');        //remove bold css
-  }); //closeskill-btn
-
-  $('#savelanguage-btn').click(function() {
-      $('.newlang').editable('submit', {
-        url: '/j_newlanguage',
+    $('#saveedu-btn').click(function() {
+      $('.newedu').editable('submit', {
+        url: '/j_newedu',
         data: {"pk" : <%=@job.id%>},
         ajaxOptions: {
            dataType: 'json' //assuming json response
         },       
-        success: function(data, config) {          
+        success: function(data, config) {
           if(data && data.errors){
-               //server-side validation error, response like {"errors": {"username": "username already exist"} }
-               //config.error.call(this, data.errors);
-               newAlert("#alert_placeholder-inmodal2",'danger', data.errors);
-
-          } else {
-            newAlert("#alert_placeholder-inmodal2",'success', 'New Language added!');
-            $('.newlang').editable('setValue', null);  //clear values
-            $('#job_lang_speakskill').editable('option', 'disabled', true);
-            $('#job_lang_writeskill').editable('option', 'disabled', true);
-            // $("#lt").load("/langtable");
-            $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
-          } //else 
-        },
+            newAlert("#alert_placeholder-inmodal3",'danger', data.errors);
+          } else{
+            newAlert("#alert_placeholder-inmodal3",'success', 'New Education Requirement Added!');
+            $('.newedu').editable('setValue', null);  //clear values
+            $('#job_edu_specialty').editable('option', 'disabled', false );
+            $('#job_edu_honors').editable('option', 'disabled', false);
+            $("#et").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+          } //else   
+        }, //success
         error: function(errors) {
           var msg = '';
           if(errors && errors.responseText) { //ajax error, errors = xhr object
-             msg = errors.responseText;
-             //We do not have any response text from backend at the moment
+            msg = errors.responseText;
           } else { //validation error (client-side or server-side)
-             $.each(errors, function(k, v) {
-              if (k=="job_lang") {k = "Language"};
-              if (k=="job_lang_speakskill") {k = "Spoken skill level"};
-              if (k=="job_lang_writeskill") {k = "Written skill level"};     
+            $.each(errors, function(k, v) {
+              if (k=="job_edu_title") {k = "Education title"};
+              if (k=="job_edu_specialty") {k = "Specialty"};
+              if (k=="job_edu_honors") {k = "Honors"};   
+              if (k=="job_edu_pref") {k = "Preference level"};     
               msg += k+": "+v+"<br>";
-            });
-             newAlert("#alert_placeholder-inmodal2",'danger', msg);
+            }); //each
+            newAlert("#alert_placeholder-inmodal3",'danger', msg);
           } //else
         } //error
-      }); //newlang
-  }); //savelanguage-btn
+      }); //newedu
+    }); //saveedu-btn
 
-  $('#closelanguage-btn').click(function() {
-    $('.newlang').editable('setValue', null)  //clear values
-        .editable('option', 'pk', null)          //clear pk
-        .removeClass('editable-unsaved');        //remove bold css
-  }); //closelanguage-btn
+    $('#closeedu-btn').click(function() {
+      $('.newedu').editable('setValue', null)  //clear values
+      .editable('option', 'pk', null)          //clear pk
+      .removeClass('editable-unsaved');        //remove bold css
+    }); //closeedu-btn
 
-  $('#saveedu-btn').click(function() {
-    $('.newedu').editable('submit', {
-      url: '/j_newedu',
-      data: {"pk" : <%=@job.id%>},
-      ajaxOptions: {
-         dataType: 'json' //assuming json response
-      },       
-      success: function(data, config) {
-        if(data && data.errors){
-          newAlert("#alert_placeholder-inmodal3",'danger', data.errors);
-        } else{
-          newAlert("#alert_placeholder-inmodal3",'success', 'New Education Requirement Added!');
-          $('.newedu').editable('setValue', null);  //clear values
-          $('#job_edu_specialty').editable('option', 'disabled', false );
-          $('#job_edu_honors').editable('option', 'disabled', false);
-          $("#et").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
-        } //else   
-      }, //success
-      error: function(errors) {
-        var msg = '';
-        if(errors && errors.responseText) { //ajax error, errors = xhr object
-          msg = errors.responseText;
-        } else { //validation error (client-side or server-side)
-          $.each(errors, function(k, v) {
-            if (k=="job_edu_title") {k = "Education title"};
-            if (k=="job_edu_specialty") {k = "Specialty"};
-            if (k=="job_edu_honors") {k = "Honors"};   
-            if (k=="job_edu_pref") {k = "Preference level"};     
-            msg += k+": "+v+"<br>";
-          }); //each
-          newAlert("#alert_placeholder-inmodal3",'danger', msg);
-        } //else
-      } //error
-    }); //newedu
-  }); //saveedu-btn
+    $('#savecert-btn').click(function() {
+       $('.newcert').editable('submit', {
+           url: '/j_newcert',
+           data: {"pk" : <%=@job.id%>},
+           ajaxOptions: {
+               dataType: 'json' //assuming json response
+           },       
+           success: function(data, config) {
+                if(data && data.errors){
+                     newAlert("#alert_placeholder-inmodal4",'danger', data.errors);
+                } //if   
+                else {
+                  newAlert("#alert_placeholder-inmodal4",'success', 'New Certification Requirement Added!');
+                  $('.newcert').editable('setValue', null);  //clear values
+                  $("#ct").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+                } //else
+           }, //success
+           error: function(errors) {
+               var msg = '';
+               if(errors && errors.responseText) { //ajax error, errors = xhr object
+                   msg = errors.responseText;
+               }  //if
+               else { //validation error (client-side or server-side)
+                   $.each(errors, function(k, v) {
+                    if (k=="job_cert_title") {k = "Education title"};
+                    if (k=="job_cert_pref") {k = "Preference level"};     
+                    msg += k+": "+v+"<br>";
+                  });
+                   newAlert("#alert_placeholder-inmodal4",'danger', msg);
+               } //else
+           } //error
+       }); //newcert
+    }); //savecert-btn
 
-  $('#closeedu-btn').click(function() {
-    $('.newedu').editable('setValue', null)  //clear values
-    .editable('option', 'pk', null)          //clear pk
-    .removeClass('editable-unsaved');        //remove bold css
-  }); //closeedu-btn
+    $('#closecert-btn').click(function() {
+      $('.newcert').editable('setValue', null)  //clear values
+          .editable('option', 'pk', null)          //clear pk
+          .removeClass('editable-unsaved');        //remove bold css
+    }); //closecert-btn
 
-      
+  // Delete functions for Tables 
+    function deledu(element,i){
+      $.ajax({
+              url: '/j_deleteedu',
+              type: 'POST',
+              data: {"pk" : i, "jobid" :<%=@job.id%>},
+              success: function(response){
+                 //$(element).parents('tr').remove();
+            
+                //var row = $(this).closest('tr');
+                var row=$(element).parents('tr')
+                $('#edusettingtable').dataTable().fnDeleteRow(row[0]);
+                newAlert("#alert_placeholder-tab", 'success', "Education Requirement Deleted!");
+              }
 
-      $('#savecert-btn').click(function() {
-         $('.newcert').editable('submit', {
-             url: '/j_newcert',
-             data: {"pk" : <%=@job.id%>},
-             ajaxOptions: {
-                 dataType: 'json' //assuming json response
-             },       
-             success: function(data, config) {
-             
-                  if(data && data.errors){
-                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
-                       // config.error.call(this, data.errors);
-                       newAlert("#alert_placeholder-inmodal4",'danger', data.errors);
+            });
+    }//deledu
 
-                 }   else{
+    function delcert(element,i){
+      $.ajax({
+              url: '/j_deletecert',
+              type: 'POST',
+              data: {"pk" : i, "jobid" :<%=@job.id%>},
+              success: function(response){
+                 //$(element).parents('tr').remove();
+            
+                //var row = $(this).closest('tr');
+                var row=$(element).parents('tr')
+                $('#certsettingtable').dataTable().fnDeleteRow(row[0]);
+                newAlert("#alert_placeholder-tab", 'success', "Certification Requirement Deleted!");
+              }
 
-                      newAlert("#alert_placeholder-inmodal4",'success', 'New Certification Requirement Added!');
+            });
+    }//delcert
 
-                      $('.newcert').editable('setValue', null);  //clear values
-                      $("#ct").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
-                 }   
-             },
-             error: function(errors) {
-                 var msg = '';
-                 if(errors && errors.responseText) { //ajax error, errors = xhr object
-                     msg = errors.responseText;
-                     //We do not have any response text from backend at the moment
-                 } else { //validation error (client-side or server-side)
-                     $.each(errors, function(k, v) {
-                      if (k=="job_cert_title") {k = "Education title"};
-                      if (k=="job_cert_pref") {k = "Preference level"};     
-                      msg += k+": "+v+"<br>";
-                    });
-                     newAlert("#alert_placeholder-inmodal4",'danger', msg);
-                  
-                 }
-              
-             }
-         });
-      });
+    function delskill(element,i){
+      $.ajax({
+        url: '/j_deleteskill',
+        type: 'POST',
+        data: {"pk" : i, "jobid" :<%=@job.id%>},
+        success: function(response){
+          var row=$(element).parents('tr')
+          $('#skillsettingtable').dataTable().fnDeleteRow(row[0]);
+          newAlert("#alert_placeholder-tab", 'success', "Skill deleted!");
+        } //success
+      }); //ajax
+    }//delskill
 
-      $('#closecert-btn').click(function() {
-          $('.newcert').editable('setValue', null)  //clear values
-              .editable('option', 'pk', null)          //clear pk
-              .removeClass('editable-unsaved');        //remove bold css
+    function dellanguage(element,i){
+      $.ajax({
+        url: '/j_deletelanguage',
+        type: 'POST',
+        data: {"pk" : i, "jobid" :<%=@job.id%>},
+        success: function(response){
+          var row=$(element).parents('tr')
+          $('#languagesettingtable').dataTable().fnDeleteRow(row[0]);
+          newAlert("#alert_placeholder-tab", 'success', "Language deleted!");
+        } //success
+      }); //ajax
+    }//dellanguage
 
-      });
-
-// START Delete functions for Tables 
-      function deledu(element,i){
+  // Checkbox mechanism
+    function nationalityprcheck(a,i){
         $.ajax({
-                url: '/j_deleteedu',
-                type: 'POST',
-                data: {"pk" : i, "jobid" :<%=@job.id%>},
-                success: function(response){
-                   //$(element).parents('tr').remove();
-              
-                  //var row = $(this).closest('tr');
-                  var row=$(element).parents('tr')
-                  $('#edusettingtable').dataTable().fnDeleteRow(row[0]);
-                  newAlert("#alert_placeholder-tab", 'success', "Education Requirement Deleted!");
-                }
+          url: '/updatenationalitypr',
+          type: 'POST',
+          data: {"job_nationalitypr": a.checked, "pk" : i},
+        })
+      }; //nationalityprcheck
 
-              });
-      }//function
-
-
-      function delcert(element,i){
+    function workemergencycheck(a,i){
         $.ajax({
-                url: '/j_deletecert',
-                type: 'POST',
-                data: {"pk" : i, "jobid" :<%=@job.id%>},
-                success: function(response){
-                   //$(element).parents('tr').remove();
-              
-                  //var row = $(this).closest('tr');
-                  var row=$(element).parents('tr')
-                  $('#certsettingtable').dataTable().fnDeleteRow(row[0]);
-                  newAlert("#alert_placeholder-tab", 'success', "Certification Requirement Deleted!");
-                }
+          url: '/updateemergencyhour',
+          type: 'POST',
+          data: {"job_workemergency": a.checked, "pk" : i},
+        })
+      }; //workemergencycheck
 
-              });
-      }//function
-
-      function delskill(element,i){
+    function nationalityallcheck(a,i){
         $.ajax({
-                url: '/j_deleteskill',
-                type: 'POST',
-                data: {"pk" : i, "jobid" :<%=@job.id%>},
-                success: function(response){
-                   //$(element).parents('tr').remove();
-              
-                  //var row = $(this).closest('tr');
-                  var row=$(element).parents('tr')
-                  $('#skillsettingtable').dataTable().fnDeleteRow(row[0]);
-                  newAlert("#alert_placeholder-tab", 'success', "Skill deleted!");
+          url: '/updatenationalityall',
+          type: 'POST',
+          data: {"job_nationalityall": a.checked, "pk" : i},
+          beforeSend : function(){
+            $("#saving_intern").html("<div id='saver_i'><div id='saver_fulltime'><i class='fa fa-spinner fa-spin'></i></div>");
+          },
+          success: function(response){  
+              obj = JSON.parse(response)
+              if (obj.responsemsg){
+                //document.getElementById( 'displaynationality' ).style.visibility = 'hidden';
+                // $('#job_nationality').editable('toggleDisabled');
+                $('#job_nationality').editable('option', 'disabled', true);
+                document.getElementById("nationalityprcheck").disabled = true;
+                // document.getElementById("t1").style.color = "DDE1DD"; 
+                // document.getElementById("t2").style.color = "DDE1DD"; 
+                document.getElementById("job_nationality").style.color = "#DDE1DD"; 
+                $("#infobox").html("Anyone can apply for this job");
+              } else {
+                //document.getElementById( 'displaynationality' ).style.visibility = 'visible';
+                // $('#job_nationality').editable('toggleDisabled');
+                $('#job_nationality').editable(
+                  {
+                    source: "/getcountries",
+                    emptytext: '--',
+                  // placeholder: '[Optional] Enter your achievement here'
+                 });
+                $('#job_nationality').editable('option', 'disabled', false);
+                document.getElementById("nationalityprcheck").disabled = false;
+                // document.getElementById("t1").style.color = "#555"; 
+                // document.getElementById("t2").style.color = "#555"; 
+                document.getElementById("job_nationality").style.color = "#555"; 
+                $("#infobox").html("Only citizens from the chosen country can apply. You can also allow/disallow PR from that chosen country from apply (which means only citizen can apply");
+                       };                 
+                 
 
-                }
+             $('#saver_i').fadeOut(1000, function() {
+             $(this).remove();
+           });
+          } //success function
+        }); //ajax
+    }; // nationalityallcheck
 
-              });
-      }//function
-
-
-      function dellanguage(element,i){
-        $.ajax({
-                url: '/j_deletelanguage',
-                type: 'POST',
-                data: {"pk" : i, "jobid" :<%=@job.id%>},
-                success: function(response){
-                  var row=$(element).parents('tr')
-                  $('#languagesettingtable').dataTable().fnDeleteRow(row[0]);
-                  newAlert("#alert_placeholder-tab", 'success', "Language deleted!");
-
-                }
-
-              });
-      }//function
-
-// END Delete functions for Tables 
-
-
-//START Checkbox mechanism
-
-      function nationalityprcheck(a,i){
-          $.ajax({
-            url: '/updatenationalitypr',
-            type: 'POST',
-            data: {"job_nationalitypr": a.checked, "pk" : i},
-          })
-        };
-
-      function workemergencycheck(a,i){
-          $.ajax({
-            url: '/updateemergencyhour',
-            type: 'POST',
-            data: {"job_workemergency": a.checked, "pk" : i},
-          })
-        };
-
-      function nationalityallcheck(a,i){
-          $.ajax({
-            url: '/updatenationalityall',
-            type: 'POST',
-            data: {"job_nationalityall": a.checked, "pk" : i},
-            beforeSend : function(){
-              $("#saving_intern").html("<div id='saver_i'><div id='saver_fulltime'><i class='fa fa-spinner fa-spin'></i></div>");
-            },
-            success: function(response){  
-                obj = JSON.parse(response)
-                if (obj.responsemsg){
-                  //document.getElementById( 'displaynationality' ).style.visibility = 'hidden';
-                  // $('#job_nationality').editable('toggleDisabled');
-                  $('#job_nationality').editable('option', 'disabled', true);
-                  document.getElementById("nationalityprcheck").disabled = true;
-                  // document.getElementById("t1").style.color = "DDE1DD"; 
-                  // document.getElementById("t2").style.color = "DDE1DD"; 
-                  document.getElementById("job_nationality").style.color = "#DDE1DD"; 
-                  $("#infobox").html("Anyone can apply for this job");
-                } else {
-                  //document.getElementById( 'displaynationality' ).style.visibility = 'visible';
-                  // $('#job_nationality').editable('toggleDisabled');
-                  $('#job_nationality').editable(
-                    {
-                      source: "/getcountries",
-                      emptytext: '--',
-                    // placeholder: '[Optional] Enter your achievement here'
-                   });
-                  $('#job_nationality').editable('option', 'disabled', false);
-                  document.getElementById("nationalityprcheck").disabled = false;
-                  // document.getElementById("t1").style.color = "#555"; 
-                  // document.getElementById("t2").style.color = "#555"; 
-                  document.getElementById("job_nationality").style.color = "#555"; 
-                  $("#infobox").html("Only citizens from the chosen country can apply. You can also allow/disallow PR from that chosen country from apply (which means only citizen can apply");
-                         };                 
-                   
-
-               $('#saver_i').fadeOut(1000, function() {
-               $(this).remove();
-             });
-            } //success function
-          }); //ajax
-      }; // function
-
-//END Checkbox mechanism
-      
-
-
-      function newAlert (loc, type, message) {
-          $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
-          $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
-      };     
- 
-
-
-  $('html').on('mouseup', function(e) {
-      if(!$(e.target).closest('.popover').length) {
-          $('.popover').each(function(){
-              $(this.previousSibling).popover('hide');
-          });
-      }
-  });
-
+  // Alerts
+    function newAlert (loc, type, message) {
+        $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
+        $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
+    };     
 </script>
