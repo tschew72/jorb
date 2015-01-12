@@ -1677,6 +1677,7 @@ get '/filer_cv' do
  end
 
 get '/filer_jd' do
+  u = env['warden'].user
   coy = u.tme_company_main
   jobid = coy.tme_job_main.get(params["pk"]).id.to_s 
   ts = Time.now.getutc.to_time.to_i.to_s

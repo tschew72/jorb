@@ -39,7 +39,9 @@ $.getScript("/vendor/jobdetailscript.js");
               
   <section class="CV">
     <span id="CVsection"> 
-      <a id="displaycv" style="visibility: visible;" href=<%= @job.job_jdurl %> target="_blank"> <i style="font-size: 25px;" class="fa fa-file-text-o"><br><div style="font-size: 14px;left:-10px;position:relative">JD</div></i> </a>
+      <a id="displaycv" style="visibility: visible;" href=<%= @job.job_jdurl %> target="_blank"> 
+        <i class="fa fa-file-text-o"><br>JD</i> 
+      </a>
     </span>
               
     <script src='/vendor/jqueryfileupload/js/vendor/jquery.ui.widget.js' type='text/javascript'></script>
@@ -50,9 +52,10 @@ $.getScript("/vendor/jobdetailscript.js");
     <script src='/vendor/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
     <script type="text/javascript">$.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'}); </script>
 
-    <span class="btn dark-blue-btn btn-primary fileinput-button">
+    <span class="btn btn-primary fileinput-button">
       <div id="uploadprogress">
-        <i class="glyphicon glyphicon-plus"></i> <span >Update JD file</span>
+        <i class="glyphicon glyphicon-plus"></i> 
+        Update JD file
       </div> 
       <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" >
     </span>
