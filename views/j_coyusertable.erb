@@ -1,40 +1,39 @@
 <script>
 $.getScript("/vendor/coyusertablescript.js");
-
 </script>
 
 <table id="coyusertable" class="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                   <th class="align-center">Name</th>
-                   <th class="align-center">Username</th>
-                   <th class="align-center">Contact Number</th>
-                   <th class="align-center"></th>
-                   <th class="align-center"></th>
-                </tr>
-              </thead>
-              <tbody >
-                <%a=" "%>
-               <% @users.each do |i| %>
-                <% if i.usertype == 2  && i.status !=2%>  
-                  <tr>
-                      
-                     <td><%= i.firstname + a + i.lastname%></td>
-                     <td><%=i.username%></td>
-                     <td><%=i.contactnumber%></td>
-
-                      <td>
-                        <div class="action-buttons" style="text-align:center" >
-                          <a onclick="showcoyuserdetail(<%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Edit</a>      
-                        </div>
-                       </td>
-                      <td>
-                         <% if i.accesslevel != 3 %>
-                          <div class=" action-buttons" style="text-align:center" ><a onclick="delcoyuser(this, <%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Delete</a></div>  <!-- No one can delete superadmin -->
-                         <% end %>
-                      </td>
-                  </tr>
-                  <% end %>
-              <% end %>
-              </tbody>
-            </table>
+  <thead>
+    <tr>
+       <th>Name</th>
+       <th>Username</th>
+       <th>Contact Number</th>
+       <th></th>
+       <th></th>
+    </tr>
+  </thead>
+  <tbody >
+    <%a=" "%>
+   <% @users.each do |i| %>
+    <% if i.usertype == 2  && i.status !=2%>  
+      <tr>
+        <td><%= i.firstname + a + i.lastname%></td>
+        <td><%=i.username%></td>
+        <td><%=i.contactnumber%></td>
+        <td>
+          <div class="action-buttons">
+            <a onclick="showcoyuserdetail(<%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Edit</a>      
+          </div>
+         </td>
+        <td>
+          <% if i.accesslevel != 3 %> <!-- No one can delete superadmin -->
+              <a onclick="delcoyuser(this, <%=i.id%>)" href="javascript:void(0)"> 
+                <i class="fa fa-trash-o fa-lg"></i>
+              </a>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table> <!--coyusertable -->

@@ -230,11 +230,15 @@ $large	: 75em;
 .top5Matches {
 	@include breakpoint($medium) {
 		 @include span(6 omega of 12);
-		font-size : 1.0rem;
-
-
 	} //medium layout
 } // top5Matches
+
+//matchDetail -----------------------------------------------
+.matchDetail {
+	@include breakpoint($medium) {
+		 @include span(12 of 12);
+	} //medium layout
+} // matchDetail
 
 
 

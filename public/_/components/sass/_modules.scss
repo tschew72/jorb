@@ -1,32 +1,32 @@
 // Spinner ---------------------------------------------
 #preloader {
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:white;
-opacity:1;
-z-index:9999;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:white;
+  opacity:1;
+  z-index:9999;
 }
 #spinner_container {
-position:absolute;
-width:100%;
-top: 50%;
-left:0px;
-height:1px;
-overflow:visible;
-opacity: 1;
-background: transparent;
+  position:absolute;
+  width:100%;
+  top: 50%;
+  left:0px;
+  height:1px;
+  overflow:visible;
+  opacity: 1;
+  background: transparent;
 }
 #spinner {
-/*width: 31px;*/
-/*height:31px;*/
-margin-left:-15px;
-position:absolute;
-top:-15px;
-left:50%;
-display:block;
+  /*width: 31px;*/
+  /*height:31px;*/
+  margin-left:-15px;
+  position:absolute;
+  top:-15px;
+  left:50%;
+  display:block;
 }
 
 
@@ -75,18 +75,6 @@ display:block;
     } //li
   } //ul
 } //socialmediaicons
-
-// Photogrid ---------------------------------------------
-.pixgrid {
-  @include clearfix;
-
-  img {
-    @include border-radius;
-    width: 30%;
-    max-width: 120px;
-    cursor: pointer;
-  } // img
-} // pixgrid
 
 
 // avatar-frame ---------------------------------------------
@@ -172,14 +160,26 @@ display:block;
 } // Education (myCV)
 
 
-//jobListing -----------------------------------------------
-.jobListing {
-    font-size : 0.9em;
-} // jobListing
+//jobListing top5Matches-----------------------------------------------
+.jobListing, .top5Matches, .matchDetail {
+    font-size : 0.8em;
+} // jobListing top5Matches matchDetail
 
 
-//Instructions 
+//Instructions -----------------------------------------------
 .Instructions {
-  background: $blue;
-}
+  margin: 5px 30px;
+  padding: 10px;
+  background: #F8F8F8;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+  font-size: 0.9em;
+}//Instructions
 
+//coyUserTable (companyprofile)-----------------------------------------------
+#coyUserTable, #user>a{
+  margin: 5px 50px;
+  padding: 0px;
+  font-size: 0.7em;
+} //coyUserTable

@@ -598,6 +598,7 @@ get '/hrm' do
   erb :hrm, :layout => :'dash/layout2'
 end
 
+# Ajax call for generating the top 5 matches table in hrm.erb
 post '/top5matchestable' do 
   @user = env['warden'].user
   @jobid = params["pk"]
@@ -606,6 +607,7 @@ post '/top5matchestable' do
   erb :top5matchestable, :layout => false
 end
 
+# Ajax call for generating the job match detail table in hrm.erb
 post '/matchdetail' do 
   @user = env['warden'].user
   @jobid = params["pk"].to_s

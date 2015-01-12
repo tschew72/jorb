@@ -1,91 +1,44 @@
-
- <script>
+<script>
 $.getScript("/vendor/coyuserdetailscript.js");
-
 </script>
 
-<div id="powerwidgets">
-    <div class="row" style="margin-left: -10px; margin-right: -10px;">
-      <div class="col-md-12 bootstrap-grid">
-        <div class="powerwidget blue" data-widget-editbutton="false" data-widget-deletebutton="false">
-          <header>
-            <h2>Company User Detail</h2>
-          </header>
-          <div class="inner-spacer">
+<section class="coyUserDetail">
+	<header>
+    	Company User Detail
+	</header>
+    <div class="Instructions">
+		<h3>Setting up of Company Users</h3>
+		<p>Select any field you want to edit. After edit, the information is saved immediately.</p>
+		<p>Keying in a password in this field will reset this user's original password. Please inform the user when this change is made</p>
+	</div>
 
+	<p>First Name<sup>*</sup> : 
+		<a class="inputText" href="javascript:void(0)"  id="c_firstname" data-name="firstname" data-type="text" data-title="Enter First Name" data-value="<%=@coyuser.firstname%>" data-pk="<%=@coyuser.id %>">  </a>
+	</p>
 
+	<p>
+		Middle Name :
+		<a  class="inputText" href="javascript:void(0)"  id="c_middlename" data-name="middlename" data-type="text"  data-title="Enter Middle Name" data-emptytext="--" data-value="<%=@coyuser.middlename%>" data-pk="<%=@coyuser.id %>"> </a>
+	</p>
 
-<div class="callout callout-info">
-<h4>Setting up of Company Users</h4>
-<p>Select any field you want to edit. After edit, the information is saved immediately.</p>
-</div>
-<div class="row">  
-<div class="inputlabel col-md-2 col-lg-2 col-xs-12 column" >First Name<sup>*</sup> : </div> 
-<div class="inputtext col-md-2 column" style="position:absolute;left:165px;width:300px">
-<a class="editable-click" href="javascript:void(0)"  id="c_firstname" data-name="firstname" data-type="text" data-title="Enter First Name" data-value="<%=@coyuser.firstname%>" data-pk="<%=@coyuser.id %>">  </a>
+	<p>
+		Last Name<sup>*</sup> :
+		<a class="inputText" href="javascript:void(0)"  id="c_surname" data-name="lastname" data-type="text"  data-title="Enter Last Name" data-emptytext="--" data-value="<%=@coyuser.lastname%>" data-pk="<%=@coyuser.id %>">  </a>
+	</p>
 
+	<p>
+		Email<sup>*</sup> : 
+		<a  class="inputText" href="javascript:void(0)"  id="c_email" data-name="email" data-type="text"  data-title="Enter Email " data-emptytext="--" data-value="<%=@coyuser.email%>" data-pk="<%=@coyuser.id %>">  </a>
+	</p>
 
-</div>
-</div>
-<div class="row" style="">
-<div style="position: relative;top:-15px; font-size=0.7em;font-style: italic; color:grey" >Enter first name of this user</div>
-</div>
+	<p>
+		Contact Number<sup>*</sup> : 
+		<a  class="inputText"  href="javascript:void(0)"  id="c_contactnumber" data-name="contactnumber" data-type="text"  data-title="Enter Contact Number " data-emptytext="--" data-value="<%=@coyuser.contactnumber%>" data-pk="<%=@coyuser.id %>">  </a>
+	</p>
 
-<div class="row">  
-<div class="inputlabel col-md-2 col-lg-3 col-xs-12 column" >Middle Name : </div> 
-<div class="inputtext col-md-2 column" style="position:absolute;left:165px;width:300px">
-<a  class="editable-click" href="javascript:void(0)"  id="c_middlename" data-name="middlename" data-type="text"  data-title="Enter Middle Name" data-emptytext="--" data-value="<%=@coyuser.middlename%>" data-pk="<%=@coyuser.id %>"> </a>
-</div>
-</div>
-
-<div class="row" style="">
-<div style="position: relative;top:-15px; font-size=0.7em;font-style: italic; color:grey" >Enter middle name if applicable</div>
-</div>
-
-<div class="row">  
-<div class="inputlabel col-md-2 col-lg-2 col-xs-12 column" >Last Name<sup>*</sup> : </div> 
-<div class="inputtext col-md-2 column" style="position:absolute;left:165px;width:300px">
-<a class="editable-click" href="javascript:void(0)"  id="c_surname" data-name="lastname" data-type="text"  data-title="Enter Last Name" data-emptytext="--" data-value="<%=@coyuser.lastname%>" data-pk="<%=@coyuser.id %>">  </a>
-</div>
-</div>
-<div class="row" style="">
-<div style="position: relative;top:-15px; font-size=0.7em;font-style: italic; color:grey" >Enter last name / surname of this user</div>
-</div>
-
-<div class="row">  
-<div class="inputlabel col-md-2 col-lg-2 col-xs-12 column" >Email<sup>*</sup> : </div> 
-<div class="inputtext col-md-2 column" style="position:absolute;left:165px;width:300px">
-<a  class="editable-click" href="javascript:void(0)"  id="c_email" data-name="email" data-type="text"  data-title="Enter Email " data-emptytext="--" data-value="<%=@coyuser.email%>" data-pk="<%=@coyuser.id %>">  </a>
-</div>
-</div>
-<div class="row" style="">
-<div style="position: relative;top:-15px; font-size=0.7em;font-style: italic; color:grey" >This email address will be used as the login id for this user</div>
-</div>
-
-<div class="row">  
-<div class="inputlabel col-md-2 col-lg-2 col-xs-12 column" >Contact Number<sup>*</sup> : </div> 
-<div class="inputtext col-md-2 column" style="position:absolute;left:165px;width:300px">
-<a  class="editable-click"  href="javascript:void(0)"  id="c_contactnumber" data-name="contactnumber" data-type="text"  data-title="Enter Contact Number " data-emptytext="--" data-value="<%=@coyuser.contactnumber%>" data-pk="<%=@coyuser.id %>">  </a>
-</div>
-</div>
-<div class="row" style="">
-<div style="position: relative;top:-15px; font-size=0.7em;font-style: italic; color:grey" >What is the contact number of this user?</div>
-</div>
-
-<div class="row">  
-<div class="inputlabel col-md-2 col-lg-2 col-xs-12 column" >Password<sup>*</sup> : </div> 
-<div class="inputtext col-md-2 column" style="position:absolute;left:165px;width:300px">
-<a  class="editable-click" href="javascript:void(0)"  id="c_password" data-name="password" data-type="text"  data-title="Enter Password " data-emptytext="--" data-pk="<%=@coyuser.id %>">  </a>
-</div>
-</div>
-<div class="row" style="">
-<div style="position: relative;top:-15px; font-size=0.7em;font-style: italic; color:grey" >Keying in a password in this field will reset this user's original password. Please inform the user when this change is made</div>
-</div>
-
-
-</div>
-</div>
-</div>
-</div>
-</div>
+	<p>
+		Password<sup>*</sup> : 
+		<a  class="inputText" href="javascript:void(0)"  id="c_password" data-name="password" data-type="text"  data-title="Enter Password " data-emptytext="--" data-pk="<%=@coyuser.id %>">  </a>
+	</p>
+</section> <!-- coyUserDetail -->
 
