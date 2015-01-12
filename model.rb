@@ -1,12 +1,9 @@
 require 'rubygems'
 require 'data_mapper'
-#require 'dm-mysql-adapter'
 require 'dm-postgres-adapter'
 require 'bcrypt'
 require 'dm-validations'
 
-# DataMapper.setup(:default, "sqlite://#{Dir.pwd}/db.sqlite")
-#DataMapper.setup(:default, "mysql://root:itjobstreet@localhost/seekerdashdb")
 DataMapper.setup(:default, "postgres://pmfpekijznvzjw:Hq_zObLrI-YKpLoHpKKy0QLgsH@ec2-54-225-101-164.compute-1.amazonaws.com:5432/d3ev2r7degfpm9")
 
 
@@ -293,26 +290,6 @@ class TmeCompanyMain
   has n, :tme_users, :model =>'User'
 end
 
-#class TmeCompanyUsers
-  # include DataMapper::Resource
-  # storage_names[repository = :default] = 'tme_company_users'
-  # property :id, Serial, key: true, :index=>true, :field => 'username_id'
-  # property :username, String, length: 200, :index=>true
-  # property :active, Boolean, :index=>true
-  # property :surname, String, :index => true,  :default=>"", length:100
-  # property :middlename, String, :default=>"", length: 100, :index => true 
-  # property :firstname, String, :default=>"", length: 100, :index => true
-  # property :email, String, :default=>"your@email.com", length:80, format: :email_address, :index => true
-  #property :datejoined, Date, :index => true
-#   property :updated, DateTime, :index => true
-#   property :password,  BCryptHash, :index => true
-#   property :accesslevel, Integer, :index=>true #0 = read only, 1 = Admin Rights  2, Job Posting Rights
-#   property :tme_company_main_id, Integer, :index => true, :field => 'company_id'  
-
-#   belongs_to :tme_company_main
-# end
-
-
 
 class TmeJobMain
   include DataMapper::Resource
@@ -462,7 +439,6 @@ class LanguageSource
 
 end
 
-########### START Generated from HSQL ##################
 class SkillSummary    
   include DataMapper::Resource
   storage_names[repository = :default] = 'tme_skr_skill'
@@ -486,8 +462,6 @@ class SkillSource                               #This is for Skill Management Ta
   property :skillcategory_id, Integer, :index => true, :field => 'skillcat'
   
 end
-
-
 
 class SkillRank    
   include DataMapper::Resource
@@ -619,7 +593,7 @@ class TmeListTitle
   property :title_id, Serial , key: true, :index => true 
   property :title, String, :index => true 
 
-  #belongs_to :tme_job_main  #TSCHEW
+  #belongs_to :tme_job_main 
 end
 
 
@@ -689,22 +663,6 @@ class JobIndustry     #Preferred Industry
 belongs_to :tme_skr_main
 end
 
-# class IndustryMaster  
-#   include DataMapper::Resource
-
-#   property :id, Serial , key: true, :index => true
-#   property :industryname, String, length:100, :index => true   
-
-# end
-
-#class CountryMaster  
-#  include DataMapper::Resource
-
-#   property :id, Serial , key: true, :index => true
-#   property :countryname, String, length:150, :index => true   
-
-# end
-
 class PreferredLocation      
   include DataMapper::Resource
 
@@ -722,8 +680,6 @@ class SkrscoreCerts
   property :certcount, Integer
 
 end
-
-########### END Generated from HSQL ##################
 
 # Tell DataMapper the models are done being defined
 DataMapper.finalize

@@ -175,23 +175,16 @@ $large	: 75em;
 .cvLayout {
 	@include container;
 	padding: 0 3%;
-
-	.Main{
-		@include span(12 of 12);	
-	}
+	font-size:0.9em;
 
 
-	//jobPreferences -----------------------------------------------
+	//Skills -----------------------------------------------
 	.Skills {
 		// @include clearfix;
 		@include breakpoint($medium) {
 			@include clearfix;
 			 @include span(12 of 12);
-			font-size : 1.0rem;
-			h2 {
-				color: $orange;
-			} //h2
-
+			font-size : 0.8rem;
 		} //medium layout
 	} // jobPreferences
 
@@ -199,7 +192,7 @@ $large	: 75em;
 	.Achievements {
 		@include breakpoint($medium) {
 			 @include span(12 of 12);
-			font-size : 1.0rem;
+			font-size : 0.8rem;
 			h2 {
 				color: $orange;
 			} //h2
@@ -211,10 +204,6 @@ $large	: 75em;
 	.Experiences {
 		@include breakpoint($medium) {
 			 @include span(6 of 12);
-			font-size : 0.8em;
-			h2 {
-				color: $orange;
-			} //h2
 
 		} //medium layout
 	} // Experiences
@@ -223,7 +212,6 @@ $large	: 75em;
 	.Education {
 		@include breakpoint($medium) {
 			 @include span(6 omega of 12);
-
 		} //medium layout
 	} // Education
 

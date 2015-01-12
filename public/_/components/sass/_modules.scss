@@ -111,39 +111,73 @@ display:block;
   font-size: 0.9em;
 }
 
-  //Experiences, Competencies -----------------------------------------------
-  .Experiences, .Competencies, #tablespace {
-      font-size : 0.8em;
-
-  } // Experiences, Competencies
+//Experiences, Competencies (settings)-----------------------------------------------
+.Experiences, .Competencies, #tablespace {
+    font-size : 0.8em;
+} // Experiences, Competencies
 
 // Skills (myCV) ---------------------------------------------
 .Skills {
-  // @include clearfix;
+
 
 } // Skills (myCV)
+
+// allSkills (cvSkillModal) ---------------------------------------------
+.allSkills {
+  color: $white;
+  padding: 0px 30px;
+  text-align: center;
+  p {
+    text-align: left;
+  }
+  .rank5 {
+    background-color: $rank5;
+  }
+  .rank4 {
+    background-color: $rank4;
+  }
+  .rank3 {
+    background-color: $rank3;
+  }
+  .rank2 {
+    background-color: $rank2;
+  }
+  .rank1 {
+    background-color: $rank1;
+  }
+
+
+} // allSkills (cvSkillModal)
+
+
+// .cvLayout(myCV) ---------------------------------------------
+.cvLayout{
+  .Experiences {
+    font-size : 1em;
+
+  } //.Experiences
+} // .cvLayout (myCV)
 
 
 // Education (myCV) ---------------------------------------------
 .Education {
   // @include clearfix;
+  font-size : 1em;
   .small {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
-
 } // Education (myCV)
 
 
 //Avatar (myCV)-------------------------------------
-  .Avatar {
-
+  .avatar-frame {
     float: left;
   } // Avatar
 
 //Detail (myCV)-----------------------------------------------
   .Detail {
     float: left;
-    margin: 20px;
+    margin: 0px 20px;
   } // Detail
 
 

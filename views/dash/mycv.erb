@@ -8,16 +8,15 @@
           <img alt="Avatar" src=<%= @user.pictureurl %> />
         </div>
 
-		<aside class="Detail">
-			<header>Particulars</header>
+		<div class="Detail">
 			<ul>	
-				<li><span> Age: <%=@userprofile.age %> </span></li>
-				<li><span> Nationality: <%=@cmaster.get(@mynations).country %></span></li>
-				<li><span> Mobile #: </span></li>
-				<li><span> Email Address:</span></li>
+				<li>Age: <%=@userprofile.age %> </li>
+				<li> Nationality: <%=@cmaster.get(@mynations).country %></li>
+				<li>Mobile #: <%=@user.contactnumber%></li>
+				<li>Email Address:</li>
 			</ul>
-		</aside>	
-	</section>
+		</div>	
+	</section> <!-- Main -->
 
 	<section class="Skills">
 		<header>My skills</header>
@@ -33,7 +32,7 @@
                 See more skills
               </div>
         </a> <!-- cvSkillModal -->
-	</section>
+	</section> <!-- Skills -->
 
 
 	<section class="Achievements">
@@ -45,7 +44,7 @@
 			<dd>
 		<% end %>
 		</dl>
-	</section>
+	</section> <!-- Achievements -->
 
 	<section class="Experiences">
 		<header>Experience</header>
@@ -56,14 +55,14 @@
 					<h3><%= i.skr_emp_actualtitle %></h3>
 				</dt>
 				<dd>
-					<small><%= @alljobs.get(i).skr_emp_start %> to <%= @alljobs.get(i).skr_emp_end %></small>
-					<strong><%= @cmaster.get(@alljobs.get(i).skr_emp_location).country %></strong>
-					<%= i.skr_emp_desc %>
+					<p>From <%= @alljobs.get(i).skr_emp_start %> to <%= @alljobs.get(i).skr_emp_end %>
+					in <%= @cmaster.get(@alljobs.get(i).skr_emp_location).country %></p>
+					<p><%= i.skr_emp_desc %></p>
 				</dd>
 			 	<% end %>
 			<% end %>
 		</dl>
-	</section>
+	</section> <!-- Experiences -->
 
 	<section class="Education">
 		<header>Education</header>
@@ -74,19 +73,14 @@
 						<h3><%= @alledu.get(i).skr_university != nil ? @uni.get(@alledu.get(i).skr_university).university : "" %></h3>
 					</dt>
 					<dd>
-						<strong><%= @degree.get(@alledu.get(i).skr_unititle).degree %></strong>
-						<br>
-						<small> <%= @alledu.get(i).skr_unistart.strftime("%d-%m-%Y").to_s %> -  <%= @alledu.get(i).skr_uniend.strftime("%d-%m-%Y").to_s %></small>
-						
+						<p><strong><%= @degree.get(@alledu.get(i).skr_unititle).degree %></strong>
+						<small> <%= @alledu.get(i).skr_unistart.strftime("%d-%m-%Y").to_s %> -  <%= @alledu.get(i).skr_uniend.strftime("%d-%m-%Y").to_s %></small></p>
 					</dd>
 				 <% end %>
 				<% end %>
 			</dl>
-	</section>
-
-</div>
-
-
+	</section> <!-- Education -->
+</div> <!-- cvLayout -->
 
 <div class="modal fade" id="cvSkillModal" >
 	<div class="modal-dialog">

@@ -1,17 +1,16 @@
 
-<% @allskills.each do |i| %>
-	<!-- If rank = 1, job-tag = job-tag1  TO BE DONE! also check for top 20 skills. list the expert first followed by others-->
+<div class="allSkills">
+	<p>Color coded skills: The higher the skill rank, the darker is the color shade</p>
+	<% @allskills.each do |i| %>
 	<% if @allskills.get(i).status != 0 %>
-		<div class="job-tag" 
-			<% if @allskills.get(i).skillrank == 5 %> style="background-color:#1ABC9C;" 
-			<% elsif @allskills.get(i).skillrank == 4 %> style="background-color:#16A085;"  
-			<% elsif @allskills.get(i).skillrank == 3 %> style="background-color:#2ECC71;" 
-			<% elsif @allskills.get(i).skillrank == 2 %> style="background-color:#27AE60;" 
-			<% elsif @allskills.get(i).skillrank == 1 %> style="background-color:#3498DB;" <%end%> >
+		<div
+			<% if @allskills.get(i).skillrank == 5 %> class="rank5"
+			<% elsif @allskills.get(i).skillrank == 4 %> class="rank4" 
+			<% elsif @allskills.get(i).skillrank == 3 %> class="rank3"
+			<% elsif @allskills.get(i).skillrank == 2 %> class="rank2" 
+			<% elsif @allskills.get(i).skillrank == 1 %> class="rank1" <%end%> >
 			<%= @ssmaster.get(i.skillid).skill_name %> 
 		</div>
-		
-		
 	<%end%>
 <% end %>
-<br>
+</div>
