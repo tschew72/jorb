@@ -6,12 +6,12 @@ $.getScript("/vendor/experiencetablescript.js");
 <table id="experiencesettingtable" class="hover compact">
   <thead>
     <tr>
-      <th class="align-center">Position</th>
-      <th class="align-center">Company</th>
-      <th class="align-center">Start</th>
-      <th class="align-center">End</th>
-      <th class="align-center"></th>
-      <th class="align-center"></th>
+      <th>Position</th>
+      <th>Company</th>
+      <th>Start</th>
+      <th>End</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody >
@@ -24,7 +24,7 @@ $.getScript("/vendor/experiencetablescript.js");
         <td><%= i.skr_emp_start != nil ? i.skr_emp_start.strftime("%d/%m/%Y") : " " %></td>
         <td><%= i.skr_emp_end != nil ? i.skr_emp_end.strftime("%d/%m/%Y") : " "%></td>
         <td>
-          <div class=" action-buttons" style="text-align:center" >
+          <div class=" action-buttons">
             <a href="#editexperiencemodal" data-jobid="<%=i.skr_emp_id%>" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
               <i class="fa fa-pencil fa-lg"></i>
             </a>
