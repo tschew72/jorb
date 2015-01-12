@@ -21,7 +21,6 @@
 	<section class="Skills">
 		<header>My skills</header>
 		<% @allskills.each do |i| %>
-			<!-- If rank = 1, job-tag = job-tag1  TO BE DONE! also check for top 20 skills. list the expert first followed by others-->
 			<% if @allskills.get(i).status != 0 %>
 					<%= @ssmaster.get(i.skillid).skill_name %>,
 			<%end%>

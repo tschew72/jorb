@@ -14,7 +14,7 @@
   </ul>
   <div class="tab-content">
     <div id="edit-basic" class="tab-pane in active">
-      <section class="Profile">
+      <section class="Avatar">
         <header>Profile</header>    
         <div class="avatar-frame">
           <img alt="Avatar" src=<%= @user.pictureurl %> />
@@ -28,13 +28,13 @@
         <script>
           $.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'});
         </script>
-        <span class="btn dark-blue-btn btn-primary fileinput-button">
+        <div class="btn btn-primary fileinput-button">
           <div id="uploadprogress">
             <i class="glyphicon glyphicon-plus"></i> 
             Upload Picture
           </div> <!-- uploadprogress -->
           <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" >
-        </span> <!-- fileinput-button -->
+        </div> <!-- fileinput-button -->
         <script>
           $(function(){
             $('#fileupload').fileupload({
@@ -92,7 +92,8 @@
             alert(data.files[0].error);
           });
         </script>     
-
+      </section> <!-- Avatar -->
+      <section class="profileDetail">
         <p>First Name:
           <a class="inputText"  href="javascript:void(0)" id="firstname" data-type="text" data-pk="<%=@user.id %>" data-url="/updateprofile" data-title="Enter first name"><%= @user.firstname %></a>
         </p>
@@ -128,8 +129,7 @@
           <input type="text" value="<%= @userprofile.dob != nil ? @userprofile.dob.strftime("%d/%m/%Y") : "" %>" class="datePicker" name="date-range-picker1" readonly="true">
           <span id="saving_date"></span>
         </p>
-      </section> <!-- Profile -->
-                         
+      </section> <!-- profileDetail-->
       <section class="contactInformation">
         <header>Contact Information</header>
         <p>Mobile #:

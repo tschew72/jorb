@@ -32,13 +32,16 @@ display:block;
 
 
 // Profile ---------------------------------------------
-.Profile {
+.Avatar {
   .fileinput-button {
     margin-top:0px;
     margin-left:0px;
     font-size: 0.6em;
   } // fileinput-button
-} //Profile
+  .avatar-frame{
+      clear: both;
+      } //avatar-frame
+} //Avatar
 
 // next meeting ---------------------------------------------
 #greeting {
@@ -89,7 +92,7 @@ display:block;
 // avatar-frame ---------------------------------------------
 .avatar-frame{border: 2px solid #c7b89e;}
 .avatar-frame, .avatar-frame img{
-  @include clearfix;
+  // @include clearfix;
   @include border-radius;
   max-width:110px;
   height: 110px;
@@ -167,18 +170,6 @@ display:block;
     font-size: 0.8em;
   }
 } // Education (myCV)
-
-
-//Avatar (myCV)-------------------------------------
-  .avatar-frame {
-    float: left;
-  } // Avatar
-
-//Detail (myCV)-----------------------------------------------
-  .Detail {
-    float: left;
-    margin: 0px 20px;
-  } // Detail
 
 
 //jobListing -----------------------------------------------
