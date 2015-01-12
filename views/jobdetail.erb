@@ -199,19 +199,19 @@ $.getScript("/vendor/jobdetailscript.js");
       <div class="loading"> </div>
 
       <ul class="nav nav-tabs"> 
-        <li class="active"><a data-toggle="tab" href="#skilltab"> Skills Requirement</a></li>   
+        <li class="active"><a id="skilltabclick" data-toggle="tab" href="#skilltab"> Skills Requirement</a></li>   
         <li><a id="languagetabclick" data-toggle="tab" href="#languagetab"> Languages Requirement</a></li>         
         <li><a id="edutabclick" data-toggle="tab" href="#edutab"> Education Requirement</a></li>   
         <li><a id="certtabclick" data-toggle="tab" href="#certtab"> Certificate Requirement</a></li>               
       </ul>
       <div class="tab-content">
-        <div id="skilltab skilltable" class="tab-pane active">
-          <!-- <div id="skilltable">   -->
+        <div id="skilltab" class="tab-pane active">
+          <div id="skilltable">  
             <a href="#addskillmodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
                 <span class="btn dark-blue-btn btn-primary">Add New Skill Requirement</span>
             </a>
             <div id="st"> <!-- Skill management table will be loaded in this div --></div>
-          <!-- </div> skilltable" -->
+          </div> <!-- skilltable -->
         </div> <!-- skilltab -->
               
         <div id="languagetab" class="tab-pane">
@@ -360,6 +360,10 @@ $.getScript("/vendor/jobdetailscript.js");
 
 <script>
   // ------------ POST LOADING START Loading the respective tables when user click on the tab.--------
+  $('#skilltabclick').one("click", function() {
+      $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>});  
+  });
+
   $('#languagetabclick').one("click", function() {
       $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
   });
