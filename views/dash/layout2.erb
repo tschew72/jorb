@@ -6,19 +6,19 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>JORB</title>
-  <link rel="stylesheet" href="_/css/styles.css">
-  <link rel="stylesheet" href="/vendor/jqueryfileupload/css/jquery.fileupload.css" />
-  <link href="/vendor/select2/select2.css" rel="stylesheet" type="text/css"></link>  
-  <!-- <link href="/vendor/select2/select2-bootstrap.css" rel="stylesheet" type="text/css"></link>   -->
-  <link href="/dash/css/vendors/x-editable/bootstrap-editable.css" rel="stylesheet" type="text/css"></link>  
-  <link href="/dash/css/vendors/x-editable/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link> 
-  <!-- <link rel="stylesheet" href="/vendor/aceskin/datepicker.css" /> -->
-  <link rel="stylesheet" href="/vendor/aceskin/daterangepicker.css" />
+  <link href="_/css/bootstrap.min.css" rel="stylesheet"></link> 
+  <link href="_/css/styles.css" rel="stylesheet"></link> 
+  <link href="_/css/jqueryfileupload/jquery.fileupload.css" rel="stylesheet"> </link> 
+  <link href="_/css/select2/select2.css" rel="stylesheet" type="text/css"></link>  
+  <link href="_/css/x-editable/bootstrap-editable.css" rel="stylesheet" type="text/css"></link>  
+  <link href="_/css/x-editable/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link> 
+  <link href="_/css/date-time/daterangepicker.css" rel="stylesheet" type="text/css"></link> 
+  <link href="_/css/spinners/dots.css" rel="stylesheet" type="text/css"></link> 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="http://css-spinners.com/css/spinner/dots.css" type="text/css">
+
   <!--JQuery--> 
-  <script type="text/javascript" src="/dash/js/vendors/jquery/jquery.min.js"></script> 
-  <script type="text/javascript" src="/dash/js/vendors/jquery/jquery-ui.min.js"></script> 
+  <script src="_/js/jquery/jquery.min.js" type="text/javascript" ></script> 
+  <script src="_/js/jquery/jquery-ui.min.js" type="text/javascript" ></script> 
   <script>
   $(window).load(function(){
       $('#preloader').fadeOut(100, function() {
@@ -33,13 +33,17 @@
   <header>
     <div class="hero">
       <section class="layout">
-        <div class="branding"><a href="/edge"><img src="images/misc/rouxacademymeetups.svg" alt="Jorb.co"></a></div> <!-- branding -->
+        <div class="branding">
+          <a href="/">
+            <img src="images/misc/rouxacademymeetups.svg" alt="Jorb.co">
+          </a>
+        </div> <!-- branding -->
       </section> <!-- layout -->
     </div> <!-- hero -->
     <div class="navigation">
       <section class="layout">
         <ul class="nav">
-          <li><a href="/edge"><i class="fa fa-home"></i>Home</a></li>
+          <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
           <li><a href="/companyprofile"><i class="fa fa-question"></i>Company Profile</a></li>
           <li><a href="/hrm"><i class="fa fa-user"></i>Analyse Matches</a></li>
           <li><a href="/jobpostings"><i class="fa fa-heart"></i>Manage Jobs</a></li>
@@ -53,158 +57,128 @@
 
 <%= yield %> 
 
-
-<!-- scroll top -->
-<div class="scroll-top-wrapper hidden-xs"> <i class="fa fa-angle-up"></i> </div>
-<!-- /scroll top --> 
-
-
-<!--Bootstrap--> 
-<script type="text/javascript" src="/dash/js/vendors/bootstrap/bootstrap.min.js"></script> 
-
-
-<!--X-Editable--> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/bootstrap-editable.min.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.js"></script>
-<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/wysihtml5.js"></script>
-<script type="text/javascript" src="/dash/js/vendors/x-editable/select2.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/address.js"></script> 
-<script src="/vendor/aceskin/date-time/moment.min.js"></script>
-<script type="text/javascript" src="/vendor/aceskin/date-time/daterangepicker.js"></script>
-<!--Datatables--> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables.min.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables-bootstrap.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/dataTables.colVis.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/colvis.extras.js"></script> 
-<script src="/vendor/aceskin/ace-elements.min.js"></script>
-
+<script src="_/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>  
+<script src="_/js/x-editable/bootstrap-editable.min.js" type="text/javascript" ></script> 
+<script src="_/js/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.js" type="text/javascript" ></script>
+<script src="_/js/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.js" type="text/javascript"></script> 
+<script src="_/js/x-editable/wysihtml5/wysihtml5.js" type="text/javascript" ></script>
+<script src="_/js/x-editable/select2.js" type="text/javascript" ></script> 
+<script src="_/js/x-editable/address.js" type="text/javascript"></script> 
+<script src="_/js/date-time/moment.min.js" type="text/javascript"></script>
+<script src="_/js/date-time/daterangepicker.js" type="text/javascript"></script>
+<script src="_/js/datatables/jquery.dataTables.min.js" type="text/javascript" ></script> 
+<script src="_/js/datatables/jquery.dataTables-bootstrap.js" type="text/javascript" ></script> 
+<!-- <script src="/vendor/aceskin/ace-elements.min.js" type="text/javascript" ></script> -->
   
 
 <script>
-$(function(){
-      
+  $(function(){ 
+    /* This is in the Add New Company User Modal */
+      $('#c_firstname').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          if(value.length >100 ) {
+            return 'You can only enter a maximum of 100 characters';
+          } 
+          } //function
+      });
 
+      $('#c_middlename').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if(value.length >100 && value!=NULL) {
+            return 'You can only enter a maximum of 100 characters';
+        } 
+          }   //function 
+      });
 
+      $('#c_surname').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          if(value.length >100 ) {
+            return 'You can only enter a maximum of 100 characters';
+          }  
+          }
+      });
+      $('#c_email').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if(value.length >200 ) {
+            return 'You can only enter a maximum of 200 characters';
+          }  
+          }  //function
+      });
+      $('#c_contactnumber').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 300px';height:500px>",
+        validate: function(value){
+          if(value.length >20  && value!=NULL) {
+            return 'You can only enter a maximum of 20 characters';
+          }
+        }  //function
+      });
+      $('#c_password').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 200px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          } //function
+      });
 
-/* This is in the Add New Company User Modal  START */
-  $('#c_firstname').editable({
-    emptytext: '--',
-    tpl: "<input type='text' style='width: 400px';height:500px>",
-    validate: function(value){
-      if (!value) return 'This field is required';
-      if(value.length >100 ) {
-        return 'You can only enter a maximum of 100 characters';
-      } 
-      } //function
-  });
+      $('.c_accesslevel').editable({
+        source: [
+                  {value: 1, text: 'Admin Rights'},
+                  {value: 2, text: 'Job Posting Rights'},
+               ],
+        emptytext: '--',
+        validate: function(value){
+          if (!value) return 'This field is required';
+          } //function
+      });
+  }); /* $(function(){ */
 
-  $('#c_middlename').editable({
-    emptytext: '--',
-    tpl: "<input type='text' style='width: 400px';height:500px>",
-    validate: function(value){
-      if(value.length >100 && value!=NULL) {
-        return 'You can only enter a maximum of 100 characters';
-    } 
-      }   //function 
-  });
-
-  $('#c_surname').editable({
-    emptytext: '--',
-    tpl: "<input type='text' style='width: 400px';height:500px>",
-    validate: function(value){
-      if (!value) return 'This field is required';
-      if(value.length >100 ) {
-        return 'You can only enter a maximum of 100 characters';
-      }  
-      }
-  });
-  $('#c_email').editable({
-    emptytext: '--',
-    tpl: "<input type='text' style='width: 400px';height:500px>",
-    validate: function(value){
-      if(value.length >200 ) {
-        return 'You can only enter a maximum of 200 characters';
-      }  
-      }  //function
-  });
-  $('#c_contactnumber').editable({
-    emptytext: '--',
-    tpl: "<input type='text' style='width: 300px';height:500px>",
-    validate: function(value){
-      if(value.length >20  && value!=NULL) {
-        return 'You can only enter a maximum of 20 characters';
-      }
-    }  //function
-  });
-  $('#c_password').editable({
-    emptytext: '--',
-    tpl: "<input type='text' style='width: 200px';height:500px>",
-    validate: function(value){
-      if (!value) return 'This field is required';
-      } //function
-  });
-
-  $('.c_accesslevel').editable({
-    source: [
-              {value: 1, text: 'Admin Rights'},
-              {value: 2, text: 'Job Posting Rights'},
-           ],
-    emptytext: '--',
-    validate: function(value){
-      if (!value) return 'This field is required';
-      } //function
-  });
-    /* This is in the Add New Company User Modal  END */
-
-}); /* $(function(){ */
-
-
-      $('#savecoyuser-btn').click(function() {
-         $('.newcoyuser').editable('submit', {
-             url: '/newcoyuser',
-             data: {"pk" : <%=@mycoy.id%>},
-             ajaxOptions: {
-                 dataType: 'json' //assuming json response
-             },       
-             success: function(data, config) {
-             
-                  if(data && data.errors){
-                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
-                       //config.error.call(this, data.errors);
-                       newAlert("#alert_newcoyuser",'danger', data.errors);
-
-                 }   else{
-                      newAlert("#alert_newcoyuser",'success', 'New Company User Added!');
-                      $('.newcoyuser').editable('setValue', null);  //clear values
-                      $("#coyuserspace").load("/j_coyusertable",{i: new Date().getTime()}); 
-                     
-                 }   
-             },
-             error: function(errors) {
-                 var msg = '';
-                 if(errors && errors.responseText) { //ajax error, errors = xhr object
-                     msg = errors.responseText;
-                     //We do not have any response text from backend at the moment
-                 } else { //validation error (client-side or server-side)
-                     $.each(errors, function(k, v) {
-                      if (k=="firstname") {k = "First Name"};
-                      if (k=="middlename") {k = "Middle Name"};
-                      if (k=="lastname") {k = "Last Name"};     
-                      if (k=="email") {k = "Email Address"};    
-                      if (k=="password") {k = "Password"};     
-                      msg += k+": "+v+"<br>";
-                    });
-                     newAlert("#alert_newcoyuser",'danger', msg);
-                  
-                 }
-              
-             }
-         });
-  });
-
-
-
+  $('#savecoyuser-btn').click(function() {
+    $('.newcoyuser').editable('submit', {
+      url: '/newcoyuser',
+      data: {"pk" : <%=@mycoy.id%>},
+      ajaxOptions: {
+         dataType: 'json' //assuming json response
+      },       
+      success: function(data, config) {
+        if(data && data.errors){
+          newAlert("#alert_newcoyuser",'danger', data.errors);
+        }//if   
+        else {
+          newAlert("#alert_newcoyuser",'success', 'New Company User Added!');
+          $('.newcoyuser').editable('setValue', null);  //clear values
+          $("#coyuserspace").load("/j_coyusertable",{i: new Date().getTime()}); 
+        } //else   
+      }, //success
+      error: function(errors) {
+        var msg = '';
+        if(errors && errors.responseText) { //ajax error, errors = xhr object
+           msg = errors.responseText;
+        } //if 
+        else { 
+          $.each(errors, function(k, v) {
+            if (k=="firstname") {k = "First Name"};
+            if (k=="middlename") {k = "Middle Name"};
+            if (k=="lastname") {k = "Last Name"};     
+            if (k=="email") {k = "Email Address"};    
+            if (k=="password") {k = "Password"};     
+            msg += k+": "+v+"<br>";
+          }); //each
+          newAlert("#alert_newcoyuser",'danger', msg);
+        } //else
+      } //error
+    }); //newcoyuser
+  }); //savecoyuser-btn
 
 </script>
 </body>

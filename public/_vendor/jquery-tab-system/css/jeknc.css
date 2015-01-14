@@ -1,0 +1,21 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: .02em;
+}
+
+/*html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Myriad Pro;
+}
+*/

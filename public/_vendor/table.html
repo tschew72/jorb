@@ -1,0 +1,43 @@
+<table id="skillsettingtable" class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                   <th class="align-center">Category</th>
+                   <th class="align-center">Skill Name</th>
+                   <th class="align-center">Skill Rank</th>
+                   <th class="align-center"></th>
+                </tr>
+              </thead>
+              <tbody id="aat" >
+                  <% @allskills.each do |i| %>  <!--From Skill Summary Class -->
+                  <!-- If flag is set to delete, break. and find next record -->
+                  <% if @allskills.get(i).status != 0 %>
+                 
+                  <tr>
+                   
+                     <!-- <td><%= @scmaster.get(i.skillcatid).categoryname %></td>  -->
+                     <td><%= @scmaster.get(@ssmaster.get(i.skillid).skillcategory_id).categoryname%></td>
+                      
+                     <td><%= @ssmaster.get(i.skillid).skill_name %> </a> </td>
+                     
+                     <td><a class="skillrank" href="javascript:void(0)" class="editable-click" data-name="skillrank" data-type="select" data-pk="<%= @allskills.get(i).id%>" data-url="/updateskillrank" data-source="[{value: 1, text: 'Basic'}, {value: 2, text: 'Intermediate'}, {value: 3, text: 'Advance'}, {value: 4, text: 'Expert'}]"   data-title="Enter skill rank">  <%= @sr.get(i.skillrank).skillrankname %>
+                     </a></td> 
+
+                     
+                     <td>
+
+                      <div class="hidden-sm hidden-xs action-buttons">
+
+                          <!-- <a id="skilldel" class="red" href="/deleteskill?id=<%= @allskills.get(i).id %>"> -->
+                          <a onclick="delskill(this, <%=i.id%>)" class="red" href="javascript:void(0)">
+                            <i class="icon-trash bigger-130"></i>
+                             
+                          </a>
+
+                      </div>
+                     </td>
+                  </tr>
+
+                 <% end %>
+                  <% end %>
+              </tbody>
+            </table>

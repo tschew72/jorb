@@ -6,26 +6,26 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>JORB</title>
-  <link rel="stylesheet" href="_/css/styles.css">
-  <link rel="stylesheet" href="/vendor/jqueryfileupload/css/jquery.fileupload.css" />
-  <link href="/vendor/select2/select2.css" rel="stylesheet" type="text/css"></link>  
-  <!-- <link href="/vendor/select2/select2-bootstrap.css" rel="stylesheet" type="text/css"></link>   -->
-  <link href="/dash/css/vendors/x-editable/bootstrap-editable.css" rel="stylesheet" type="text/css"></link>  
-  <link href="/dash/css/vendors/x-editable/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link> 
-  <!-- <link rel="stylesheet" href="/vendor/aceskin/datepicker.css" /> -->
-  <link rel="stylesheet" href="/vendor/aceskin/daterangepicker.css" />
+  <link href="_/css/bootstrap.min.css" rel="stylesheet"></link> 
+  <link href="_/css/styles.css" rel="stylesheet"></link> 
+  <link href="_/css/jqueryfileupload/jquery.fileupload.css" rel="stylesheet"> </link> 
+  <link href="_/css/select2/select2.css" rel="stylesheet" type="text/css"></link>  
+  <link href="_/css/x-editable/bootstrap-editable.css" rel="stylesheet" type="text/css"></link>  
+  <link href="_/css/x-editable/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link> 
+  <link href="_/css/date-time/daterangepicker.css" rel="stylesheet" type="text/css"></link> 
+  <link href="_/css/spinners/dots.css" rel="stylesheet" type="text/css"></link> 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="http://css-spinners.com/css/spinner/dots.css" type="text/css">
+  
   <!--JQuery--> 
-  <script type="text/javascript" src="/dash/js/vendors/jquery/jquery.min.js"></script> 
-  <script type="text/javascript" src="/dash/js/vendors/jquery/jquery-ui.min.js"></script> 
+  <script src="_/js/jquery/jquery.min.js" type="text/javascript" ></script> 
+  <script src="_/js/jquery/jquery-ui.min.js" type="text/javascript" ></script> 
   <script>
-  $(window).load(function(){
+    $(window).load(function(){
       $('#preloader').fadeOut(100, function() {
                  $('body').css('overflow','auto');
                  $(this).remove();
       });
-  });
+    });
   </script>
 </head>
 
@@ -34,7 +34,7 @@
     <div class="hero">
       <section class="layout">
         <div class="branding">
-          <a href="/edge">
+          <a href="/">
             <img src="images/misc/rouxacademymeetups.svg" alt="Jorb.co">
           </a>
         </div> <!-- branding -->
@@ -55,67 +55,55 @@
 
 
 
-<div id="preloader"> <div id="spinner_container"> <div id="spinner" class="dots">    Loading... </div></div></div>
+<div id="preloader"> 
+  <div id="spinner_container"> 
+    <div id="spinner" class="dots">    Loading... </div>
+  </div>
+</div>
 
 <%= yield %> 
 
+<script src="_/js/bootstrap/bootstrap.min.js" type="text/javascript"></script> 
+<script src="_/js/x-editable/bootstrap-editable.min.js" type="text/javascript" ></script> 
+<script src="_/js/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.js" type="text/javascript" ></script>
+<script src="_/js/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.js" type="text/javascript"></script> 
+<script src="_/js/x-editable/wysihtml5/wysihtml5.js" type="text/javascript" ></script>
+<script src="_/js/x-editable/select2.js" type="text/javascript" ></script> 
+<script src="_/js/x-editable/address.js" type="text/javascript"></script> 
+<script src="_/js/date-time/moment.min.js" type="text/javascript"></script>
+<script src="_/js/date-time/daterangepicker.js" type="text/javascript"></script>
+<script src="_/js/datatables/jquery.dataTables.min.js" type="text/javascript" ></script> 
+<script src="_/js/datatables/jquery.dataTables-bootstrap.js" type="text/javascript" ></script> 
 
-<!-- scroll top -->
-<div class="scroll-top-wrapper hidden-xs"> <i class="fa fa-angle-up"></i> </div>
-<!-- /scroll top --> 
-
-
-<!--Bootstrap--> 
-<script type="text/javascript" src="/dash/js/vendors/bootstrap/bootstrap.min.js"></script> 
-
-
-<!--X-Editable--> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/bootstrap-editable.min.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.js"></script>
-<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/wysihtml5/wysihtml5.js"></script>
-<script type="text/javascript" src="/dash/js/vendors/x-editable/select2.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/x-editable/address.js"></script> 
-<script src="/vendor/aceskin/date-time/moment.min.js"></script>
-<script type="text/javascript" src="/vendor/aceskin/date-time/daterangepicker.js"></script>
-<!--Datatables--> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables.min.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/jquery.dataTables-bootstrap.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/dataTables.colVis.js"></script> 
-<script type="text/javascript" src="/dash/js/vendors/datatables/colvis.extras.js"></script> 
-<script src="/vendor/aceskin/ace-elements.min.js"></script>
 
 
 <script>
-$(function(){
-
-
-
-         $('input[name="date-range-picker-edu"]').daterangepicker({
-        timePicker: false,
-        showDropdowns: true,
-        format: 'DD/MM/YYYY',
-        }, function(start, end, label) {
-          console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
-          from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
-          end =moment(end.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
-           $.ajax({
-              url: '/update_inSG_Date',
-              type: 'POST',
-              data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
-              beforeSend : function(){
-                $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
-              }, 
-              success: function(response){
-                          // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
-                           $('#saver').fadeOut(1000, function() {
-                            $(this).remove();
-                           });
-                        }
-            });
+  $(function(){
+    $('input[name="date-range-picker-edu"]').daterangepicker({
+    timePicker: false,
+    showDropdowns: true,
+    format: 'DD/MM/YYYY',
+    }, function(start, end, label) {
+      console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
+      from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+      end =moment(end.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+       $.ajax({
+          url: '/update_inSG_Date',
+          type: 'POST',
+          data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
+          beforeSend : function(){
+            $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+          }, 
+          success: function(response){
+                      // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
+                       $('#saver').fadeOut(1000, function() {
+                        $(this).remove();
+                       });
+                    }
         });
+    }); //date-range-picker-edu
 
-    /* This is in the Add Skill Modal  START*/
+    /* This is in the Add Skill Modal*/
       $('#skillcat').editable({
         source: "/getskillcat" ,
         onblur: 'submit',
@@ -154,10 +142,7 @@ $(function(){
       //     if(!v) return 'This is a required field!';
       // });
 
-
-    /* This is in the Add Skill Modal  END */
-
-    /* This is in the Add Language Modal  START*/
+    /* This is in the Add Language Modal*/
       $('#lang').editable({
         source: "/getlanguage",
         onblur: 'submit',
@@ -189,9 +174,7 @@ $(function(){
       //     if(!v) return 'This is a required field!';
       // });
 
-    /* This is in the Add Language Modal  END */
-
-    /* This is in the Add Education Modal  START*/
+    /* This is in the Add Education Modal */
       $('#skr_unititle').editable({
         source: "/getdegree",
         onblur: 'submit',
@@ -266,17 +249,12 @@ $(function(){
       //    if(!v) return 'This is a required field!';
       //});
 
-    /* This is in the Add Education Modal  END */
-
-    /* This is in the Add Certification Modal  START*/
-
-    
+    /* This is in the Add Certification Modal */
 
       $('#skr_certtitle').editable({
         source: "/getcert",
         onblur: 'submit',
         showbuttons: false,
-      
       });
 
       $('#skr_certlicense').editable();
@@ -301,7 +279,6 @@ $(function(){
                 weekStart: 1
            }
         });
-    /* This is in the Add Certification Modal  END */
 
     /* This is in the Add Experience Modal  START*/
 
@@ -344,11 +321,9 @@ $(function(){
         emptytext: '--',
         validate: function(value){
           if(value.length >50000 ) {
-            return 'You can only enter a maximum of 50000 characters';
-            
+            return 'You can only enter a maximum of 50000 characters'; 
           }
         }
-
       });
 
       $('#skr_emp_start').editable({
@@ -357,8 +332,8 @@ $(function(){
         onblur: 'submit',
         showbuttons: false,  
         datepicker: {
-                weekStart: 1
-           }
+          weekStart: 1
+        }
         });
 
       $('#skr_emp_end').editable({
@@ -367,20 +342,11 @@ $(function(){
         onblur: 'submit',
         showbuttons: false,    
         datepicker: {
-                weekStart: 1
-           }
-        });      
+          weekStart: 1
+        }
+      });      
       
-      //init editables
-      //$('.newedu').editable('option', 'validate', function(v) {
-      //    if(!v) return 'This is a required field!';
-      //});
-
-    /* This is in the Add Experience Modal  END */
-
-    /* This is in the Edit Certification Modal  START*/
-
-    
+    /* This is in the Edit Certification Modal */
 
       $('#e_skr_certtitle').editable({
         source: "/getcert",
@@ -411,67 +377,50 @@ $(function(){
                 weekStart: 1
            }
         });
-    /* This is in the Add Certification Modal  END */
+  }); /* $(function(){ */
 
+  $('#saveskill-btn').click(function() {
+    $('.newskill').editable('submit', {
+      url: '/newskill',
+      data: {"pk" : <%=@user.id%>},
+      ajaxOptions: {
+         dataType: 'json' //assuming json response
+      },        
+      success: function(data, config) {
+        if(data && data.errors){
+          newAlert("#alert_placeholder-inmodal",'danger', data.errors);
+        } //if
+        else {
+          newAlert("#alert_placeholder-inmodal",'success', data.responsemsg);
+          $('.newskill').editable('setValue', null);  //clear values
+          $('#skillname').editable('option', 'disabled', true);
+          $('#skillrank').editable('option', 'disabled', true);
+          $("#skillTable").load("/table",{i: new Date().getTime()}); 
+         } //else   
+      }, //success
+      error: function(errors) {
+        var msg = '';
+        if(errors && errors.responseText) { //ajax error, errors = xhr object
+          msg = errors.responseText;
+        } //if
+        else { 
+          $.each(errors, function(k, v) {
+            if (k=="skillcatid") {k = "Skill Category"};
+            if (k=="skillid") {k = "Skill name"};
+            if (k=="skillrank") {k = "Skill rank"};      
+            msg += k+": "+v+"<br>";
+          }); //each
+          newAlert("#alert_placeholder-inmodal",'danger', msg); 
+        } //else
+      } //error
+    }); //newskill
+  }); //saveskill-btn
 
-
-
-
-
-}); /* $(function(){ */
-
-     $('#saveskill-btn').click(function() {
-         $('.newskill').editable('submit', {
-             url: '/newskill',
-             data: {"pk" : <%=@user.id%>},
-             ajaxOptions: {
-                 dataType: 'json' //assuming json response
-             },        
-             success: function(data, config) {
-              
-                  if(data && data.errors){
-                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
-                       //config.error.call(this, data.errors);
-                       newAlert("#alert_placeholder-inmodal",'danger', data.errors);
-                 }   else{
-
-                      newAlert("#alert_placeholder-inmodal",'success', data.responsemsg);
-
-                      $('.newskill').editable('setValue', null);  //clear values
-                      $('#skillname').editable('option', 'disabled', true);
-                      $('#skillrank').editable('option', 'disabled', true);
-                      $("#skillTable").load("/table",{i: new Date().getTime()}); 
-                 }    
-             },
-             error: function(errors) {
-                 var msg = '';
-                 if(errors && errors.responseText) { //ajax error, errors = xhr object
-                     msg = errors.responseText;
-                     //We do not have any response text from backend at the moment
-                 } else { //validation error (client-side or server-side)
-                     $.each(errors, function(k, v) {
-                      if (k=="skillcatid") {k = "Skill Category"};
-                      if (k=="skillid") {k = "Skill name"};
-                      if (k=="skillrank") {k = "Skill rank"};      
-                      msg += k+": "+v+"<br>";
-                    });
-                     newAlert("#alert_placeholder-inmodal",'danger', msg);
-                   
-                 }
-               
-             }
-         });
-      });
-
-
-
-      $('#closeskill-btn').click(function() {
-          $('.newskill').editable('setValue', null)  //clear values
-              .editable('option', 'pk', null)          //clear pk
-              .removeClass('editable-unsaved');        //remove bold css
-
-      });
-
+  $('#closeskill-btn').click(function() {
+    $('.newskill').editable('setValue', null)  //clear values
+      .editable('option', 'pk', null)          //clear pk
+      .removeClass('editable-unsaved');        //remove bold css
+  });
 
       $('#savelanguage-btn').click(function() {
          $('.newlang').editable('submit', {

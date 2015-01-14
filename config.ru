@@ -682,12 +682,12 @@ get '/admin' do
   @user = User.get(1)
   @userprofile = @user.tme_skr_main
   erb :"dash/admin", :layout => :'dash/layout3'
-end
+end ####admin
 
 post '/admin_seekertable' do
     @allusers = User.all
     erb :admin_seekertable, :layout => false
-end
+end ####admin_seekertable
 
 post '/admin_editseekerprofile' do
   userid = params["pk"]
@@ -711,19 +711,17 @@ post '/admin_editseekerprofile' do
     if x.skr_socialmediacat == 5
       @google = x.skr_socialmediaurl
     end
-  end
-
+  end ####sc.each
   @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
   @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
-
   @cmaster = TmeListCountry.all
   ctemp = []
-     @cmaster.each do |x|
-     ctemp << {value: x.country_id, text: "#{x.country}"}
+  @cmaster.each do |x|
+    ctemp << {value: x.country_id, text: "#{x.country}"}
   end
   @countries = ctemp.to_json
   erb :"dash/admin_newseeker", :layout => false
-end
+end ####admin_editseekerprofile
 
 post '/admin_editseekercareer' do
   userid = params["pk"]
@@ -809,32 +807,55 @@ post '/admin_editseekercareer' do
   @langlist= ltemp.to_json
   @sr = SkillRank.all
   erb :"dash/settings", :layout => false
+end ####admin_editseekercareer
 
-end
+get '/newseeker' do
+  user = User.create()
+  tmeskrmain = TmeSkrMain.create()
+  user.update(:tme_skr_main_id => tmeskrmain.id)
+  user.update(:usertype => 1)
+  achievements=TmeSkrAchieve.create()
+  achievements.update(:tme_skr_main_id => tmeskrmain.id)
+  nationality=TmeSkrNation.create()
+  nationality.update(:tme_skr_main_id => tmeskrmain.id)
+  @user = user
+  @userprofile = tmeskrmain
+  @userme = @user.firstname
+  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 1)
+  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 2)
+  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 3)
+  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 4)
+  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
+  @cmaster = TmeListCountry.all
+  ctemp = []
+     @cmaster.each do |x|
+     ctemp << {value: x.country_id, text: "#{x.country}"}
+  end
+  @countries = ctemp.to_json
+  erb :"dash/admin_newseeker", :layout => :'dash/layout3'
+end ####newseeker
 
 
 
 
 #===============================AJAX Listing Section================================
 get '/getskill' do
-      smaster = SkillSource.all(:skillcategory_id => params["value"])
-      sltemp=[]
-         smaster.each do |x|
-            sltemp << {value: x.id, text: "#{x.skill_name}"}    
-         end
-
-     sltemp.to_json
-end
-
+  smaster = SkillSource.all(:skillcategory_id => params["value"])
+  sltemp=[]
+     smaster.each do |x|
+        sltemp << {value: x.id, text: "#{x.skill_name}"}    
+     end
+  sltemp.to_json
+end ####getskill
 
 get '/getcoysize' do
-       smaster = TmeListCompanysize.all
-       stemp = []
-           smaster.each do |x|
-           stemp << {value: x.companysize_id, text: "#{x.companysize}"}
-        end
-        stemp.to_json
-end
+  smaster = TmeListCompanysize.all
+  stemp = []
+     smaster.each do |x|
+     stemp << {value: x.companysize_id, text: "#{x.companysize}"}
+  end
+  stemp.to_json
+end ####getcoysize
 
 get '/getfunction' do
   functionmaster = TmeListFunction.all
@@ -1322,41 +1343,6 @@ get '/companyprofile' do
        erb :"dash/companyprofile", :layout => :'dash/layout2'
 end
 
-
-################ CREATING NEW JOB SEEKERS IN ADMIN CONSOLE ######################
-  get '/newseeker' do
-    user = User.create()
-    #In the erb, when user enter a username, go to get "/check username". If username is found, then give them the option to pull the entire record.
-    tmeskrmain = TmeSkrMain.create()
-    #we need to update the user.tme_skr_main.id with tmeskrmain.id
-    user.update(:tme_skr_main_id => tmeskrmain.id)
-    user.update(:usertype => 1)
-    achievements=TmeSkrAchieve.create()
-    achievements.update(:tme_skr_main_id => tmeskrmain.id)
-    nationality=TmeSkrNation.create()
-    nationality.update(:tme_skr_main_id => tmeskrmain.id)
-   
-
-       @user = user
-       @userprofile = tmeskrmain
-       @userme = @user.firstname
-
-       sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 1)
-       sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 2)
-       sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 3)
-       sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 4)
-       sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
-
-       @cmaster = TmeListCountry.all
-       ctemp = []
-           @cmaster.each do |x|
-           ctemp << {value: x.country_id, text: "#{x.country}"}
-        end
-        @countries = ctemp.to_json
-       #erb :"dash/profile", :layout => :'dash/layout1'
-       erb :"dash/admin_newseeker", :layout => :'dash/layout3'
-
-  end
 
 
 
