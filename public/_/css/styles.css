@@ -1,6 +1,6 @@
 @import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather");
 @import url("font-awesome/css/font-awesome.min.css");
-@import url("http://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css");
+@import url("datatables/jquery.dataTables.min.css");
 @import url("bootstrap/bootstrap.min.css");
 /* line 5, ../../../../../../.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
