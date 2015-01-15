@@ -23,11 +23,9 @@ $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
       <td><%= i.username != nil ? i.username : " "%></td>
       <td><%= i.updated_at %></td>
       <td>
-        <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit Career Profile</a>
-        <!-- <a onclick="editseekerprofile(this, <%=i.id%>)" href="javascript:void(0)"> Edit Personal Profile</a> -->
+        <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit Job Seeker Profile</a>
       </td>
       <td>
-        <!-- <a onclick="editcareerprofile(this, <%=i.id%>)" href="javascript:void(0)"> <i class="fa fa-trash-o"></i>Edit Career Profile</a> -->
         <a href="/admin_editseekercareer?pk=<%=i.id%>"> Edit Career Profile</a>
       </td>
     </tr>

@@ -1,7 +1,9 @@
 <div class="adminLayout">
 
   <section class="adminControl">
-      <button id="" class="btn btn-primary">Delete Empty Records Globally</button>
+      <button id="deleteEmptySeeker" class="btn btn-primary">Delete Empty Job Seeker Records Globally</button>
+      <button id="" class="btn btn-primary">Delete Empty Job Records Globally</button>
+      <button id="" class="btn btn-primary">Delete Empty Company User Records Globally</button>
   </section>
   <hr>
   <div id="tablespace"></div> <!--tablespace -->	                      
@@ -294,21 +296,10 @@
   	$("#tablespace").load("/admin_seekertable",{i: new Date().getTime()}); 
   }); //function()
 
-  function editcareerprofile(i,j){
-    $("#detailspace").html("");
-    $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading detail now. You can start editing when this message is gone</div>");
-    $("#detailspace").load("/admin_editseekercareer",{ pk: j }, function() {
-      $('#loader').fadeOut(1000, function() {$(this).remove();});
-     document.getElementById('detailfocus').scrollIntoView() ;  
-    });  
-  }//editcareerprofile
+  $('#deleteEmptySeeker').click(function() {
+    $.post( "/delete_empty_seekers", function( data ) {
+      $("#tablespace").load("/admin_seekertable",{i: new Date().getTime()}); 
+    });
+  }); //deleteEmptySeeker
 
-  function editseekerprofile(i,j){
-    $("#detailspace").html("");
-    $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading detail now. You can start editing when this message is gone</div>");
-    $("#detailspace").load("/admin_editseekerprofile",{ pk: j }, function() {
-      $('#loader').fadeOut(1000, function() {$(this).remove();});
-     document.getElementById('detailfocus').scrollIntoView() ;  
-    });   
-  }//editseekerprofile
 </script>

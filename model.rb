@@ -681,12 +681,13 @@ class SkrscoreCerts
 
 end
 
-#class TmeAdmin  
-#  include DataMapper::Resource
-#  storage_names[repository = :default] = 'tme_admin'
-#  property :cleanup, Integer
-#  property :delete_emptyusers, Integer
-#end
+class TmeAdmin  
+ include DataMapper::Resource
+ storage_names[repository = :default] = 'tme_admin'
+ property :admin_id, Integer, key:true
+ property :cleanup, Integer
+ property :delete_emptyusers, Integer
+end
 
 
 # Tell DataMapper the models are done being defined

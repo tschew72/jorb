@@ -836,10 +836,12 @@ get '/newseeker' do
 end ####newseeker
 
 
-#post '/delete_empty_users' do
-#  admin = TmeAdmin.get(1)
-#  admin.delete_emptyusers += 1
-#end
+post '/delete_empty_seekers' do
+ admin = TmeAdmin.get(1)
+ delete_trigger = admin.delete_emptyusers + 1
+ admin.update(:delete_emptyusers=> delete_trigger)
+ return 200
+end
 
 #===============================AJAX Listing Section================================
 get '/getskill' do
