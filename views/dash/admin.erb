@@ -12,52 +12,39 @@
 </div> <!--adminLayout -->
 
 
-
-   <!-- This is where the modals are defined -->
-   <!-- Modals must be defined just before </body> -->
+<!-- Modal -->
   <div class="modal fade" id="addskillmodal" >
-  <div class="modal-dialog">
-  <div class="modal-content">
-  <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h4 class="modal-title">Add new skill</h4>                                                            
-  </div> <!-- "modal-header" -->
-  <div class="modal-body" style="padding-left:45px;padding-right:45px;">   
-  <div id = "alert_placeholder-inmodal"></div>
-  <br><br>
-  <table id="skilltab" class="table table-bordered table-striped">
-  <tbody>
-  <tr>
-  <td> User ID</td>
-  <td width="60%"><a href="#" class="newskill" id="skill_pk" data-emptytext="Select..." data-type="text" data-name="pk" > </a></td>
-  </tr>
-  <tr>      
-  <td width="20%">Skill category</td> <!--TSCHEW-->
-  <td width="50%">
-  <a href="#" class="newskill" data-emptytext="Select..." data-type="select" id="skillcat" data-name="id"  data-original-title="Select skill category"></a></td>
-  </tr>
-  <tr>      
-  <td width="20%">Skill name</td>
-  <td width="50%"><a href="#" class="newskill" id="skillname"  data-emptytext="Select..." data-type="select" data-name="skillid" data-original-title="Select skill"></a></td>
-  </tr>
-  <tr>      
-  <td width="20%">Skill rank</td>
-  <td width="50%"><a href="#" class="newskill" id="skillrank" data-emptytext="Select..." data-type="select" data-name="skillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
-  </tr>  
-  </tbody>
-  </table>
-  </div> <!-- "modal-body" -->
-  <div class="modal-footer">
-  <div class="align-center">
-  <button id="saveskill-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Skill and Add New</i></button>
-  <br><br><br>
-  Can't find your skill in the list? <button class="btn smaller-90 btn-error"><i class="icon-wrench">Let us know!</i></button>
-  </div>  
-
-  </div> <!-- footer -->
-  </div> <!-- modal-content -->
-  </div><!-- modal-dialog -->
-  </div><!-- modal  --> 
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <header>Add new skill</header>                                                            
+        </div> <!-- modal-header -->
+        <div class="modal-body">   
+          <div id = "alert_placeholder-inmodal"></div>
+          <p>
+            User ID
+            <a href="#" class="newskill inputText" id="skill_pk" data-emptytext="Select..." data-type="text" data-name="pk" > </a>
+          </p>
+          <p>
+            Skill category
+              <a href="#" class="newskill inputText" data-emptytext="Select..." data-type="select" id="skillcat" data-name="id"  data-original-title="Select skill category"></a>
+          </p>
+          <p> 
+            Skill name
+            <a href="#" class="newskill inputText" id="skillname"  data-emptytext="Select..." data-type="select" data-name="skillid" data-original-title="Select skill"></a>
+          </p>
+          <p>  
+            Skill rank
+            <a href="#" class="newskill inputText" id="skillrank" data-emptytext="Select..." data-type="select" data-name="skillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]" data-original-title="Select rank"></a></td>
+          </p>
+        </div> <!-- "modal-body" -->
+        <div class="modal-footer">
+          <button id="saveskill-btn" class="btn btn-primary"><i class="icon-save bigger-140 icon-only">Save Skill and Add New</i></button>
+        </div> <!-- footer -->
+      </div> <!-- modal-content -->
+    </div><!-- modal-dialog -->
+  </div><!-- addskillmodal  --> 
 
 
   <div class="modal fade" id="addlanguagemodal" >
@@ -301,17 +288,15 @@
   </div> <!-- modal-content -->
   </div><!-- modal-dialog -->
   </div><!-- modal  --> 
-<script type="text/javascript">
 
-
+<script>
   $(document).ready(function(){
   	$("#tablespace").load("/admin_seekertable",{i: new Date().getTime()}); 
-  });
+  }); //function()
 
   function editcareerprofile(i,j){
     $("#detailspace").html("");
     $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading detail now. You can start editing when this message is gone</div>");
-   // $("#top5matches").load("/top5matchestable&pk=".concat(i.toString())); 
     $("#detailspace").load("/admin_editseekercareer",{ pk: j }, function() {
       $('#loader').fadeOut(1000, function() {$(this).remove();});
      document.getElementById('detailfocus').scrollIntoView() ;  
@@ -321,13 +306,9 @@
   function editseekerprofile(i,j){
     $("#detailspace").html("");
     $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading detail now. You can start editing when this message is gone</div>");
-   // $("#top5matches").load("/top5matchestable&pk=".concat(i.toString())); 
     $("#detailspace").load("/admin_editseekerprofile",{ pk: j }, function() {
       $('#loader').fadeOut(1000, function() {$(this).remove();});
      document.getElementById('detailfocus').scrollIntoView() ;  
     });   
   }//editseekerprofile
-
-
-
 </script>

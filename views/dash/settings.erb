@@ -1,5 +1,5 @@
 <div class="settingsLayout">
-  <h1>Career Profile</h1> 
+  <h1>Career Profile for <%= @user.firstname %> <%= @user.lastname %></h1> 
   <section class="searchStatus">
     <header>Job Search Status</header>
     <span>Activate Job Search</span>
@@ -95,7 +95,8 @@
     </script> <!-- cloudinary scripts -->
 
     <p>Availability (months):
-      <a class="inputText" href="#" id="availability" data-name="availability" data-type="text" data-pk="<%=@userprofile.id %>" data-url="/updatetmeprofile" data-title="Enter your availability"><%= @userprofile.availability %></a>
+      <a class="inputText" href="#" id="availability" data-name="availability" data-type="select" data-pk="<%=@userprofile.id %>" data-url="/updatetmeprofile" data-source="[{value: 1, text: 'Immediate'}, {value: 2, text: '1 Month'}, {value: 3, text: '2 Months'}, {value: 4, text: '3 Months'}, {value: 5, text: '>3 Months'}]" data-title="Enter your availability"><%= @userprofile.availability %></a>
+
     </p>
   </section> <!-- CV -->
 

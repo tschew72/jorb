@@ -122,7 +122,7 @@ end #jobmatchtable
 post '/jobmatchdetail' do 
   @user = env['warden'].user
   @jobid = params["pk"].to_s
-  @skrid = params["skrid"].to_s  #also need to give this to j_mycv in matchdetail.erb
+  @skrid = params["skrid"].to_s 
   cmd2 = "select * from jobmatch_skrdetail_pers_func("+ @skrid +")"
   @skrdetail_pers=repository(:default).adapter.select(cmd2)  
   cmd3 = "select * from jobmatch_skrdetail(" + @jobid + "," + @skrid +")"
@@ -611,7 +611,7 @@ end
 post '/matchdetail' do 
   @user = env['warden'].user
   @jobid = params["pk"].to_s
-  @skrid = params["skrid"].to_s  #also need to give this to j_mycv in matchdetail.erb
+  @skrid = params["skrid"].to_s  
   cmd2 = "select * from jobmatch_skrdetail_pers_func("+ @skrid +")"
   @skrdetail_pers=repository(:default).adapter.select(cmd2)  
   cmd3 = "select * from jobmatch_skrdetail(" + @jobid + "," + @skrid +")"
@@ -689,7 +689,7 @@ post '/admin_seekertable' do
     erb :admin_seekertable, :layout => false
 end ####admin_seekertable
 
-post '/admin_editseekerprofile' do
+get '/admin_editseekerprofile' do
   userid = params["pk"]
   @user = User.get(userid)
   @userprofile = @user.tme_skr_main
@@ -720,10 +720,10 @@ post '/admin_editseekerprofile' do
     ctemp << {value: x.country_id, text: "#{x.country}"}
   end
   @countries = ctemp.to_json
-  erb :"dash/admin_newseeker", :layout => false
+  erb :"dash/profile", :layout => :'dash/layout3'
 end ####admin_editseekerprofile
 
-post '/admin_editseekercareer' do
+get '/admin_editseekercareer' do
   userid = params["pk"]
   @user = User.get(userid)
   @userprofile = @user.tme_skr_main
@@ -806,7 +806,7 @@ post '/admin_editseekercareer' do
   end
   @langlist= ltemp.to_json
   @sr = SkillRank.all
-  erb :"dash/settings", :layout => false
+  erb :"dash/settings", :layout => :'dash/layout3'
 end ####admin_editseekercareer
 
 get '/newseeker' do
@@ -832,11 +832,14 @@ get '/newseeker' do
      ctemp << {value: x.country_id, text: "#{x.country}"}
   end
   @countries = ctemp.to_json
-  erb :"dash/admin_newseeker", :layout => :'dash/layout3'
+  erb :"dash/profile", :layout => :'dash/layout3'
 end ####newseeker
 
 
-
+#post '/delete_empty_users' do
+#  admin = TmeAdmin.get(1)
+#  admin.delete_emptyusers += 1
+#end
 
 #===============================AJAX Listing Section================================
 get '/getskill' do
@@ -1304,25 +1307,27 @@ end
 
 
 get '/j_mycv' do
-       redirect '/auth/login' unless env['warden'].authenticated?
-       @user = User.get(params["pk"])
-       if @user.usertype == 1
-        redirect '/auth/unauthorized'
-       end
-       @userprofile = @user.tme_skr_main
-       @userme = @user.firstname
-       @mycoy = @user.tme_company_main
-       @cmaster = TmeListCountry
-       @uni = TmeListUniversity
-       @degree = TmeListDegree
-       @allskills =   @userprofile.skill_summaries.all(:order => [ :skillrank.desc ], :limit => 10, :status.gt =>0)
-       @alledu =   @userprofile.tme_skr_edu.all
-       @alljobs = @userprofile.tme_skr_emp.all
-       @ssmaster = SkillSource  #master skill source for cross referencing
-       @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
-       @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
-       @allachievements = @userprofile.tme_skr_achieve.all
-       erb :j_mycv, :layout => :'main/layout3'
+  redirect '/auth/login' unless env['warden'].authenticated?
+  @user = User.get(params["pk"])
+  #if @user.usertype == 1
+  #  redirect '/auth/unauthorized'
+  #end
+  @userprofile = @user.tme_skr_main
+  @userme = @user.firstname
+  @mycoy = @user.tme_company_main
+  @cmaster = TmeListCountry
+  @uni = TmeListUniversity
+  @degree = TmeListDegree
+  @allskills =   @userprofile.skill_summaries.all(:order => [ :skillrank.desc ], :limit => 10, :status.gt =>0)
+  @alledu =   @userprofile.tme_skr_edu.all
+  @alljobs = @userprofile.tme_skr_emp.all
+  @ssmaster = SkillSource  #master skill source for cross referencing
+  @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
+  @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
+  @allachievements = @userprofile.tme_skr_achieve.all
+  #erb :j_mycv, :layout => :'dash/layout2'
+  erb :'dash/mycv', :layout => :'dash/layout4'
+  
 end
 
 

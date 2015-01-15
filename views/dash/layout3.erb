@@ -74,111 +74,93 @@
 
 
 <script>
-$(function(){
+  $(function(){
+    $('input[name="date-range-picker-edu"]').daterangepicker({
+      timePicker: false,
+      showDropdowns: true,
+      format: 'DD/MM/YYYY',
+      }, function(start, end, label) {
+        console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
+        from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+        end =moment(end.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
+         $.ajax({
+            url: '/update_inSG_Date',
+            type: 'POST',
+            data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
+            beforeSend : function(){
+              $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+            }, //beforeSend
+            success:  function(response){
+                        $('#saver').fadeOut(1000, function() {
+                        $(this).remove();
+                         });
+                      } //success
+          });//ajax
+    }); //daterangepicker
 
+    /* This is in the Add Skill Modal */
+        $('#skillcat').editable({
+          source: "/getskillcat" ,
+          onblur: 'submit',
+          showbuttons: false,
+          success: function(response, newValue) {
+            $.getJSON("/getskill", {"value": newValue}, function (result) {
+            $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
+            $('#skillname').editable('setValue', null);             //else it will fail.
+            $('#skillname').editable('option', 'disabled', false);  //             
+            }).fail( function(d, textStatus, error) {
+                console.error("Error code: " + textStatus + ", error: "+error)
 
-
-         $('input[name="date-range-picker-edu"]').daterangepicker({
-        timePicker: false,
-        showDropdowns: true,
-        format: 'DD/MM/YYYY',
-        }, function(start, end, label) {
-          console.log(moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString());
-          from = moment(start.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
-          end =moment(end.format('YYYY-MM-DDTHH:mm:ss') + 'Z').utc().toISOString();
-           $.ajax({
-              url: '/update_inSG_Date',
-              type: 'POST',
-              data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
-              beforeSend : function(){
-                $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
-              }, 
-              success: function(response){
-                          // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
-                           $('#saver').fadeOut(1000, function() {
-                            $(this).remove();
-                           });
-                        }
             });
+          } //success
+        }); //skillcat
+
+        $('#skillname').editable({
+          disabled: true,
+          onblur: 'submit',
+          showbuttons: false,
+          success: function(response, newValue)
+          {
+            $('#skillrank').editable('option', 'disabled', false);
+          }
+        }); //skillname
+
+        $('#skillrank').editable(
+        {
+          disabled: true,
+          onblur: 'submit',
+          showbuttons: false
+        }); //skillrank
+
+    /* This is in the Add Language Modal */
+        $('#lang').editable({
+          source: "/getlanguage",
+          onblur: 'submit',
+          showbuttons: false,
+          success: function(response, newValue) {
+             $('#speakskill').editable('option', 'disabled', false);
+            
+          }
         });
 
-    /* This is in the Add Skill Modal  START*/
-      $('#skillcat').editable({
-        source: "/getskillcat" ,
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue) {
+        $('#speakskill').editable({
+          disabled: true,
+          onblur: 'submit',
+          showbuttons: false,
+          success: function(response, newValue)
+          {
+            $('#writeskill').editable('option', 'disabled', false);
+          }
+          });
 
-                 $.getJSON("/getskill", {"value": newValue}, function (result) {
-                  $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
-                  $('#skillname').editable('setValue', null);             //else it will fail.
-                  $('#skillname').editable('option', 'disabled', false);  //             
-                  }).fail( function(d, textStatus, error) {
-                      console.error("Error code: " + textStatus + ", error: "+error)
-
-                  });
-        }
-      });
-
-      $('#skillname').editable({
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue)
+        $('#writeskill').editable(
         {
-          $('#skillrank').editable('option', 'disabled', false);
-        }
+          disabled: true,
+          onblur: 'submit',
+          showbuttons: false
         });
 
-      $('#skillrank').editable(
-        {
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false});
-
-      //init editables
-      // $('.newskill').editable('option', 'validate', function(v) {
-      //     if(!v) return 'This is a required field!';
-      // });
-
-
-    /* This is in the Add Skill Modal  END */
-
-    /* This is in the Add Language Modal  START*/
-      $('#lang').editable({
-        source: "/getlanguage",
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue) {
-           $('#speakskill').editable('option', 'disabled', false);
-          
-        }
-      });
-
-      $('#speakskill').editable({
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue)
-        {
-          $('#writeskill').editable('option', 'disabled', false);
-        }
-        });
-
-      $('#writeskill').editable(
-        {
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false});
-
-      //init editables
-      // $('.newlang').editable('option', 'validate', function(v) {
-      //     if(!v) return 'This is a required field!';
-      // });
-
-    /* This is in the Add Language Modal  END */
-
-    /* This is in the Add Education Modal  START*/
+    /* This is in the Add Education Modal */
       $('#skr_unititle').editable({
         source: "/getdegree",
         onblur: 'submit',
@@ -247,38 +229,15 @@ $(function(){
                 weekStart: 1
            }
         });      
-      
-      //init editables
-      //$('.newedu').editable('option', 'validate', function(v) {
-      //    if(!v) return 'This is a required field!';
-      //});
 
-    /* This is in the Add Education Modal  END */
-
-    /* This is in the Add Certification Modal  START*/
-
-    
-
+    /* This is in the Add Certification Modal*/
       $('#skr_certtitle').editable({
         source: "/getcert",
         onblur: 'submit',
         showbuttons: false,
-      
       });
 
       $('#skr_certlicense').editable();
-
-      //We need these few PK in order to pass the userID parameter to the respective creation module
-      $('#pk').editable({disabled: true }); //Experience
-      $('#skill_pk').editable({disabled: true }); //Skill
-      $('#cert_pk').editable({disabled: true }); //Cert
-      $('#edu_pk').editable({disabled: true }); //Edu
-      $('#lang_pk').editable({disabled: true }); //Language
-      $('#skr_emp_currentjob').editable({disabled: true }); 
-
-        
-        
-
 
       $('#skr_certexpiry').editable({
         format: 'dd-mm-yyyy',    
@@ -287,8 +246,8 @@ $(function(){
         showbuttons: true,  
         datepicker: {
                 weekStart: 1
-           }
-        });
+        }
+      });
 
       $('#skr_datecertified').editable({
         format: 'dd-mm-yyyy',    
@@ -297,122 +256,113 @@ $(function(){
         showbuttons: false,    
         datepicker: {
                 weekStart: 1
-           }
-        });
-    /* This is in the Add Certification Modal  END */
-
-    /* This is in the Add Experience Modal  START*/
-
-      $('#skr_emp_company').editable({
-        disabled: false,
-        showbuttons: true,
-        });
-
-      $('#skr_emp_industry').editable({
-        source: "/getind",
-        disabled: false,
-        onblur: 'submit',
-        showbuttons: false,
-        });
-
-      $('#skr_emp_location').editable({
-        source: "/getcountries",
-        disabled: false,
-        onblur: 'submit',
-        showbuttons: false,
-        });
-
-      $('#skr_emp_function').editable({
-        source: "/getfunction",
-        disabled: false,
-        onblur: 'submit',
-        showbuttons: false,
-        });
-
-      $('#skr_emp_title').editable({
-        source: "/getjobtitle",
-        disabled: false,
-        onblur: 'submit',
-        showbuttons: false,
-        });
-
-      $('#skr_emp_actualtitle').editable();
-
-      $('#skr_emp_desc').editable({
-        emptytext: '--',
-        validate: function(value){
-          if(value.length >50000 ) {
-            return 'You can only enter a maximum of 50000 characters';
-            
-          }
         }
-
       });
 
-      $('#skr_emp_start').editable({
-        format: 'dd-mm-yyyy',    
-        viewformat: 'dd/mm/yyyy',  
-        onblur: 'submit',
-        showbuttons: false,  
-        datepicker: {
-                weekStart: 1
-           }
-        });
+    /* This is in the Add Experience Modal */
+        $('#skr_emp_company').editable({
+          disabled: false,
+          showbuttons: true,
+          }); //skr_emp_company
 
-      $('#skr_emp_end').editable({
-        format: 'dd-mm-yyyy',    
-        viewformat: 'dd/mm/yyyy',
-        onblur: 'submit',
-        showbuttons: false,    
-        datepicker: {
-                weekStart: 1
-           }
-        });      
-      
-      //init editables
-      //$('.newedu').editable('option', 'validate', function(v) {
-      //    if(!v) return 'This is a required field!';
-      //});
+        $('#skr_emp_industry').editable({
+          source: "/getind",
+          disabled: false,
+          onblur: 'submit',
+          showbuttons: false,
+          }); //skr_emp_industry
 
-    /* This is in the Add Experience Modal  END */
+        $('#skr_emp_location').editable({
+          source: "/getcountries",
+          disabled: false,
+          onblur: 'submit',
+          showbuttons: false,
+          }); //skr_emp_location
 
-    /* This is in the Edit Certification Modal  START*/
+        $('#skr_emp_function').editable({
+          source: "/getfunction",
+          disabled: false,
+          onblur: 'submit',
+          showbuttons: false,
+          }); //skr_emp_function
 
-    
+        $('#skr_emp_title').editable({
+          source: "/getjobtitle",
+          disabled: false,
+          onblur: 'submit',
+          showbuttons: false,
+          }); //skr_emp_title
 
-      $('#e_skr_certtitle').editable({
-        source: "/getcert",
-        onblur: 'submit',
-        showbuttons: false,
-      
-      });
+        $('#skr_emp_actualtitle').editable();
 
-      $('#e_skr_certlicense').editable();
+        $('#skr_emp_desc').editable({
+          emptytext: '--',
+          validate: function(value){
+            if(value.length >50000 ) {
+              return 'You can only enter a maximum of 50000 characters';
+            }
+          }
+        }); //skr_emp_desc
+
+        $('#skr_emp_start').editable({
+          format: 'dd-mm-yyyy',    
+          viewformat: 'dd/mm/yyyy',  
+          onblur: 'submit',
+          showbuttons: false,  
+          datepicker: {
+                  weekStart: 1
+             }
+          }); //skr_emp_start
+
+        $('#skr_emp_end').editable({
+          format: 'dd-mm-yyyy',    
+          viewformat: 'dd/mm/yyyy',
+          onblur: 'submit',
+          showbuttons: false,    
+          datepicker: {
+                  weekStart: 1
+             }
+          }); //skr_emp_end     
+        
+    /* This is in the Edit Certification Modal */
+        $('#e_skr_certtitle').editable({
+          source: "/getcert",
+          onblur: 'submit',
+          showbuttons: false,
+        }); //e_skr_certtitle
+
+        $('#e_skr_certlicense').editable();
+
+        $('#e_skr_certexpiry').editable({
+          format: 'dd-mm-yyyy',    
+          viewformat: 'dd/mm/yyyy',  
+          onblur: 'submit',
+          showbuttons: true,  
+          datepicker: {
+                  weekStart: 1
+             }
+          }); //e_skr_certexpiry
+
+        $('#e_skr_datecertified').editable({
+          format: 'dd-mm-yyyy',    
+          viewformat: 'dd/mm/yyyy',
+          onblur: 'submit',
+          showbuttons: false,    
+          datepicker: {
+                  weekStart: 1
+             }
+          }); //e_skr_datecertified
 
 
-      $('#e_skr_certexpiry').editable({
-        format: 'dd-mm-yyyy',    
-        viewformat: 'dd/mm/yyyy',  
-        onblur: 'submit',
-        showbuttons: true,  
-        datepicker: {
-                weekStart: 1
-           }
-        });
+    //We need these few PK in order to pass the userID parameter to the respective creation module
+      $('#pk').editable({disabled: true }); //Experience
+      $('#skill_pk').editable({disabled: true }); //Skill
+      $('#cert_pk').editable({disabled: true }); //Cert
+      $('#edu_pk').editable({disabled: true }); //Edu
+      $('#lang_pk').editable({disabled: true }); //Language
+      $('#skr_emp_currentjob').editable({disabled: true }); 
 
-      $('#e_skr_datecertified').editable({
-        format: 'dd-mm-yyyy',    
-        viewformat: 'dd/mm/yyyy',
-        onblur: 'submit',
-        showbuttons: false,    
-        datepicker: {
-                weekStart: 1
-           }
-        });
-    /* This is in the Add Certification Modal  END */
-
-
-}); /* $(function(){ */
+  }); /* $(function(){ */
 
     function newAlert (loc, type, message) {
           $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
