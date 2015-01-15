@@ -843,6 +843,12 @@ post '/delete_empty_seekers' do
  return 200
 end
 
+post '/delete_empty_companies' do
+ admin = TmeAdmin.get(1)
+ delete_trigger = admin.delete_emptycmpyusers + 1
+ admin.update(:delete_emptycmpyusers=> delete_trigger)
+ return 200
+end
 #===============================AJAX Listing Section================================
 get '/getskill' do
   smaster = SkillSource.all(:skillcategory_id => params["value"])

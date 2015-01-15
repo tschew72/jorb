@@ -687,6 +687,7 @@ class TmeAdmin
  property :admin_id, Integer, key:true
  property :cleanup, Integer
  property :delete_emptyusers, Integer
+ property :delete_emptycmpyusers, Integer
 end
 
 
