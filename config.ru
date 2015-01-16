@@ -703,8 +703,14 @@ get '/admin_editcoyprofile' do
        #    redirect '/auth/unauthorized'
        # end
        @mycoy = TmeCompanyMain.get(params["pk"])
-       erb :"dash/companyprofile", :layout => :'dash/layout2'
+       erb :"dash/companyprofile", :layout => :'dash/layout3_1'
 end
+
+  get '/newrecruiter' do
+    coy = TmeCompanyMain.create()
+    @mycoy = TmeCompanyMain.get(coy.id)
+    erb :"dash/companyprofile", :layout => :'dash/layout3_1'
+  end ####newseeker
 
   get '/admin_editseekerprofile' do
     userid = params["pk"]

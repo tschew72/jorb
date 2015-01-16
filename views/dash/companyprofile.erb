@@ -213,9 +213,7 @@
     <div id="user" class="tab-pane">
       <div class="Instructions">
         <h3>Setting up of Company Users</h3>
-        <p>You can create a login account for each hiring manager/agent (optional)</p>
-        <p>You are the only Super Admin for this company. As a Super Admin, you can add/delete new users and also have the ability to update the company profile.</p>
-        <p>If you want to assign your colleagues with Super Admin rights, please contact us at request@jorb.co</p>
+        <p> Users with Super Admin rights cannot be deleted. If you wish to have Super Admin deleted or created, please request via request@jorb.co</p>
       </div>
       <div id="alert_coyuser"></div>
       <a href="#addnewcoyusermodal" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
@@ -274,7 +272,7 @@
 <script>
   //dataTable setup
   $(document).ready(function(){
-    $('#joblistingtable').dataTable( {   //need to include the Ajax source so that I can reload it from anywhere
+    $('#joblistingtable').dataTable( {  
         "scrollY": 200,
         "ScrollX": true,
         "iDisplayLength": 10,
@@ -298,7 +296,7 @@
         ]
     } );
 
-    $('#archivedjobtable').dataTable( {   //need to include the Ajax source so that I can reload it from anywhere
+    $('#archivedjobtable').dataTable( {   
         "scrollY": 200,
         "ScrollX": true,
         "iDisplayLength": 10,

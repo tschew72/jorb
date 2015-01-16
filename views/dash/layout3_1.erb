@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This Layout (layout3_1.erb) is used by admin/admin_editcoyprofile admin/newrecruiter. Hybrid of layout2 (difference in menu only-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>JORB</title>
+  <link href="_/css/styles.css" rel="stylesheet"></link> 
+  <link href="_/css/jqueryfileupload/jquery.fileupload.css" rel="stylesheet"> </link> 
+  <link href="_/css/select2/select2.css" rel="stylesheet" type="text/css"></link>  
+  <link href="_/css/x-editable/bootstrap-editable.css" rel="stylesheet" type="text/css"></link>  
+  <link href="_/css/x-editable/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet" type="text/css"></link> 
+  <link href="_/css/date-time/daterangepicker.css" rel="stylesheet" type="text/css"></link> 
+  <link href="_/css/spinners/dots.css" rel="stylesheet" type="text/css"></link> 
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!--JQuery--> 
+  <script src="_/js/jquery/jquery.min.js" type="text/javascript" ></script> 
+  <script src="_/js/jquery/jquery-ui.min.js" type="text/javascript" ></script> 
+  <script>
+  $(window).load(function(){
+      $('#preloader').fadeOut(100, function() {
+                 $('body').css('overflow','auto');
+                 $(this).remove();
+      });
+  });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="hero">
+      <section class="layout">
+        <div class="branding">
+          <a href="/">
+            <img src="images/JORB-logo-250.png" alt="Jorb.co">
+          </a>
+        </div> <!-- branding -->
+      </section> <!-- layout -->
+    </div> <!-- hero -->
+    <div class="navigation">
+      <section class="layout">
+        <ul class="nav">
+          <li><a href="/admin"><i class="fa fa-home"></i>ADMIN Home</a></li>
+          <li><a href="/newseeker"><i class="fa fa-question"></i>Create new Job Seeker</a></li>
+          <li><a href="/newrecruiter"><i class="fa fa-question"></i>Create new Recruiter</a></li>
+          <li><a href="/logout"><i class="fa fa-keyboard-o"></i>Sign out</a></li>
+        </ul>
+      </section> <!-- layout -->
+    </div> <!-- navigation -->
+  </header><!-- header -->
+
+<div id="preloader"> <div id="spinner_container"> <div id="spinner" class="dots">    Loading... </div></div></div>
+
+<%= yield %> 
+
+<script src="_/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>  
+<script src="_/js/x-editable/bootstrap-editable.min.js" type="text/javascript" ></script> 
+<script src="_/js/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/wysihtml5-0.3.0.js" type="text/javascript" ></script>
+<script src="_/js/x-editable/wysihtml5/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.js" type="text/javascript"></script> 
+<script src="_/js/x-editable/wysihtml5/wysihtml5.js" type="text/javascript" ></script>
+<script src="_/js/x-editable/select2.js" type="text/javascript" ></script> 
+<script src="_/js/x-editable/address.js" type="text/javascript"></script> 
+<script src="_/js/date-time/moment.min.js" type="text/javascript"></script>
+<script src="_/js/date-time/daterangepicker.js" type="text/javascript"></script>
+<script src="_/js/datatables/jquery.dataTables.min.js" type="text/javascript" ></script> 
+<script src="_/js/datatables/jquery.dataTables-bootstrap.js" type="text/javascript" ></script> 
+<!-- <script src="/vendor/aceskin/ace-elements.min.js" type="text/javascript" ></script> -->
+  
+
+<script>
+  $(function(){ 
+    /* This is in the Add New Company User Modal */
+      $('#c_firstname').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          if(value.length >100 ) {
+            return 'You can only enter a maximum of 100 characters';
+          } 
+          } //function
+      });
+
+      $('#c_middlename').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if(value.length >100 && value!=NULL) {
+            return 'You can only enter a maximum of 100 characters';
+        } 
+          }   //function 
+      });
+
+      $('#c_surname').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          if(value.length >100 ) {
+            return 'You can only enter a maximum of 100 characters';
+          }  
+          }
+      });
+      $('#c_email').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 400px';height:500px>",
+        validate: function(value){
+          if(value.length >200 ) {
+            return 'You can only enter a maximum of 200 characters';
+          }  
+          }  //function
+      });
+      $('#c_contactnumber').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 300px';height:500px>",
+        validate: function(value){
+          if(value.length >20  && value!=NULL) {
+            return 'You can only enter a maximum of 20 characters';
+          }
+        }  //function
+      });
+      $('#c_password').editable({
+        emptytext: '--',
+        tpl: "<input type='text' style='width: 200px';height:500px>",
+        validate: function(value){
+          if (!value) return 'This field is required';
+          } //function
+      });
+
+      $('.c_accesslevel').editable({
+        source: [
+                  {value: 1, text: 'Admin Rights'},
+                  {value: 2, text: 'Job Posting Rights'},
+               ],
+        emptytext: '--',
+        validate: function(value){
+          if (!value) return 'This field is required';
+          } //function
+      });
+  }); /* $(function(){ */
+
+  $('#savecoyuser-btn').click(function() {
+    $('.newcoyuser').editable('submit', {
+      url: '/newcoyuser',
+      data: {"pk" : <%=@mycoy.id%>},
+      ajaxOptions: {
+         dataType: 'json' //assuming json response
+      },       
+      success: function(data, config) {
+        if(data && data.errors){
+          newAlert("#alert_newcoyuser",'danger', data.errors);
+        }//if   
+        else {
+          newAlert("#alert_newcoyuser",'success', 'New Company User Added!');
+          $('.newcoyuser').editable('setValue', null);  //clear values
+          $("#coyuserspace").load("/j_coyusertable",{i: new Date().getTime()}); 
+        } //else   
+      }, //success
+      error: function(errors) {
+        var msg = '';
+        if(errors && errors.responseText) { //ajax error, errors = xhr object
+           msg = errors.responseText;
+        } //if 
+        else { 
+          $.each(errors, function(k, v) {
+            if (k=="firstname") {k = "First Name"};
+            if (k=="middlename") {k = "Middle Name"};
+            if (k=="lastname") {k = "Last Name"};     
+            if (k=="email") {k = "Email Address"};    
+            if (k=="password") {k = "Password"};     
+            msg += k+": "+v+"<br>";
+          }); //each
+          newAlert("#alert_newcoyuser",'danger', msg);
+        } //else
+      } //error
+    }); //newcoyuser
+  }); //savecoyuser-btn
+
+</script>
+</body>
+
+
+</html>     
