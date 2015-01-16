@@ -4,13 +4,13 @@
     <header>Job Search Status</header>
     <span>Activate Job Search</span>
     <input type="checkbox" name="activeseeker" id="activecheck"  <%= @userprofile.activeseeker ? "checked" : "unchecked" %>>
-    <label for="activecheck"></label> <span id="saving"></span>
+    <label for="activecheck"></label> 
     <div id="spr_block" style="visibility: <%= @userprofile.activeseeker ? "visible" : "hidden" %>;" > 
       <span>I am in Singapore</span>
       <input type="checkbox" name="insingaporenow" id="insgcheck" <%= @userprofile.insingaporenow ? "checked" : "unchecked" %>>
       <label for="insgcheck"></label> 
       <div id="insg_block" style="visibility: <%= @userprofile.insingaporenow ? "visible" : "hidden" %>; display:inline" > 
-        <span>on these dates</span><input type="text" value="10/03/2005 - 14/04/2005 " class="datePicker" name="date-range-picker" readonly="true"><span id="saving_date"></span>
+        <span>on these dates</span><input type="text" value="10/03/2005 - 14/04/2005 " class="datePicker" name="date-range-picker" readonly="true">
       </div>  <!-- insg_block -->          
     </div> <!--spr_block -->
   </section> <!--searchStatus --> 
@@ -127,7 +127,6 @@
       <span>50%</span><input name= "freq" id="f2" type="radio" onclick="freqcheck(this)"  value="50">
       <span>75%</span><input name= "freq" id="f3" type="radio" onclick="freqcheck(this)"  value="75"> 
       <span>100%</span><input name= "freq" id="f4" type="radio" onclick="freqcheck(this)"  value="100"> 
-      <span id="saving_radio"></span>
     </p>
     <p>
       Job Types:
@@ -137,7 +136,6 @@
       <span>Internship</span><input type="checkbox" name="skr_intern" id="interncheck"   <%= @userprofile.skr_intern.to_s == "true" ? "checked" : "unchecked" %>><label for="interncheck"></label>
       <span>AfterOfficeHour</span><input type="checkbox" name="outofhours" id="outofhourscheck" <%= @userprofile.outofhours.to_s == "true" ? "checked" : "unchecked" %>><label for="outofhourscheck"></label>
       <span>Freelance/Contract</span><input type="checkbox" name="skr_contractor" id="contractorcheck" <%= @userprofile.skr_contractor.to_s == "true" ? "checked" : "unchecked" %>><label for="contractorcheck"></label>                 
-      <span id="saving_out"></span>
     </p>
   </section> <!--jobPreferences -->
 
@@ -244,7 +242,7 @@
       </div> <!-- modal-header -->
       <div class="modal-body">   
         <div class="Instructions">
-          <p> If you can't find any of your skills from the respective drop-down menu, please request to have them added by writing to request@jorb.co</p>
+          <p> If your skills are not listed, please request to have them added by writing to request@jorb.co</p>
         </div> <!--Instrictions-->
         <div id = "alert_placeholder-inmodal"></div>
           <p>
@@ -278,6 +276,9 @@
         <header>Add new language</header>                                                            
       </div> <!-- "modal-header" -->
       <div class="modal-body">   
+        <div class="Instructions">
+          <p> If the language that you are looking for is not listed, please request to have them added by writing to request@jorb.co</p>
+        </div> <!--Instrictions-->
         <div id = "alert_placeholder-inmodal2"></div>
         <p>
           Language
@@ -309,6 +310,9 @@
         <header>Add New Education </header>                                                            
       </div> <!-- modal-header -->
       <div class="modal-body">   
+        <div class="Instructions">
+          <p> If the title, institutions, speciality and honors that you require is not listed, please request to have them added by writing to request@jorb.co</p>
+        </div> <!--Instrictions-->
         <div id = "alert_placeholder-inmodal3"></div>
         <p>
           Title
@@ -352,6 +356,9 @@
         <header>Add New Certification </header>                                                            
       </div> <!-- "modal-header" -->
       <div class="modal-body">   
+        <div class="Instructions">
+          <p> If your certification is not listed, please request to have them added by writing to request@jorb.co</p>
+        </div> <!--Instrictions-->
         <div id = "alert_placeholder-inmodal4"></div>
         <p>
           Certificate Name
@@ -387,6 +394,9 @@
         <header>Add New Job Experience</header>                                                            
       </div> <!-- modal-header -->
       <div class="modal-body">   
+        <div class="Instructions">
+          <p> If the position, industry, job location and function that you require is not listed, please request to have them added by writing to request@jorb.co</p>
+        </div> <!--Instrictions-->
         <div id = "alert_placeholder-inmodal5"></div>
         <p>
           Position
@@ -447,6 +457,9 @@
         <header>Edit Job Experience</header>                                                            
       </div> <!-- modal-header -->
       <div class="modal-body">   
+        <div class="Instructions">
+          <p> If the position, industry, job location and function that you require is not listed, please request to have them added by writing to request@jorb.co</p>
+        </div> <!--Instrictions-->
         <div id = "alert_placeholder-inmodal6"></div>
         <div id="editexpbody"></div>
       </div> <!-- modal-body -->
@@ -464,10 +477,10 @@
 <script>
 
 $(document).ready(function(){
-    $("#skillTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill RequirementTable now... </div>"); 
-    $("#languageTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language RequirementTable now... </div>"); 
-    $("#educationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
-    $("#certificationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
+    $("#skillTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Table now... </div>"); 
+    $("#languageTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language Table now... </div>"); 
+    $("#educationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Table now... </div>"); 
+    $("#certificationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Table now... </div>"); 
     $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
     document.getElementById('f1').scrollIntoView()
     $("#skillTable").load("/table",{i: new Date().getTime(), pk: <%=@user.id%>}); 
@@ -511,14 +524,11 @@ $(document).ready(function(){
             type: 'POST',
             data: {"insg_start": from, "insg_end": end, "pk" : <%=@userprofile.id %>},
             beforeSend : function(){
-              $("#saving_date").html("<span id='saver'><i class='fa fa-spinner fa-spin'></i></span>");
+              
             }, 
             success: function(response){
-                        // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
-                         $('#saver').fadeOut(1000, function() {
-                          $(this).remove();
-                         });
-                      }
+
+            }
           });
     }); //date-range-picker
 
@@ -698,7 +708,6 @@ $(document).ready(function(){
       type: 'POST',
       data: {"activeseeker": this.checked, "pk" : <%=@user.id %>},
       beforeSend : function(){
-        $("#saving").html("<span id='saver'><i class='fa fa-spinner fa-spin'></i></span>");
       }, 
       success: function(response){
         var data = JSON.parse(response);
@@ -712,9 +721,6 @@ $(document).ready(function(){
            document.getElementById( 'spr_block' ).style.visibility = 'hidden';
            document.getElementById( 'insg_block' ).style.visibility = 'hidden';
         }; //else
-        $('#saver').fadeOut(1000, function() {
-        $(this).remove();
-       });
       } //success function
     }); //ajax
   }); //activecheck
@@ -725,7 +731,7 @@ $(document).ready(function(){
       type: 'POST',
       data: {"value": this.checked, "pk" : <%=@user.id %>, "name":"insingaporenow"},
       beforeSend : function(){
-        $("#saving1").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+      
       },
       success: function(response){
         var data = JSON.parse(response);
@@ -734,10 +740,6 @@ $(document).ready(function(){
         } else{
            document.getElementById( 'insg_block' ).style.visibility = 'hidden';                    
         }; //else
-            // $("#saving1").html("<div id='saver'>Saved...</div>");
-            $('#saver').fadeOut(1000, function() {
-             $(this).remove();
-           });
       } //success functiom
     }); //ajax
   }); //insgcheck
@@ -749,7 +751,7 @@ $(document).ready(function(){
       type: 'POST',
       data: {"value": this.checked, "pk" : <%=@user.id %>,"name":"parttime"},
       beforeSend : function(){
-        $("#saving_parttime").html("<div id='saver_parttime'><i class='fa fa-spinner fa-spin'></i></div>");
+       
       },
       success: function(response){
         var data = JSON.parse(response);
@@ -758,9 +760,6 @@ $(document).ready(function(){
         } else {
               newAlert("#alert_placeholder-tab", 'success', "You will not be matched to part time jobs");  
         }                        
-         $('#saver_parttime').fadeOut(1000, function() {
-         $(this).remove();
-       }); 
       } //success function
     }); //ajax
   }); //parttimecheck
@@ -772,7 +771,6 @@ $(document).ready(function(){
         type: 'POST',
         data: {"value": this.checked, "pk" : <%=@user.id %>, "name":"fulltime"},
         beforeSend : function(){
-          $("#saving_fulltime").html("<div id='saver_fulltime'><i class='fa fa-spinner fa-spin'></i></div>");
         },
         success: function(response){
           var data = JSON.parse(response);
@@ -782,9 +780,6 @@ $(document).ready(function(){
 
                 newAlert("#alert_placeholder-tab", 'success', "You will not be matched to full time jobs");    
           }                               
-           $('#saver_fulltime').fadeOut(1000, function() {
-           $(this).remove();
-         });
         } //success function
       }); //ajax
     }); //fulltimecheck
@@ -795,7 +790,6 @@ $(document).ready(function(){
       type: 'POST',
       data: {"value": this.checked, "pk" : <%=@user.id %>,  "name":"shiftwork"},
       beforeSend : function(){
-        $("#saving_shift").html("<div id='saver_shift'><i class='fa fa-spinner fa-spin'></i></div>");
       },
       success: function(response){
         var data = JSON.parse(response);
@@ -804,9 +798,6 @@ $(document).ready(function(){
         } else {
              newAlert("#alert_placeholder-tab", 'success', "You will not be matched to jobs requiring shift work");  
         }
-         $('#saver_shift').fadeOut(1000, function() {
-         $(this).remove();
-       });
       } //success function
     }); //ajax
   }); //shiftworkcheck
@@ -817,7 +808,6 @@ $(document).ready(function(){
       type: 'POST',
       data: {"value": this.checked, "pk" : <%=@user.id %>, "name":"outofhours"},
       beforeSend : function(){
-        $("#saving_out").html("<span id='saver_out'><i class='fa fa-spinner fa-spin'></i></span>");
       },
       success: function(response){
         var data = JSON.parse(response);
@@ -826,9 +816,6 @@ $(document).ready(function(){
          } else {
              newAlert("#alert_placeholder-tab", 'success', "You will not be matched to jobs requiring you to work outside office hour");  
          }                        
-          $('#saver_out').fadeOut(1000, function() {
-         $(this).remove();
-       });
       } //success function
     }); //ajax
   }); // outofhourscheck
@@ -839,13 +826,9 @@ $(document).ready(function(){
         type: 'POST',
         data: {"value": this.checked, "pk" : <%=@user.id %>, "name":"skr_intern"},
         beforeSend : function(){
-          $("#saving_intern").html("<div id='saver_i'><div id='saver_fulltime'><i class='fa fa-spinner fa-spin'></i></div>");
         },
         success: function(response){
           var data = JSON.parse(response);                           
-           $('#saver_i').fadeOut(1000, function() {
-           $(this).remove();
-         });
         } //success function
       }); //ajax
   }); // interncheck
@@ -856,13 +839,9 @@ $(document).ready(function(){
       type: 'POST',
       data: {"value": this.checked, "pk" : <%=@user.id %>, "name":"skr_contractor"},
       beforeSend : function(){
-        $("#saving_contractor").html("<div id='saver_c'><i class='fa fa-spinner fa-spin'></i></div>");
       },
       success: function(response){
         var data = JSON.parse(response);                           
-         $('#saver_c').fadeOut(1000, function() {
-         $(this).remove();
-       });
       } //success function
     }); //ajax
   }); // contractorcheck
@@ -873,13 +852,8 @@ $(document).ready(function(){
         type: 'POST',
         data: {"value": myRadio.value, "pk" : <%=@user.id %>, "name":"travelfreq"},
         beforeSend : function(){
-          $("#saving_radio").html("<div id='saver_r'><i class='fa fa-spinner fa-spin'></i></div>");
         },
         success: function(response){
-          // var data = JSON.parse(response);                           
-           $('#saver_r').fadeOut(1000, function() {
-              $(this).remove();
-           });
         } //success function
       }); //ajax
   }; // freqcheck
@@ -961,22 +935,23 @@ $(document).ready(function(){
       $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
   }//newAlert     
 
-  $('#addexperiencemodal').on('hide.bs.modal', function(e) {   
-      $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
-  }); //addexperiencemodal
-  $('#editexperiencemodal').on('hide.bs.modal', function(e) {   
-      $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
-  }); //editexperiencemodal
-   $('#addskillmodal').on('hide.bs.modal', function(e) {   
-      $("#skillTable").load("/table",{i: new Date().getTime(), pk: <%= @user.id %>}); 
-  }); //addskillmodal
-   $('#addedumodal').on('hide.bs.modal', function(e) {   
-      $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
-  }); //addedumodal
-   $('#addcertmodal').on('hide.bs.modal', function(e) {   
-      $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
-  }); //addcertmodal
-   $('#addlanguagemodal').on('hide.bs.modal', function(e) {   
-      $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
-  }); //addlanguagemodal
+//When the modal is closed, reload the respective tables. For example, when a user add and save a few skills before closing the modal, we want to make sure those skills are reflected in the table.
+  // $('#addexperiencemodal').on('hide.bs.modal', function(e) {   
+  //     $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+  // }); //addexperiencemodal
+  // $('#editexperiencemodal').on('hide.bs.modal', function(e) {   
+  //     $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+  // }); //editexperiencemodal
+  //  $('#addskillmodal').on('hide.bs.modal', function(e) {   
+  //     $("#skillTable").load("/table",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+  // }); //addskillmodal
+  //  $('#addedumodal').on('hide.bs.modal', function(e) {   
+  //     $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+  // }); //addedumodal
+  //  $('#addcertmodal').on('hide.bs.modal', function(e) {   
+  //     $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+  // }); //addcertmodal
+  //  $('#addlanguagemodal').on('hide.bs.modal', function(e) {   
+  //     $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%= @user.id %>}); 
+  // }); //addlanguagemodal
 </script>

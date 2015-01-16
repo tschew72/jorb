@@ -678,182 +678,199 @@ end
 
 
 #===============================Admin Section================================
-get '/admin' do
-  @user = User.get(1)
-  @userprofile = @user.tme_skr_main
-  erb :"dash/admin", :layout => :'dash/layout3'
-end ####admin
+  get '/admin' do
+    @user = User.get(1)
+    @userprofile = @user.tme_skr_main
+    erb :"dash/admin", :layout => :'dash/layout3'
+  end ####admin
 
-post '/admin_seekertable' do
-    @allusers = User.all
-    erb :admin_seekertable, :layout => false
-end ####admin_seekertable
+  post '/admin_seekertable' do
+      @allusers = User.all
+      erb :admin_seekertable, :layout => false
+  end ####admin_seekertable
 
-get '/admin_editseekerprofile' do
-  userid = params["pk"]
-  @user = User.get(userid)
-  @userprofile = @user.tme_skr_main
-  #@userme = @user.firstname
-  sc = @userprofile.tme_skr_socialmedia.all
-  sc.each do |x|
-    if x.skr_socialmediacat == 1
-      @facebook = x.skr_socialmediaurl
-    end
-    if x.skr_socialmediacat == 2
-      @github = x.skr_socialmediaurl
-    end
-    if x.skr_socialmediacat == 3
-      @linkedin = x.skr_socialmediaurl
-    end
-    if x.skr_socialmediacat == 4
-      @twitter = x.skr_socialmediaurl
-    end
-    if x.skr_socialmediacat == 5
-      @google = x.skr_socialmediaurl
-    end
-  end ####sc.each
-  @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
-  @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
-  @cmaster = TmeListCountry.all
-  ctemp = []
-  @cmaster.each do |x|
-    ctemp << {value: x.country_id, text: "#{x.country}"}
-  end
-  @countries = ctemp.to_json
-  erb :"dash/profile", :layout => :'dash/layout3'
-end ####admin_editseekerprofile
-
-get '/admin_editseekercareer' do
-  # redirect '/auth/login' unless env['warden'].authenticated?
-  # @user = env['warden'].user
-  # if @user.usertype == 2
-  #   redirect '/auth/unauthorized'
-  # end
-  userid = params["pk"]
-  @user = User.get(userid)
-  @userprofile = @user.tme_skr_main
-  @userme = @user.firstname
-
-  @allskills =   @userprofile.skill_summaries.all
-  @alllanguages = @userprofile.tme_skr_language.all
-  @myachievements = @userprofile.tme_skr_achieve.first(:tme_skr_main_id=>@userprofile.id)
-  @ssmaster = SkillSource  #master skill source for cross referencing
-  @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
-  @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
-
-  #Preferred Level
-  plevel = @userprofile.tme_skr_preftitle.all
-  @pref_level=""
-  plevel.each do |i|
-  @pref_level = @pref_level + plevel.get(i).skr_preftitle.to_s + ","
-  end
-
-  #Preferred Job Functions
-  pfunc = @userprofile.tme_skr_preffunc.all
-  @pref_func=""
-  pfunc.each do |i|
-  @pref_func = @pref_func + pfunc.get(i).skr_preffunc.to_s + ","
-  end
-
-  #Preferred Industries
-  pind = @userprofile.tme_skr_prefind.all
-  @pref_ind=""
-  pind.each do |i|
-    @pref_ind  = @pref_ind + pind.get(i).skr_prefind.to_s + ","
-  end
-
-  #Preferred Locations
-  pc= @userprofile.tme_skr_prefloc.all
-  @pref_loc=""
-  pc.each do |i|
-    @pref_loc = @pref_loc + pc.get(i).skr_prefloc.to_s + ","
-  end
-
-  @indmaster = TmeListIndustry.all 
-  indtemp = []
-     @indmaster.each do |x|
-     indtemp << {id: x.industry_id, text: "#{x.industry}"}
-  end
-  @industries = indtemp.to_json
-
-  @locmaster = TmeListCountry.all
-  loctemp = []
-  @locmaster.each do |x|
-     loctemp << {id: x.country_id, text: "#{x.country}"}
-  end
-  @locations = loctemp.to_json
-
-  @levelmaster = TmeListTitle.all
-  leveltemp = []
-  @levelmaster.each do |x|
-     leveltemp << {id: x.title_id, text: "#{x.title}"}
-  end
-  @levels = leveltemp.to_json
-
-  @functionmaster = TmeListFunction.all
-  functemp = []
-  @functionmaster.each do |x|
-     functemp << {id: x.function_id, text: "#{x.function}"}
-  end
-  @functions = functemp.to_json
-
-  @scmaster = SkillCategory.all   #Skill Category Master
-  cattemp = []
-     @scmaster.each do |x|
-     cattemp << {value: x.id, text: "#{x.categoryname}"}
-  end
-  @skillcat= cattemp.to_json
-
-  @lmaster = TmeListLanguage.all
-  ltemp = []
-     @lmaster.each do |x|
-     ltemp << {value: x.language_id, text: "#{x.language}"}
-  end
-  @langlist= ltemp.to_json
-  @sr = SkillRank.all
-  erb :"dash/settings", :layout => :'dash/layout3'
-end ####admin_editseekercareer
-
-get '/newseeker' do
-  user = User.create()
-  tmeskrmain = TmeSkrMain.create()
-  user.update(:tme_skr_main_id => tmeskrmain.id)
-  user.update(:usertype => 1)
-  achievements=TmeSkrAchieve.create()
-  achievements.update(:tme_skr_main_id => tmeskrmain.id)
-  nationality=TmeSkrNation.create()
-  nationality.update(:tme_skr_main_id => tmeskrmain.id)
-  @user = user
-  @userprofile = tmeskrmain
-  @userme = @user.firstname
-  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 1)
-  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 2)
-  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 3)
-  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 4)
-  sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
-  @cmaster = TmeListCountry.all
-  ctemp = []
-     @cmaster.each do |x|
-     ctemp << {value: x.country_id, text: "#{x.country}"}
-  end
-  @countries = ctemp.to_json
-  erb :"dash/profile", :layout => :'dash/layout3'
-end ####newseeker
+  post '/admin_coytable' do
+      @allcoy = TmeCompanyMain.all
+      erb :admin_coytable, :layout => false
+  end ####admin_seekertable
 
 
-post '/delete_empty_seekers' do
- admin = TmeAdmin.get(1)
- delete_trigger = admin.delete_emptyusers + 1
- admin.update(:delete_emptyusers=> delete_trigger)
- return 200
+
+get '/admin_editcoyprofile' do
+       # redirect '/auth/login' unless env['warden'].authenticated?
+       # @user = env['warden'].user
+       # if @user.usertype == 1
+       #    redirect '/auth/unauthorized'
+       # end
+       @mycoy = TmeCompanyMain.get(params["pk"])
+       erb :"dash/companyprofile", :layout => :'dash/layout2'
 end
 
-post '/delete_empty_company_users' do
- admin = TmeAdmin.get(1)
- delete_trigger = admin.delete_emptycmpyusers + 1
- admin.update(:delete_emptycmpyusers=> delete_trigger)
- return 200
-end
+  get '/admin_editseekerprofile' do
+    userid = params["pk"]
+    @user = User.get(userid)
+    @userprofile = @user.tme_skr_main
+    #@userme = @user.firstname
+    sc = @userprofile.tme_skr_socialmedia.all
+    sc.each do |x|
+      if x.skr_socialmediacat == 1
+        @facebook = x.skr_socialmediaurl
+      end
+      if x.skr_socialmediacat == 2
+        @github = x.skr_socialmediaurl
+      end
+      if x.skr_socialmediacat == 3
+        @linkedin = x.skr_socialmediaurl
+      end
+      if x.skr_socialmediacat == 4
+        @twitter = x.skr_socialmediaurl
+      end
+      if x.skr_socialmediacat == 5
+        @google = x.skr_socialmediaurl
+      end
+    end ####sc.each
+    @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
+    @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
+    @cmaster = TmeListCountry.all
+    ctemp = []
+    @cmaster.each do |x|
+      ctemp << {value: x.country_id, text: "#{x.country}"}
+    end
+    @countries = ctemp.to_json
+    erb :"dash/profile", :layout => :'dash/layout3'
+  end ####admin_editseekerprofile
+
+  get '/admin_editseekercareer' do
+    # redirect '/auth/login' unless env['warden'].authenticated?
+    # @user = env['warden'].user
+    # if @user.usertype == 2
+    #   redirect '/auth/unauthorized'
+    # end
+    userid = params["pk"]
+    @user = User.get(userid)
+    @userprofile = @user.tme_skr_main
+    @userme = @user.firstname
+
+    @allskills =   @userprofile.skill_summaries.all
+    @alllanguages = @userprofile.tme_skr_language.all
+    @myachievements = @userprofile.tme_skr_achieve.first(:tme_skr_main_id=>@userprofile.id)
+    @ssmaster = SkillSource  #master skill source for cross referencing
+    @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
+    @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
+
+    #Preferred Level
+    plevel = @userprofile.tme_skr_preftitle.all
+    @pref_level=""
+    plevel.each do |i|
+    @pref_level = @pref_level + plevel.get(i).skr_preftitle.to_s + ","
+    end
+
+    #Preferred Job Functions
+    pfunc = @userprofile.tme_skr_preffunc.all
+    @pref_func=""
+    pfunc.each do |i|
+    @pref_func = @pref_func + pfunc.get(i).skr_preffunc.to_s + ","
+    end
+
+    #Preferred Industries
+    pind = @userprofile.tme_skr_prefind.all
+    @pref_ind=""
+    pind.each do |i|
+      @pref_ind  = @pref_ind + pind.get(i).skr_prefind.to_s + ","
+    end
+
+    #Preferred Locations
+    pc= @userprofile.tme_skr_prefloc.all
+    @pref_loc=""
+    pc.each do |i|
+      @pref_loc = @pref_loc + pc.get(i).skr_prefloc.to_s + ","
+    end
+
+    @indmaster = TmeListIndustry.all 
+    indtemp = []
+       @indmaster.each do |x|
+       indtemp << {id: x.industry_id, text: "#{x.industry}"}
+    end
+    @industries = indtemp.to_json
+
+    @locmaster = TmeListCountry.all
+    loctemp = []
+    @locmaster.each do |x|
+       loctemp << {id: x.country_id, text: "#{x.country}"}
+    end
+    @locations = loctemp.to_json
+
+    @levelmaster = TmeListTitle.all
+    leveltemp = []
+    @levelmaster.each do |x|
+       leveltemp << {id: x.title_id, text: "#{x.title}"}
+    end
+    @levels = leveltemp.to_json
+
+    @functionmaster = TmeListFunction.all
+    functemp = []
+    @functionmaster.each do |x|
+       functemp << {id: x.function_id, text: "#{x.function}"}
+    end
+    @functions = functemp.to_json
+
+    @scmaster = SkillCategory.all   #Skill Category Master
+    cattemp = []
+       @scmaster.each do |x|
+       cattemp << {value: x.id, text: "#{x.categoryname}"}
+    end
+    @skillcat= cattemp.to_json
+
+    @lmaster = TmeListLanguage.all
+    ltemp = []
+       @lmaster.each do |x|
+       ltemp << {value: x.language_id, text: "#{x.language}"}
+    end
+    @langlist= ltemp.to_json
+    @sr = SkillRank.all
+    erb :"dash/settings", :layout => :'dash/layout3'
+  end ####admin_editseekercareer
+
+  get '/newseeker' do
+    user = User.create()
+    tmeskrmain = TmeSkrMain.create()
+    user.update(:tme_skr_main_id => tmeskrmain.id)
+    user.update(:usertype => 1)
+    achievements=TmeSkrAchieve.create()
+    achievements.update(:tme_skr_main_id => tmeskrmain.id)
+    nationality=TmeSkrNation.create()
+    nationality.update(:tme_skr_main_id => tmeskrmain.id)
+    @user = user
+    @userprofile = tmeskrmain
+    @userme = @user.firstname
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 1)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 2)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 3)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 4)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
+    @cmaster = TmeListCountry.all
+    ctemp = []
+       @cmaster.each do |x|
+       ctemp << {value: x.country_id, text: "#{x.country}"}
+    end
+    @countries = ctemp.to_json
+    erb :"dash/profile", :layout => :'dash/layout3'
+  end ####newseeker
+
+
+  post '/delete_empty_seekers' do
+   admin = TmeAdmin.get(1)
+   delete_trigger = admin.delete_emptyusers + 1
+   admin.update(:delete_emptyusers=> delete_trigger)
+   return 200
+  end
+
+  post '/delete_empty_company_users' do
+   admin = TmeAdmin.get(1)
+   delete_trigger = admin.delete_emptycmpyusers + 1
+   admin.update(:delete_emptycmpyusers=> delete_trigger)
+   return 200
+  end
 #===============================AJAX Listing Section================================
 get '/getskill' do
   smaster = SkillSource.all(:skillcategory_id => params["value"])
@@ -1351,13 +1368,10 @@ get '/companyprofile' do
        if @user.usertype == 1
           redirect '/auth/unauthorized'
        end
-       @userprofile = @user.tme_skr_main
-       @userme = @user.firstname
+       #@userprofile = @user.tme_skr_main
+       #@userme = @user.firstname
        @mycoy = @user.tme_company_main
-       #@joblisting = @mycoy.tme_job_main.all
-
-       #@mycoyusers = TmeCompanyUsers
-
+       
        erb :"dash/companyprofile", :layout => :'dash/layout2'
 end
 

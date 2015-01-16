@@ -315,7 +315,7 @@ div.dataTables_paginate span > a {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 17, ../components/sass/_layout.scss */
+/* line 16, ../components/sass/_layout.scss */
 .settingsLayout {
   max-width: 100%;
   margin-left: auto;
@@ -326,45 +326,45 @@ div.dataTables_paginate span > a {
     content: " ";
     display: block;
     clear: both; }
-  /* line 22, ../components/sass/_layout.scss */
+  /* line 21, ../components/sass/_layout.scss */
   .settingsLayout .jobMatches {
     margin-top: .2em; }
     @media (min-width: 60em) {
-      /* line 22, ../components/sass/_layout.scss */
+      /* line 21, ../components/sass/_layout.scss */
       .settingsLayout .jobMatches {
         font-size: 0.9em; }
-        /* line 27, ../components/sass/_layout.scss */
+        /* line 26, ../components/sass/_layout.scss */
         .settingsLayout .jobMatches h2 {
           color: #BD3613;
           border: none;
           text-shadow: none;
           margin-bottom: 20px; }
-        /* line 34, ../components/sass/_layout.scss */
+        /* line 33, ../components/sass/_layout.scss */
         .settingsLayout .jobMatches a {
           color: #0A2933; } }
   @media (min-width: 60em) {
-    /* line 41, ../components/sass/_layout.scss */
+    /* line 40, ../components/sass/_layout.scss */
     .settingsLayout .Insights {
       font-size: 1.1rem; } }
   @media (min-width: 60em) {
-    /* line 50, ../components/sass/_layout.scss */
+    /* line 49, ../components/sass/_layout.scss */
     .settingsLayout .searchStatus {
       width: 49.15254%;
       float: left;
       margin-right: 1.69492%;
       font-size: 1.0rem; }
-      /* line 54, ../components/sass/_layout.scss */
+      /* line 53, ../components/sass/_layout.scss */
       .settingsLayout .searchStatus h2 {
         color: #BD3613; } }
   @media (min-width: 60em) {
-    /* line 62, ../components/sass/_layout.scss */
+    /* line 61, ../components/sass/_layout.scss */
     .settingsLayout .CV {
       width: 49.15254%;
       float: right;
       margin-right: 0;
       font-size: 1.0rem; } }
   @media (min-width: 60em) {
-    /* line 70, ../components/sass/_layout.scss */
+    /* line 69, ../components/sass/_layout.scss */
     .settingsLayout .jobPreferences {
       width: 100%;
       float: left;
@@ -372,7 +372,7 @@ div.dataTables_paginate span > a {
       margin-right: 0;
       font-size: 1.0rem; } }
   @media (min-width: 60em) {
-    /* line 78, ../components/sass/_layout.scss */
+    /* line 77, ../components/sass/_layout.scss */
     .settingsLayout .Achievements {
       width: 100%;
       float: left;
@@ -380,7 +380,7 @@ div.dataTables_paginate span > a {
       margin-right: 0;
       font-size: 1.0rem; } }
   @media (min-width: 60em) {
-    /* line 86, ../components/sass/_layout.scss */
+    /* line 85, ../components/sass/_layout.scss */
     .settingsLayout .Experiences {
       width: 49.15254%;
       float: left;
@@ -389,7 +389,7 @@ div.dataTables_paginate span > a {
       padding-right: 5px;
       margin-right: 5px; } }
   @media (min-width: 60em) {
-    /* line 95, ../components/sass/_layout.scss */
+    /* line 94, ../components/sass/_layout.scss */
     .settingsLayout .Competencies {
       width: 49.15254%;
       float: right;
@@ -398,7 +398,7 @@ div.dataTables_paginate span > a {
       padding-left: 5px;
       margin-left: 5px; } }
 
-/* line 108, ../components/sass/_layout.scss */
+/* line 107, ../components/sass/_layout.scss */
 .profileLayout {
   max-width: 100%;
   margin-left: auto;
@@ -410,35 +410,35 @@ div.dataTables_paginate span > a {
     display: block;
     clear: both; }
   @media (min-width: 60em) {
-    /* line 112, ../components/sass/_layout.scss */
+    /* line 111, ../components/sass/_layout.scss */
     .profileLayout .Avatar {
       width: 100%;
       float: left;
       margin-left: 0;
       margin-right: 0; } }
   @media (min-width: 60em) {
-    /* line 119, ../components/sass/_layout.scss */
+    /* line 118, ../components/sass/_layout.scss */
     .profileLayout .profileDetail {
       width: 100%;
       float: left;
       margin-left: 0;
       margin-right: 0; } }
   @media (min-width: 60em) {
-    /* line 125, ../components/sass/_layout.scss */
+    /* line 124, ../components/sass/_layout.scss */
     .profileLayout .contactInformation {
       width: 49.15254%;
       float: left;
       margin-right: 1.69492%;
       font-size: 0.8rem; } }
   @media (min-width: 60em) {
-    /* line 132, ../components/sass/_layout.scss */
+    /* line 131, ../components/sass/_layout.scss */
     .profileLayout .socialNetwork {
       width: 49.15254%;
       float: right;
       margin-right: 0;
       font-size: 0.8rem; } }
 
-/* line 141, ../components/sass/_layout.scss */
+/* line 140, ../components/sass/_layout.scss */
 .seekerIndexlayout {
   max-width: 100%;
   margin-left: auto;
@@ -451,19 +451,19 @@ div.dataTables_paginate span > a {
     display: block;
     clear: both; }
   @media (min-width: 60em) {
-    /* line 145, ../components/sass/_layout.scss */
+    /* line 144, ../components/sass/_layout.scss */
     .seekerIndexlayout .jobMatches {
       width: 49.15254%;
       float: left;
       margin-right: 1.69492%; } }
   @media (min-width: 60em) {
-    /* line 151, ../components/sass/_layout.scss */
+    /* line 150, ../components/sass/_layout.scss */
     .seekerIndexlayout .matchDetail {
       width: 49.15254%;
       float: right;
       margin-right: 0; } }
 
-/* line 160, ../components/sass/_layout.scss */
+/* line 159, ../components/sass/_layout.scss */
 .cvLayout {
   max-width: 100%;
   margin-left: auto;
@@ -475,17 +475,17 @@ div.dataTables_paginate span > a {
     content: " ";
     display: block;
     clear: both; }
-  /* line 166, ../components/sass/_layout.scss */
+  /* line 165, ../components/sass/_layout.scss */
   .cvLayout .avatar-frame {
     float: left;
     overflow: hidden;
     *zoom: 1; }
-  /* line 172, ../components/sass/_layout.scss */
+  /* line 171, ../components/sass/_layout.scss */
   .cvLayout .Detail {
     float: left;
     margin: 0px 20px; }
   @media (min-width: 60em) {
-    /* line 178, ../components/sass/_layout.scss */
+    /* line 177, ../components/sass/_layout.scss */
     .cvLayout .Skills {
       overflow: hidden;
       *zoom: 1;
@@ -495,7 +495,7 @@ div.dataTables_paginate span > a {
       margin-right: 0;
       font-size: 0.8rem; } }
   @media (min-width: 60em) {
-    /* line 188, ../components/sass/_layout.scss */
+    /* line 187, ../components/sass/_layout.scss */
     .cvLayout .Achievements {
       width: 100%;
       float: left;
@@ -503,19 +503,19 @@ div.dataTables_paginate span > a {
       margin-right: 0;
       font-size: 0.8rem; } }
   @media (min-width: 60em) {
-    /* line 197, ../components/sass/_layout.scss */
+    /* line 196, ../components/sass/_layout.scss */
     .cvLayout .Experiences {
       width: 49.15254%;
       float: left;
       margin-right: 1.69492%; } }
   @media (min-width: 60em) {
-    /* line 205, ../components/sass/_layout.scss */
+    /* line 204, ../components/sass/_layout.scss */
     .cvLayout .Education {
       width: 49.15254%;
       float: right;
       margin-right: 0; } }
 
-/* line 216, ../components/sass/_layout.scss */
+/* line 215, ../components/sass/_layout.scss */
 .hrmLayout {
   max-width: 100%;
   margin-left: auto;
@@ -527,7 +527,7 @@ div.dataTables_paginate span > a {
     display: block;
     clear: both; }
   @media (min-width: 60em) {
-    /* line 222, ../components/sass/_layout.scss */
+    /* line 221, ../components/sass/_layout.scss */
     .hrmLayout .jobListing {
       overflow: hidden;
       *zoom: 1;
@@ -535,20 +535,20 @@ div.dataTables_paginate span > a {
       float: left;
       margin-right: 1.69492%; } }
   @media (min-width: 60em) {
-    /* line 230, ../components/sass/_layout.scss */
+    /* line 229, ../components/sass/_layout.scss */
     .hrmLayout .top5Matches {
       width: 49.15254%;
       float: right;
       margin-right: 0; } }
   @media (min-width: 60em) {
-    /* line 237, ../components/sass/_layout.scss */
+    /* line 236, ../components/sass/_layout.scss */
     .hrmLayout .matchDetail {
       width: 100%;
       float: left;
       margin-left: 0;
       margin-right: 0; } }
 
-/* line 249, ../components/sass/_layout.scss */
+/* line 248, ../components/sass/_layout.scss */
 .jobManagementLayout {
   max-width: 100%;
   margin-left: auto;
@@ -560,7 +560,7 @@ div.dataTables_paginate span > a {
     display: block;
     clear: both; }
 
-/* line 257, ../components/sass/_layout.scss */
+/* line 256, ../components/sass/_layout.scss */
 .jobDetailLayout {
   max-width: 100%;
   margin-left: auto;
@@ -572,27 +572,27 @@ div.dataTables_paginate span > a {
     display: block;
     clear: both; }
   @media (min-width: 60em) {
-    /* line 261, ../components/sass/_layout.scss */
+    /* line 260, ../components/sass/_layout.scss */
     .jobDetailLayout .jobDetailLeft {
       width: 49.15254%;
       float: left;
       margin-right: 1.69492%; } }
   @media (min-width: 60em) {
-    /* line 267, ../components/sass/_layout.scss */
+    /* line 266, ../components/sass/_layout.scss */
     .jobDetailLayout .jobDetailRight {
       width: 49.15254%;
       float: right;
       margin-right: 0;
       margin-top: 3em; } }
   @media (min-width: 60em) {
-    /* line 274, ../components/sass/_layout.scss */
+    /* line 273, ../components/sass/_layout.scss */
     .jobDetailLayout .jobRequirement {
       width: 100%;
       float: left;
       margin-left: 0;
       margin-right: 0; } }
 
-/* line 284, ../components/sass/_layout.scss */
+/* line 283, ../components/sass/_layout.scss */
 .adminLayout {
   max-width: 100%;
   margin-left: auto;
@@ -603,8 +603,21 @@ div.dataTables_paginate span > a {
     content: " ";
     display: block;
     clear: both; }
+  @media (min-width: 90em) {
+    /* line 288, ../components/sass/_layout.scss */
+    .adminLayout #coyTable {
+      width: 49.15254%;
+      float: right;
+      margin-right: 0;
+      padding: 10px 30px; }
+    /* line 294, ../components/sass/_layout.scss */
+    .adminLayout #seekerTable {
+      width: 49.15254%;
+      float: left;
+      margin-right: 1.69492%;
+      padding: 10px 10px; } }
 
-/* line 291, ../components/sass/_layout.scss */
+/* line 307, ../components/sass/_layout.scss */
 .companyProfileLayout {
   max-width: 100%;
   margin-left: auto;
@@ -616,38 +629,38 @@ div.dataTables_paginate span > a {
     display: block;
     clear: both; }
   @media (min-width: 60em) {
-    /* line 295, ../components/sass/_layout.scss */
+    /* line 311, ../components/sass/_layout.scss */
     .companyProfileLayout .Profile {
       width: 49.15254%;
       float: left;
       margin-right: 1.69492%;
       font-size: 1.0rem; } }
   @media (min-width: 60em) {
-    /* line 302, ../components/sass/_layout.scss */
+    /* line 318, ../components/sass/_layout.scss */
     .companyProfileLayout .contactInfo {
       width: 49.15254%;
       float: right;
       margin-right: 0;
       font-size: 1.0rem; } }
   @media (min-width: 60em) {
-    /* line 309, ../components/sass/_layout.scss */
+    /* line 325, ../components/sass/_layout.scss */
     .companyProfileLayout .socialMedia {
       width: 49.15254%;
       float: right;
       margin-right: 0;
       font-size: 1.0rem; } }
 
-/* line 320, ../components/sass/_layout.scss */
+/* line 336, ../components/sass/_layout.scss */
 header img {
   width: 95%;
   margin: 2.5%;
   max-width: 500px;
   margin-bottom: 0; }
-/* line 327, ../components/sass/_layout.scss */
+/* line 343, ../components/sass/_layout.scss */
 header .hero {
   width: 100%; }
   @media (min-width: 60em) {
-    /* line 327, ../components/sass/_layout.scss */
+    /* line 343, ../components/sass/_layout.scss */
     header .hero {
       -moz-transition: all 1s ease-out;
       -o-transition: all 1s ease-out;
@@ -669,16 +682,16 @@ header .hero {
       -o-background-size: cover;
       background-size: cover;
       margin: 0 auto; }
-      /* line 345, ../components/sass/_layout.scss */
+      /* line 361, ../components/sass/_layout.scss */
       header .hero .branding {
         position: absolute;
         bottom: 0; } }
 
-/* line 356, ../components/sass/_layout.scss */
+/* line 372, ../components/sass/_layout.scss */
 .navigation {
   background: #175c73; }
   @media (min-width: 30em) {
-    /* line 358, ../components/sass/_layout.scss */
+    /* line 374, ../components/sass/_layout.scss */
     .navigation ul.nav {
       margin: 0;
       padding: 0;
@@ -703,11 +716,11 @@ header .hero {
         /* line 52, ../../../../../../.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/compass-core-1.0.1/stylesheets/compass/typography/lists/_horizontal-list.scss */
         .navigation ul.nav li.last {
           padding-right: 0; } }
-  /* line 363, ../components/sass/_layout.scss */
+  /* line 379, ../components/sass/_layout.scss */
   .navigation ul.nav li i {
     color: #f7b71a;
     padding-right: .5em; }
-  /* line 368, ../components/sass/_layout.scss */
+  /* line 384, ../components/sass/_layout.scss */
   .navigation ul.nav li a {
     -moz-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
@@ -717,14 +730,14 @@ header .hero {
     text-decoration: none;
     padding: 5px 10px;
     color: #FCF4DC; }
-    /* line 375, ../components/sass/_layout.scss */
+    /* line 391, ../components/sass/_layout.scss */
     .navigation ul.nav li a:hover {
       background: #BD3613; }
-      /* line 377, ../components/sass/_layout.scss */
+      /* line 393, ../components/sass/_layout.scss */
       .navigation ul.nav li a:hover a {
         color: #f8c64c; }
 
-/* line 389, ../components/sass/_layout.scss */
+/* line 405, ../components/sass/_layout.scss */
 .speakerslist img {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -733,11 +746,11 @@ header .hero {
   float: left;
   margin-right: 10px;
   margin-bottom: 10px; }
-/* line 399, ../components/sass/_layout.scss */
+/* line 415, ../components/sass/_layout.scss */
 .speakerslist i {
   padding-right: 15px; }
 @media (min-width: 60em) {
-  /* line 388, ../components/sass/_layout.scss */
+  /* line 404, ../components/sass/_layout.scss */
   .speakerslist {
     text-align: center;
     background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBkMzM0MCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA0MjAyOSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
@@ -748,38 +761,38 @@ header .hero {
     overflow: hidden;
     color: rgba(234, 227, 203, 0.5);
     padding-bottom: 10px; }
-    /* line 410, ../components/sass/_layout.scss */
+    /* line 426, ../components/sass/_layout.scss */
     .speakerslist h1, .speakerslist h2, .speakerslist h3, .speakerslist h4, .speakerslist h5, .speakerslist h6 {
       text-shadow: none;
       border-bottom: none !important; }
-    /* line 415, ../components/sass/_layout.scss */
+    /* line 431, ../components/sass/_layout.scss */
     .speakerslist h1 {
       color: #738A05;
       font-size: 2.6 rem;
       line-height: 1em; } }
     @media (min-width: 60em) and (min-width: 75em) {
-      /* line 415, ../components/sass/_layout.scss */
+      /* line 431, ../components/sass/_layout.scss */
       .speakerslist h1 {
         font-size: 4rem;
         line-height: 1em; } }
 @media (min-width: 60em) {
-    /* line 425, ../components/sass/_layout.scss */
+    /* line 441, ../components/sass/_layout.scss */
     .speakerslist h3 {
       color: #d69a08;
       line-height: .9rem; }
-    /* line 430, ../components/sass/_layout.scss */
+    /* line 446, ../components/sass/_layout.scss */
     .speakerslist .small {
       padding-top: .4em !important;
       line-height: 1em;
       color: #2390b3; }
-      /* line 434, ../components/sass/_layout.scss */
+      /* line 450, ../components/sass/_layout.scss */
       .speakerslist .small a {
         color: #2390b3;
         text-decoration: none; }
-        /* line 437, ../components/sass/_layout.scss */
+        /* line 453, ../components/sass/_layout.scss */
         .speakerslist .small a:hover {
           text-decoration: underline; }
-    /* line 442, ../components/sass/_layout.scss */
+    /* line 458, ../components/sass/_layout.scss */
     .speakerslist img.speaker {
       float: none;
       width: 40%;
@@ -788,10 +801,10 @@ header .hero {
       -moz-border-radius: 50%;
       -webkit-border-radius: 50%;
       border-radius: 50%; }
-    /* line 450, ../components/sass/_layout.scss */
+    /* line 466, ../components/sass/_layout.scss */
     .speakerslist .small {
       display: block; }
-    /* line 454, ../components/sass/_layout.scss */
+    /* line 470, ../components/sass/_layout.scss */
     .speakerslist p:nth-of-type(2) {
       font-weight: 200 !important;
       text-align: left;
@@ -802,22 +815,22 @@ header .hero {
       -webkit-transition: all 0.3s ease-out;
       transition: all 0.3s ease-out;
       opacity: 0; }
-    /* line 464, ../components/sass/_layout.scss */
+    /* line 480, ../components/sass/_layout.scss */
     .speakerslist:hover p:nth-of-type(2) {
       line-height: 1.5em;
       opacity: 1; }
-    /* line 470, ../components/sass/_layout.scss */
+    /* line 486, ../components/sass/_layout.scss */
     .speakerslist .artist {
       width: 32.20339%;
       float: left;
       margin-right: 1.69492%; }
-    /* line 474, ../components/sass/_layout.scss */
+    /* line 490, ../components/sass/_layout.scss */
     .speakerslist .artist:nth-of-type(3) {
       width: 32.20339%;
       float: right;
       margin-right: 0; } }
 
-/* line 481, ../components/sass/_layout.scss */
+/* line 497, ../components/sass/_layout.scss */
 footer {
   color: #EAE3CB;
   background: #0d3340;
@@ -996,3 +1009,8 @@ footer {
 /* line 202, ../components/sass/_modules.scss */
 .jobRequirement {
   font-size: 0.7rem; }
+
+/* line 207, ../components/sass/_modules.scss */
+#seekerTable, #coyTable {
+  font-size: 0.7rem;
+  padding: 10px 50px; }

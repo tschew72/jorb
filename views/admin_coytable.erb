@@ -1,0 +1,33 @@
+<script>
+$.getScript("_/js/loading_scripts/admin_coytablescript.js");
+</script>
+
+<header>Recruiter Administration</header>
+<table id="admin_coytable" class="hover compact">
+  <thead>
+    <tr>
+       <th>Company</th>
+       <th>Contact Person</th>
+       <th>Email</th>
+       <th>Last Updated</th>
+       <th></th>
+       <th></th>
+    </tr>
+  </thead>
+  <tbody >
+    <% @allcoy.each do |i| %>                
+    <tr>
+      <td><%= i.company_name %></td>
+      <td><%= i.company_contactname %></td>
+      <td><%= i.company_email %></td>
+      <td><%= i.company_dateadded %></td>
+      <td>
+        <a href="/admin_editcoyprofile?pk=<%=i.id%>"> Edit Company Profile</a>
+      </td>
+      <td>
+        <a href=""> Delete</a>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

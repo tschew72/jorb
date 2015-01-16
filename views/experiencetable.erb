@@ -24,11 +24,9 @@ $.getScript("_/js/loading_scripts/experiencetablescript.js");
         <td><%= i.skr_emp_start != nil ? i.skr_emp_start.strftime("%d/%m/%Y") : " " %></td>
         <td><%= i.skr_emp_end != nil ? i.skr_emp_end.strftime("%d/%m/%Y") : " "%></td>
         <td>
-          <div class=" action-buttons">
             <a href="#editexperiencemodal" data-jobid="<%=i.skr_emp_id%>" data-toggle="modal" data-keyboard="false" data-backdrop="static" role="button">
               <i class="fa fa-pencil fa-lg"></i>
             </a>
-          </div>
         </td> 
         <td>
           <a onclick="delexp(this, <%=i.skr_emp_id%>)" class="red" href="javascript:void(0)"> 

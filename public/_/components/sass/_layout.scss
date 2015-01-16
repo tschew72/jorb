@@ -8,10 +8,9 @@
 @include border-box-sizing;
 
 $small 	: 30em;
-// $medium : 47em;
 $medium : 60em;
 $large	: 75em;
-
+$large_admin : 90em;
 
 //settingsLayout ---------------------------------------
 .settingsLayout {
@@ -284,7 +283,24 @@ $large	: 75em;
 .adminLayout {
 	@include container;
 	padding: 0 3%;
+	
+	@include breakpoint($large_admin) {
+		#coyTable{
+			@include span(6 omega of 12);
+						padding:10px 30px;
 
+			
+		}	
+		#seekerTable{
+			@include span(6 of 12);
+						padding:10px 10px;
+
+		}			
+	}
+	@include breakpoint($medium) {
+		#coyTable, #seekerTable{
+		}		
+	}
 }
 
 //companyProfileLayout ---------------------------------------

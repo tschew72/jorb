@@ -1,5 +1,5 @@
 <div class="profileLayout">
-  <h1>Personal Profile</h1>
+  <h1>Personal Profile of <%=@user.firstname %> <%=@user.lastname %></h1>
   <ul class="nav nav-tabs">
     <li class="active">
       <a data-toggle="tab" href="#edit-basic">
@@ -14,8 +14,7 @@
   </ul>
   <div class="tab-content">
     <div id="edit-basic" class="tab-pane in active">
-      <section class="Avatar">
-        <header>Profile</header>    
+      <section class="Avatar">  
         <div class="avatar-frame">
           <img alt="Avatar" src=<%= @user.pictureurl %> />
         </div>

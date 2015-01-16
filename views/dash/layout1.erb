@@ -415,57 +415,47 @@
       .removeClass('editable-unsaved');        //remove bold css
   });
 
-      $('#savelanguage-btn').click(function() {
-         $('.newlang').editable('submit', {
-             url: '/newlanguage',
-             data: {"pk" : <%=@user.id%>},
-             ajaxOptions: {
-                 dataType: 'json' //assuming json response
-             },        
-             success: function(data, config) {
-              
-                  if(data && data.errors){
-                       //server-side validation error, response like {"errors": {"username": "username already exist"} }
-                       //config.error.call(this, data.errors);
-                       newAlert("#alert_placeholder-inmodal2",'danger', data.errors);
+  $('#savelanguage-btn').click(function() {
+    $('.newlang').editable('submit', {
+      url: '/newlanguage',
+      data: {"pk" : <%=@user.id%>},
+      ajaxOptions: {
+         dataType: 'json' //assuming json response
+      },        
+      success: function(data, config) {
+        if(data && data.errors){
+           newAlert("#alert_placeholder-inmodal2",'danger', data.errors);
+        } //if   
+        else {
+          newAlert("#alert_placeholder-inmodal2",'success', 'New Language added!');
+          $('.newlang').editable('setValue', null);  //clear values
+          $('#speakskill').editable('option', 'disabled', true);
+          $('#writeskill').editable('option', 'disabled', true);
+          $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%=@userprofile.id%>});  
+        } //else    
+      }, //success
+      error: function(errors) {
+        var msg = '';
+        if(errors && errors.responseText) { //ajax error, errors = xhr object
+          msg = errors.responseText;
+        } else { //validation error (client-side or server-side)
+          $.each(errors, function(k, v) {
+            if (k=="skr_lang") {k = "Language"};
+            if (k=="skr_lang_speakskill") {k = "Spoken skill level"};
+            if (k=="skr_lang_writeskill") {k = "Written skill level"};      
+            msg += k+": "+v+"<br>";
+          }); //each
+          newAlert("#alert_placeholder-inmodal2",'danger', msg);   
+         } //else
+      } //error
+    }); //newlang
+  }); //savelanguage-btn
 
-                 }   else{
-
-                      newAlert("#alert_placeholder-inmodal2",'success', 'New Language added!');
-
-                      $('.newlang').editable('setValue', null);  //clear values
-                      $('#speakskill').editable('option', 'disabled', true);
-                      $('#writeskill').editable('option', 'disabled', true);
-                      // $("#lt").load("/langtable"); 
-                      $("#languageTable").load("/langtable",{i: new Date().getTime()});  
-                 }    
-             },
-             error: function(errors) {
-                 var msg = '';
-                 if(errors && errors.responseText) { //ajax error, errors = xhr object
-                     msg = errors.responseText;
-                     //We do not have any response text from backend at the moment
-                 } else { //validation error (client-side or server-side)
-                     $.each(errors, function(k, v) {
-                      if (k=="skr_lang") {k = "Language"};
-                      if (k=="skr_lang_speakskill") {k = "Spoken skill level"};
-                      if (k=="skr_lang_writeskill") {k = "Written skill level"};      
-                      msg += k+": "+v+"<br>";
-                    });
-                     newAlert("#alert_placeholder-inmodal2",'danger', msg);
-                   
-                 }
-               
-             }
-         });
-      });
-
-      $('#closelanguage-btn').click(function() {
-          $('.newlang').editable('setValue', null)  //clear values
-              .editable('option', 'pk', null)          //clear pk
-              .removeClass('editable-unsaved');        //remove bold css
-
-      });
+  $('#closelanguage-btn').click(function() {
+    $('.newlang').editable('setValue', null)  //clear values
+      .editable('option', 'pk', null)          //clear pk
+      .removeClass('editable-unsaved');        //remove bold css
+  });
 
 
 
