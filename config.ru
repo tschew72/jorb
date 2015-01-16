@@ -724,6 +724,11 @@ get '/admin_editseekerprofile' do
 end ####admin_editseekerprofile
 
 get '/admin_editseekercareer' do
+  # redirect '/auth/login' unless env['warden'].authenticated?
+  # @user = env['warden'].user
+  # if @user.usertype == 2
+  #   redirect '/auth/unauthorized'
+  # end
   userid = params["pk"]
   @user = User.get(userid)
   @userprofile = @user.tme_skr_main
@@ -843,7 +848,7 @@ post '/delete_empty_seekers' do
  return 200
 end
 
-post '/delete_empty_companies' do
+post '/delete_empty_company_users' do
  admin = TmeAdmin.get(1)
  delete_trigger = admin.delete_emptycmpyusers + 1
  admin.update(:delete_emptycmpyusers=> delete_trigger)
@@ -1499,7 +1504,7 @@ post '/j_updateskillrank' do
        @userprofile = u.tme_skr_main
        @allskills =   @userprofile.skill_summaries.all
        @ssmaster = SkillSource  #master skill source for cross referencing
-       @scmaster = SkillCategory.all   #Skill Category Master     #Hardcode to HTML. Remove from Database. Push this to the /admin for churning json.
+       @scmaster = SkillCategory.all   #Skill Category Master    
        @sr = SkillRank.all
        erb :table, :layout => false
 
@@ -1510,7 +1515,7 @@ post '/j_updateskillrank' do
        @userprofile = u.tme_skr_main
        @alllanguages =   @userprofile.tme_skr_language.all
        @lmaster = TmeListLanguage.all
-       @sr = SkillRank.all  #Hardcode to HTML. Remove from Database.
+       @sr = SkillRank.all  
        erb :langtable, :layout => false
 
     end
@@ -1540,10 +1545,6 @@ post '/j_updateskillrank' do
        u = User.get(params["pk"])
        @userprofile = u.tme_skr_main
        @allexperiences = @userprofile.tme_skr_emp.all(:tme_skr_main_id => @userprofile.id)
-       #@titlemaster = TmeListTitle.all
-       #@indmaster = TmeListIndustry.all
-       #@locationmaster = TmeListCountry.all
-       #@functionmaster = TmeListFunction.all
        erb :experiencetable, :layout => false
     end
 
@@ -1626,8 +1627,6 @@ post '/j_updateskillrank' do
 
  post '/j_coyusertable' do
         @users = User.all
-
-
        erb :j_coyusertable, :layout => false
     end
 
@@ -1653,78 +1652,78 @@ post '/updatetwitter' do
 end
 
 #===============================Cloudinary Upload Section================================
-get '/filer' do
-  user = User.get(params["userid"])
-  #userprofile = u.tme_skr_main
-  ts = Time.now.getutc.to_time.to_i.to_s
-  secret="fbOQxgozjYG2acAMKi3FYL61LOI"
-  altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=#{user.username}&timestamp="+ts+secret
-  sig=Digest::SHA1.hexdigest altogether
-  ts = Time.now.getutc.to_time.to_i
-  {:timestamp => ts, :public_id => "#{user.username}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
- end
+  get '/filer' do
+    user = User.get(params["userid"])
+    #userprofile = u.tme_skr_main
+    ts = Time.now.getutc.to_time.to_i.to_s
+    secret="fbOQxgozjYG2acAMKi3FYL61LOI"
+    altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=#{user.username}&timestamp="+ts+secret
+    sig=Digest::SHA1.hexdigest altogether
+    ts = Time.now.getutc.to_time.to_i
+    {:timestamp => ts, :public_id => "#{user.username}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
+   end
 
-get '/filer_cv' do
-  user = User.get(params["userid"])
-  #userprofile = user.tme_skr_main
-  ts = Time.now.getutc.to_time.to_i.to_s
-  secret="fbOQxgozjYG2acAMKi3FYL61LOI"
-  altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=cv/#{user.username}&timestamp="+ts+secret
-  sig=Digest::SHA1.hexdigest altogether
-  ts = Time.now.getutc.to_time.to_i
-  {:timestamp => ts, :public_id => "cv/#{user.username}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
- end
+  get '/filer_cv' do
+    user = User.get(params["userid"])
+    #userprofile = user.tme_skr_main
+    ts = Time.now.getutc.to_time.to_i.to_s
+    secret="fbOQxgozjYG2acAMKi3FYL61LOI"
+    altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=cv/#{user.username}&timestamp="+ts+secret
+    sig=Digest::SHA1.hexdigest altogether
+    ts = Time.now.getutc.to_time.to_i
+    {:timestamp => ts, :public_id => "cv/#{user.username}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
+   end
 
-get '/filer_jd' do
-  u = env['warden'].user
-  coy = u.tme_company_main
-  jobid = coy.tme_job_main.get(params["pk"]).id.to_s 
-  ts = Time.now.getutc.to_time.to_i.to_s
-  secret="fbOQxgozjYG2acAMKi3FYL61LOI"
-  altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=jd/#{jobid}&timestamp="+ts+secret
-  sig=Digest::SHA1.hexdigest altogether
-  ts = Time.now.getutc.to_time.to_i
-  {:timestamp => ts, :public_id => "jd/#{jobid}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
-end
+  get '/filer_jd' do
+    u = env['warden'].user
+    coy = u.tme_company_main
+    jobid = coy.tme_job_main.get(params["pk"]).id.to_s 
+    ts = Time.now.getutc.to_time.to_i.to_s
+    secret="fbOQxgozjYG2acAMKi3FYL61LOI"
+    altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=jd/#{jobid}&timestamp="+ts+secret
+    sig=Digest::SHA1.hexdigest altogether
+    ts = Time.now.getutc.to_time.to_i
+    {:timestamp => ts, :public_id => "jd/#{jobid}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
+  end
 
-get '/filer_logo' do
-  u = env['warden'].user
-  coy = u.tme_company_main
-  coyid= coy.id.to_s
-  ts = Time.now.getutc.to_time.to_i.to_s
-  secret="fbOQxgozjYG2acAMKi3FYL61LOI"
-  altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=logo/#{coyid}&timestamp="+ts+secret
-  sig=Digest::SHA1.hexdigest altogether
-  ts = Time.now.getutc.to_time.to_i
-  {:timestamp => ts, :public_id => "logo/#{coyid}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
- end
+  get '/filer_logo' do
+    u = env['warden'].user
+    coy = u.tme_company_main
+    coyid= coy.id.to_s
+    ts = Time.now.getutc.to_time.to_i.to_s
+    secret="fbOQxgozjYG2acAMKi3FYL61LOI"
+    altogether="callback=http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html&public_id=logo/#{coyid}&timestamp="+ts+secret
+    sig=Digest::SHA1.hexdigest altogether
+    ts = Time.now.getutc.to_time.to_i
+    {:timestamp => ts, :public_id => "logo/#{coyid}", :callback => "http://dashy3.herokuapp.com/vendor/cloudinary/cloudinary_cors.html", :signature => sig, :api_key =>"219441847515364"}.to_json
+   end
 
- post '/cvuploaded' do
-      userdata = User.get(params["pk"])
-      userdata.tme_skr_main.update(:cvurl => params['cvurl'])
-      return 200
- end
+   post '/cvuploaded' do
+        userdata = User.get(params["pk"])
+        userdata.tme_skr_main.update(:cvurl => params['cvurl'])
+        return 200
+   end
 
- post '/picuploaded' do
-      userdata = User.get(params["pk"])
-      userdata.update(:pictureurl => params['picurl'])
-      return 200
- end
+   post '/picuploaded' do
+        userdata = User.get(params["pk"])
+        userdata.update(:pictureurl => params['picurl'])
+        return 200
+   end
 
- post '/jduploaded' do
-      u = env['warden'].user
-      coy = u.tme_company_main  
-      jobdata= coy.tme_job_main.get(params["pk"])  
-      jobdata.update(:job_jdurl => params['jdurl'])
-      return 200
- end
+   post '/jduploaded' do
+        u = env['warden'].user
+        coy = u.tme_company_main  
+        jobdata= coy.tme_job_main.get(params["pk"])  
+        jobdata.update(:job_jdurl => params['jdurl'])
+        return 200
+   end
 
- post '/logouploaded' do
-      u = env['warden'].user
-      coy = u.tme_company_main   
-      coy.update(:company_logo => params['company_logo'])
-      return 200
- end
+   post '/logouploaded' do
+        u = env['warden'].user
+        coy = u.tme_company_main   
+        coy.update(:company_logo => params['company_logo'])
+        return 200
+   end
 
 
 

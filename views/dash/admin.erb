@@ -1,9 +1,9 @@
 <div class="adminLayout">
 
   <section class="adminControl">
-      <button id="deleteEmptySeeker" class="btn btn-primary">Delete Empty Job Seeker Records Globally</button>
+      <button id="deleteEmptySeekers" class="btn btn-primary">Delete Empty Job Seeker Records Globally</button>
       <button id="" class="btn btn-primary">Delete Empty Job Records Globally</button>
-      <button id="" class="btn btn-primary">Delete Empty Company User Records Globally</button>
+      <button id="deleteEmptyCompanyUsers" class="btn btn-primary">Delete Empty Company User Records Globally</button>
   </section>
   <hr>
   <div id="tablespace"></div> <!--tablespace -->	                      
@@ -296,10 +296,16 @@
   	$("#tablespace").load("/admin_seekertable",{i: new Date().getTime()}); 
   }); //function()
 
-  $('#deleteEmptySeeker').click(function() {
+  $('#deleteEmptySeekers').click(function() {
     $.post( "/delete_empty_seekers", function( data ) {
       $("#tablespace").load("/admin_seekertable",{i: new Date().getTime()}); 
     });
-  }); //deleteEmptySeeker
+  }); //deleteEmptySeekers
+
+  $('#deleteEmptyCompanyUsers').click(function() {
+    $.post( "/delete_empty_company_users", function( data ) {
+      $("#tablespace").load("/admin_seekertable",{i: new Date().getTime()}); 
+    });
+  }); //deleteEmptyCompanyUsers
 
 </script>

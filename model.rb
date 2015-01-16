@@ -14,7 +14,7 @@ class User
   storage_names[repository = :default] = 'tme_users'
   property :id, Serial, key: true, :index => true, :field => 'username_id'
   property :username, String, :index => true, length: 50, :index => true 
-  property :usertype, Integer                                     ###########1 seeker, 2 Company user
+  property :usertype, Integer                                     ###########1 seeker, 2 Company user, 3 Admin User
   property :password,  BCryptHash, :index => true
   property :email, String, :default=>"your@email.com", length:200, format: :email_address, :index => true
   property :lastname, String, :index => true,  :default=>"", length:100, :field => 'surname'
