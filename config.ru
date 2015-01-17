@@ -702,8 +702,8 @@ get '/admin_editcoyprofile' do
        # if @user.usertype == 1
        #    redirect '/auth/unauthorized'
        # end
-       @mycoy = TmeCompanyMain.get(params["pk"])
-       erb :"dash/companyprofile", :layout => :'dash/layout3_1'
+      @mycoy = TmeCompanyMain.get(params["pk"])
+      erb :"dash/companyprofile", :layout => :'dash/layout3_1'
 end
 
   get '/newrecruiter' do

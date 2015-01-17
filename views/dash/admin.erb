@@ -18,7 +18,7 @@
   $(document).ready(function(){
   	$("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}); 
     $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}); 
-
+    $('#company_suspended').editable();
   }); //function()
 
   $('#deleteEmptySeekers').click(function() {

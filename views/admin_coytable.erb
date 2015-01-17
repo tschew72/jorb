@@ -3,26 +3,38 @@ $.getScript("_/js/loading_scripts/admin_coytablescript.js");
 </script>
 
 <header>Recruiter Administration</header>
+<div class="Instructions">
+    <p>
+      Edit    : Edit Company Profile abd Company Users
+      Suspend : Company will not be allowed to post any jobs if it is suspended
+      Delete  : Delete the Company
+    </p>
+  </div>
+
 <table id="admin_coytable" class="hover compact">
   <thead>
     <tr>
-       <th>Company</th>
-       <th>Contact Person</th>
-       <th>Email</th>
-       <th>Last Updated</th>
-       <th></th>
-       <th></th>
+      <th>Company</th>
+      <th>Email</th>
+      <th>Suspended?</th>
+      <th>Last Updated</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody >
     <% @allcoy.each do |i| %>                
     <tr>
       <td><%= i.company_name %></td>
-      <td><%= i.company_contactname %></td>
       <td><%= i.company_email %></td>
+      <td><a class="inputText" href="#" id="company_suspended" data-name="company_suspended" data-type="select" data-pk="<%=i.id %>" data-url="/updatecompanyprofile" data-source="[{value: true, text: 'Yes'}, {value: false, text: 'No'}]" data-title="Suspend Company?"><%= i.company_suspended %></a></td>
       <td><%= i.company_dateadded %></td>
       <td>
         <a href="/admin_editcoyprofile?pk=<%=i.id%>"> Edit Company Profile</a>
+      </td>
+      <td>
+        <a href=""> Suspend</a>
       </td>
       <td>
         <a href=""> Delete</a>

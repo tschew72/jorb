@@ -284,7 +284,7 @@ class TmeCompanyMain
   property :company_addrcity, String, length: 500, :index=>true
   property :company_addrcountry, Integer, :index=>true
   property :company_addrpostcode, String, length: 10, :index=>true
-
+  property :company_suspended, Boolean, :default=>false, :index=>true
   has n, :tme_job_main, :model =>'TmeJobMain'
   #has n, :user
   has n, :tme_users, :model =>'User'
