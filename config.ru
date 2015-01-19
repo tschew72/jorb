@@ -311,10 +311,14 @@ end
 #=============================== Job Seeker : TmeSeekerMain Section================================
 post '/updateprofile' do
   userdata = User.get(params["pk"])
-  userdata.update(eval(":#{params['name']}") => params["value"])
+  
   if params['name'] == "email"
-    userdata.update(:username => params["value"])
+    entered_email = params['value']
+    if User.first(:email=>entered_email).nil? ##check email duplicate
+        userdata.update(:username => params["value"])
+    end
   end
+  userdata.update(eval(":#{params['name']}") => params["value"])
   return 200
 end #updateprofile
 
@@ -703,6 +707,7 @@ get '/admin_editcoyprofile' do
        #    redirect '/auth/unauthorized'
        # end
       @mycoy = TmeCompanyMain.get(params["pk"])
+      @coyusers = User.all(:tme_company_main_id => @mycoy.id)
       erb :"dash/companyprofile", :layout => :'dash/layout3_1'
 end
 
@@ -1038,19 +1043,21 @@ end
 
 #===============================Authentication Section================================
 get '/auth/login' do
-  erb :"main/login/index", :layout => :'main/layout1'
+  redirect '/login'
 end
 
-#get '/auth/elogin' do #recruiter login
-#  erb :"main/login/eindex", :layout => :'main/layout1'
-#end
+get '/login' do
+  erb :"dash/login", :layout => :'dash/layout5'
+end
 
 get '/auth/unauthorized' do
   erb :"dash/unauthorized", :layout => false
 end
 
 post '/auth/login' do
+  session.clear
   env['warden'].authenticate!
+
   if session[:return_to].nil?
     user = env['warden'].user
     if user.usertype == 1
@@ -1334,9 +1341,8 @@ post '/newjobdetail' do
 end
 
 post '/coyuserdetail' do
-   @coyuserid = params["pk"]   #pk is passed from j_coyusertable.erb
+   @coyuserid = params["pk"]  
    @coyuser = User.get(@coyuserid)
-
    erb :coyuserdetail, :layout => false
 
 end
@@ -1369,16 +1375,15 @@ end
 
 
 get '/companyprofile' do
-       redirect '/auth/login' unless env['warden'].authenticated?
-       @user = env['warden'].user
-       if @user.usertype == 1
-          redirect '/auth/unauthorized'
-       end
-       #@userprofile = @user.tme_skr_main
-       #@userme = @user.firstname
-       @mycoy = @user.tme_company_main
-       
-       erb :"dash/companyprofile", :layout => :'dash/layout2'
+  redirect '/auth/login' unless env['warden'].authenticated?
+  @user = env['warden'].user
+  if @user.usertype == 1
+    redirect '/auth/unauthorized'
+  end
+
+  @mycoy = @user.tme_company_main
+  
+  erb :"dash/companyprofile", :layout => :'dash/layout2'
 end
 
 
@@ -1647,6 +1652,7 @@ post '/j_updateskillrank' do
 
  post '/j_coyusertable' do
         @users = User.all
+        @coyusers = User.all(:tme_company_main_id => params["pk"])
        erb :j_coyusertable, :layout => false
     end
 

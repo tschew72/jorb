@@ -12,7 +12,13 @@
           null, 
           null,
           null,
-         { "bSortable": false },{ "bSortable": false },{ "bSortable": false }
+         { "bSortable": false },{ "bSortable": false }
         ]
   } );
+
+$('#coyTable').editable({
+  selector: 'a.coy_suspended',
+  showbuttons: false
+}); //company_suspended
+
 

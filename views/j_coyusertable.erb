@@ -14,22 +14,20 @@ $.getScript("_/js/loading_scripts/coyusertablescript.js");
   </thead>
   <tbody >
     <%a=" "%>
-   <% @users.each do |i| %>
+   <% @coyusers.each do |i| %>
     <% if i.usertype == 2  && i.status !=2%>  
       <tr>
         <td><%= i.firstname + a + i.lastname%></td>
         <td><%=i.username%></td>
         <td><%=i.contactnumber%></td>
         <td>
-          <div class="action-buttons">
-            <a onclick="showcoyuserdetail(<%=i.id%>)" class="red" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Edit</a>      
-          </div>
-         </td>
+          <a onclick="showcoyuserdetail(<%=i.id%>)" href="javascript:void(0)"> <i class="fa fa-external-link"></i>Edit</a>
+        </td>
         <td>
           <% if i.accesslevel != 3 %> <!-- No one can delete superadmin -->
-              <a onclick="delcoyuser(this, <%=i.id%>)" href="javascript:void(0)"> 
-                <i class="fa fa-trash-o fa-lg"></i>
-              </a>
+          <a onclick="delcoyuser(this, <%=i.id%>)" href="javascript:void(0)"> 
+            <i class="fa fa-trash-o fa-lg"></i>
+          </a>
           <% end %>
         </td>
       </tr>

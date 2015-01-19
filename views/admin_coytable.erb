@@ -1,15 +1,19 @@
-<script>
-$.getScript("_/js/loading_scripts/admin_coytablescript.js");
-</script>
 
 <header>Recruiter Administration</header>
+<script>
+$(document).ready(function(){
+  
+});
+</script>
+
 <div class="Instructions">
-    <p>
-      Edit    : Edit Company Profile abd Company Users
-      Suspend : Company will not be allowed to post any jobs if it is suspended
-      Delete  : Delete the Company
-    </p>
-  </div>
+  <p>
+    Edit    : Edit Company Profile<br>
+    (To Edit Company User, click on Edit Company File, then select "User Setup")<br>
+    Suspend : Company will not be allowed to post any jobs if it is suspended<br>
+    Delete  : Delete the Company<br>
+  </p>
+</div>
 
 <table id="admin_coytable" class="hover compact">
   <thead>
@@ -20,7 +24,6 @@ $.getScript("_/js/loading_scripts/admin_coytablescript.js");
       <th>Last Updated</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody >
@@ -28,13 +31,14 @@ $.getScript("_/js/loading_scripts/admin_coytablescript.js");
     <tr>
       <td><%= i.company_name %></td>
       <td><%= i.company_email %></td>
-      <td><a class="inputText" href="#" id="company_suspended" data-name="company_suspended" data-type="select" data-pk="<%=i.id %>" data-url="/updatecompanyprofile" data-source="[{value: true, text: 'Yes'}, {value: false, text: 'No'}]" data-title="Suspend Company?"><%= i.company_suspended %></a></td>
+      <td>
+        <a class="coy_suspended" href="javascript:void(0)" data-name="company_suspended" data-type="select" data-pk="<%=i.id %>" data-url="/updatecompanyprofile" data-source="[{value: 'true', text: 'Yes'}, {value: 'false', text: 'No'}]" data-title="Suspend Company?">
+          <%= i.company_suspended == true ? "Yes" : "No" %>
+        </a>
+      </td>
       <td><%= i.company_dateadded %></td>
       <td>
         <a href="/admin_editcoyprofile?pk=<%=i.id%>"> Edit Company Profile</a>
-      </td>
-      <td>
-        <a href=""> Suspend</a>
       </td>
       <td>
         <a href=""> Delete</a>

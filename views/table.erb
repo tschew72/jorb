@@ -21,11 +21,11 @@ $.getScript("_/js/loading_scripts/tablescript.js");
       <td><%= @scmaster.get(@ssmaster.get(i.skillid).skillcategory_id).categoryname%></td>
       <td><%= @ssmaster.get(i.skillid).skill_name %> </td>
       <td>
-        <a class="skillrank" href="javascript:void(0)" class="editable-click" data-name="skillrank" data-type="select" data-pk="<%= @allskills.get(i).id%>" data-url="/updateskillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter skill rank">  <%= @sr.get(i.skillrank).skillrankname %>
+        <a class="skillrank" href="javascript:void(0)" data-name="skillrank" data-type="select" data-pk="<%= @allskills.get(i).id%>" data-url="/updateskillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter skill rank">  <%= @sr.get(i.skillrank).skillrankname %>
         </a>
       </td> 
       <td>
-        <a onclick="delskill(this, <%=i.id%>)" class="red" href="javascript:void(0)"> 
+        <a onclick="delskill(this, <%=i.id%>)" href="javascript:void(0)"> 
           <i class="fa fa-trash-o fa-lg"></i>
         </a>
       </td>

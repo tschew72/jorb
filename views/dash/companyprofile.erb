@@ -528,13 +528,11 @@
 </script>
 
 <script>
-  //Document Readiness
   $(document).ready(function(){
     $('#coyusersetup').on("click", function() {
       $("#userdetail").html("");
-      $("#coyUserTable").load("/j_coyusertable",{i: new Date().getTime()}); 
+      $("#coyUserTable").load("/j_coyusertable",{i: new Date().getTime(), pk: <%=@mycoy.id%>}); 
     }); //coyusersetup
-
   }); //function()
 </script>  
 

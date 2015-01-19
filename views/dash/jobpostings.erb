@@ -2,16 +2,14 @@
   <div id="greeting">
     <%=@mycoy.company_name%>
   </div> <!-- greeting -->
-    <ul class="nav nav-tabs padding-16">
+    <ul class="nav nav-tabs">
       <li class="active">
         <a id="activeclick" data-toggle="tab" href="#jobposting">
-          <i class="blue icon-key bigger-125"></i>
           Active/Pending/Draft
         </a>
       </li>
       <li>
         <a id="closedclick" data-toggle="tab" href="#archivedjobs">
-          <i  class="blue icon-key bigger-125"></i>
           Closed/Cancelled
         </a>
       </li>
@@ -19,7 +17,7 @@
     <div class="tab-content">
       <div id="jobposting" class="tab-pane in active">
         <a id="newjobbutton" href="#" >
-          <span class="btn dark-blue-btn btn-primary">Post a New Job</span>
+          <span class="btn btn-primary">Post a New Job</span>
         </a> 
           <div id="jobTable"></div>
           <div id="loading"></div>
@@ -27,6 +25,25 @@
       </div> <!-- class="tab-pane"> -->
     </div> <!-- <div class="tab-content profile-edit-tab-content"> -->
 </div> <!-- jobManagementLayout -->
+
+
+
+<div class="modal fade" id="alert_coysuspended">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Company has been suspended</h4>
+      </div>
+      <div class="modal-body">
+        <p>Job Posting is no longer available. Please contact us to reinstate your company account at request@jorb.co</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
@@ -69,12 +86,17 @@
   }); //closedclick
 
   $('#newjobbutton').on("click", function() {
-    $.getJSON("/newjob", {"value": "<%=@user.tme_company_main_id%>"}, function (result) {
-      $("#jobdetail").load("/newjobdetail",{i: new Date().getTime(), pk: result.jobid, coy: result.mycoy}, function(){window.location.hash = '#jobdetail'; });  
-      $("#jobTable").load("/activejobtable",{i: new Date().getTime()});           
-    }).fail(function(d, textStatus, error) {
-      console.error("Something wrong. Please report this status: " + textStatus + ", error: "+error)
-    });  //fail
+    if (<%= @mycoy.company_suspended %> == false){   
+      $.getJSON("/newjob", {"value": "<%=@user.tme_company_main_id%>"}, function (result) {
+        $("#jobdetail").load("/newjobdetail",{i: new Date().getTime(), pk: result.jobid, coy: result.mycoy}, function(){window.location.hash = '#jobdetail'; });  
+        $("#jobTable").load("/activejobtable",{i: new Date().getTime()});           
+      }).fail(function(d, textStatus, error) {
+        console.error("Something wrong. Please report this status: " + textStatus + ", error: "+error)
+      });  //fail
+    }
+    else {
+      $('#alert_coysuspended').modal('show')
+    }
   }); //newjobbutton
 
 

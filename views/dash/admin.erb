@@ -9,16 +9,15 @@
   <div id="seekerTable"></div> 
   <div id="coyTable"></div> 
 
-
- 
-
 </div> <!--adminLayout -->
 
 <script>
   $(document).ready(function(){
   	$("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}); 
-    $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}); 
-    $('#company_suspended').editable();
+    $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}, function(){
+      $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
+    }); 
+    
   }); //function()
 
   $('#deleteEmptySeekers').click(function() {
