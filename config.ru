@@ -1128,7 +1128,38 @@ post '/jobseeker_registration' do
 end
 
 post '/recruiter_registration' do
-
+puts params['email']
+  puts params['firstname']
+  puts params['lastname']
+  puts params['password1']
+  puts params['password2']
+  
+  if User.first(:email=>params['email']).nil? ##check email duplicate
+    user = User.create()
+    tmeskrmain = TmeSkrMain.create()
+    user.update(:tme_skr_main_id => tmeskrmain.id)
+    user.update(:usertype => 1)
+    achievements=TmeSkrAchieve.create()
+    achievements.update(:tme_skr_main_id => tmeskrmain.id)
+    nationality=TmeSkrNation.create()
+    nationality.update(:tme_skr_main_id => tmeskrmain.id)
+    @user = user
+    @userprofile = tmeskrmain
+    @userme = @user.firstname
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 1)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 2)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 3)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 4)
+    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
+    
+    user.update(:email=>params['email'])
+    user.update(:firstname=>params['firstname'])
+    user.update(:lastname=>params['lastname'])
+    user.update(:password=>params['password'])
+  else
+    return {:errors => "Email already exist" }.to_json
+  end
+  
 end
 
 

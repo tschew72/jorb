@@ -17,4 +17,52 @@
         <script src="_/js/login/jquery-1.8.2.min.js"></script>
         <script src="_/js/login/supersized.3.2.7.min.js"></script>
         <script src="_/js/login/supersized-init.js"></script>
-        <script src="_/js/login/scripts.js"></script>
+
+
+
+<script>
+
+$("#jobseeker_registration_form").submit(function(e)
+{
+    var postData = $(this).serializeArray();
+    var formURL = $(this).attr("action");
+
+    var email = document.getElementById('email').value;
+    var firstname = document.getElementById('firstname').value;
+    var lastname = document.getElementById('lastname').value;
+    var password1 = document.getElementById('password1').value;
+    var password2 = document.getElementById('password2').value;
+
+    if (email == "" || firstname == "" || lastname == "" || password1 == "" || password2 == "" ) {
+        alert("All fields are required!");
+        return false;
+    }
+    if (password1 != password2 ) {
+        alert("Password entered is not the same. Please enter your desired password again");
+        return false;
+    } 
+
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        ajaxOptions: {
+                 dataType: 'json' //assuming json response
+             },   
+        success:function(response)
+        {
+            var data = JSON.parse(response);
+            alert(data.errors);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //if fails  
+        }
+    });
+    e.preventDefault(); //STOP default action
+    e.unbind(); //unbind. to stop multiple form submit.
+});
+ 
+$("#ajaxform").submit(); //Submit  the FORM
+</script>

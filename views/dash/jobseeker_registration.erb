@@ -21,10 +21,6 @@
 
 
 <script>
-function validateForm() {
-
-}
-
 $("#jobseeker_registration_form").submit(function(e)
 {
     var postData = $(this).serializeArray();
@@ -61,7 +57,7 @@ $("#jobseeker_registration_form").submit(function(e)
         error: function(jqXHR, textStatus, errorThrown)
         {
             //if fails 
-            alert("failed!");    
+
         }
     });
     e.preventDefault(); //STOP default action
