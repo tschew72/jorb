@@ -715,7 +715,7 @@ end
     coy = TmeCompanyMain.create()
     @mycoy = TmeCompanyMain.get(coy.id)
     erb :"dash/companyprofile", :layout => :'dash/layout3_1'
-  end ####newseeker
+  end ####newrecruiter
 
   get '/admin_editseekerprofile' do
     userid = params["pk"]
