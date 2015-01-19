@@ -88,7 +88,7 @@ end
 
 # Main Page to welcome users
 get '/' do
-   erb :"main/index", :layout => :'main/layout1'
+   erb :"dash/login", :layout => :'dash/layout5'
 end
  
 #===============================Job Seeker Section================================
