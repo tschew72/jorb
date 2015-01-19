@@ -88,7 +88,7 @@ end
 
 # Main Page to welcome users
 get '/' do
-   erb :"dash/login", :layout => :'dash/layout5'
+   erb :"dash/login", :layout => :'dash/layout'
 end
  
 #===============================Job Seeker Section================================
@@ -1041,6 +1041,7 @@ post '/getcvskill' do
 end
 
 
+
 #===============================Authentication Section================================
 get '/auth/login' do
   redirect '/login'
@@ -1080,6 +1081,24 @@ end
 post '/auth/unauthenticated' do
   redirect '/auth/login'
   end
+
+
+#===============================Registration Section================================
+get '/jobseeker_registration' do
+  erb :"dash/jobseeker_registration", :layout => :'dash/layout5'
+end
+
+get '/recruiter_registration' do
+  erb :"dash/recruiter_registration", :layout => :'dash/layout5'
+end
+
+post '/jobseeker_registration' do
+  
+end
+
+post '/recruiter_registration' do
+  
+end
 
 
 #===============================TmeJobMain Section================================
