@@ -343,20 +343,20 @@ header {
 	.hero {
 		width: 100%;
 		@include breakpoint($medium) {
-			@include single-transition(all, 1s, ease-out);
+			// @include single-transition(all, 1s, ease-out);
 			position: relative;
 			display: block;
-			width: 100%;
-			height: 450px;
-			@include background(linear-gradient(bottom left, rgba($darkerblue, .6), rgba($darkerblue,0)), image-url('misc/helper.jpg'));
+			// width: 100%;
+			height: 100px;
+			// @include background(linear-gradient(bottom left, rgba($darkerblue, .6), rgba($darkerblue,0)), image-url('misc/helper.jpg'));
 				
-			background-repeat: norepeat;
-			background-position: center center;
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-			margin: 0 auto;
+			// background-repeat: norepeat;
+			// background-position: center center;
+			// -webkit-background-size: cover;
+			// -moz-background-size: cover;
+			// -o-background-size: cover;
+			// background-size: cover;
+			// margin: 0 auto;
 			
 			.branding {
 				position: absolute;
