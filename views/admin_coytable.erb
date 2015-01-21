@@ -8,8 +8,7 @@ $(document).ready(function(){
 
 <div class="Instructions">
   <p>
-    Edit    : Edit Company Profile<br>
-    (To Edit Company User, click on Edit Company File, then select "User Setup")<br>
+    Edit Company Profile   : Edit the general information of this company as well as adding new company user account<br>
     Suspend : Company will not be allowed to post any jobs if it is suspended<br>
     Delete  : Delete the Company<br>
   </p>
@@ -32,7 +31,7 @@ $(document).ready(function(){
       <td><%= i.company_name %></td>
       <td><%= i.company_email %></td>
       <td>
-        <a class="coy_suspended" href="javascript:void(0)" data-name="company_suspended" data-type="select" data-pk="<%=i.id %>" data-url="/updatecompanyprofile" data-source="[{value: 'true', text: 'Yes'}, {value: 'false', text: 'No'}]" data-title="Suspend Company?">
+        <a class="coy_suspended inputText" href="javascript:void(0)" data-name="company_suspended" data-type="select" data-pk="<%=i.id %>" data-url="/updatecompanyprofile" data-source="[{value: 'true', text: 'Yes'}, {value: 'false', text: 'No'}]" data-title="Suspend Company?">
           <%= i.company_suspended == true ? "Yes" : "No" %>
         </a>
       </td>
