@@ -870,17 +870,29 @@ end
 
 
   post '/delete_empty_seekers' do
-   admin = TmeAdmin.get(1)
-   delete_trigger = admin.delete_emptyusers + 1
-   admin.update(:delete_emptyusers=> delete_trigger)
-   return 200
+    admin = TmeAdmin.get(1)
+    delete_trigger = admin.delete_emptyusers + 1
+    admin.update(:delete_emptyusers=> delete_trigger)
+    return 200
   end
 
   post '/delete_empty_company_users' do
-   admin = TmeAdmin.get(1)
-   delete_trigger = admin.delete_emptycmpyusers + 1
-   admin.update(:delete_emptycmpyusers=> delete_trigger)
+    admin = TmeAdmin.get(1)
+    delete_trigger = admin.delete_emptycmpyusers + 1
+    admin.update(:delete_emptycmpyusers=> delete_trigger)
    return 200
+  end
+
+  post '/delete_seeker' do
+    cmd = "select * from admin_delete_user(" + params['userid'] + ")"
+    repository(:default).adapter.select(cmd)  
+    return 200
+  end
+
+  post '/delete_coyuser' do
+    cmd = "select * from admin_delete_cmpyuser(" + params['userid'] + ")"
+    repository(:default).adapter.select(cmd)  
+    return 200
   end
 #===============================AJAX Listing Section================================
 get '/getskill' do
@@ -1118,6 +1130,7 @@ post '/jobseeker_registration' do
     sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
     
     user.update(:email=>params['email'])
+    user.update(:username=>params['email'])
     user.update(:firstname=>params['firstname'])
     user.update(:lastname=>params['lastname'])
     user.update(:password=>params['password'])
@@ -1128,34 +1141,25 @@ post '/jobseeker_registration' do
 end
 
 post '/recruiter_registration' do
-puts params['email']
+  puts params['email']
   puts params['firstname']
   puts params['lastname']
+  puts params['companyname']
   puts params['password1']
   puts params['password2']
   
   if User.first(:email=>params['email']).nil? ##check email duplicate
+    coy = TmeCompanyMain.create()
     user = User.create()
-    tmeskrmain = TmeSkrMain.create()
-    user.update(:tme_skr_main_id => tmeskrmain.id)
-    user.update(:usertype => 1)
-    achievements=TmeSkrAchieve.create()
-    achievements.update(:tme_skr_main_id => tmeskrmain.id)
-    nationality=TmeSkrNation.create()
-    nationality.update(:tme_skr_main_id => tmeskrmain.id)
-    @user = user
-    @userprofile = tmeskrmain
-    @userme = @user.firstname
-    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 1)
-    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 2)
-    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 3)
-    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 4)
-    sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
-    
+    user.update(:usertype => 2)
     user.update(:email=>params['email'])
+    user.update(:username=>params['email'])
     user.update(:firstname=>params['firstname'])
     user.update(:lastname=>params['lastname'])
     user.update(:password=>params['password'])
+    user.update(:tme_company_main_id => coy.id)
+    coy.update(:company_name => params['companyname'])
+    return {:errors => "ok" }.to_json
   else
     return {:errors => "Email already exist" }.to_json
   end

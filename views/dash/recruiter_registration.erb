@@ -1,13 +1,13 @@
 
 <div class="page-container">
     <h1>Recruiter Registration</h1>
-    <form action="/recruiter_registration" method="post">
-        <input type="text" name="email" placeholder="email">
-        <input type="text" name="companyname" placeholder="companyname">
-        <input type="text" name="firstname" placeholder="firstname">
-        <input type="text" name="lastname" placeholder="lastname">
-        <input type="password" name="password1" class="password" placeholder="Password">
-        <input type="password" name="password2" class="password" placeholder="Re-enter Password">
+    <form action="/recruiter_registration" name="recruiter_registration_form" id="recruiter_registration_form" method="post">
+        <input type="text" name="companyname" id="companyname" placeholder="companyname">
+        <input type="text" name="email" id="email" placeholder="email">
+        <input type="text" name="firstname" id="firstname" placeholder="firstname">
+        <input type="text" name="lastname" id="lastname" placeholder="lastname">
+        <input type="password" id="password1" placeholder="Password">
+        <input type="password" name="password" id="password2" placeholder="Re-enter Password">
 
         <button type="submit">Register me</button>
         <div class="error"><span>+</span></div>
@@ -20,20 +20,20 @@
         <script src="_/js/login/supersized-init.js"></script>
 
 
-<script>
 
-$("#jobseeker_registration_form").submit(function(e)
+<script>
+$("#recruiter_registration_form").submit(function(e)
 {
     var postData = $(this).serializeArray();
     var formURL = $(this).attr("action");
-
+    var companyname = document.getElementById('companyname').value;
     var email = document.getElementById('email').value;
     var firstname = document.getElementById('firstname').value;
     var lastname = document.getElementById('lastname').value;
     var password1 = document.getElementById('password1').value;
     var password2 = document.getElementById('password2').value;
 
-    if (email == "" || firstname == "" || lastname == "" || password1 == "" || password2 == "" ) {
+    if (companyname == "" || email == "" || firstname == "" || lastname == "" || password1 == "" || password2 == "" ) {
         alert("All fields are required!");
         return false;
     }
@@ -53,16 +53,24 @@ $("#jobseeker_registration_form").submit(function(e)
         success:function(response)
         {
             var data = JSON.parse(response);
-            alert(data.errors);
+            if (data.errors != "ok") {
+            	alert(data.errors);
+            }
+            else {
+            	alert("Congratulation! You are now registered! You will be redirected to the login page now");
+            	window.location = "/login";
+            }
+
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
-            //if fails  
+            //if fails 
+
         }
     });
     e.preventDefault(); //STOP default action
-    e.unbind(); //unbind. to stop multiple form submit.
+    //e.unbind(); //unbind. to stop multiple form submit.
 });
  
-$("#ajaxform").submit(); //Submit  the FORM
+// $("#recruiter_registration_form").submit(); //Submit  the FORM
 </script>

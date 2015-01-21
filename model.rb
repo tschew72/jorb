@@ -65,7 +65,6 @@ class TmeSkrMain
   property :datejoined, Date, :index => true, :field => 'skr_datejoined'
   property :availability, Integer, :index => true, :field => 'skr_availability' # notice period
   #property :updated_at, DateTime, :index => true, :field => 'skr_updated'
-
   # property :pictureurl, String, :index => true, length: 400, :default=>"", :field => 'skr_photo'  #setup a default picture if not picture is found
   property :cvurl, String, :index => true, length: 400, :default=>"", :field => 'skr_cv' 
   property :videourl, String, :index => true, length: 400, :default=>"", :field => 'skr_video'   

@@ -1,15 +1,16 @@
 <script>
-$.getScript("_/js/loading_scripts/admin_seekertablescript.js");
+
 
 </script>
 
-<header>Job Seeker Administration</header>
+<header>User Administration</header>
 <table id="admin_seekertable" class="hover compact">
   <thead>
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
       <th>UserName</th>
+      <th>User Type</th>
       <th>Last Updated</th>
       <th></th>
       <th></th>
@@ -17,22 +18,33 @@ $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
     </tr>
   </thead>
   <tbody >
-    <% @allusers.each do |i| %>                
+    <% @allusers.each do |i| %>    
+              
     <tr>
       <td><%= i.firstname %></td>
       <td><%= i.lastname %></td>
       <td><%= i.username != nil ? i.username : " "%></td>
+      <td>
+        <% if i.usertype == 1 %> Job Seeker <% end %>
+        <% if i.usertype == 2 %> Coy User<% end %>
+      </td>
       <td><%= i.updated_at.strftime("%c") %></td>
       <td>
-        <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit Job Seeker Profile</a>
+        <% if i.usertype == 1 %>  
+          <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit Job Seeker Profile</a>
+        <% end %>
       </td>
       <td>
-        <a href="/admin_editseekercareer?pk=<%=i.id%>"> Edit Career Profile</a>
+        <% if i.usertype == 1 %>  
+          <a href="/admin_editseekercareer?pk=<%=i.id%>"> Edit Career Profile</a>
+        <% end %>
       </td>
       <td>
-        <a href=""> Delete</a>
+        <a href="#" onclick="deleteUser(<%=i.id%>, <%=i.usertype%>  )">Delete </a>
       </td>
     </tr>
       <% end %>
+      
   </tbody>
 </table>
+
