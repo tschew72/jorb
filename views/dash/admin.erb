@@ -1,6 +1,12 @@
 <div class="adminLayout">
 
   <section class="adminControl">
+    <header> Housekeeping <header>
+    <div class="Instructions">
+      <p>
+        The buttons are used for end of day housekeeping where all records that were created but not filled with data are automatically removed. Action is irreverisble!
+      </p>
+    </div>
       <button id="deleteEmptySeekers" class="btn btn-primary">Delete Empty Job Seeker Records Globally</button>
       <button id="" class="btn btn-primary">Delete Empty Job Records Globally</button>
       <button id="deleteEmptyCompanyUsers" class="btn btn-primary">Delete Empty Company User Records Globally</button>
@@ -17,7 +23,7 @@
   	$("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
       $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
     });
-     
+
     $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}, function(){
       $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
     }); 
