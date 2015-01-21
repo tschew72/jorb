@@ -683,6 +683,11 @@ end
 
 #===============================Admin Section================================
   get '/admin' do
+    redirect '/auth/login' unless env['warden'].authenticated?
+    @user = env['warden'].user
+    if @user.usertype != 3
+       redirect '/auth/unauthorized'
+    end
     @user = User.get(1)
     @userprofile = @user.tme_skr_main
     erb :"dash/admin", :layout => :'dash/layout3'
@@ -701,23 +706,33 @@ end
 
 
 get '/admin_editcoyprofile' do
-       # redirect '/auth/login' unless env['warden'].authenticated?
-       # @user = env['warden'].user
-       # if @user.usertype == 1
-       #    redirect '/auth/unauthorized'
-       # end
-      @mycoy = TmeCompanyMain.get(params["pk"])
-      @coyusers = User.all(:tme_company_main_id => @mycoy.id)
-      erb :"dash/companyprofile", :layout => :'dash/layout3_1'
+    redirect '/auth/login' unless env['warden'].authenticated?
+    @user = env['warden'].user
+    if @user.usertype != 3
+       redirect '/auth/unauthorized'
+    end
+    @mycoy = TmeCompanyMain.get(params["pk"])
+    @coyusers = User.all(:tme_company_main_id => @mycoy.id)
+    erb :"dash/companyprofile", :layout => :'dash/layout3_1'
 end
 
   get '/newrecruiter' do
+    redirect '/auth/login' unless env['warden'].authenticated?
+    @user = env['warden'].user
+    if @user.usertype != 3
+       redirect '/auth/unauthorized'
+    end
     coy = TmeCompanyMain.create()
     @mycoy = TmeCompanyMain.get(coy.id)
     erb :"dash/companyprofile", :layout => :'dash/layout3_1'
   end ####newrecruiter
 
   get '/admin_editseekerprofile' do
+    redirect '/auth/login' unless env['warden'].authenticated?
+    @user = env['warden'].user
+    if @user.usertype != 3
+       redirect '/auth/unauthorized'
+    end    
     userid = params["pk"]
     @user = User.get(userid)
     @userprofile = @user.tme_skr_main
@@ -752,11 +767,11 @@ end
   end ####admin_editseekerprofile
 
   get '/admin_editseekercareer' do
-    # redirect '/auth/login' unless env['warden'].authenticated?
-    # @user = env['warden'].user
-    # if @user.usertype == 2
-    #   redirect '/auth/unauthorized'
-    # end
+    redirect '/auth/login' unless env['warden'].authenticated?
+    @user = env['warden'].user
+    if @user.usertype != 3
+       redirect '/auth/unauthorized'
+    end
     userid = params["pk"]
     @user = User.get(userid)
     @userprofile = @user.tme_skr_main
@@ -843,6 +858,11 @@ end
   end ####admin_editseekercareer
 
   get '/newseeker' do
+    redirect '/auth/login' unless env['warden'].authenticated?
+    @user = env['warden'].user
+    if @user.usertype != 3
+       redirect '/auth/unauthorized'
+    end    
     user = User.create()
     tmeskrmain = TmeSkrMain.create()
     user.update(:tme_skr_main_id => tmeskrmain.id)
@@ -1075,8 +1095,10 @@ post '/auth/login' do
     user = env['warden'].user
     if user.usertype == 1
       redirect '/edge'
-    else
+    elsif user.usertype == 2
       redirect '/hrm'
+    elsif user.usertype == 3
+      redirect '/admin'
     end
   else
     #redirect session[:return_to]

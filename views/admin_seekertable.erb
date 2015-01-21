@@ -38,9 +38,7 @@
       </td>
       <td><%= i.updated_at.strftime("%c") %></td>
       <td>
-        <% if i.usertype == 1 %>  
-          <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit Job Seeker Profile</a>
-        <% end %>
+          <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit User Profile</a>
       </td>
       <td>
         <% if i.usertype == 1 %>  
