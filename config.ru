@@ -1642,7 +1642,7 @@ post '/j_updateskillrank' do
        @userprofile = u.tme_skr_main
        @allskills =   @userprofile.skill_summaries.all
        @ssmaster = SkillSource  #master skill source for cross referencing
-       #@scmaster = SkillCategory.all   #Skill Category Master    
+       # @scmaster = SkillCategory.all   #Skill Category Master    
        @sr = SkillRank.all
        erb :table, :layout => false
 
