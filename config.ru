@@ -1417,6 +1417,7 @@ post '/jobdetail' do
    @functionMaster = TmeListFunction.all
    @locationMaster = TmeListCountry.all
    @industryMaster = TmeListIndustry.all
+   @workMaster = TmeListWorktime.all
 
    erb :jobdetail, :layout => false
 
