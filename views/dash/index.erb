@@ -1,15 +1,21 @@
 ﻿<div class="seekerIndexlayout"> 
   <header>Welcome back, <%=@user.firstname%> <%=@user.middlename%> <%=@user.lastname%></header>
+      <div class="Instructions">
+      <p>
+        My Rank: How are you compared to the rest of the job seekers who are matched for the job
+      </p>
+      <p> Score: Determines how closely matched you are for the job. Maximum is 100 points</p>
+      <p> <i class="fa fa-external-link fa-lg"></i>: Show you all the matching criterias and your score <p>
+    </div>
   <section class="jobMatches">
     <header>Your Job Matches</header>
       <div id="jobMatchTable"> </div>  
   </section> <!--jobMatches -->
 
   <section class="matchDetail">
-    <header>Why you are matched</header>
     <div id="matchDetail"></div> 
   </section> <!--matchDetail -->
-</div> <!--layout -->
+</div> <!--seekerIndexlayout -->
 
 <script type="text/javascript">
   $(document).ready(function(){

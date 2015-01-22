@@ -301,6 +301,7 @@ class TmeJobMain
   property :job_posted, DateTime,:default => lambda{ |p,s| Date.today}, :index => true    
   property :job_closed, DateTime, :index => true, :default => lambda{ |a,b| Date.today>>6} 
   property :job_title, Integer, :index => true  
+  property :job_title_actual, String, length:1000 
   property :job_location, Integer, :index => true  
   property :job_industry, Integer, :index => true  
   property :job_currency, Integer, :index => true  

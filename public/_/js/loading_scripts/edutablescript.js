@@ -1,4 +1,4 @@
-$('#experiencetable').dataTable( {
+$('#edusettingtable').dataTable( {
     "scrollY": 200,
     "ScrollX": true,
     "iDisplayLength": 10,

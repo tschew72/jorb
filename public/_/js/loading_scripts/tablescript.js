@@ -6,7 +6,7 @@ $('#skillsettingtable').dataTable( {
     "scrollCollapse": true,
     "jQueryUI": true,
     "aoColumns": [         
-        null, null, null,
+        null, null,
         { "bSortable": false }
       ]
 } );

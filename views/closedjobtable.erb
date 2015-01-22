@@ -4,7 +4,7 @@ $.getScript("_/js/loading_scripts/closedjobtablescript.js");
 
 <div class="Instructions">
   <h3>Closed / Cancelled Job Posting</h3>
-  <p>Edit Button: To edit a job and/or resubmit the job posting for candidate matching</p>
+  <p>Jobs in this table cannot be edited or deleted. They are kept as a reocrd for reference only.</p>
   <p>Cancelled Status: Cancelled jobs are no longer matched with candidates. To reactivate it, Edit the job and change status to Active</p>
   <p>Closed Status: Closed jobs are jobs that have expired based on the Closing date defined by you. To reactivate it, Edit the job and change status to Active</p>
 </div>
@@ -13,10 +13,9 @@ $.getScript("_/js/loading_scripts/closedjobtablescript.js");
     <thead>
       <tr>
         <th>ID</th>
-        <th>Function</th>
+        <th>Job Title</th>
         <th>Posted</th>
         <th>Status</th>
-        <th></th>
       </tr>
     </thead>
     <tbody id="aat" >
@@ -24,16 +23,14 @@ $.getScript("_/js/loading_scripts/closedjobtablescript.js");
       <% if i.job_status == 0 || i.job_status == 3 %>
       <tr>
          <td><%= i.id%></td>
-         <td><%= i.job_title %> </td>
+         <td><%= i.job_title_actual %> </td>
          <td><%= i.job_posted.strftime("%d/%m/%Y") %></td> 
          <td><%= i.job_status == 0 ? "Cancelled" : "Closed" %>  </td> 
-         <td>
-          <div class="action-buttons">
+         <!-- <td>
              <a onclick="showjobdetail(<%=i.id%>)" href="javascript:void(0)"> 
               <i class="fa fa-pencil fa-lg"></i>
             </a>      
-          </div>
-         </td>
+         </td> -->
       </tr>
       <%end%>
       <%end%>

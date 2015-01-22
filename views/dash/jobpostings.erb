@@ -5,7 +5,7 @@
     <ul class="nav nav-tabs">
       <li class="active">
         <a id="activeclick" data-toggle="tab" href="#jobposting">
-          Active/Pending/Draft
+          Active/Draft
         </a>
       </li>
       <li>
@@ -50,16 +50,16 @@
 <script type="text/javascript">
 
   $(document).ready(function(){
-    document.getElementById('jobposting').scrollIntoView() ;  
+    // document.getElementById('jobposting').scrollIntoView() ;  
     $("#jobTable").load("/activejobtable",{i: new Date().getTime()}); 
   }); //document.ready
 
   function showjobdetail(i){
     $("#jobdetail").html("");
     $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Job Details now. You can start editing when this message is gone</div>");
-   // $("#top5matches").load("/top5matchestable&pk=".concat(i.toString())); 
-    $("#jobdetail").load("/jobdetail",{ pk: i }, function() { //which will launch newjobdetail.erb
+    $("#jobdetail").load("/jobdetail",{ pk: i }, function() {
       $('#loader').fadeOut(1000, function() {$(this).remove();});
+      $.getScript("_/js/loading_scripts/jobdetailscript.js");
       window.location.hash = '#jobdetail';
     }); //jobdetail 
   }//showjobdetail
@@ -88,12 +88,15 @@
   $('#newjobbutton').on("click", function() {
     if (<%= @mycoy.company_suspended %> == false){   
       $.getJSON("/newjob", {"value": "<%=@user.tme_company_main_id%>"}, function (result) {
-        $("#jobdetail").load("/newjobdetail",{i: new Date().getTime(), pk: result.jobid, coy: result.mycoy}, function(){window.location.hash = '#jobdetail'; });  
-        $("#jobTable").load("/activejobtable",{i: new Date().getTime()});           
+        $("#jobdetail").load("/newjobdetail",{i: new Date().getTime(), pk: result.jobid, coy: result.mycoy}, function(){
+          $.getScript("_/js/loading_scripts/newjobdetailscript.js");
+          window.location.hash = '#jobdetail'; 
+        });  
+        // $("#jobTable").load("/activejobtable",{i: new Date().getTime()});           
       }).fail(function(d, textStatus, error) {
         console.error("Something wrong. Please report this status: " + textStatus + ", error: "+error)
       });  //fail
-    }
+    } //if
     else {
       $('#alert_coysuspended').modal('show')
     }

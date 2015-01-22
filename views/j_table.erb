@@ -5,7 +5,7 @@ $.getScript("_/js/loading_scripts/tablescript.js");
 <table id="skillsettingtable" class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-       <th>Category</th>
+       <!-- <th>Category</th> -->
        <th>Skill Name</th>
        <th>Skill Rank</th>
        <th></th>
@@ -16,7 +16,7 @@ $.getScript("_/js/loading_scripts/tablescript.js");
     <!-- If flag is set to delete, break. and find next record -->
     <% if i.job_skillstatus != 0 %>
       <tr>
-        <td><%= @scmaster.get(@ssmaster.get(i.job_skill).skillcategory_id).categoryname%></td>
+<!--         <td><%= @scmaster.get(@ssmaster.get(i.job_skill).skillcategory_id).categoryname%></td> -->
         <td><%= @ssmaster.get(i.job_skill).skill_name %> </td>        
         <td>
           <a class="skillrank" href="javascript:void(0)" data-name="skillrank" data-type="select" data-pk="<%= i.job_skill_id%>" data-url="/j_updateskillrank" data-source="[{value: 2, text: 'Basic'}, {value: 3, text: 'Intermediate'}, {value: 4, text: 'Advance'}, {value: 5, text: 'Expert'}]"   data-title="Enter skill rank">  <%= @sr.get(i.job_skillrating).skillrankname %>

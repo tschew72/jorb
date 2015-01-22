@@ -1,17 +1,26 @@
 
-<script>
-$.getScript("_/js/loading_scripts/newjobdetailscript.js");
-</script>
-
 <div id="jobDetailLayout">
   <section class="jobStatus">
     <header>
-      <h2>Job Status</h2>
+
+        Posting a new job with ID: <%=@job.id%>
+        <br>
+        <a href="javascript:void(0)" onclick="activateJob(<%=@job.id%>)" >
+          <span class="btn btn-primary">Activate this Job</span>
+        </a>
+        <a href="javascript:void(0)" onclick="kivJob(<%=@job.id%>)" >
+          <span class="btn btn-primary">KIV</span>
+        </a>
     </header>
-    Job ID: <%=@job.id%>
-    <div id="jobdetailfocus"></div>
-    <p>Job Posting Status:
-    <a href="javascript:void(0)" class="inputText" id ="job_status" data-name="job_status" data-type="select" data-pk="<%=@job.id%>" data-url="/updatejobstatus" data-source="[  {value: 1, text: 'Pending'}, {value: 2, text: 'Active'}, {value: 4, text: 'Draft'} ]"   data-title="Select Job Posting Status">  <%= @jobstatus%> </a> </p>
+    <div class="Instructions">
+      <p>Please ensure that you have all information properly keyed in before activating this job. Once activated, you will not be able to make changes to some of the fields</p>
+      <p>If you are not ready to activate this job, the job posting status, click on the button "KIV". You can edit this job posting anytime until you are ready to activate it</p>
+    </div>
+    
+    <!-- <div id="jobdetailfocus"></div> -->
+    <!-- <p>Job Posting Status:
+    <a href="javascript:void(0)" class="inputText" id ="job_status" data-name="job_status" data-type="select" data-pk="<%=@job.id%>" data-url="/updatejobstatus" data-source="[  {value: 1, text: 'Pending'}, {value: 2, text: 'Active'}, {value: 4, text: 'Draft'} ]"   data-title="Select Job Posting Status">  <%= @jobstatus%> </a> </p> -->
+
   </section>
   
 
@@ -31,10 +40,10 @@ $.getScript("_/js/loading_scripts/newjobdetailscript.js");
       Phone #:
       <a class="inputText" href="javascript:void(0)"  id="job_contactphone" data-name="job_contactphone" data-type="text" data-pk="<%=@job.id %>" data-url="/updatejob" data-title="Enter Contact Number"><%= @job.job_contactphone %> </a>
     </p>
-    <p>
+<!--     <p>
       I want to reveal our company detail to candidate
       <input  onclick="revealcheck(this,<%=@job.id%>)" id="revealcheck" name="job_companyreveal" type="checkbox"  <%= @job.job_companyreveal== true ? "checked" : "unchecked" %> /> <label for="revealcheck"></label>
-    </p>
+    </p> -->
   </section> <!-- Contact Information -->
 
   <section class="CV">
@@ -42,12 +51,12 @@ $.getScript("_/js/loading_scripts/newjobdetailscript.js");
       <a id="displaycv" style="visibility: visible;" href=<%= @job.job_jdurl %> target="_blank"> <i style="font-size: 25px;" class="fa fa-file-text-o">JD</i> </a>
     </span>
                 
-    <script src='/vendor/jqueryfileupload/js/vendor/jquery.ui.widget.js' type='text/javascript'></script>
-    <script src='/vendor/jqueryfileupload/js/jquery.iframe-transport.js' type='text/javascript'></script>
-    <script src='/vendor/jqueryfileupload/js/jquery.fileupload.js' type='text/javascript'></script>
-    <script src='/vendor/jqueryfileupload/js/jquery.fileupload-process.js' type='text/javascript'></script>
-    <script src='/vendor/jqueryfileupload/js/jquery.fileupload-validate.js' type='text/javascript'></script>
-    <script src='/vendor/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.ui.widget.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.iframe-transport.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.fileupload.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.fileupload-process.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.fileupload-validate.js' type='text/javascript'></script>
+    <script src='_/js/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
     <script type="text/javascript">$.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'}); </script>
 
     <span class="btn dark-blue-btn btn-primary fileinput-button">
@@ -121,12 +130,15 @@ $.getScript("_/js/loading_scripts/newjobdetailscript.js");
       Closing Date:
       <input readonly="true" type="text" name="date-range-picker" id="id-date-range-picker-1" data-id=<%=@job.id%> value="<%=@job_closed %>"></input> <div id="saving_date"></div>
     </p>
-
     <p>
       Job Title:
+      <a class="inputText" href="javascript:void(0)"  id="job_title_actual" data-name="job_title_actual" data-type="text"  data-pk="<%=@job.id %>" data-url="/updatejob" data-title="Enter Job Title" data-value="<%=@job.job_title_actual%>" >   </a>
+    </p>
+    <p>
+      Job Position:
       <a class="inputText" href="javascript:void(0)"  id="job_title" data-name="job_title" data-type="select"  data-pk="<%=@job.id %>" data-url="/updatejob" data-title="Enter Job Title" data-value="<%=@job.job_title%>" >   </a>
     </p>
-    
+     
     <p>
       Job Function:
       <a class="inputText" href="javascript:void(0)"  id="job_function" data-name="job_function" data-type="select" data-pk="<%=@job.id %>" data-url="/updatejob" data-title="Enter Job Function" data-value="<%= @job.job_function %> ">  </a>

@@ -1230,13 +1230,13 @@ end
     return 200
   end
 
-  post '/updaterevealcoy' do #/companyprofile
+  post '/updaterevealcoy' do
     jobdata = TmeJobMain.get(params["pk"])
     jobdata.update(:job_companyreveal => params["job_companyreveal"])
     return 200
   end
 
-  post '/updatejob' do #/companyprofile
+  post '/updatejob' do 
     jobdata = TmeJobMain.get(params["pk"])
     jobdata.update(eval(":#{params['name']}") => params["value"])
     return 200
@@ -1411,6 +1411,12 @@ post '/jobdetail' do
     @jobstatus = "Draft"
    else @jobstatus = "NA"
    end
+
+   
+   @titleMaster= TmeListTitle.all 
+   @functionMaster = TmeListFunction.all
+   @locationMaster = TmeListCountry.all
+   @industryMaster = TmeListIndustry.all
 
    erb :jobdetail, :layout => false
 
@@ -1636,7 +1642,7 @@ post '/j_updateskillrank' do
        @userprofile = u.tme_skr_main
        @allskills =   @userprofile.skill_summaries.all
        @ssmaster = SkillSource  #master skill source for cross referencing
-       @scmaster = SkillCategory.all   #Skill Category Master    
+       #@scmaster = SkillCategory.all   #Skill Category Master    
        @sr = SkillRank.all
        erb :table, :layout => false
 
@@ -1686,7 +1692,8 @@ post '/j_updateskillrank' do
        mycoy = userprofile.tme_company_main      
        #@joblisting = mycoy.tme_job_main.all(:job_status =>1) | mycoy.tme_job_main.all(:job_status =>2)
        @joblisting = mycoy.tme_job_main.all
-       @titlemaster = TmeListTitle.all
+       # @titlemaster = TmeListTitle.all
+       # @functionmaster = TmeListFunction.all
        erb :activejobtable, :layout => false
 
     end
