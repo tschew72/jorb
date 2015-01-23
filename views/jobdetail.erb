@@ -54,7 +54,7 @@
       I want to reveal our company detail to candidate
       <input  onclick="revealcheck(this,<%=@job.id%>)" id="revealcheck" name="job_companyreveal" type="checkbox"  <%= @job.job_companyreveal== true ? "checked" : "unchecked" %> />  <label></label>
     </p>  -->
-  </section> <!--contactInfo--> 
+  <!-- </section> contactInfo  -->
               
   <section class="CV">
     <span id="CVsection"> 
@@ -144,7 +144,7 @@
         </div>    
         <p>
           Closing Date:
-          <input readonly="true" type="text" name="date-range-picker" id="id-date-range-picker-1" data-id=<%=@job.id%> value="<%=@job_closed %>"></input> <div id="saving_date"></div>        
+          <input readonly="true" type="text" name="date-range-picker" id="id-date-range-picker-1" data-id=<%=@job.id%> value="<%=@job_closed %>"></input>      
         </p>
         <p>
           Job Title:
@@ -643,106 +643,106 @@
           showbuttons: false
         }); //job_cert_pref
 
-      // X-Editable for Add Skill Modal 
-        $('#skillcat').editable({
-          source: "/getskillcat" ,
-          onblur: 'submit',
-          showbuttons: false,
-          success: function(response, newValue) {
+    // X-Editable for Add Skill Modal 
+      $('#skillcat').editable({
+        source: "/getskillcat" ,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
 
-                   $.getJSON("/getskill", {"value": newValue}, function (result) {
-                    $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
-                    $('#skillname').editable('setValue', null);             //else it will fail.
-                    $('#skillname').editable('option', 'disabled', false);  //             
-                    }).fail( function(d, textStatus, error) {
-                        console.error("Error code: " + textStatus + ", error: "+error)
+                 $.getJSON("/getskill", {"value": newValue}, function (result) {
+                  $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
+                  $('#skillname').editable('setValue', null);             //else it will fail.
+                  $('#skillname').editable('option', 'disabled', false);  //             
+                  }).fail( function(d, textStatus, error) {
+                      console.error("Error code: " + textStatus + ", error: "+error)
 
-                    });
-          }
+                  });
+        }
+      });
+
+      $('#skillname').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#skillrank').editable('option', 'disabled', false);
+        }
         });
 
-        $('#skillname').editable({
-          disabled: true,
-          onblur: 'submit',
-          showbuttons: false,
-          success: function(response, newValue)
-          {
-            $('#skillrank').editable('option', 'disabled', false);
-          }
-          });
+      $('#skillrank').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
 
-        $('#skillrank').editable(
-          {
-          disabled: true,
-          onblur: 'submit',
-          showbuttons: false});
+    // X-Editable for Add Language Modal
+      $('#job_lang').editable({
+        source: "/getlanguage",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#job_lang_speakskill').editable('option', 'disabled', false);
+        }
+      }); //lang
 
-      // X-Editable for Add Language Modal
-        $('#job_lang').editable({
-          source: "/getlanguage",
-          onblur: 'submit',
-          showbuttons: false,
-          success: function(response, newValue) {
-             $('#job_lang_speakskill').editable('option', 'disabled', false);
-          }
-        }); //lang
+      $('#job_lang_speakskill').editable({
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
+          $('#job_lang_writeskill').editable('option', 'disabled', false);
+        }
+      }); //speakskill
 
-        $('#job_lang_speakskill').editable({
-          disabled: true,
-          onblur: 'submit',
-          showbuttons: false,
-          success: function(response, newValue)
-          {
-            $('#job_lang_writeskill').editable('option', 'disabled', false);
-          }
-        }); //speakskill
+      $('#job_lang_writeskill').editable(
+        {
+        disabled: true,
+        onblur: 'submit',
+        showbuttons: false});
 
-        $('#job_lang_writeskill').editable(
-          {
-          disabled: true,
-          onblur: 'submit',
-          showbuttons: false});
+    // X-Editable for Add Education Modal
+      $('#job_edu_title').editable({
+        source: "/getdegree",
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue) {
+           $('#job_edu_specialty').editable('option', 'disabled', false);
+           if (newValue ==1 || newValue == 2 || newValue ==3) {
+              $('#job_edu_honors').editable('option', 'disabled', true);
+              $('#job_edu_specialty').editable('option', 'disabled', true);
+           }else {
+            $('#job_edu_honors').editable('option', 'disabled', false);
+            $('#job_edu_specialty').editable('option', 'disabled', false);
+           }
+        }
+      }); //job_edu_title
 
-      // X-Editable for Add Education Modal
-        $('#job_edu_title').editable({
-          source: "/getdegree",
-          onblur: 'submit',
-          showbuttons: false,
-          success: function(response, newValue) {
-             $('#job_edu_specialty').editable('option', 'disabled', false);
-             if (newValue ==1 || newValue == 2 || newValue ==3) {
-                $('#job_edu_honors').editable('option', 'disabled', true);
-                $('#job_edu_specialty').editable('option', 'disabled', true);
-             }else {
-              $('#job_edu_honors').editable('option', 'disabled', false);
-              $('#job_edu_specialty').editable('option', 'disabled', false);
-             }
-          }
-        }); //job_edu_title
+      $('#job_edu_specialty').editable({
+        source: "/getspecialty",
+        disabled: false,
+        onblur: 'submit',
+        showbuttons: false,
+        success: function(response, newValue)
+        {
 
-        $('#job_edu_specialty').editable({
-          source: "/getspecialty",
+        } //success
+      }); //job_edu_specialty
+
+      $('#job_edu_honors').editable({
+          source: "/gethonors",
           disabled: false,
           onblur: 'submit',
           showbuttons: false,
           success: function(response, newValue)
           {
+            $('#job_edu_pref').editable('option', 'disabled', false);
+          }
+      });//job_edu_honors
 
-          } //success
-        }); //job_edu_specialty
-
-        $('#job_edu_honors').editable({
-            source: "/gethonors",
-            disabled: false,
-            onblur: 'submit',
-            showbuttons: false,
-            success: function(response, newValue)
-            {
-              $('#job_edu_pref').editable('option', 'disabled', false);
-            }
-        });//job_edu_honors
-
-      // X-Editable for Add Certification Modal
+    // X-Editable for Add Certification Modal
         $('#job_cert_title').editable({
           source: "/getcert",
           onblur: 'submit',

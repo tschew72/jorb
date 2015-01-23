@@ -56,7 +56,7 @@ $('input[name="date-range-picker"]').on('apply.daterangepicker', function(ev, pi
         type: 'POST',
         data: {"job_closed": from, "pk" : $(this).attr('data-id')},
         beforeSend : function(){
-          $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
+          // $("#saving_date").html("<div id='saver'><i class='fa fa-spinner fa-spin'></i></div>");
         },  
         success: function(response){
                      $('#saver').fadeOut(1000, function() {
