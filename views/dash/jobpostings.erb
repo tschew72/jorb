@@ -52,8 +52,11 @@
 <script type="text/javascript">
 
   $(document).ready(function(){
-    // document.getElementById('jobposting').scrollIntoView() ;  
-    $("#jobTable").load("/activejobtable",{i: new Date().getTime()}); 
+    // document.getElementById('jobposting').scrollIntoView() ; 
+    $("#loading").html("<div class='spinner'></div>"); 
+    $("#jobTable").load("/activejobtable",{i: new Date().getTime()}, function(){
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
+    }); 
   }); //document.ready
 
   function showjobdetail(i){
