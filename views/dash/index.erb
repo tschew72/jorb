@@ -20,6 +20,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#jobMatchTable").load("/jobmatchtable",{i: new Date().getTime()}, function(){
+      ('#matchDetail').html('');
       window.location.hash = '#aa';
       window.location.hash = '#matchDetail'; }); 
   }); //function()

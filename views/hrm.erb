@@ -72,6 +72,7 @@
 
   function viewmatches(i){
     $("#top5matches").load("/top5matchestable",{ pk: i }, function(){
+      $("#matchdetail").html("");
       window.location.hash = '#aa';
       window.location.hash = '#top5matches'; });
 
