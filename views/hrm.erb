@@ -71,11 +71,16 @@
 
 
   function viewmatches(i){
-    $("#top5matches").load("/top5matchestable",{ pk: i }); 
+    $("#top5matches").load("/top5matchestable",{ pk: i }, function(){
+      window.location.hash = '#aa';
+      window.location.hash = '#top5matches'; });
+
   }//viewmatches
 
   function showmatchdetail(i,j){
-    $("#matchdetail").load("/matchdetail",{ pk: i ,skrid: j}, function(){window.location.hash = '#matchdetail'; }); 
+    $("#matchdetail").load("/matchdetail",{ pk: i ,skrid: j}, function(){
+      window.location.hash = '#aa';
+      window.location.hash = '#matchdetail'; }); 
   }//showmatchdetail
 
 </script>

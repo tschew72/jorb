@@ -19,11 +19,15 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#jobMatchTable").load("/jobmatchtable",{i: new Date().getTime()}); 
+    $("#jobMatchTable").load("/jobmatchtable",{i: new Date().getTime()}, function(){
+      window.location.hash = '#aa';
+      window.location.hash = '#matchDetail'; }); 
   }); //function()
 
   function showMatchDetail(i,j){
-    $("#matchDetail").load("/jobmatchdetail",{ pk: i ,skrid: j}, function(){window.location.hash = '.matchDetail'; }); 
+    $("#matchDetail").load("/jobmatchdetail",{ pk: i ,skrid: j}, function(){
+      window.location.hash = '#aa';
+      window.location.hash = '#matchDetail'; }); 
   };//showmatchdetail
 </script>
 
