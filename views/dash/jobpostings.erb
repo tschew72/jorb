@@ -57,7 +57,7 @@
   }); //document.ready
 
   function showjobdetail(i){
-    $("#loading").html("<div id='loader'><div class='spinner'></div></div>");
+    $("#loading").html("<div class='spinner'></div>");
     $("#jobdetail").html("");
     
     $("#jobdetail").load("/jobdetail",{ pk: i }, function() {
@@ -65,7 +65,7 @@
       $.getScript("_/js/loading_scripts/jobdetailscript.js");
       window.location.hash = '#aa';
       window.location.hash = '#jobdetail';
-      
+
     }); //jobdetail 
   }//showjobdetail
 

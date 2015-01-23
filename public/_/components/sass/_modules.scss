@@ -30,10 +30,11 @@
 }
 
 
-#loader {
+#loader, #loading{
   position:fixed;
   top:50%;
-  left:50%
+  left:50%;
+  z-index: 5000;
 }
 
 .spinner { 

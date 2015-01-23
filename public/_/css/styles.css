@@ -854,12 +854,13 @@ footer {
   display: block; }
 
 /* line 33, ../components/sass/_modules.scss */
-#loader {
+#loader, #loading {
   position: fixed;
   top: 50%;
-  left: 50%; }
+  left: 50%;
+  z-index: 5000; }
 
-/* line 39, ../components/sass/_modules.scss */
+/* line 40, ../components/sass/_modules.scss */
 .spinner {
   position: absolute;
   left: 50%;
@@ -897,20 +898,20 @@ footer {
     transform: rotate(0deg); }
   to {
     transform: rotate(359deg); } }
-/* line 78, ../components/sass/_modules.scss */
+/* line 79, ../components/sass/_modules.scss */
 .Avatar .fileinput-button {
   margin-top: 0px;
   margin-left: 0px;
   font-size: 0.6em; }
-/* line 83, ../components/sass/_modules.scss */
+/* line 84, ../components/sass/_modules.scss */
 .Avatar .avatar-frame {
   clear: both; }
 
-/* line 89, ../components/sass/_modules.scss */
+/* line 90, ../components/sass/_modules.scss */
 #greeting {
   overflow: hidden;
   *zoom: 1; }
-  /* line 91, ../components/sass/_modules.scss */
+  /* line 92, ../components/sass/_modules.scss */
   #greeting img {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -920,28 +921,28 @@ footer {
     float: left;
     margin-right: 3%; }
 
-/* line 104, ../components/sass/_modules.scss */
+/* line 105, ../components/sass/_modules.scss */
 .socialmediaicons .title {
   float: left; }
-/* line 108, ../components/sass/_modules.scss */
+/* line 109, ../components/sass/_modules.scss */
 .socialmediaicons ul {
   float: left; }
-  /* line 110, ../components/sass/_modules.scss */
+  /* line 111, ../components/sass/_modules.scss */
   .socialmediaicons ul li {
     display: inline-block;
     margin-left: 5px; }
-    /* line 113, ../components/sass/_modules.scss */
+    /* line 114, ../components/sass/_modules.scss */
     .socialmediaicons ul li img {
       width: 30px;
       -moz-border-radius: 50%;
       -webkit-border-radius: 50%;
       border-radius: 50%; }
 
-/* line 123, ../components/sass/_modules.scss */
+/* line 124, ../components/sass/_modules.scss */
 .avatar-frame {
   border: 2px solid #c7b89e; }
 
-/* line 124, ../components/sass/_modules.scss */
+/* line 125, ../components/sass/_modules.scss */
 .avatar-frame, .avatar-frame img {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -949,12 +950,12 @@ footer {
   max-width: 110px;
   height: 110px; }
 
-/* line 134, ../components/sass/_modules.scss */
+/* line 135, ../components/sass/_modules.scss */
 .Achievements div {
   background: #FFF;
   border-bottom: none !important; }
 
-/* line 139, ../components/sass/_modules.scss */
+/* line 140, ../components/sass/_modules.scss */
 .Achievements a {
   display: block;
   text-decoration: none;
@@ -962,50 +963,50 @@ footer {
   color: #444;
   font-size: 0.9em; }
 
-/* line 148, ../components/sass/_modules.scss */
+/* line 149, ../components/sass/_modules.scss */
 .Experiences, .Competencies, #tablespace {
   font-size: 0.8em; }
 
-/* line 159, ../components/sass/_modules.scss */
+/* line 160, ../components/sass/_modules.scss */
 .allSkills {
   color: #FFF;
   padding: 0px 30px;
   text-align: center; }
-  /* line 163, ../components/sass/_modules.scss */
+  /* line 164, ../components/sass/_modules.scss */
   .allSkills p {
     text-align: left; }
-  /* line 166, ../components/sass/_modules.scss */
+  /* line 167, ../components/sass/_modules.scss */
   .allSkills .rank5 {
     background-color: #0000FF; }
-  /* line 169, ../components/sass/_modules.scss */
+  /* line 170, ../components/sass/_modules.scss */
   .allSkills .rank4 {
     background-color: #0033FF; }
-  /* line 172, ../components/sass/_modules.scss */
+  /* line 173, ../components/sass/_modules.scss */
   .allSkills .rank3 {
     background-color: #0066FF; }
-  /* line 175, ../components/sass/_modules.scss */
+  /* line 176, ../components/sass/_modules.scss */
   .allSkills .rank2 {
     background-color: #0099FF; }
-  /* line 178, ../components/sass/_modules.scss */
+  /* line 179, ../components/sass/_modules.scss */
   .allSkills .rank1 {
     background-color: #00CCFF; }
 
-/* line 188, ../components/sass/_modules.scss */
+/* line 189, ../components/sass/_modules.scss */
 .cvLayout .Experiences {
   font-size: 1em; }
 
-/* line 196, ../components/sass/_modules.scss */
+/* line 197, ../components/sass/_modules.scss */
 .Education {
   font-size: 1em; }
-  /* line 199, ../components/sass/_modules.scss */
+  /* line 200, ../components/sass/_modules.scss */
   .Education .small {
     font-size: 0.8em; }
 
-/* line 206, ../components/sass/_modules.scss */
+/* line 207, ../components/sass/_modules.scss */
 .jobListing, .top5Matches, .matchDetail {
   font-size: 0.8em; }
 
-/* line 212, ../components/sass/_modules.scss */
+/* line 213, ../components/sass/_modules.scss */
 .Instructions {
   margin: 20px 30px;
   padding: 10px;
@@ -1015,29 +1016,29 @@ footer {
   box-shadow: 0 8px 6px -6px black;
   font-size: 0.9rem; }
 
-/* line 223, ../components/sass/_modules.scss */
+/* line 224, ../components/sass/_modules.scss */
 #coyUserTable, #user > a {
   margin: 5px 50px;
   padding: 0px;
   font-size: 0.7em; }
 
-/* line 230, ../components/sass/_modules.scss */
+/* line 231, ../components/sass/_modules.scss */
 #jobposting {
   font-size: 0.7em; }
-  /* line 232, ../components/sass/_modules.scss */
+  /* line 233, ../components/sass/_modules.scss */
   #jobposting #jobdetail {
     font-size: 0.9rem; }
 
-/* line 238, ../components/sass/_modules.scss */
+/* line 239, ../components/sass/_modules.scss */
 #newjobbutton {
   margin: 5px 15px;
   padding: 0px; }
 
-/* line 244, ../components/sass/_modules.scss */
+/* line 245, ../components/sass/_modules.scss */
 .jobRequirement {
   font-size: 0.7rem; }
 
-/* line 249, ../components/sass/_modules.scss */
+/* line 250, ../components/sass/_modules.scss */
 #seekerTable, #coyTable {
   font-size: 0.7rem;
   padding: 10px 50px; }

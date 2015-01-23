@@ -291,11 +291,15 @@
         </p>
         <p>
           Job Position:
-          <%= @titleMaster.get(@job.job_title).title %>
+          <% if @job.job_title !=nil %>
+            <%= @titleMaster.get(@job.job_title).title%> 
+          <%end%>
         </p>
         <p>
           Job Function:
-          <%= @functionMaster.get(@job.job_function).function %>
+          <% if @job.job_function !=nil %>
+            <%= @functionMaster.get(@job.job_function).function %>
+          <%end%>
         </p>
         <p>
           Related Experience: 
@@ -303,11 +307,16 @@
         </p>
         <p>
           Job Location:
-          <%= @locationMaster.get(@job.job_location).country %>
+          <% if @job.job_location !=nil %>
+            <%= @locationMaster.get(@job.job_location).country %>
+          <%end%>
         </p>
         <p>
           Job Industry:
-          <%= @industryMaster.get(@job.job_industry).industry %>
+          <% if @job.job_industry !=nil %>
+            <%= @industryMaster.get(@job.job_industry).industry %>
+          <%end%>
+
         </p>
 
         <p>
@@ -539,7 +548,7 @@
 <script>
   $(function(){
 
-    $("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Requirement Table now... </div>"); 
+    //$("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Requirement Table now... </div>"); 
     $("#lt").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language Requirement Table now... </div>"); 
     $("#et").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
     $("#ct").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
@@ -768,7 +777,7 @@
     }
    
     $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
-      $('#loader').fadeOut(1000, function() {$(this).remove();});
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
     });  
   }); //function()
 </script>
