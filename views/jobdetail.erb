@@ -808,14 +808,16 @@
     });
 
     $('#edutabclick').one("click", function() {
-        $("#loading").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
+        $("#loading").html("<div class='spinner'></div>");
+        $("#et").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
           $('.spinner').fadeOut(1000, function() {$(this).remove();});
             window.location.hash = '#aa';
             window.location.hash = '#et';
         }); 
     });
     $('#certtabclick').one("click", function() {
-        $("#loading").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
+        $("#loading").html("<div class='spinner'></div>");
+        $("#ct").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
           $('.spinner').fadeOut(1000, function() {$(this).remove();});
             window.location.hash = '#aa';
             window.location.hash = '#ct';
