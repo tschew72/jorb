@@ -176,6 +176,7 @@
           <a class="inputText" href="javascript:void(0)"  id="job_travel" data-name="job_travel" data-source="[{value: 0, text: '0%'}, {value: 25, text: '25%'}, {value: 50, text: '50%'}, {value: 75, text: '75%'}, {value: 100, text: '100%'}]" data-type="select" data-pk="<%=@job.id %>" data-url="/updatejob" data-title="Enter Travel Requirement"><%= @job.job_travel.to_s+"%" %>   </a>
         </p>
       </section> <!--jobDetailLeft-->
+
       <section class="jobDetailRight">
         <p>
           No preference on Nationality?
@@ -226,7 +227,7 @@
             <p>Certificates: What are the professional certificates that the candidates must possess for this role</p>
             <p> If you can't find any of your skills/languages/education/certificates from the respective drop-down menu, please request to have them added by writing to support@jorb.co</p>
           </div> <!--Instrictions-->
-          <div class="loading"> </div>
+          <!-- <div class="loading"> </div> -->
 
           <ul class="nav nav-tabs"> 
             <li class="active"><a id="skilltabclick" data-toggle="tab" href="#skilltab"> Skills Requirement</a></li>   
@@ -324,6 +325,7 @@
           <%= @job.job_travel.to_s+"%" %>
         </p>
       </section> <!--jobDetailLeft-->
+
       <section class="jobDetailRight">
         <p>
           No preference on Nationality?
@@ -366,7 +368,7 @@
           <header>
             Job Requirement
           </header>
-          <div class="loading"> </div>
+          <!-- <div class="loading"> </div> -->
 
           <ul class="nav nav-tabs"> 
             <li class="active"><a id="skilltabclick" data-toggle="tab" href="#skilltab"> Skills Requirement</a></li>   
@@ -549,9 +551,10 @@
   $(function(){
 
     //$("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Requirement Table now... </div>"); 
-    $("#lt").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language Requirement Table now... </div>"); 
-    $("#et").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
-    $("#ct").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
+    // $("#lt").html("<div id='loading'><i class='fa fa-spinner fa-spin'></i>Loading Language Requirement Table now... </div>"); 
+    // $("#loading").html("<div class='spinner'></div>");
+    // $("#et").html("<div id='loading'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
+    // $("#ct").html("<div id='loading'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
 
     // X-Editables Setup
       
@@ -787,19 +790,36 @@
   
   // POST LOADING START Loading the respective tables when user click on the tab
     $('#skilltabclick').one("click", function() {
-        $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>});  
+      $("#loading").html("<div class='spinner'></div>");
+        $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
+          $('.spinner').fadeOut(1000, function() {$(this).remove();});
+            window.location.hash = '#aa';
+            window.location.hash = '#st';
+        });  
     });
 
     $('#languagetabclick').one("click", function() {
-        $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+      $("#loading").html("<div class='spinner'></div>");
+        $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
+          $('.spinner').fadeOut(1000, function() {$(this).remove();});
+            window.location.hash = '#aa';
+            window.location.hash = '#lt';
+        }); 
     });
 
     $('#edutabclick').one("click", function() {
-        $("#et").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+        $("#loading").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
+          $('.spinner').fadeOut(1000, function() {$(this).remove();});
+            window.location.hash = '#aa';
+            window.location.hash = '#et';
+        }); 
     });
-
     $('#certtabclick').one("click", function() {
-        $("#ct").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}); 
+        $("#loading").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
+          $('.spinner').fadeOut(1000, function() {$(this).remove();});
+            window.location.hash = '#aa';
+            window.location.hash = '#ct';
+        }); 
     });
 
   // SAVE and CLOSE BUTTONS 
