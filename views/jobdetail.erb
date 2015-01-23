@@ -1,6 +1,7 @@
 
 
 <div class="jobDetailLayout">
+
   <section class="jobStatus">
    <header>
 
@@ -766,7 +767,9 @@
       $("#infobox").html("Only citizens from the chosen country can apply. You can also allow/disallow PR from that chosen country from apply (which means only citizen can apply");
     }
    
-    $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>});  
+    $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
+      $('#loader').fadeOut(1000, function() {$(this).remove();});
+    });  
   }); //function()
 </script>
 

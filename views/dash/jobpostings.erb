@@ -2,6 +2,8 @@
   <div id="greeting">
     <%=@mycoy.company_name%>
   </div> <!-- greeting -->
+
+    <div id ="loading"></div>
     <ul class="nav nav-tabs">
       <li class="active">
         <a id="activeclick" data-toggle="tab" href="#jobposting">
@@ -19,8 +21,8 @@
         <a id="newjobbutton" href="#" >
           <span class="btn btn-primary">Post a New Job</span>
         </a> 
+          
           <div id="jobTable"></div>
-          <div id="loading"></div>
           <div id="jobdetail"></div>
       </div> <!-- class="tab-pane"> -->
     </div> <!-- <div class="tab-content profile-edit-tab-content"> -->
@@ -55,13 +57,15 @@
   }); //document.ready
 
   function showjobdetail(i){
+    $("#loading").html("<div id='loader'><div class='spinner'></div></div>");
     $("#jobdetail").html("");
-    $("#loading").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Job Details now. You can start editing when this message is gone</div>");
+    
     $("#jobdetail").load("/jobdetail",{ pk: i }, function() {
-      $('#loader').fadeOut(1000, function() {$(this).remove();});
+      
       $.getScript("_/js/loading_scripts/jobdetailscript.js");
       window.location.hash = '#aa';
       window.location.hash = '#jobdetail';
+      
     }); //jobdetail 
   }//showjobdetail
 
