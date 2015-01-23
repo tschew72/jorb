@@ -345,7 +345,9 @@
                  
         <p>
           Employment Type:
-          <%= @workMaster.get(@job.job_time).worktime %>
+          <% if @job.job_time !=nil %>
+            <%= @workMaster.get(@job.job_time).worktime %>
+          <% end %>
         </p>
 
         <p>
@@ -538,7 +540,8 @@
 
 
 <script>
-  $(function(){
+  $(function()
+  {
 
     //$("#st").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Requirement Table now... </div>"); 
     // $("#lt").html("<div id='loading'><i class='fa fa-spinner fa-spin'></i>Loading Language Requirement Table now... </div>"); 
@@ -746,7 +749,7 @@
     if (<%=@job.job_jdurl== ''%>  ){
       document.getElementById( 'displaycv' ).style.visibility = 'hidden';
       console.log("hidden");
-    }
+      }
       else {
         document.getElementById( 'displaycv' ).style.visibility = 'visible';
         console.log("visible");
@@ -792,7 +795,7 @@
         $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
           $('.spinner').fadeOut(1000, function() {$(this).remove();});
             $("html, body").animate({ scrollTop: $(document).height() }, "slow");
-            
+
         }); 
     });
 

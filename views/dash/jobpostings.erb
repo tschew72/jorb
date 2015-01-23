@@ -94,6 +94,7 @@
 
   $('#newjobbutton').on("click", function() {
     if (<%= @mycoy.company_suspended %> == false){   
+      $("#loading").html("<div class='spinner'></div>");
       $.getJSON("/newjob", {"value": "<%=@user.tme_company_main_id%>"}, function (result) {
         $("#jobdetail").load("/newjobdetail",{i: new Date().getTime(), pk: result.jobid, coy: result.mycoy}, function(){
           $.getScript("_/js/loading_scripts/newjobdetailscript.js");
