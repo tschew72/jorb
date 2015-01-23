@@ -64,7 +64,6 @@
     $("#jobdetail").html("");
     
     $("#jobdetail").load("/jobdetail",{ pk: i }, function() {
-      
       $.getScript("_/js/loading_scripts/jobdetailscript.js");
       window.location.hash = '#aa';
       window.location.hash = '#jobdetail';

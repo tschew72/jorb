@@ -4,17 +4,16 @@
 
   <section class="jobStatus">
    <header>
-
-        Editing JOB ID: <%=@job.id%> (Status: <%=@jobstatus%>)
-        <br>
-        <% if @job.job_status != 2 %>       
+      Editing JOB ID: <%=@job.id%> (Status: <%=@jobstatus%>)
+      <br>
+      <% if @job.job_status != 2 %>       
         <a href="javascript:void(0)" onclick="activateJob(<%=@job.id%>)" >
           <span class="btn btn-primary" >Activate this Job</span>
         </a>
-        <% end %>
-        <a href="javascript:void(0)" onclick="cancelJob(<%=@job.id%>)" >
-          <span class="btn btn-primary">Cancel this Job</span>
-        </a>
+      <% end %>
+      <a href="javascript:void(0)" onclick="cancelJob(<%=@job.id%>)" >
+        <span class="btn btn-primary">Cancel this Job</span>
+      </a>
     </header>
     <% if @job.job_status != 2 %>
       <div class="Instructions">
@@ -28,11 +27,6 @@
       </div>
     <% end %>
     <div id="jobdetailfocus"> </div>
-<!--     <p>Job Posting Status:
-      <a href="javascript:void(0)" class="inputText" id ="job_status" data-name="job_status" data-type="select" data-pk="<%=@job.id%>" data-url="/updatejobstatus" data-source="[  {value: 1, text: 'Pending'}, {value: 2, text: 'Active'} ]"   data-title="Select Job Posting Status">  <%= @jobstatus%> </a> 
-    </p>     --> 
-
-  </section> <!--jobStatus -->
 
   <section class="contactInfo">
     <header>
@@ -50,11 +44,7 @@
       Phone #: 
       <a class="inputText" href="javascript:void(0)"  id="job_contactphone" data-name="job_contactphone" data-type="text" data-pk="<%=@job.id %>" data-url="/updatejob" data-title="Enter Contact Number"><%= @job.job_contactphone %> </a>
     </p>  
-<!--     <p>
-      I want to reveal our company detail to candidate
-      <input  onclick="revealcheck(this,<%=@job.id%>)" id="revealcheck" name="job_companyreveal" type="checkbox"  <%= @job.job_companyreveal== true ? "checked" : "unchecked" %> />  <label></label>
-    </p>  -->
-  <!-- </section> contactInfo  -->
+  </section>
               
   <section class="CV">
     <span id="CVsection"> 
@@ -793,8 +783,7 @@
       $("#loading").html("<div class='spinner'></div>");
         $("#st").load("/j_table",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
           $('.spinner').fadeOut(1000, function() {$(this).remove();});
-            window.location.hash = '#aa';
-            window.location.hash = '#st';
+            $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         });  
     });
 
@@ -802,8 +791,8 @@
       $("#loading").html("<div class='spinner'></div>");
         $("#lt").load("/j_langtable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
           $('.spinner').fadeOut(1000, function() {$(this).remove();});
-            window.location.hash = '#aa';
-            window.location.hash = '#lt';
+            $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+            
         }); 
     });
 
@@ -811,16 +800,14 @@
         $("#loading").html("<div class='spinner'></div>");
         $("#et").load("/j_edutable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
           $('.spinner').fadeOut(1000, function() {$(this).remove();});
-            window.location.hash = '#aa';
-            window.location.hash = '#et';
+            $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         }); 
     });
     $('#certtabclick').one("click", function() {
         $("#loading").html("<div class='spinner'></div>");
         $("#ct").load("/j_certtable",{i: new Date().getTime(), pk: <%=@job.id%>}, function(){
           $('.spinner').fadeOut(1000, function() {$(this).remove();});
-            window.location.hash = '#aa';
-            window.location.hash = '#ct';
+            $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         }); 
     });
 
