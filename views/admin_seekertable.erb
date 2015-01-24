@@ -1,7 +1,3 @@
-<script>
-
-
-</script>
 
 <header>User Administration</header>
 <div class="Instructions">
@@ -38,7 +34,12 @@
       </td>
       <td><%= i.updated_at.strftime("%c") %></td>
       <td>
+        <% if i.usertype == 1 %>  
           <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit User Profile</a>
+        <% end %>
+        <% if i.usertype == 2 %>  
+          <!-- <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit User Profile</a> -->
+        <% end %>
       </td>
       <td>
         <% if i.usertype == 1 %>  
@@ -46,7 +47,7 @@
         <% end %>
       </td>
       <td>
-        <a href="#" onclick="deleteUser(<%=i.id%>, <%=i.usertype%>  )">Delete </a>
+        <a href="#" onclick="deleteUser(<%=i.id%>)">Delete </a>
       </td>
     </tr>
       <% end %>

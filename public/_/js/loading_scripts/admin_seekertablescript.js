@@ -17,22 +17,18 @@
         ]
   } );
 
- function deleteUser(id, type)
-    { 
-      var r = confirm("WARNING: This action is irreversible. The User will be permanently removed from database! Are you sure?");
-      if (r == true) {
-        if (type == 1){
-          $.post( "/delete_seeker", {userid: id}, function( data ) {
-            confirm("Job Seeker account deleted!")
+function deleteUser(id)
+  { 
+    var r = confirm("WARNING: This action is irreversible. The User will be permanently removed from database! Are you sure?");
+    if (r == true) {
+        $.post( "/delete_user", {userid: id}, function( data ) {
+          confirm("User account deleted!")
+          $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
+            $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
           });
-        }
-        if (type == 2){
-          $.post( "/delete_coyuser", {userid: id}, function( data ) {
-            confirm("Recruiter account deleted!")
-          });
-        }
-      } else {
-          
-      }
-      return false; 
-    };
+        });
+    } else {
+        
+    }
+    return false; 
+  };

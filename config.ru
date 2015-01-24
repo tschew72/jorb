@@ -903,14 +903,8 @@ end
    return 200
   end
 
-  post '/delete_seeker' do
+  post '/delete_user' do
     cmd = "select * from admin_delete_user(" + params['userid'] + ")"
-    repository(:default).adapter.select(cmd)  
-    return 200
-  end
-
-  post '/delete_coyuser' do
-    cmd = "select * from admin_delete_cmpyuser(" + params['userid'] + ")"
     repository(:default).adapter.select(cmd)  
     return 200
   end
@@ -920,6 +914,19 @@ end
     repository(:default).adapter.select(cmd)  
     return 200
   end
+
+  post '/delete_coy' do
+    cmd = "select * from admin_delete_company(" + params['coyid'] + ")"
+    repository(:default).adapter.select(cmd)  
+    return 200
+  end
+
+  post '/delete_empty_coy' do
+    cmd = "select * from admin_delete_emptycmpy()"
+    repository(:default).adapter.select(cmd)  
+    return 200
+  end
+
 #===============================AJAX Listing Section================================
 get '/getskill' do
   smaster = SkillSource.all(:skillcategory_id => params["value"])

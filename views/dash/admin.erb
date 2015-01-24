@@ -10,6 +10,7 @@
       <button id="deleteEmptySeekers" class="btn btn-primary">Delete Empty Job Seeker Records Globally</button>
       <button id="" class="btn btn-primary">Delete Empty Job Records Globally</button>
       <button id="deleteEmptyCompanyUsers" class="btn btn-primary">Delete Empty Company User Records Globally</button>
+      <button id="deleteEmptyCompany" class="btn btn-primary">Delete Empty Company Records Globally</button>
   </section>
   
   <hr>
@@ -32,15 +33,26 @@
 
   $('#deleteEmptySeekers').click(function() {
     $.post( "/delete_empty_seekers", function( data ) {
-      $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}); 
+      $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
+        $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
+      }); 
     });
   }); //deleteEmptySeekers
 
   $('#deleteEmptyCompanyUsers').click(function() {
     $.post( "/delete_empty_company_users", function( data ) {
-      $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}); 
+      $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
+        $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
+      }); 
     });
   }); //deleteEmptyCompanyUsers
 
- 
+  $('#deleteEmptyCompany').click(function() {
+    $.post( "/delete_empty_coy", function( data ) {
+      $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}, function(){
+        $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
+      }); 
+    });
+  }); //deleteEmptyCompany
+
 </script>

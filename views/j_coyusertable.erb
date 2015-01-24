@@ -25,9 +25,9 @@ $.getScript("_/js/loading_scripts/coyusertablescript.js");
         </td>
         <td>
           <% if i.accesslevel != 3 %> <!-- No one can delete superadmin -->
-          <a onclick="delcoyuser(this, <%=i.id%>)" href="javascript:void(0)"> 
-            <i class="fa fa-trash-o fa-lg"></i>
-          </a>
+            <a onclick="delcoyuser(this, <%=i.id%>)" href="javascript:void(0)"> 
+              <i class="fa fa-trash-o fa-lg"></i>
+            </a>
           <% end %>
         </td>
       </tr>

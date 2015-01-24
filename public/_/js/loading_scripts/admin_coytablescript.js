@@ -22,3 +22,19 @@ $('#coyTable').editable({
 }); //company_suspended
 
 
+
+  function deleteCoy(i){
+    var r = confirm("WARNING: This action is irreversible. The Company will be permanently removed from database! Are you sure?");
+    if (r == true) {
+        $.post( "/delete_coy", {coyid: i}, function( data ) {
+          confirm("Company deleted!")
+          $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}, function(){
+            $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
+          }); 
+        });
+    } else {
+        
+    }
+    return false; 
+
+  }//delcoyuser

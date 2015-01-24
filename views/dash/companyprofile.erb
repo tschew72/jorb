@@ -552,16 +552,25 @@
 
 
   function delcoyuser(element,i){
-    $.ajax({
-      url: '/j_deletecoyuser',
-      type: 'POST',
-      data: {"pk" : i},
-      success: function(response){
-        var row=$(element).parents('tr')
-        $('#coyusertable').dataTable().fnDeleteRow(row[0]);
-        newAlert("#alert_coyuser", 'success', "User deleted!");
-      } //success
-    }); //ajax
+    var r = confirm("WARNING: This action is irreversible. The User will be permanently removed from database! Are you sure?");
+    if (r == true) {
+        $.post( "/delete_user", {userid: i}, function( data ) {
+          confirm("User account deleted!")
+        });
+    } else {
+        
+    }
+    return false; 
+    // $.ajax({
+    //   url: '/delete_user',
+    //   type: 'POST',
+    //   data: {"userid" : i},
+    //   success: function(response){
+    //     var row=$(element).parents('tr')
+    //     $('#coyusertable').dataTable().fnDeleteRow(row[0]);
+    //     newAlert("#alert_coyuser", 'success', "User deleted!");
+    //   } //success
+    // }); //ajax
   }//delcoyuser
 
   function showcoyuserdetail(i){

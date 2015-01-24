@@ -40,7 +40,7 @@ $(document).ready(function(){
         <a href="/admin_editcoyprofile?pk=<%=i.id%>"> Edit Company Profile</a>
       </td>
       <td>
-        <a href=""> Delete</a>
+        <a href="#" onclick="deleteCoy(<%=i.id%>)"> Delete</a>
       </td>
     </tr>
     <% end %>
