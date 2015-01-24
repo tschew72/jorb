@@ -297,11 +297,11 @@ class TmeJobMain
   property :job_companyreveal, Boolean,:default=>false
   property :job_contactname, String, length: 120, :index=>true
   property :job_contactemail, String, length: 200, :index=>true
-  property :job_contactphone, String, :index=>true
+  property :job_contactphone, String, length: 20, :index=>true
   property :job_posted, DateTime,:default => lambda{ |p,s| Date.today}, :index => true    
   property :job_closed, DateTime, :index => true, :default => lambda{ |a,b| Date.today>>6} 
   property :job_title, Integer, :index => true  
-  property :job_title_actual, String, length:1000 
+  property :job_title_actual, String, length: 500 
   property :job_location, Integer, :index => true  
   property :job_industry, Integer, :index => true  
   property :job_currency, Integer, :index => true  

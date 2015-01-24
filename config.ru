@@ -914,6 +914,12 @@ end
     repository(:default).adapter.select(cmd)  
     return 200
   end
+
+  post '/delete_job' do
+    cmd = "select * from admin_delete_job(" + params['id'] + ")"
+    repository(:default).adapter.select(cmd)  
+    return 200
+  end
 #===============================AJAX Listing Section================================
 get '/getskill' do
   smaster = SkillSource.all(:skillcategory_id => params["value"])

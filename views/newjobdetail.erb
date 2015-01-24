@@ -6,10 +6,13 @@
         Posting a new job with ID: <%=@job.id%>
         <br>
         <a href="javascript:void(0)" onclick="activateJob(<%=@job.id%>)" >
-          <span class="btn btn-primary">Activate this Job</span>
+          <span class="btn btn-primary">Activate this job</span>
         </a>
         <a href="javascript:void(0)" onclick="kivJob(<%=@job.id%>)" >
           <span class="btn btn-primary">KIV</span>
+        </a>
+        <a href="javascript:void(0)" onclick="delJob(<%=@job.id%>)" >
+          <span class="btn btn-primary">Delete this job</span>
         </a>
     </header>
     <div class="Instructions">
@@ -411,201 +414,6 @@
     // $("#et").html("<div id='loading'><i class='fa fa-spinner fa-spin'></i>Loading Education Requirement Table now... </div>"); 
     // $("#ct").html("<div id='loading'><i class='fa fa-spinner fa-spin'></i>Loading Certification Requirement Table now... </div>"); 
 
-    // X-Editables Setup
-      
-
-        $('#job_title').editable({
-          source: "/getjobtitle",
-          emptytext: '--',
-        });
-
-        $('#job_location').editable({
-          source: "/getcountries",
-          emptytext: '--',
-         });
-            
-        $('#job_industry  ').editable({
-          source: "/getind",
-          emptytext: '--',
-         });
-
-        $('#job_travel').editable({
-          emptytext: '--',
-         });
-
-        $('#job_salarymin').editable({
-          emptytext: '--',
-         });
-
-        $('#job_salarymax').editable({
-            emptytext: '--',
-         });
-
-        $('#job_experience').editable(
-        {
-            emptytext: '--',
-        });
-
-        $('#job_time').editable(
-        {
-            source: "/getworktime",
-            emptytext: '--',
-        });
-
-        $('#job_function').editable({
-          source: "/getfunction",
-          emptytext: '--',
-         });
-
-        $('#skilltable').editable({
-          selector: 'a.skillrank',
-          showbuttons: false
-        });
-
-        $('#languagetable').editable({
-          selector: 'a.job_lang_speakskill',
-          showbuttons: false
-        });
-
-        $('#languagetable').editable({
-          selector: 'a.job_lang_writeskill',
-          showbuttons: false
-        });
-
-        $('#edutable').editable({
-          selector: 'a.job_edu_pref',
-          source: "/getpref",
-          showbuttons: false
-        });// edutable
-
-        $('#certtable').editable({
-          selector: 'a.job_cert_pref',
-          source: "/getpref",
-          showbuttons: false
-        }); //certtable
-
-        $('#job_edu_pref').editable({
-          source: "/getpref",
-          disabled: false,
-          onblur: 'submit',
-          showbuttons: false
-        }); //job_edu_pref
-
-        $('#job_cert_pref').editable({
-          source: "/getpref",
-          disabled: false,
-          onblur: 'submit',
-          showbuttons: false
-        }); //job_cert_pref
-
-    // X-Editable for Add Skill Modal 
-      $('#skillcat').editable({
-        source: "/getskillcat" ,
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue) {
-
-                 $.getJSON("/getskill", {"value": newValue}, function (result) {
-                  $('#skillname').editable('option', 'source', result);   //somehow, all these 3 sentences must be in here.
-                  $('#skillname').editable('setValue', null);             //else it will fail.
-                  $('#skillname').editable('option', 'disabled', false);  //             
-                  }).fail( function(d, textStatus, error) {
-                      console.error("Error code: " + textStatus + ", error: "+error)
-
-                  });
-        }
-      });
-
-      $('#skillname').editable({
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue)
-        {
-          $('#skillrank').editable('option', 'disabled', false);
-        }
-        });
-
-      $('#skillrank').editable(
-        {
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false});
-
-    // X-Editable for Add Language Modal
-      $('#job_lang').editable({
-        source: "/getlanguage",
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue) {
-           $('#job_lang_speakskill').editable('option', 'disabled', false);
-        }
-      }); //lang
-
-      $('#job_lang_speakskill').editable({
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue)
-        {
-          $('#job_lang_writeskill').editable('option', 'disabled', false);
-        }
-      }); //speakskill
-
-      $('#job_lang_writeskill').editable(
-        {
-        disabled: true,
-        onblur: 'submit',
-        showbuttons: false});
-
-    // X-Editable for Add Education Modal
-      $('#job_edu_title').editable({
-        source: "/getdegree",
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue) {
-           $('#job_edu_specialty').editable('option', 'disabled', false);
-           if (newValue ==1 || newValue == 2 || newValue ==3) {
-              $('#job_edu_honors').editable('option', 'disabled', true);
-              $('#job_edu_specialty').editable('option', 'disabled', true);
-           }else {
-            $('#job_edu_honors').editable('option', 'disabled', false);
-            $('#job_edu_specialty').editable('option', 'disabled', false);
-           }
-        }
-      }); //job_edu_title
-
-      $('#job_edu_specialty').editable({
-        source: "/getspecialty",
-        disabled: false,
-        onblur: 'submit',
-        showbuttons: false,
-        success: function(response, newValue)
-        {
-
-        } //success
-      }); //job_edu_specialty
-
-      $('#job_edu_honors').editable({
-          source: "/gethonors",
-          disabled: false,
-          onblur: 'submit',
-          showbuttons: false,
-          success: function(response, newValue)
-          {
-            $('#job_edu_pref').editable('option', 'disabled', false);
-          }
-      });//job_edu_honors
-
-    // X-Editable for Add Certification Modal
-        $('#job_cert_title').editable({
-          source: "/getcert",
-          onblur: 'submit',
-          showbuttons: false,
-          success: function(response, newValue) {
-          } //success
-        }); //job_cert_title
-
 
 
     if (<%=@job.job_jdurl== ''%>  ){
@@ -987,4 +795,10 @@
         $(loc).append($("<div class='alert alert-block alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
         $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
     };     
+
+  function isInt(value) {
+    return !isNaN(value) &&
+           parseInt(Number(value)) == value &&
+           !isNaN(parseInt(value, 10));
+  } //isInt
 </script>
