@@ -10,17 +10,18 @@ $(document).ready(function(){
   <p>
     Edit Company Profile   : Edit the general information of this company as well as adding new company user account<br>
     Suspended? : Company will not be allowed to post any jobs if it is suspended<br>
-    Delete  : Delete the Company. This action is irreversible!<br>
+    Delete  : Delete the Company. This action is irreversible! Note that deleting company will not delete all associated records such as jobs and users. You will need to delete all these records separately from their respective admin panel. Strongly recommended to use Suspended Option!<br>
   </p>
 </div>
 
-<table id="admin_coytable" class="hover compact">
+<table id="admin_coytable" class="hover compact" cellspacing="0" width="100%">
   <thead>
     <tr>
       <th>Company</th>
       <th>Email</th>
       <th>Suspended?</th>
       <th>Last Updated</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -38,6 +39,9 @@ $(document).ready(function(){
       <td><%= i.company_dateadded %></td>
       <td>
         <a href="/admin_editcoyprofile?pk=<%=i.id%>"> Edit Company Profile</a>
+      </td>
+      <td>
+        <a href="/admin_manage_jobs?pk=<%=i.id%>"> Edit Job Postings</a>
       </td>
       <td>
         <a href="#" onclick="deleteCoy(<%=i.id%>)"> Delete</a>

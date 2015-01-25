@@ -9,12 +9,12 @@ function revealcheck(a,i){
           };        
 
 
-function activateJob(jobid){
+function activateJob(jobid, coyid){
   var r = confirm("WARNING: This action is irreversible. Once activated, you will not be allowed to edit some of the fields.");
   if (r == true) {
       $.post( "/updatejob", {pk: jobid, name: "job_status", value: 2}, function( data ) {
         confirm("Job activated!");
-        window.location.assign("/jobpostings");
+        window.location.assign("/jobpostings?pk=" + coyid );
       });
   } 
   else {
@@ -23,12 +23,12 @@ function activateJob(jobid){
   return false; 
 }; //activateJob
 
-function cancelJob(jobid){
+function cancelJob(jobid, coyid){
   var r = confirm("WARNING: This action is irreversible. Once cancelled, you will not be allowed to edit or re-activate again.");
   if (r == true) {
       $.post( "/updatejob", {pk: jobid, name: "job_status", value: 0}, function( data ) {
         confirm("Job cancelled!");
-        window.location.assign("/jobpostings");
+        window.location.assign("/jobpostings?pk=" + coyid );
       });
   } 
   else {
@@ -37,12 +37,12 @@ function cancelJob(jobid){
   return false; 
 }; //cancelJob
           
-function kivJob(jobid){
+function kivJob(jobid, coyid){
   var r = confirm("You want to save this job posting for future editing.");
   if (r == true) {
       $.post( "/updatejob", {pk: jobid, name: "job_status", value: 4}, function( data ) {  //set to draft
         confirm("Job saved!");
-        window.location.assign("/jobpostings");
+        window.location.assign("/jobpostings?pk=" + coyid );
       });
   } 
   else {
@@ -51,12 +51,12 @@ function kivJob(jobid){
   return false; 
 }; //kivJob
 
-function delJob(jobid){
+function delJob(jobid, coyid){
   var r = confirm("You want to delete this job posting. This action is irreversible");
   if (r == true) {
-      $.post( "/delete_job", {id: jobid}, function( data ) {  //set to draft
+      $.post( "/delete_job", {id: jobid}, function( data ) { 
         confirm("Job deleted!");
-        window.location.assign("/jobpostings");
+        window.location.assign("/jobpostings?pk=" + coyid );
       });
   } 
   else {

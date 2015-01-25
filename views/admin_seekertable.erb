@@ -7,6 +7,9 @@
     Edit Career Profile        : Edit the career profile (CV) of Job Seeker<br>
     Delete  : Delete the Job Seeker account. This action is irreversible!<br>
   </p>
+  <p> 
+    To edit Company User's profile, go to his/her respective company profile -> Setup User
+  </p>
 </div>
 <table id="admin_seekertable" class="hover compact">
   <thead>
@@ -32,13 +35,14 @@
         <% if i.usertype == 1 %> Job Seeker <% end %>
         <% if i.usertype == 2 %> Coy User<% end %>
       </td>
-      <td><%= i.updated_at.strftime("%c") %></td>
+      <td>
+        <% if i.updated_at != nil %>
+          <%= i.updated_at.strftime("%c") %>
+        <%end%>
+      </td>
       <td>
         <% if i.usertype == 1 %>  
           <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit User Profile</a>
-        <% end %>
-        <% if i.usertype == 2 %>  
-          <!-- <a href="/admin_editseekerprofile?pk=<%=i.id%>"> Edit User Profile</a> -->
         <% end %>
       </td>
       <td>

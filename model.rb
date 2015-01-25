@@ -28,7 +28,7 @@ class User
   property :pictureurl, String, :index => true, length: 1000, :default=>"/images/default-avatar.jpg"
   property :tme_company_main_id, Integer, :field => 'company_id'
   property :tme_skr_main_id, Integer, :field => 'skr_id'
-  property :status, Integer, :default => 1                        ############## 0 Inactive #  1 active   2 Removed
+  property :status, Integer, :default => 1                        ############## 0 Inactive (suspended) #  1 active   2 Removed
   #property :lastlogin, Date, :index => true, :field => 'skr_lastlogin' To be used later.
   belongs_to :tme_skr_main, :model =>'TmeSkrMain'
   belongs_to :tme_company_main, :model =>'TmeCompanyMain'

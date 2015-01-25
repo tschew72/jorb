@@ -5,13 +5,13 @@
 
         Posting a new job with ID: <%=@job.id%>
         <br>
-        <a href="javascript:void(0)" onclick="activateJob(<%=@job.id%>)" >
+        <a href="javascript:void(0)" onclick="activateJob(<%=@job.id%>, <%=@coyid%>)" >
           <span class="btn btn-primary">Activate this job</span>
         </a>
-        <a href="javascript:void(0)" onclick="kivJob(<%=@job.id%>)" >
+        <a href="javascript:void(0)" onclick="kivJob(<%=@job.id%>, <%=@coyid%>)" >
           <span class="btn btn-primary">KIV</span>
         </a>
-        <a href="javascript:void(0)" onclick="delJob(<%=@job.id%>)" >
+        <a href="javascript:void(0)" onclick="delJob(<%=@job.id%>, <%=@coyid%>)" >
           <span class="btn btn-primary">Delete this job</span>
         </a>
     </header>

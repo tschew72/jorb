@@ -6,11 +6,12 @@
       <p>
         The buttons are used for end of day housekeeping where all records that were created but not filled with data are automatically removed. Action is irreverisble!
       </p>
+      <p> 1) Delete Empty User (Coy and Seeker) Records</p>
+      <p> 2) Delete Empty Job Records</p>
+      <p> 3) Delete Empty Company Records</p>
+      <button id="housekeepingButton" class="btn btn-primary">KEEP IT CLEAN NOW!</button>
     </div>
-      <button id="deleteEmptySeekers" class="btn btn-primary">Delete Empty Job Seeker Records Globally</button>
-      <button id="" class="btn btn-primary">Delete Empty Job Records Globally</button>
-      <button id="deleteEmptyCompanyUsers" class="btn btn-primary">Delete Empty Company User Records Globally</button>
-      <button id="deleteEmptyCompany" class="btn btn-primary">Delete Empty Company Records Globally</button>
+      
   </section>
   
   <hr>
@@ -23,36 +24,50 @@
   $(document).ready(function(){
   	$("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
       $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
+      window.location.hash = '#aa';
+      window.location.hash = '#seekerTable';
     });
 
     $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}, function(){
       $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
     }); 
+
+
     
   }); //function()
 
-  $('#deleteEmptySeekers').click(function() {
-    $.post( "/delete_empty_seekers", function( data ) {
+  $('#housekeepingButton').click(function() {
+    $.post( "/admin_housekeeping", function( data ) {
       $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
         $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
-      }); 
-    });
-  }); //deleteEmptySeekers
-
-  $('#deleteEmptyCompanyUsers').click(function() {
-    $.post( "/delete_empty_company_users", function( data ) {
-      $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
-        $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
-      }); 
-    });
-  }); //deleteEmptyCompanyUsers
-
-  $('#deleteEmptyCompany').click(function() {
-    $.post( "/delete_empty_coy", function( data ) {
+      }); //seekerTable load 
       $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}, function(){
         $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
-      }); 
-    });
-  }); //deleteEmptyCompany
+        window.location.hash = '#aa';
+        window.location.hash = '#seekerTable';
+      }); //coyTable load     
+    }); //post
+  }); //deleteEmptySeekers
+
+  // $('#deleteEmptyCompanyUsers').click(function() {
+  //   $.post( "/delete_empty_company_users", function( data ) {
+  //     $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
+  //       $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
+  //       window.location.hash = '#aa';
+  //       window.location.hash = '#seekerTable';
+  //     }); 
+      
+  //   });
+  // }); //deleteEmptyCompanyUsers
+
+  // $('#deleteEmptyCompany').click(function() {
+  //   $.post( "/delete_empty_coy", function( data ) {
+  //     $("#coyTable").load("/admin_coytable",{i: new Date().getTime()}, function(){
+  //       $.getScript("_/js/loading_scripts/admin_coytablescript.js"); 
+  //       window.location.hash = '#aa';
+  //       window.location.hash = '#coyTable';
+  //     });//load 
+  //   }); //post
+  // }); //deleteEmptyCompany
 
 </script>

@@ -7,18 +7,18 @@
       Editing JOB ID: <%=@job.id%> (Status: <%=@jobstatus%>)
       <br>
       <% if @job.job_status != 2 %>       
-        <a href="javascript:void(0)" onclick="activateJob(<%=@job.id%>)" >
+        <a href="javascript:void(0)" onclick="activateJob(<%=@job.id%>, <%=@coyid%>)" >
           <span class="btn btn-primary" >Activate this Job</span>
         </a>
-        <a href="javascript:void(0)" onclick="kivJob(<%=@job.id%>)" >
+        <a href="javascript:void(0)" onclick="kivJob(<%=@job.id%>, <%=@coyid%>)" >
           <span class="btn btn-primary">KIV</span>
         </a>
-        <a href="javascript:void(0)" onclick="delJob(<%=@job.id%>)" >
+        <a href="javascript:void(0)" onclick="delJob(<%=@job.id%>, <%=@coyid%>)" >
           <span class="btn btn-primary">Delete this Job</span>
         </a>
       <% end %>
       <% if @job.job_status == 2 %>
-        <a href="javascript:void(0)" onclick="cancelJob(<%=@job.id%>)" >
+        <a href="javascript:void(0)" onclick="cancelJob(<%=@job.id%>, <%=@coyid%>)" >
           <span class="btn btn-primary">Cancel this Job</span>
         </a>
       <%end%>

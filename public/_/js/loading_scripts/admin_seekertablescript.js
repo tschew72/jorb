@@ -25,6 +25,8 @@ function deleteUser(id)
           confirm("User account deleted!")
           $("#seekerTable").load("/admin_seekertable",{i: new Date().getTime()}, function(){
             $.getScript("_/js/loading_scripts/admin_seekertablescript.js");
+            window.location.hash = '#aa';
+            window.location.hash = '#seekerTable';
           });
         });
     } else {

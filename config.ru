@@ -631,9 +631,18 @@ get '/jobpostings' do
   end
   @userprofile = @user.tme_skr_main
   @userme = @user.firstname
-  @mycoy = @user.tme_company_main
+  if params["pk"] == nil
+    @mycoy = @user.tme_company_main
+  else
+    @mycoy = TmeCompanyMain.get(params["pk"])
+  end
   @joblisting = @mycoy.tme_job_main.all
-  erb :"dash/jobpostings", :layout => :'dash/layout2'
+
+  if params["pk"] == nil
+    erb :"dash/jobpostings", :layout => :'dash/layout2'
+  else
+    erb :"dash/jobpostings", :layout => :'dash/layout3'
+  end
 end
 
 
@@ -888,20 +897,31 @@ end
     erb :"dash/profile", :layout => :'dash/layout3'
   end ####newseeker
 
+  get '/admin_manage_jobs' do
+    redirect '/auth/login' unless env['warden'].authenticated?
+    @user = env['warden'].user
+    if @user.usertype == 1
+      redirect '/auth/unauthorized'
+    end
+    @userprofile = @user.tme_skr_main
+    @userme = @user.firstname
+    @mycoy = TmeCompanyMain.get(params["pk"])
+    erb :"dash/jobpostings", :layout => :'dash/layout3'
+  end
 
-  post '/delete_empty_seekers' do
-    admin = TmeAdmin.get(1)
-    delete_trigger = admin.delete_emptyusers + 1
-    admin.update(:delete_emptyusers=> delete_trigger)
+  post '/admin_housekeeping' do
+    cmd1 = "select * from admin_delete_emptyusers(0)"
+    cmd2 = "select * from admin_delete_emptycmpy()"
+    cmd3 = "select * from admin_delete_emptyjobs()"
+    repository(:default).adapter.select(cmd1)  
+    puts "Users Cleaned"
+    repository(:default).adapter.select(cmd2)  
+    puts "Company Cleaned"
+    repository(:default).adapter.select(cmd2)  
+    puts "Jobs Cleaned"
     return 200
   end
-
-  post '/delete_empty_company_users' do
-    admin = TmeAdmin.get(1)
-    delete_trigger = admin.delete_emptycmpyusers + 1
-    admin.update(:delete_emptycmpyusers=> delete_trigger)
-   return 200
-  end
+  
 
   post '/delete_user' do
     cmd = "select * from admin_delete_user(" + params['userid'] + ")"
@@ -921,11 +941,7 @@ end
     return 200
   end
 
-  post '/delete_empty_coy' do
-    cmd = "select * from admin_delete_emptycmpy()"
-    repository(:default).adapter.select(cmd)  
-    return 200
-  end
+
 
 #===============================AJAX Listing Section================================
 get '/getskill' do
@@ -1402,6 +1418,7 @@ end
 
 post '/jobdetail' do
    @jobid = params["pk"]
+   @coyid = params["coyid"]
    @job = TmeJobMain.get(@jobid)
    if @job.job_nationality != nil
     @nationalitymaster = TmeListCountry.all(:country_id => @job.job_nationality).first.country
@@ -1439,16 +1456,17 @@ end
 
 post '/newjobdetail' do
    @jobid = params["pk"]
+   @coyid = params["coy"]
    @job = TmeJobMain.get(@jobid)
    mycoy = TmeCompanyMain.get(params["coy"])
-   if !mycoy.company_isagent
-    @industry = mycoy.company_industry
-   else
-    @industry = ""
+   # if !mycoy.company_isagent
+   #  @industry = mycoy.company_industry
+   # else
+   #  @industry = ""
 
-   end
-   puts mycoy.company_isagent
-   puts @industry
+   # end
+   # puts mycoy.company_isagent
+   # puts @industry
    @job_closed = @job.job_closed.strftime("%d/%m/%Y")
 
    if @job.job_status == 0
@@ -1703,7 +1721,8 @@ post '/j_updateskillrank' do
 
  post '/activejobtable' do
        userprofile = env['warden'].user
-       mycoy = userprofile.tme_company_main      
+       # mycoy = userprofile.tme_company_main  
+       mycoy = TmeCompanyMain.get(params['coyid'])    
        #@joblisting = mycoy.tme_job_main.all(:job_status =>1) | mycoy.tme_job_main.all(:job_status =>2)
        @joblisting = mycoy.tme_job_main.all
        # @titlemaster = TmeListTitle.all
