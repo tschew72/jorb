@@ -913,12 +913,16 @@ end
     cmd1 = "select * from admin_delete_emptyusers(0)"
     cmd2 = "select * from admin_delete_emptycmpy()"
     cmd3 = "select * from admin_delete_emptyjobs()"
+    cmd4 = "select * from admin_jobs_expired()"
+    
     repository(:default).adapter.select(cmd1)  
     puts "Users Cleaned"
     repository(:default).adapter.select(cmd2)  
     puts "Company Cleaned"
-    repository(:default).adapter.select(cmd2)  
+    repository(:default).adapter.select(cmd3)  
     puts "Jobs Cleaned"
+    repository(:default).adapter.select(cmd4)  
+    puts "Jobs expiry check and closure"
     return 200
   end
   

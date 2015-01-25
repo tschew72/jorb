@@ -16,7 +16,8 @@ $.getScript("_/js/loading_scripts/activejobtablescript.js");
       <tr>
          <th>Job ID</th>
          <th>Job Title</th>
-         <th>Posted</th>
+         <th>Updated on</th>
+         <th>Expire on</th>
          <th>Status</th>
       </tr>
     </thead>
@@ -30,6 +31,11 @@ $.getScript("_/js/loading_scripts/activejobtablescript.js");
         <td><%= if i.job_title_actual != nil 
                 i.job_title_actual  end%> </td>
         <td><%= i.job_posted.strftime("%d/%m/%Y") %></td> 
+        <td>
+          <% if i.job_status == 2 %>
+            <%=i.job_closed.strftime("%d/%m/%Y")%> 
+          <%end%>
+        </td> 
         <td>
           <%= if i.job_status == 0
                "Deleted"
