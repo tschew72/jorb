@@ -1,5 +1,6 @@
 <div class="settingsLayout">
   <h1>Career Profile for <%= @user.firstname %> <%= @user.lastname %></h1> 
+  <div id ="loading"></div>
   <section class="searchStatus">
     <header>Job Search Status</header>
     <span>Activate Job Search</span>
@@ -477,13 +478,18 @@
 <script>
 
 $(document).ready(function(){
-    $("#skillTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Table now... </div>"); 
-    $("#languageTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language Table now... </div>"); 
-    $("#educationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Table now... </div>"); 
-    $("#certificationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Table now... </div>"); 
-    $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+    // $("#skillTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Skill Table now... </div>"); 
+    // $("#languageTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Language Table now... </div>"); 
+    // $("#educationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Education Table now... </div>"); 
+    // $("#certificationTable").html("<div id='loader'><i class='fa fa-spinner fa-spin'></i>Loading Certification Table now... </div>"); 
+    $("#loading").html("<div class='spinner'></div>");
+    $("#experienceTable").load("/experiencetable",{i: new Date().getTime(), pk: <%=@user.id%>}, function(){
+    }); 
     document.getElementById('f1').scrollIntoView()
-    $("#skillTable").load("/table",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+    $("#skillTable").load("/table",{i: new Date().getTime(), pk: <%=@user.id%>}, function(){
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    }); 
     //non singaporean and non-PR and active in seeking for job, show it!
     if (<%= @mynations %> != 157 && <%= @mynationtypes %> !=2 && <%= @userprofile.activeseeker %>){
        document.getElementById( 'spr_block' ).style.visibility = 'visible';
@@ -536,8 +542,8 @@ $(document).ready(function(){
       tpl: "<input type='text' style='width: 700px';height:500px>",
       validate: function(value){
         if (!value) return 'This field is required';
-        if(value.length >5000 ) {
-          return 'You can only enter a maximum of 5000 characters';
+        if(value.length >15000 ) {
+          return 'You can only enter a maximum of 15000 characters';
         }
       } //validate 
     }); //skr_careergoal
@@ -691,15 +697,27 @@ $(document).ready(function(){
 <script>
 // ------------ POST LOADING START Loading the respective tables when user click on the tab.--------
   $('#languagetabclick').one("click", function() {
-      $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+    $("#loading").html("<div class='spinner'></div>");
+    $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%=@user.id%>}, function(){
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    }); 
   }); //languagetabclick
 
   $('#edutabclick').one("click", function() {
-      $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+    $("#loading").html("<div class='spinner'></div>");
+    $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%=@user.id%>}, function(){
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    }); 
   }); //edutabclick
 
   $('#certtabclick').one("click", function() {
-      $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
+    $("#loading").html("<div class='spinner'></div>");
+    $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%=@user.id%>}, function(){
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    }); 
   }); //certtabclick
 //-------------------------END OF POST LOADING ------------------------------------
   $("#activecheck").on('change', function(){

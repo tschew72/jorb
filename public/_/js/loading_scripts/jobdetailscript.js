@@ -184,19 +184,19 @@ $('input[name="date-range-picker"]').on('apply.daterangepicker', function(ev, pi
       $('#job_salarymin').editable({
         emptytext: '--',
         validate: function(value) {
-            if (!isInt(value)){
-              return "Invalid entry. Please re-enter";             
-            }
-          },
+          if (!isInt(value)){
+            return "Invalid entry. Please re-enter";             
+          }
+        }, //validate
        });
 
       $('#job_salarymax').editable({
-          emptytext: '--',
-          validate: function(value) {
-            if (!isInt(value)){
-              return "Invalid entry. Please re-enter";             
-            }
-          },
+        emptytext: '--',
+        validate: function(value) {
+          if (!isInt(value)){
+            return "Invalid entry. Please re-enter";             
+          }
+        }, //validate
        });
 
       $('#job_experience').editable(

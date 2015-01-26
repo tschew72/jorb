@@ -137,7 +137,7 @@ class TmeSkrSocialmedia
     property :skr_socialmedia_id, Serial, key: true   
     property :tme_skr_main_id, Integer, :field => 'skr_id'
     property :skr_socialmediacat, Integer
-    property :skr_socialmediaurl, String, :default => ""
+    property :skr_socialmediaurl, String, :length=>200, :default => ""
 
     belongs_to :tme_skr_main 
 end

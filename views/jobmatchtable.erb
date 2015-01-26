@@ -6,24 +6,24 @@ $.getScript("_/js/loading_scripts/jobmatchtablescript.js");
   <thead>
     <tr>
        <!-- <th>Job ID</th> -->
-       <th>Job Function</th>
+       <th>Job Title</th>
        <th>Company</th>
        <th>My Rank</th>
        <th>Score</th>
-       <th></th>
     </tr>
   </thead>
   <tbody id="aat" >
     <% @jobmatches.each do |i| %>
     <tr>
-       <!-- <td><%= i.jobid %> </td> -->
-       <td><%= i.jobfunc %></td>
-       <td><%= i.company %> </td>
-       <td><%= i.rank %></td>
-       <td><%= i.score %> </td>
-       <td>
-          <a onclick="showMatchDetail(<%=i.jobid%>,<%=@skrid%>)" href="javascript:void(0)"> <i class="fa fa-external-link fa-lg"></i></a>      
-       </td>  
+      <!-- <td><%= i.jobid %> </td> -->
+      <td><%= i.jobfunc %></td>
+      <td><%= i.company %> </td>
+      <td><%= i.rank %></td>
+      <td>
+        <a onclick="showMatchDetail(<%=i.jobid%>,<%=@skrid%>)" href="javascript:void(0)">
+          <%= i.score %> 
+        </a>
+      </td>  
     </tr>
     <% end %>
   </tbody>

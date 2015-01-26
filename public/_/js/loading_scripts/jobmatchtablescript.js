@@ -10,13 +10,6 @@
           null, 
           null, 
           null,
-          null,
-         { "bSortable": false }
-        ],
-      "columns": [
-        { "width": "5%" },
-        null,
-        null,
-        null
-      ]
+          null
+        ]
   } );

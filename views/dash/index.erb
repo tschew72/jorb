@@ -5,8 +5,8 @@
   <p>
     My Rank: How are you compared to the rest of the job seekers who are matched for the job
   </p>
-  <p> Score: Determines how closely matched you are for the job. Maximum is 100 points</p>
-  <p> <i class="fa fa-external-link fa-lg"></i>: Show you all the matching criterias and your score <p>
+  <p> Score: Determines how closely matched you are for the job.</p>
+  <p> Select score to find out how the score is being calculated for each job match <p>
 </div> <!-- Instructions -->
   <section class="jobMatches">
     <header>Your Job Matches</header>
@@ -28,7 +28,9 @@
   }); //function()
 
   function showMatchDetail(i,j){
+    $("#loading").html("<div class='spinner'></div>"); 
     $("#matchDetail").load("/jobmatchdetail",{ pk: i ,skrid: j}, function(){
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
       window.location.hash = '#aa';
       window.location.hash = '#matchDetail'; }); 
   };//showmatchdetail

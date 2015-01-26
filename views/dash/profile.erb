@@ -190,15 +190,28 @@ $(document).ready(function(){
 
   $.fn.editable.defaults.mode = 'popup'; 
   $('#firstname').editable({
-    inputclass : 'mytextarea'
+    inputclass : 'mytextarea',
+    validate: function(value){
+        if(value.length >100 ) {
+          return 'You can only enter a maximum of 100 characters';
+        }
+      } //validate 
   });
   $('#lastname').editable({
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
+    validate: function(value){
+        if(value.length >100 ) {
+          return 'You can only enter a maximum of 100 characters';
+        }
+      } //validate 
   });
   $('#middlename').editable({
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
+    validate: function(value){
+        if(value.length >100 ) {
+          return 'You can only enter a maximum of 100 characters';
+        }
+      } //validate 
   });
   $('#gender').editable({  
     source: [
@@ -206,24 +219,38 @@ $(document).ready(function(){
       {value: "2", text: 'Female'},
     ]
   });
-  $('#contactnumber').editable({
 
+  $('#contactnumber').editable({
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
+    validate: function(value){
+        if(value.length >20 ) {
+          return 'You can only enter a maximum of 20 digits';
+        }
+      } //validate 
 
   });
+  
   $('#address').editable({
     tpl: "<input type='text' style='width: 700px';height:500px>",
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
+    validate: function(value){
+        if(value.length >5000 ) {
+          return 'You can only enter a maximum of 5000 characters';
+        }
+      } //validate 
 
   });
+  
   $('#email').editable({
     tpl: "<input type='text' style='width: 500px';height:500px>",
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
-
+    validate: function(value){
+        if(value.length >200 ) {
+          return 'You can only enter a maximum of 200 characters';
+        }
+      } //validate 
   });
+
   $('#nationality').editable({
        source: function() {
             return (<%= @countries %>)
@@ -239,21 +266,33 @@ $(document).ready(function(){
           } ;
         } //success
   });
+
   $('#linkedin').editable({
     tpl: "<input type='text' style='width: 500px';height:500px>",
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
+    validate: function(value){
+        if(value.length >200 ) {
+          return 'You can only enter a maximum of 200 characters';
+        }
+      } //validate 
   });
   $('#facebook').editable({
     tpl: "<input type='text' style='width: 500px';height:500px>",
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
+    validate: function(value){
+        if(value.length >200 ) {
+          return 'You can only enter a maximum of 200 characters';
+        }
+      } //validate 
   });
   $('#twitter').editable({
     tpl: "<input type='text' style='width: 500px';height:500px>",
     emptytext: '--',
-    // placeholder: '[Optional] Enter your achievement here'
-
+    validate: function(value){
+        if(value.length >200 ) {
+          return 'You can only enter a maximum of 200 characters';
+        }
+      } //validate 
   });
 
   var nation=document.getElementById( 'nationality' ).textContent;
@@ -263,10 +302,6 @@ $(document).ready(function(){
   {
     document.getElementById( 'spr_block' ).style.visibility = 'visible';
   };
-
-  // $('.datePicker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
-  //   $(this).prev().focus();
-  // });
         
   $('input[name="date-range-picker1"]').daterangepicker({
   timePicker: false,
@@ -283,18 +318,18 @@ $(document).ready(function(){
         type: 'POST',
         data: {"dob": from, "pk" : <%=@userprofile.id %>},
         beforeSend : function(){
-          $("#saving_date").html("<span id='saver'><i class='fa fa-spinner fa-spin'></i></span>");
+          // $("#saving_date").html("<span id='saver'><i class='fa fa-spinner fa-spin'></i></span>");
         }, 
         success: function(response){
                     // newAlert("#alert_placeholder-tab", 'success', "Dates recorded");
-                     $('#saver').fadeOut(1000, function() {
-                      $(this).remove();
-                     });
+                     // $('#saver').fadeOut(1000, function() {
+                     //  $(this).remove();
+                     // });
                   }
       });
   });      
 
- 
+
 });
 
 </script>
