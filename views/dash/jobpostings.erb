@@ -57,6 +57,16 @@
     $("#jobTable").load("/activejobtable",{i: new Date().getTime(), coyid: <%=@mycoy.id%>}, function(){
       $('.spinner').fadeOut(1000, function() {$(this).remove();});
     }); 
+    
+    $('#jobTable').editable({ //used in activejobtable.erb when usertype==3 (Admin)
+      selector: 'a.job_suspended',
+      showbuttons: false,
+      success: function(response, newValue) {
+        $("#jobTable").load("/activejobtable",{i: new Date().getTime(), coyid: <%=@mycoy.id%>},function(){ 
+          $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+        });
+        } //jobTable
+    }); //company_suspended
   }); //document.ready
 
   function showjobdetail(i){

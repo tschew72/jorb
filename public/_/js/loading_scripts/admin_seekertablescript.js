@@ -13,9 +13,16 @@
           null,
           null,
           null,
+          null,
          { "bSortable": false },{ "bSortable": false },{ "bSortable": false }
         ]
   } );
+
+$('#seekerTable').editable({
+  selector: 'a.user_suspended',
+  showbuttons: false
+}); //user_suspended
+
 
 function deleteUser(id)
   { 

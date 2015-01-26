@@ -1,12 +1,13 @@
 ﻿<div class="seekerIndexlayout"> 
   <header>Welcome back, <%=@user.firstname%> <%=@user.middlename%> <%=@user.lastname%></header>
-      <div class="Instructions">
-      <p>
-        My Rank: How are you compared to the rest of the job seekers who are matched for the job
-      </p>
-      <p> Score: Determines how closely matched you are for the job. Maximum is 100 points</p>
-      <p> <i class="fa fa-external-link fa-lg"></i>: Show you all the matching criterias and your score <p>
-    </div>
+  <div id ="loading"></div>
+  <div class="Instructions">
+  <p>
+    My Rank: How are you compared to the rest of the job seekers who are matched for the job
+  </p>
+  <p> Score: Determines how closely matched you are for the job. Maximum is 100 points</p>
+  <p> <i class="fa fa-external-link fa-lg"></i>: Show you all the matching criterias and your score <p>
+</div> <!-- Instructions -->
   <section class="jobMatches">
     <header>Your Job Matches</header>
       <div id="jobMatchTable"> </div>  
@@ -19,10 +20,11 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+    $("#loading").html("<div class='spinner'></div>"); 
     $("#jobMatchTable").load("/jobmatchtable",{i: new Date().getTime()}, function(){
-      ('#matchDetail').html('');
-      window.location.hash = '#aa';
-      window.location.hash = '#matchDetail'; }); 
+      $('#matchDetail').html('');
+      $('.spinner').fadeOut(1000, function() {$(this).remove();});
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow"); }); 
   }); //function()
 
   function showMatchDetail(i,j){

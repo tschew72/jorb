@@ -1739,7 +1739,7 @@ post '/j_updateskillrank' do
 
 
  post '/activejobtable' do
-       userprofile = env['warden'].user
+       @user = env['warden'].user
        # mycoy = userprofile.tme_company_main  
        mycoy = TmeCompanyMain.get(params['coyid'])    
        #@joblisting = mycoy.tme_job_main.all(:job_status =>1) | mycoy.tme_job_main.all(:job_status =>2)

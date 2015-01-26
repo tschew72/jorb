@@ -316,10 +316,9 @@ class TmeJobMain
   property :job_jdurl, String, length: 1000, :index => true  
   property :job_nationalityall, Boolean, :index => true, :default => false
   property :job_nationalitypr, Boolean, :index => true, :default =>true
-  property :job_workemergency, Boolean, :index=>true, :default => false
-  
+  property :job_workemergency, Boolean, :index=>true, :default => false  
   property :job_status, Integer, :default => 4, :index => true #"0 = cancelled, 1 = pending, 2 = active, 3  = closed, 4 = draft"
-
+  property :job_suspended, Boolean, :default => false
   belongs_to :tme_company_main
 
   has n, :tme_job_skill, :model =>'TmeJobSkill'

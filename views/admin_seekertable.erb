@@ -19,6 +19,7 @@
       <th>UserName</th>
       <th>User Type</th>
       <th>Last Updated</th>
+      <th>Status?</th>
       <th></th>
       <th></th>
       <th></th>
@@ -39,6 +40,13 @@
         <% if i.updated_at != nil %>
           <%= i.updated_at.strftime("%c") %>
         <%end%>
+      </td>
+      <td>
+        <a class="user_suspended inputText" href="javascript:void(0)" data-name="status" data-type="select" data-pk="<%=i.id %>" data-url="/updateprofile" data-source="[{value: '0', text: 'Suspend'}, {value: '1', text: 'Active'}, {value: '2', text: 'Remove'}]" data-title="Suspend User?">
+          <% if i.status == 0 %> Suspend <%end%>
+          <% if i.status == 1 %> Active <%end%> 
+          <% if i.status == 2 %> Remove <%end%> <!-- remove from view but still in DB -->
+        </a>
       </td>
       <td>
         <% if i.usertype == 1 %>  
