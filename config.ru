@@ -1198,12 +1198,12 @@ post '/jobseeker_registration' do
     sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 3)
     sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 4)
     sc = @userprofile.tme_skr_socialmedia.create(:tme_skr_main_id => tmeskrmain.id, :skr_socialmediacat => 5)
-    
     user.update(:email=>params['email'])
     user.update(:username=>params['email'])
     user.update(:firstname=>params['firstname'])
     user.update(:lastname=>params['lastname'])
     user.update(:password=>params['password'])
+    return {:errors => "ok" }.to_json
   else
     return {:errors => "Email already exist" }.to_json
   end

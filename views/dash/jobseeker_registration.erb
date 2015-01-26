@@ -54,7 +54,13 @@ $("#jobseeker_registration_form").submit(function(e)
         success:function(response)
         {
             var data = JSON.parse(response);
-            alert(data.errors);
+            if (data.errors != "ok") {
+                alert(data.errors);
+            }
+            else {
+                alert("Congratulation! You are now registered! You will be redirected to the login page now");
+                window.location = "/login";
+            }
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
@@ -63,7 +69,7 @@ $("#jobseeker_registration_form").submit(function(e)
         }
     });
     e.preventDefault(); //STOP default action
-    e.unbind(); //unbind. to stop multiple form submit.
+    //e.unbind(); //unbind. to stop multiple form submit.
 });
  
 // $("#jobseeker_registration_form").submit(); //Submit  the FORM
