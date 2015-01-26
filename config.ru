@@ -1120,6 +1120,21 @@ get '/auth/unauthorized' do
   erb :"dash/unauthorized", :layout => false
 end
 
+get '/auth/unauthorized_login' do
+  erb :"dash/unauthorized_login", :layout => false
+end
+
+post '/checkUserStatus' do
+  entered_username = params['value']
+  user = User.first(:username => entered_username)
+  if user != nil
+    {:status => user.status}.to_json
+  else 
+    {:status => 3}.to_json #No user exist!
+  end
+end
+
+
 post '/auth/login' do
   session.clear
   env['warden'].authenticate!
