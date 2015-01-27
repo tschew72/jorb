@@ -170,20 +170,21 @@ $large_admin : 90em;
 //Avatar (myCV)-------------------------------------
 .avatar-frame {
     float: left;
-    @include clearfix;
+    
   } // Avatar
 
 //Detail (myCV)-----------------------------------------------
   .Detail {
     float: left;
     margin: 0px 20px;
+    // @include clearfix;
   } // Detail
 
 	//Skills -----------------------------------------------
 	.Skills {
 		// @include clearfix;
-		@include breakpoint($medium) {
-			@include clearfix;
+		float: left;
+		@include breakpoint($small) {
 			 @include span(12 of 12);
 			font-size : 0.8rem;
 		} //medium layout
@@ -191,7 +192,8 @@ $large_admin : 90em;
 
 	//Achievements -----------------------------------------------
 	.Achievements {
-		@include breakpoint($medium) {
+		float: left;
+		@include breakpoint($small) {
 			 @include span(12 of 12);
 			font-size : 0.8rem;
 
@@ -200,6 +202,7 @@ $large_admin : 90em;
 
 	//Experiences -----------------------------------------------
 	.Experiences {
+		float: left;
 		@include breakpoint($medium) {
 			 @include span(6 of 12);
 
@@ -208,6 +211,7 @@ $large_admin : 90em;
 
 	//Education -----------------------------------------------
 	.Education {
+		float: left;
 		@include breakpoint($medium) {
 			 @include span(6 omega of 12);
 		} //medium layout
