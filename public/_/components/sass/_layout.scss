@@ -140,17 +140,23 @@ $large_admin : 90em;
 .seekerIndexlayout {
 	@include container;
 	padding: 0 3%;
-	font-size: 0.7em;
+	font-size: 0.6rem;
 	.jobMatches{
+		@include breakpoint($small) {
+			 font-size: 0.6rem;
+			 @include span(12 of 12);
+
+		} //small layout
 		@include breakpoint($medium) {
 			 @include span(6 of 12);
+			 font-size: 0.7rem;
 
 		} //medium layout
 	}
 	.matchDetail{
 		@include breakpoint($medium) {
 			 @include span(6 omega of 12);
-
+			font-size: 0.7rem;
 		} //medium layout
 	}
 }
