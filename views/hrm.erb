@@ -10,7 +10,6 @@
         <tr>
           <th>Job ID</th>
           <th>Job Title</th>
-          <th>Job Function </th>
           <th>Date Posted</th>
           <th></th>
         </tr>
@@ -21,7 +20,6 @@
         <tr>
           <td><%= i.id %></td> 
           <td> <%= i.job_title_actual %></td> 
-          <td> <%= i.job_function %></td> 
           <td> <%= i.job_posted.strftime("%d/%m/%Y") %></td>
           <td> <a onclick="viewmatches(<%=i.id%>)" class="red" href="javascript:void(0)">View Matches</a> </td>
         </tr>
@@ -56,7 +54,6 @@
         "aoColumns": [         
             null, 
             null, 
-            null,
             null,
            { "bSortable": false }
           ]

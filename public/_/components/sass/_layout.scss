@@ -264,6 +264,9 @@ $large_admin : 90em;
 		@include breakpoint($medium) {
 			 @include span(12 of 12);
 		} //medium layout
+		@include breakpoint($small) {
+			font-size: 0.6rem;
+		} //medium layout
 	} // matchDetail
 
 
