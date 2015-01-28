@@ -618,6 +618,11 @@ post '/matchdetail' do
   @skrid = params["skrid"].to_s  
   cmd2 = "select * from jobmatch_skrdetail_pers_func("+ @skrid +")"
   @skrdetail_pers=repository(:default).adapter.select(cmd2)  
+  @skrdetail_pers.each do |i|
+    if i.fieldname=="ID"
+      @skrid = i.seekervalue
+    end
+  end #each
   cmd3 = "select * from jobmatch_skrdetail(" + @jobid + "," + @skrid +")"
   @skrdetail=repository(:default).adapter.select(cmd3)
   erb :matchdetail, :layout => false
@@ -1515,9 +1520,6 @@ end
 get '/j_mycv' do
   redirect '/auth/login' unless env['warden'].authenticated?
   @user = User.get(params["pk"])
-  #if @user.usertype == 1
-  #  redirect '/auth/unauthorized'
-  #end
   @userprofile = @user.tme_skr_main
   @userme = @user.firstname
   @mycoy = @user.tme_company_main

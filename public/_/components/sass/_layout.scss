@@ -225,29 +225,46 @@ $large_admin : 90em;
 .hrmLayout {
 	@include container;
 	padding: 0 3%;
+	font-size: 0.8rem;
 
+	//jobListing -----------------------------------------------
+	.jobListing {
+		@include breakpoint($small) {
+			 font-size: 0.6rem;
+			 @include span(12 of 12);
 
-//jobListing -----------------------------------------------
-.jobListing {
-	@include breakpoint($medium) {
-		@include clearfix;
-		 @include span(6 of 12);
-	} //medium layout
-} // jobListing
+		} //small layout
 
-//top5Matches -----------------------------------------------
-.top5Matches {
-	@include breakpoint($medium) {
-		 @include span(6 omega of 12);
-	} //medium layout
-} // top5Matches
+		@include breakpoint($medium) {
+			 @include span(6 of 12);
+			 font-size: 0.7rem;
 
-//matchDetail -----------------------------------------------
-.matchDetail {
-	@include breakpoint($medium) {
-		 @include span(12 of 12);
-	} //medium layout
-} // matchDetail
+		} //medium layout
+
+	} // jobListing
+
+	//top5Matches -----------------------------------------------
+	.top5Matches {
+		@include breakpoint($small) {
+			 font-size: 0.6rem;
+			 @include span(12 of 12);
+
+		} //small layout
+		
+		@include breakpoint($medium) {
+			 @include span(6 omega of 12);
+			 font-size: 0.7rem;
+
+		} //medium layout
+
+	} // top5Matches
+
+	//matchDetail -----------------------------------------------
+	.matchDetail {
+		@include breakpoint($medium) {
+			 @include span(12 of 12);
+		} //medium layout
+	} // matchDetail
 
 
 
