@@ -890,69 +890,94 @@ $(document).ready(function(){
   } //isInt
 
   function delskill(element,i){
-    $.ajax({
-            url: '/deleteskill',
-            type: 'POST',
-            data: {"pk" : i},
-            success: function(response){
-              var row=$(element).parents('tr')
-              $('#skillsettingtable').dataTable().fnDeleteRow(row[0]);
-              newAlert("#alert_placeholder-tab", 'success', "Skill deleted!");
-            } //success
-    }); //ajax
+    var r = confirm("This skill will be deleted! Are you sure?");
+      if (r == true) {
+        $.ajax({
+                url: '/deleteskill',
+                type: 'POST',
+                data: {"pk" : i},
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#skillsettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Skill deleted!");
+                } //success
+        }); //ajax
+      } else {
+
+      }
   } //delskill
 
   function delexp(element,i){
-    $.ajax({
-            url: '/deleteexp',
-            type: 'POST',
-            data: {"pk" : i},  //jobID
-            success: function(response){
-              var row=$(element).parents('tr')
-              $('#experiencesettingtable').dataTable().fnDeleteRow(row[0]);
-              newAlert("#alert_placeholder-tab", 'success', "Job Experience deleted!");
-            } //success
-    }); //ajax
+    var r = confirm("This job experience will be deleted! Are you sure?");
+      if (r == true) {
+        $.ajax({
+                url: '/deleteexp',
+                type: 'POST',
+                data: {"pk" : i},  //jobID
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#experiencesettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Job Experience deleted!");
+                } //success
+        }); //ajax
+      } else {
+
+      }
   }//delexp
 
   function dellanguage(element,i){
-    $.ajax({
-            url: '/deletelanguage',
-            type: 'POST',
-            data: {"pk" : i, "userid": <%= @user.id %>},
-            success: function(response){
-              var row=$(element).parents('tr')
-              $('#languagesettingtable').dataTable().fnDeleteRow(row[0]);
-              newAlert("#alert_placeholder-tab", 'success', "Language deleted!");
+    var r = confirm("This language will be deleted! Are you sure?");
+      if (r == true) {
+        $.ajax({
+                url: '/deletelanguage',
+                type: 'POST',
+                data: {"pk" : i, "userid": <%= @user.id %>},
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#languagesettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Language deleted!");
 
-            } //success
-    }); //ajax
+                } //success
+        }); //ajax
+      } else {
+
+      }
   }//dellanguage
 
   function deledu(element,i){
-    $.ajax({
-      url: '/deleteedu',
-      type: 'POST',
-      data: {"pk" : i, "userid": <%= @user.id %>},
-      success: function(response){
-        var row=$(element).parents('tr')
-        $('#edusettingtable').dataTable().fnDeleteRow(row[0]);
-        newAlert("#alert_placeholder-tab", 'success', "Education deleted!");
-      } //success
-    }); //ajax
+    var r = confirm("This education will be deleted! Are you sure?");
+      if (r == true) {
+        $.ajax({
+          url: '/deleteedu',
+          type: 'POST',
+          data: {"pk" : i, "userid": <%= @user.id %>},
+          success: function(response){
+            var row=$(element).parents('tr')
+            $('#edusettingtable').dataTable().fnDeleteRow(row[0]);
+            newAlert("#alert_placeholder-tab", 'success', "Education deleted!");
+          } //success
+        }); //ajax
+      } else {
+
+      }
   }//deledu
 
   function delcert(element,i){
-    $.ajax({
-            url: '/deletecert',
-            type: 'POST',
-            data: {"pk" : i, "userid": <%= @user.id %>},
-            success: function(response){
-              var row=$(element).parents('tr')
-              $('#certsettingtable').dataTable().fnDeleteRow(row[0]);
-              newAlert("#alert_placeholder-tab", 'success', "Certification deleted!");
-            } //success
-    }); //ajax
+    var r = confirm("This certification will be deleted! Are you sure?");
+      if (r == true) {
+        $.ajax({
+                url: '/deletecert',
+                type: 'POST',
+                data: {"pk" : i, "userid": <%= @user.id %>},
+                success: function(response){
+                  var row=$(element).parents('tr')
+                  $('#certsettingtable').dataTable().fnDeleteRow(row[0]);
+                  newAlert("#alert_placeholder-tab", 'success', "Certification deleted!");
+                } //success
+        }); //ajax
+      } else {
+
+      }
   }//delcert
 
   function newAlert (loc, type, message) {
