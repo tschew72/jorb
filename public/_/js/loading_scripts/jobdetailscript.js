@@ -14,7 +14,8 @@ function activateJob(jobid, coyid){
   if (r == true) {
       $.post( "/updatejob", {pk: jobid, name: "job_status", value: 2}, function( data ) {
         confirm("Job activated!");
-        window.location.assign("/jobpostings?pk=" + coyid );
+        // window.location.assign("/jobpostings?pk=" + coyid );
+        location.reload();
       });
   } 
   else {
@@ -28,7 +29,8 @@ function cancelJob(jobid, coyid){
   if (r == true) {
       $.post( "/updatejob", {pk: jobid, name: "job_status", value: 0}, function( data ) {
         confirm("Job cancelled!");
-        window.location.assign("/jobpostings?pk=" + coyid );
+        // window.location.assign("/jobpostings?pk=" + coyid );
+        location.reload();
       });
   } 
   else {
@@ -57,7 +59,8 @@ function delJob(jobid, coyid){
   if (r == true) {
       $.post( "/delete_job", {id: jobid}, function( data ) { 
         confirm("Job deleted!");
-        window.location.assign("/jobpostings?pk=" + coyid );
+        // window.location.assign("/jobpostings?pk=" + coyid );
+        location.reload();
       });
   } 
   else {
