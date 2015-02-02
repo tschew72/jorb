@@ -4,7 +4,8 @@ require 'dm-postgres-adapter'
 require 'bcrypt'
 require 'dm-validations'
 
-DataMapper.setup(:default, "postgres://pmfpekijznvzjw:Hq_zObLrI-YKpLoHpKKy0QLgsH@ec2-54-225-101-164.compute-1.amazonaws.com:5432/d3ev2r7degfpm9")
+#DataMapper.setup(:default, "postgres://pmfpekijznvzjw:Hq_zObLrI-YKpLoHpKKy0QLgsH@ec2-54-225-101-164.compute-1.amazonaws.com:5432/d3ev2r7degfpm9")
+DataMapper.setup(:default, "postgres://ue3juc4o7cof5p:pb46tok52g0p688akcbn6pb2qlk@ec2-23-21-162-77.compute-1.amazonaws.com:5602/dealc0e10g24c6")
 
 
 
