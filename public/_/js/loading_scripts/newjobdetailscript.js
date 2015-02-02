@@ -22,7 +22,8 @@ function kivJob(jobid, coyid){
   if (r == true) {
       $.post( "/updatejob", {pk: jobid, name: "job_status", value: 4}, function( data ) {  //set to draft
         confirm("Job saved!");
-        window.location.assign("/jobpostings?pk=" + coyid );
+        location.reload();
+        // window.location.assign("/jobpostings?pk=" + coyid );
       });
   } 
   else {
