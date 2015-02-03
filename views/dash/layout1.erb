@@ -388,7 +388,7 @@
           $('.newskill').editable('setValue', null);  //clear values
           $('#skillname').editable('option', 'disabled', true);
           $('#skillrank').editable('option', 'disabled', true);
-          $("#skillTable").load("/table",{i: new Date().getTime()}); 
+          $("#skillTable").load("/table",{"pk" : <%=@user.id%>, i: new Date().getTime()}); 
          } //else   
       }, //success
       error: function(errors) {
