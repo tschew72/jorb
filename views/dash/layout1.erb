@@ -431,7 +431,7 @@
           $('.newlang').editable('setValue', null);  //clear values
           $('#speakskill').editable('option', 'disabled', true);
           $('#writeskill').editable('option', 'disabled', true);
-          $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%=@userprofile.id%>});  
+          $("#languageTable").load("/langtable",{i: new Date().getTime(), pk: <%=@user.id%>});  
         } //else    
       }, //success
       error: function(errors) {
@@ -481,7 +481,7 @@
                       $('#specialty').editable('option', 'disabled', true);
                       $('#honors').editable('option', 'disabled', true);
                       // $("#lt").load("/langtable");
-                      $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+                      $("#educationTable").load("/edutable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
                  }   
              },
              error: function(errors) {
@@ -533,7 +533,7 @@
                       newAlert("#alert_placeholder-inmodal4",'success', 'New Certification Requirement Added!');
 
                       $('.newcert').editable('setValue', null);  //clear values
-                      $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%=@userprofile.id%>}); 
+                      $("#certificationTable").load("/certtable",{i: new Date().getTime(), pk: <%=@user.id%>}); 
                  }   
              },
              error: function(errors) {

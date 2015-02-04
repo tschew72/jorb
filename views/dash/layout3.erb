@@ -373,6 +373,7 @@
      $('#saveskill-btn').click(function() {
          $('.newskill').editable('submit', {
              url: '/newskill',
+             data: {"pk" : <%=@user.id%>},
              ajaxOptions: {
                  dataType: 'json' //assuming json response
              },        
@@ -423,6 +424,7 @@
       $('#savelanguage-btn').click(function() {
          $('.newlang').editable('submit', {
              url: '/newlanguage',
+             data: {"pk" : <%=@user.id%>},
              ajaxOptions: {
                  dataType: 'json' //assuming json response
              },        
@@ -474,6 +476,7 @@
       $('#saveedu-btn').click(function() {
          $('.newedu').editable('submit', {
              url: '/newedu',
+             data: {"pk" : <%=@user.id%>},
              // data: {"pk" : <%=@userprofile.id%>},
              ajaxOptions: {
                  dataType: 'json' //assuming json response
@@ -528,6 +531,7 @@
          $('.newcert').editable('submit', {
              url: '/newcert',
              // data: {"pk" : <%=@userprofile.id%>},
+             data: {"pk" : <%=@user.id%>},
              ajaxOptions: {
                  dataType: 'json' //assuming json response
              },       
