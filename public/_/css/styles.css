@@ -97,16 +97,16 @@ h3 {
   line-height: 60%;
   color: #042029; }
 
-/* line 59, ../components/sass/_base.scss */
+/* line 48, ../components/sass/_base.scss */
 p, span, .datepicker {
   margin-bottom: 10px;
   font-size: 0.9rem; }
 
-/* line 64, ../components/sass/_base.scss */
+/* line 53, ../components/sass/_base.scss */
 .datePicker {
   margin-left: 5px; }
 
-/* line 69, ../components/sass/_base.scss */
+/* line 58, ../components/sass/_base.scss */
 a.inputText, input[type="text"] {
   display: block;
   border: none;
@@ -121,11 +121,11 @@ a.inputText, input[type="text"] {
   background: -moz-linear-gradient(top, #FFF, #EAEAEA);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFF), color-stop(1, #EAEAEA)); }
 
-/* line 88, ../components/sass/_base.scss */
+/* line 77, ../components/sass/_base.scss */
 input[type="checkbox"] {
   display: none; }
 
-/* line 93, ../components/sass/_base.scss */
+/* line 82, ../components/sass/_base.scss */
 input[type="checkbox"] + label {
   background-color: #fafafa;
   border: 1px solid #cacece;
@@ -137,18 +137,18 @@ input[type="checkbox"] + label {
   margin: 0 5px;
   top: 5px; }
 
-/* line 105, ../components/sass/_base.scss */
+/* line 94, ../components/sass/_base.scss */
 input[type="checkbox"] + label:active, .checkBox:checked + label:active {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1); }
 
-/* line 109, ../components/sass/_base.scss */
+/* line 98, ../components/sass/_base.scss */
 input[type="checkbox"]:checked + label {
   background-color: #e9ecee;
   border: 1px solid #adb8c0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
   color: #99a1a7; }
 
-/* line 116, ../components/sass/_base.scss */
+/* line 105, ../components/sass/_base.scss */
 input[type="checkbox"]:checked + label:after {
   content: '\2714';
   font-size: 1.5em;
@@ -157,60 +157,60 @@ input[type="checkbox"]:checked + label:after {
   left: 3px;
   color: #99a1a7; }
 
-/* line 126, ../components/sass/_base.scss */
+/* line 115, ../components/sass/_base.scss */
 input[type="radio"] {
   border: 0px;
   width: 25px;
   height: 1.3em;
   margin: 0; }
 
-/* line 133, ../components/sass/_base.scss */
+/* line 122, ../components/sass/_base.scss */
 .btn {
   margin-left: 1em; }
 
-/* line 139, ../components/sass/_base.scss */
+/* line 128, ../components/sass/_base.scss */
 header {
   font-size: 1.4rem;
   color: #042029;
   margin-bottom: 1em;
   margin-top: 1em; }
 
-/* line 148, ../components/sass/_base.scss */
+/* line 137, ../components/sass/_base.scss */
 span, p {
   font-size: 0.9em;
   color: #000;
   padding: 0px 0px;
   margin: 1em; }
 
-/* line 159, ../components/sass/_base.scss */
+/* line 148, ../components/sass/_base.scss */
 div.dataTables_wrapper {
   background-color: #719ba7; }
 
-/* line 163, ../components/sass/_base.scss */
+/* line 152, ../components/sass/_base.scss */
 div.dataTables_length {
   float: left; }
 
-/* line 167, ../components/sass/_base.scss */
+/* line 156, ../components/sass/_base.scss */
 div.dataTables_filter {
   float: right; }
 
-/* line 171, ../components/sass/_base.scss */
+/* line 160, ../components/sass/_base.scss */
 div.dataTables_info {
   padding: 9px 6px 6px 6px;
   float: left; }
 
-/* line 176, ../components/sass/_base.scss */
+/* line 165, ../components/sass/_base.scss */
 div.dataTables_paginate {
   float: right; }
 
-/* line 180, ../components/sass/_base.scss */
+/* line 169, ../components/sass/_base.scss */
 div.dataTables_length,
 div.dataTables_filter,
 div.dataTables_paginate {
   padding: 6px; }
 
 /* Self clearing - http://www.webtoolkit.info/css-clearfix.html */
-/* line 187, ../components/sass/_base.scss */
+/* line 176, ../components/sass/_base.scss */
 .dataTables_wrapper:after {
   content: ".";
   display: block;
@@ -219,56 +219,56 @@ div.dataTables_paginate {
   line-height: 0;
   height: 0; }
 
-/* line 196, ../components/sass/_base.scss */
+/* line 185, ../components/sass/_base.scss */
 html[xmlns] .dataTables_wrapper {
   display: block; }
 
-/* line 200, ../components/sass/_base.scss */
+/* line 189, ../components/sass/_base.scss */
 * html .dataTables_wrapper {
   height: 1%; }
 
 /*
  * Table styles
  */
-/* line 208, ../components/sass/_base.scss */
+/* line 197, ../components/sass/_base.scss */
 table {
   width: 100%;
   clear: both; }
 
-/* line 213, ../components/sass/_base.scss */
+/* line 202, ../components/sass/_base.scss */
 table td,
 table th {
   padding: 5px;
   border: 1px solid #fff; }
 
 /* Header cells */
-/* line 220, ../components/sass/_base.scss */
+/* line 209, ../components/sass/_base.scss */
 table thead th {
   text-align: center;
   background: #66a9bd; }
 
 /* Body cells */
-/* line 226, ../components/sass/_base.scss */
+/* line 215, ../components/sass/_base.scss */
 table tbody th {
   text-align: left;
   background: #91c5d4; }
 
-/* line 231, ../components/sass/_base.scss */
+/* line 220, ../components/sass/_base.scss */
 table tbody td {
   text-align: left;
   background: #d5eaf0; }
 
-/* line 236, ../components/sass/_base.scss */
+/* line 225, ../components/sass/_base.scss */
 table tbody tr.odd td {
   background: #bcd9e1; }
 
 /* Footer cells */
-/* line 241, ../components/sass/_base.scss */
+/* line 230, ../components/sass/_base.scss */
 table tfoot th {
   background: #b0cc7f;
   text-align: left; }
 
-/* line 246, ../components/sass/_base.scss */
+/* line 235, ../components/sass/_base.scss */
 table tfoot td {
   background: #d7e1c5;
   text-align: center;
@@ -277,7 +277,7 @@ table tfoot td {
 /*
  * Pagination
  */
-/* line 256, ../components/sass/_base.scss */
+/* line 245, ../components/sass/_base.scss */
 a.paginate_button,
 a.paginate_active {
   display: inline-block;
@@ -287,24 +287,24 @@ a.paginate_active {
   cursor: pointer;
   *cursor: hand; }
 
-/* line 266, ../components/sass/_base.scss */
+/* line 255, ../components/sass/_base.scss */
 a.paginate_active {
   background-color: transparent;
   border: 1px solid black; }
 
-/* line 271, ../components/sass/_base.scss */
+/* line 260, ../components/sass/_base.scss */
 a.paginate_button_disabled {
   color: #3d6672; }
 
-/* line 274, ../components/sass/_base.scss */
+/* line 263, ../components/sass/_base.scss */
 .paging_full_numbers a:active {
   outline: none; }
 
-/* line 277, ../components/sass/_base.scss */
+/* line 266, ../components/sass/_base.scss */
 .paging_full_numbers a:hover {
   text-decoration: none; }
 
-/* line 281, ../components/sass/_base.scss */
+/* line 270, ../components/sass/_base.scss */
 div.dataTables_paginate span > a {
   width: 15px;
   text-align: center; }
@@ -938,19 +938,34 @@ footer {
   to {
     transform: rotate(359deg); } }
 /* line 79, ../components/sass/_modules.scss */
+.helpCircle {
+  background: #cccccc;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #000;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 5px;
+  text-align: center;
+  width: 1.6em;
+  font-size: 0.6rem; }
+
+/* line 96, ../components/sass/_modules.scss */
 .Avatar .fileinput-button {
   margin-top: 0px;
   margin-left: 0px;
   font-size: 0.6em; }
-/* line 84, ../components/sass/_modules.scss */
+/* line 101, ../components/sass/_modules.scss */
 .Avatar .avatar-frame {
   clear: both; }
 
-/* line 90, ../components/sass/_modules.scss */
+/* line 107, ../components/sass/_modules.scss */
 #greeting {
   overflow: hidden;
   *zoom: 1; }
-  /* line 92, ../components/sass/_modules.scss */
+  /* line 109, ../components/sass/_modules.scss */
   #greeting img {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -960,28 +975,28 @@ footer {
     float: left;
     margin-right: 3%; }
 
-/* line 105, ../components/sass/_modules.scss */
+/* line 122, ../components/sass/_modules.scss */
 .socialmediaicons .title {
   float: left; }
-/* line 109, ../components/sass/_modules.scss */
+/* line 126, ../components/sass/_modules.scss */
 .socialmediaicons ul {
   float: left; }
-  /* line 111, ../components/sass/_modules.scss */
+  /* line 128, ../components/sass/_modules.scss */
   .socialmediaicons ul li {
     display: inline-block;
     margin-left: 5px; }
-    /* line 114, ../components/sass/_modules.scss */
+    /* line 131, ../components/sass/_modules.scss */
     .socialmediaicons ul li img {
       width: 30px;
       -moz-border-radius: 50%;
       -webkit-border-radius: 50%;
       border-radius: 50%; }
 
-/* line 124, ../components/sass/_modules.scss */
+/* line 141, ../components/sass/_modules.scss */
 .avatar-frame {
   border: 2px solid #c7b89e; }
 
-/* line 125, ../components/sass/_modules.scss */
+/* line 142, ../components/sass/_modules.scss */
 .avatar-frame, .avatar-frame img {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -989,12 +1004,12 @@ footer {
   max-width: 110px;
   height: 110px; }
 
-/* line 135, ../components/sass/_modules.scss */
+/* line 152, ../components/sass/_modules.scss */
 .Achievements div {
   background: #FFF;
   border-bottom: none !important; }
 
-/* line 140, ../components/sass/_modules.scss */
+/* line 157, ../components/sass/_modules.scss */
 .Achievements a {
   display: block;
   text-decoration: none;
@@ -1002,50 +1017,50 @@ footer {
   color: #444;
   font-size: 0.9em; }
 
-/* line 149, ../components/sass/_modules.scss */
+/* line 166, ../components/sass/_modules.scss */
 .Experiences, .Competencies, #tablespace {
   font-size: 0.8em; }
 
-/* line 160, ../components/sass/_modules.scss */
+/* line 177, ../components/sass/_modules.scss */
 .allSkills {
   color: #FFF;
   padding: 0px 30px;
   text-align: center; }
-  /* line 164, ../components/sass/_modules.scss */
+  /* line 181, ../components/sass/_modules.scss */
   .allSkills p {
     text-align: left; }
-  /* line 167, ../components/sass/_modules.scss */
+  /* line 184, ../components/sass/_modules.scss */
   .allSkills .rank5 {
     background-color: #0000FF; }
-  /* line 170, ../components/sass/_modules.scss */
+  /* line 187, ../components/sass/_modules.scss */
   .allSkills .rank4 {
     background-color: #0033FF; }
-  /* line 173, ../components/sass/_modules.scss */
+  /* line 190, ../components/sass/_modules.scss */
   .allSkills .rank3 {
     background-color: #0066FF; }
-  /* line 176, ../components/sass/_modules.scss */
+  /* line 193, ../components/sass/_modules.scss */
   .allSkills .rank2 {
     background-color: #0099FF; }
-  /* line 179, ../components/sass/_modules.scss */
+  /* line 196, ../components/sass/_modules.scss */
   .allSkills .rank1 {
     background-color: #00CCFF; }
 
-/* line 189, ../components/sass/_modules.scss */
+/* line 206, ../components/sass/_modules.scss */
 .cvLayout .Experiences {
   font-size: 1em; }
 
-/* line 197, ../components/sass/_modules.scss */
+/* line 214, ../components/sass/_modules.scss */
 .Education {
   font-size: 1em; }
-  /* line 200, ../components/sass/_modules.scss */
+  /* line 217, ../components/sass/_modules.scss */
   .Education .small {
     font-size: 0.8em; }
 
-/* line 207, ../components/sass/_modules.scss */
+/* line 224, ../components/sass/_modules.scss */
 .jobListing, .top5Matches, .matchDetail {
   font-size: 0.8em; }
 
-/* line 213, ../components/sass/_modules.scss */
+/* line 230, ../components/sass/_modules.scss */
 .Instructions {
   margin: 20px 30px;
   padding: 10px;
@@ -1055,29 +1070,29 @@ footer {
   box-shadow: 0 8px 6px -6px black;
   font-size: 0.9rem; }
 
-/* line 224, ../components/sass/_modules.scss */
+/* line 241, ../components/sass/_modules.scss */
 #coyUserTable, #user > a {
   margin: 5px 50px;
   padding: 0px;
   font-size: 0.7em; }
 
-/* line 231, ../components/sass/_modules.scss */
+/* line 248, ../components/sass/_modules.scss */
 #jobposting {
   font-size: 0.7em; }
-  /* line 233, ../components/sass/_modules.scss */
+  /* line 250, ../components/sass/_modules.scss */
   #jobposting #jobdetail {
     font-size: 0.9rem; }
 
-/* line 239, ../components/sass/_modules.scss */
+/* line 256, ../components/sass/_modules.scss */
 #newjobbutton {
   margin: 5px 15px;
   padding: 0px; }
 
-/* line 245, ../components/sass/_modules.scss */
+/* line 262, ../components/sass/_modules.scss */
 .jobRequirement {
   font-size: 0.7rem; }
 
-/* line 250, ../components/sass/_modules.scss */
+/* line 267, ../components/sass/_modules.scss */
 #seekerTable, #coyTable {
   font-size: 0.7rem;
   padding: 10px 50px; }
