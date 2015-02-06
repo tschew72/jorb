@@ -37,95 +37,7 @@
     </p>
   </section> <!--searchStatus --> 
 
-  <section class="CV">
-    <header>CV / Résumé</header>
-    <!--Uncomment the following to allow users to view their uploaded CV. You will need to create additional logic to determine if there is existing file. If no file exist, we recommend you to prompt users to upload CV -->
-    <!--         
-    <span id="CVsection"> 
-      <a href=<%= @userprofile.cvurl %> target="_blank" > 
-        <i class="fa fa-file-text-o"><br><div>My CV</div></i> 
-      </a>
-    </span> -->
-    <p>
-      Your uploaded CV will be made available to Recruiters/Companies when you are matched to a posted job. 
-      <% if @userprofile.cvurl !="" %>
-        <a href=<%= @userprofile.cvurl %> target="_blank" > Click here to view your CV</a>
-      <%else%>
-        You do not have a CV uploaded at the moment.
-      <%end%>
-    </p>
-    <script src='_/js/jqueryfileupload/jquery.ui.widget.js' type='text/javascript'></script>
-    <script src='_/js/jqueryfileupload/jquery.iframe-transport.js' type='text/javascript'></script>
-    <script src='_/js/jqueryfileupload/jquery.fileupload.js' type='text/javascript'></script>
-    <script src='_/js/jqueryfileupload/jquery.fileupload-process.js' type='text/javascript'></script>
-    <script src='_/js/jqueryfileupload/jquery.fileupload-validate.js' type='text/javascript'></script>
-    <script src='_/js/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
-    <script type="text/javascript">$.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'}); </script>
-
-    <div class="btn dark-blue-btn btn-primary fileinput-button">
-      <div id="uploadProgress">
-        <i class="glyphicon glyphicon-plus"></i> Upload new CV
-      </div> 
-      <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" >
-    </div>
-
-    <script type="text/javascript">
-      $(function(){
-        $('#fileupload').fileupload({
-            add: function (e, data) {
-                $.getJSON('/filer_cv', { userid: <%= @user.id %>}, function (result) {
-                    data.formData = result; // e.g. {id: 123}
-                    data.submit();
-                }).fail( function(d, textStatus, error) {
-                    console.error("Error! Please contact helpdesk. Status: " + textStatus + ", error: "+error)
-                });
-            },
-            url: "https://api.cloudinary.com/v1_1/dashy/upload",
-            acceptFileTypes: /(\.|\/)(doc?x|pdf|txt)$/i, 
-            // The maximum allowed file size in bytes:
-            maxFileSize: 10000000, // 10 MB
-            // The minimum allowed file size in bytes:
-            minFileSize: 1, // No minimal file size
-            // The limit of files to be uploaded:
-            maxNumberOfFiles: 10
-          })
-        });
-
-        $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) { 
-           $.ajax({
-                url: '/cvuploaded',
-                type: 'POST',
-                data: {"cvurl": data.result.url, "pk" : <%=@user.id %>},
-                success: function(response){
-                  tt = "<a href=".concat(data.result.url,"><i style='font-size: 25px;' class='fa fa-file-text-o'><br><div style='font-size: 14px;left:-10px;position:relative'>My CV</div></i></a>");
-                  $('#CVsection').html(tt);
-                            $("#uploadprog").html("Uploading is complete!");
-                            $('#uploadprog').fadeOut(3000, function() {
-                              $(this).remove();
-                              $("#uploadProgress").html("<i class='glyphicon glyphicon-plus'></i> <span >Upload new CV</span>");
-                             });
-                
-                }
-           }); //ajax
-           return true;
-        }); //cloudinary done
-
-        $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
-          $("#uploadProgress").html("<div id='uploadprog'> <i class='fa fa-spinner fa-spin'></i>Uploading in progress</div> </div>");
-        });
-
-        $('.cloudinary-fileupload').bind('fileuploadstop', function(e, data) {
-
-        });
-
-         $('.cloudinary-fileupload').bind('fileuploadfail', function(e, data) {
-            alert(data.files[0].error);
-        });
-    </script> <!-- cloudinary scripts -->
-
-
-  </section> <!-- CV -->
-
+ 
 
   <section class="jobPreferences">
     <header>Job Preferences</header>
@@ -256,6 +168,91 @@
 </div> <!-- settingsLayout -->
 
 
+<!-- <section class="CV">
+    <header>CV / Résumé</header>
+            
+    <span id="CVsection"> 
+      <a href=<%= @userprofile.cvurl %> target="_blank" > 
+        <i class="fa fa-file-text-o"><br><div>My CV</div></i> 
+      </a>
+    </span>
+    <p>
+      Your uploaded CV will be made available to Recruiters/Companies when you are matched to a posted job. 
+      <% if @userprofile.cvurl !="" %>
+        <a href=<%= @userprofile.cvurl %> target="_blank" > Click here to view your CV</a>
+      <%else%>
+        You do not have a CV uploaded at the moment.
+      <%end%>
+    </p>
+    <script src='_/js/jqueryfileupload/jquery.ui.widget.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.iframe-transport.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.fileupload.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.fileupload-process.js' type='text/javascript'></script>
+    <script src='_/js/jqueryfileupload/jquery.fileupload-validate.js' type='text/javascript'></script>
+    <script src='_/js/cloudinary/jquery.cloudinary.js' type='text/javascript'></script>
+    <script type="text/javascript">$.cloudinary.config({cloud_name:'dashy', api_key:'219441847515364'}); </script>
+
+    <div class="btn dark-blue-btn btn-primary fileinput-button">
+      <div id="uploadProgress">
+        <i class="glyphicon glyphicon-plus"></i> Upload new CV
+      </div> 
+      <input name="file" type="file" id="fileupload" class="cloudinary-fileupload" data-cloudinary-field="image_upload" >
+    </div>
+
+    <script type="text/javascript">
+      $(function(){
+        $('#fileupload').fileupload({
+            add: function (e, data) {
+                $.getJSON('/filer_cv', { userid: <%= @user.id %>}, function (result) {
+                    data.formData = result; // e.g. {id: 123}
+                    data.submit();
+                }).fail( function(d, textStatus, error) {
+                    console.error("Error! Please contact helpdesk. Status: " + textStatus + ", error: "+error)
+                });
+            },
+            url: "https://api.cloudinary.com/v1_1/dashy/upload",
+            acceptFileTypes: /(\.|\/)(doc?x|pdf|txt)$/i, 
+            // The maximum allowed file size in bytes:
+            maxFileSize: 10000000, // 10 MB
+            // The minimum allowed file size in bytes:
+            minFileSize: 1, // No minimal file size
+            // The limit of files to be uploaded:
+            maxNumberOfFiles: 10
+          })
+        });
+
+        $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) { 
+           $.ajax({
+                url: '/cvuploaded',
+                type: 'POST',
+                data: {"cvurl": data.result.url, "pk" : <%=@user.id %>},
+                success: function(response){
+                  tt = "<a href=".concat(data.result.url,"><i style='font-size: 25px;' class='fa fa-file-text-o'><br><div style='font-size: 14px;left:-10px;position:relative'>My CV</div></i></a>");
+                  $('#CVsection').html(tt);
+                            $("#uploadprog").html("Uploading is complete!");
+                            $('#uploadprog').fadeOut(3000, function() {
+                              $(this).remove();
+                              $("#uploadProgress").html("<i class='glyphicon glyphicon-plus'></i> <span >Upload new CV</span>");
+                             });
+                
+                }
+           }); //ajax
+           return true;
+        }); //cloudinary done
+
+        $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
+          $("#uploadProgress").html("<div id='uploadprog'> <i class='fa fa-spinner fa-spin'></i>Uploading in progress</div> </div>");
+        });
+
+        $('.cloudinary-fileupload').bind('fileuploadstop', function(e, data) {
+
+        });
+
+         $('.cloudinary-fileupload').bind('fileuploadfail', function(e, data) {
+            alert(data.files[0].error);
+        });
+    </script> 
+</section>  -->
 
 
 <!-- START of MODAL -->
