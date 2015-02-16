@@ -1139,6 +1139,11 @@ post '/checkUserStatus' do
   end
 end
 
+post '/checkNewUser' do
+  entered_username = params['value']
+  user = User.first(:username => entered_username)
+  {:terms_agreed => user.terms_agreed}.to_json
+end
 
 post '/auth/login' do
   session.clear

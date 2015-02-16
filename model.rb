@@ -31,6 +31,7 @@ class User
   property :tme_skr_main_id, Integer, :field => 'skr_id'
   property :status, Integer, :default => 1                        ############## 0 Inactive (suspended) #  1 active   2 Removed
   #property :lastlogin, Date, :index => true, :field => 'skr_lastlogin' To be used later.
+  property :terms_agreed, Boolean, :default => false
   belongs_to :tme_skr_main, :model =>'TmeSkrMain'
   belongs_to :tme_company_main, :model =>'TmeCompanyMain'
 

@@ -5,9 +5,11 @@
     <form action="/auth/login" method="post">
         <input type="text" name="user[username]" class="username" placeholder="Email Address" >
         <input type="password" name="user[password]" class="password" placeholder="Password">
-        <button type="submit">Sign me in</button>
+        <button type="submit" class="submit">Sign me in</button>
         <div class="error"><span>+</span></div>
     </form>
+    <br><br>
+    <p style="font-size:0.8rem">By clicking on "Sign me Me" button, you agree to bound by the <a href="http://www.jorb.co/terms-of-service/" target="_blank">Terms Of Use</a> and <a href="http://www.jorb.co/privacy-policy/" target="_blank">Privacy Policy</a></p>
 </div>
 
 <!-- Javascript -->
@@ -34,5 +36,13 @@ $('.username').on('blur', function() {
 	}, "json")
 });
 
+// $('.submit').click(function(data) {
+// 	if (data.terms_agreed == "false") {
+// 		alert ("show terms");
+// 	}
+// 	else {
+// 		alert ("go in now");
+// 	} 
+// });
 	
 </script>
