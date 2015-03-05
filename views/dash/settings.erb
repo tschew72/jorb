@@ -79,9 +79,11 @@
 
   <section class="Achievements">
     <header>Achievements</header>
-    <p> List all your major achievements below:
-      <a class="ec inputText" href="javascript:void(0)" data-type="wysihtml5" data-pk="<%=@myachievements.skr_achieve_id %>" data-url="/updateachievement" data-title="Enter achievements"><%= @myachievements.achievement != '' ? @myachievements.achievement : "[Optional] Enter your achievement here"%> </a>
-    </p>
+      <a href="#" id="pencil">[edit list]</a>
+      <div id="note" class="ec inputText" href="javascript:void(0)" data-toggle="manual" data-placement="top" data-type="wysihtml5" data-pk="<%=@myachievements.skr_achieve_id %>" data-url="/updateachievement" data-title="Enter achievements">
+      <%= @myachievements.achievement %> 
+      <!-- <a class="ec inputText" href="javascript:void(0)" data-type="wysihtml5" data-pk="<%=@myachievements.skr_achieve_id %>" data-url="/updateachievement" data-title="Enter achievements"><%= @myachievements.achievement != '' ? @myachievements.achievement : "Enter your achievement here"%> </a> -->
+      </div>
   </section> <!-- achievements -->
   
   <section class="Experiences">
@@ -592,6 +594,12 @@ $(document).ready(function(){
       } //validate 
     }); //skr_careergoal
 
+    $('#pencil').click(function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $('#note').editable('toggle');
+    });  
+
     $('#skilltable').editable({
       selector: 'a.skillrank',
       showbuttons: false
@@ -606,8 +614,8 @@ $(document).ready(function(){
           return 'You can only enter a maximum of 500 characters';
         }
       }, //validate 
-      emptytext: '[Optional] Enter your achievement here',
-      placeholder: '[Optional] Enter your achievement here'
+      emptytext: 'Enter your achievement here',
+      placeholder: 'Enter your achievement here'
     }); //.Achievements
 
     $('#languagetable').editable({
