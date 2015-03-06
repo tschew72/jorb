@@ -16,7 +16,8 @@ $.getScript("_/js/loading_scripts/jobmatchtablescript.js");
   <tbody id="aat" >
     <% @jobmatches.each do |i| %>
     <tr>
-      <td><a href=<%=i.jdurl%> target="_blank"><%= i.jobactual %> </a></td>
+      <!-- <td><a href=<%=i.jdurl%> target="_blank"><%= i.jobactual %> </a></td> -->
+      <td><%= i.jobactual %></td>
       <td><%= i.jobfunc %></td>
       <td><%= i.company %> </td>
       <td><%= i.rank %></td>
