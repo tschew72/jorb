@@ -105,23 +105,8 @@ get '/edge' do
   @userme = @user.firstname
   @emailme = @user.email
   @usermatchjoblist = @userprofile.matched_jobs
-  
-  @cmaster = TmeListCountry.all
-  @mynations=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation
-  @mynationtypes=@userprofile.tme_skr_nation.first(:tme_skr_main_id=>@userprofile.id).skr_nation_type
-
   erb :"dash/index", :layout => :'dash/layout1'
 end #edge
-
-# dropdown for nationality
-get '/nationalityDropDown' do
-  @cmaster = TmeListCountry.all
-  ctemp = []
-  @cmaster.each do |x|
-     ctemp << {value: x.country_id, text: "#{x.country}"}
-  end
-  @countries = ctemp.to_json
-end 
 
 
 # Ajax call for generating the job match table in index.erb
