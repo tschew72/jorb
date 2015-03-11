@@ -4,12 +4,28 @@
 @import url('bootstrap/bootstrap.min.css');
 
 body {
-	font-family: $font-primary;
-	font-size: 100%;
-	line-height:160%;
-	background: $paleryellow;
-	color: $darkblue;
+	// font-family: $font-primary;
+	// font-size: 100%;
+	// line-height:160%;
+	// background: $paleryellow;
+	// color: $darkblue;
+	  font-family: 'Roboto', sans-serif;
+	  font-size: 16px;
+	  line-height: 2.35;
+	  background: #fff;
+	  // background: #eeeeee;
+	  margin: 0;
+	  padding: 0;
 }
+
+/* GENERAL STYLES
+   ================================== */
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 
 
 #{headings()}{
@@ -30,7 +46,14 @@ h1{
 	border-bottom: 1px solid $lightgray;
 	padding-top:10px;
 }
-
+// h1 {
+//   font-size: 1.75em;
+//   color: #fafafa;
+//   margin: 0;
+//   padding: 0.15em;
+//   position: relative;
+//   top: 0.5em;
+// }
 h2{
 	font-size: 1.5rem;
 	line-height:100%;
@@ -55,61 +78,61 @@ p , span, .datepicker{
 }
 
 // inputText, input["text"] ------------------------------------
-a.inputText, input[type="text"] {
-    display: block;
-    border: none;
-    border-radius: 20px;
-    padding: 5px 8px;
-    color: #000;
-    box-shadow:
-        inset 0 2px 0 rgba(0,0,0,.2),
-        0 0 4px rgba(0,0,0,0.1);
-    width:80%;
-    line-height: 1.5em;
-    border-bottom: none !important;
-	background-color: #EAEAEA;
-	background: -moz-linear-gradient(top, #FFF, #EAEAEA);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #FFF), color-stop(1.0, #EAEAEA));
-}
+// a.inputText, input[type="text"] {
+//     display: block;
+//     border: none;
+//     border-radius: 20px;
+//     padding: 5px 8px;
+//     color: #000;
+//     box-shadow:
+//         inset 0 2px 0 rgba(0,0,0,.2),
+//         0 0 4px rgba(0,0,0,0.1);
+//     width:80%;
+//     line-height: 1.5em;
+//     border-bottom: none !important;
+// 	background-color: #EAEAEA;
+// 	background: -moz-linear-gradient(top, #FFF, #EAEAEA);
+// 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #FFF), color-stop(1.0, #EAEAEA));
+// }
 
 // Checkbox ---------------------------------------------
 
-input[type="checkbox"] {
-  display: none;
+// input[type="checkbox"] {
+//   display: none;
   
-}
+// }
 
-input[type="checkbox"] + label {
-  background-color: #fafafa;
-  border: 1px solid #cacece;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-  padding: 9px;
-  border-radius: 3px;
-  display: inline-block;
-  position: relative;
-  margin: 0 5px;
-  top:5px;
-}
+// input[type="checkbox"] + label {
+//   background-color: #fafafa;
+//   border: 1px solid #cacece;
+//   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+//   padding: 9px;
+//   border-radius: 3px;
+//   display: inline-block;
+//   position: relative;
+//   margin: 0 5px;
+//   top:5px;
+// }
 
-input[type="checkbox"] + label:active, .checkBox:checked + label:active {
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
-}
+// input[type="checkbox"] + label:active, .checkBox:checked + label:active {
+//   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+// }
 
-input[type="checkbox"]:checked + label {
-  background-color: #e9ecee;
-  border: 1px solid #adb8c0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
-  color: #99a1a7;
-}
+// input[type="checkbox"]:checked + label {
+//   background-color: #e9ecee;
+//   border: 1px solid #adb8c0;
+//   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+//   color: #99a1a7;
+// }
 
-input[type="checkbox"]:checked + label:after {
-  content: '\2714';
-  font-size: 1.5em;
-  position: absolute;
-  top: -5px;
-  left: 3px;
-  color: #99a1a7;
-}
+// input[type="checkbox"]:checked + label:after {
+//   content: '\2714';
+//   font-size: 1.5em;
+//   position: absolute;
+//   top: -5px;
+//   left: 3px;
+//   color: #99a1a7;
+// }
 
 // Radio button -----------------------------------------
 input[type="radio"]{

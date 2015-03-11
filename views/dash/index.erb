@@ -1,75 +1,132 @@
 ﻿<div class="seekerIndexlayout"> 
-  <header>Welcome back, <%=@user.firstname%> <%=@user.middlename%> <%=@user.lastname%></header>
+  <header></header>
   <div id ="loading"></div>
   <div class="Instructions">
-    How to get matched to jobs:<br><br>
-    <div class="helpCircle">1</div> Update your <a href="/profile">Personal Profile</a> <br>
-    <div class="helpCircle">2</div> Create your <a href="/settings">Career Profile</a>  <br>
-    <div class="helpCircle">3</div> Expect a call from your future employer <br>
-    <p>Click <span class="helpCircle"><i class="fa fa-question"></i></span> for explanation</p>
-          
-        
+    Welcome to JORB, <%=@user.firstname%> <%=@user.middlename%> <%=@user.lastname%>
+    <br>
+    To start looking at jobs you just need to tell us your personal info and preferences below. When we have this information, you will see relevant jobs on the next screen!
+  </div> <!-- Instructions -->
+
+
+<section class="initialProfile">
+  <form class="awesome-form" method="post">
+<!--     <div class="input-group">
+      <input type="text">
+      <label>Nationality</label>
+    </div>
+
+    <div class="input-group">
+      <input type="text">
+      <label>Enter Your Email..</label>
+    </div>
+
+    <div class="input-group">
+      <input type="text">
+      <label>Enter Your Email..</label>
+    </div> -->
     
-</div> <!-- Instructions -->
-  <section class="jobMatches">
-    <header>
-      Your Job Matches
-      <a href="#helpmodal" data-pk=<%= @user.id %> data-toggle="modal" role="button">
-        <span class="helpCircle">
-          <i class="fa fa-question"></i>
-        </span>
-      </a> <!-- helpmodal -->
-    </header>
-      <div id="jobMatchTable"> </div>  
-  </section> <!--jobMatches -->
+<!--     <div class="styled-select" >
+      <div class="input-group">
+        <label>Gender</label>
+        <select id="gender">
+          <option value="1"> Male </option>
+          <option value="2"> Female </option>
+        </select> 
+      </div>
+    </div> -->
 
-  <section class="matchDetail">
-    <div id="matchDetail"></div> 
-  </section> <!--matchDetail -->
-</div> <!--seekerIndexlayout -->
+    <div class="styled-select" >
+        <div class="input-group">
+          <label>Nationality</label>
+          <select id="nationality">
+          </select> 
+        </div>
+    </div>
+ 
+ 
+
+        <div id="check-awesome" class="form-group">    
+          <input type="checkbox" id="check-me">  
+            
+          <label for="check-me">
+            <span></span>
+            <span class="check"></span>
+            <span class="box"></span>
+            Notifications
+          </label>  
+        </div>
+
+   <input type="submit" value="Submit">
+
+  </form>
 
 
+   
+</section> <!-- initialProfile-->
 
-<!-- START of MODAL -->
-<div class="modal fade" id="helpmodal" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
-          <header>Job Matches Table</header>                                                            
-      </div> <!-- modal-header -->
-      <div class="modal-body">   
-        <p>
-          My Rank: How are you compared to the rest of the job seekers who are matched for the job
-        </p>
-        <p> Score: Determines how closely matched you are for the job.</p>
-        <p> Click on the <b>Score</b> to find out how the score is being calculated for each job match <p>
-        <!-- <p> Click on <b>Job Title</b> to download Job Description </p> -->
-        <p> If you do not see any matches in this table. Don't panic! Keep your Career Profile updated and you will soon be matched to jobs.</p>
-      </div> <!-- modal-body -->
-      <div class="modal-footer">
-
-      </div> <!-- modal-footer -->
-    </div> <!-- modal-content -->
-  </div><!-- modal-dialog -->
-</div><!-- helpmodal  --> 
 
 <script type="text/javascript">
+
+
   $(document).ready(function(){
-    $("#loading").html("<div class='spinner'></div>"); 
-    $("#jobMatchTable").load("/jobmatchtable",{i: new Date().getTime()}, function(){
-      $('#matchDetail').html('');
-      $('.spinner').fadeOut(1000, function() {$(this).remove();});
-      $("html, body").animate({ scrollTop: $(document).height() }, "slow"); }); 
+
+    // $('.awesome-form input').focusout(function(){
+    //   var text_val = $(this).val();
+    //   if(text_val == '') {
+    //     $(this).removeClass('has-value');
+    //   }else {
+    //     $(this).addClass('has-value');
+    //   }
+    // });
+
+
+    $.getJSON("/nationalityDropDown",function(obj){
+      $.each(obj,function(key,value)
+      {
+        var option = $('<option />').val(value.value).text(value.text);
+        $("#nationality").append(option);
+      });
+    }); //getJSON
+
+
+
+    // Get the select element
+    var select = document.getElementById("nationality");
+    // Create a new option element
+    var el = document.createElement("option");
+    // Add our value to the option
+    el.textContent = "<%= @cmaster.get(@mynations).country %>";
+    el.value = <%= @cmaster.get(@mynations).country_id %>;
+    // Set the option to selected
+    el.selected = true;
+    // Add the new option element to the select element
+    select.appendChild(el);
+
+
+
+      // per css-tricks restarting css animations
+    // http://css-tricks.com/restart-css-animation/
+    $('label').click(function() {
+      
+      // find the first span which is our circle/bubble
+      var el = $(this).children('span:first-child');
+      
+      // add the bubble class (we do this so it doesnt show on page load)
+      el.addClass('circle');
+      
+      // clone it
+      var newone = el.clone(true);  
+      
+      // add the cloned version before our original
+      el.before(newone);  
+      
+      // remove the original so that it is ready to run on next click
+      $("." + el.attr("class") + ":last").remove();
+    }); 
   }); //function()
 
-  function showMatchDetail(i,j){
-    $("#loading").html("<div class='spinner'></div>"); 
-    $("#matchDetail").load("/jobmatchdetail",{ pk: i ,skrid: j}, function(){
-      $('.spinner').fadeOut(1000, function() {$(this).remove();});
-      window.location.hash = '#aa';
-      window.location.hash = '#matchDetail'; }); 
-  };//showmatchdetail
+
+
 
 
 </script>
